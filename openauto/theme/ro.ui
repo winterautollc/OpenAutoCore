@@ -1,0 +1,1826 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1421</width>
+    <height>896</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>48</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>REPAIR ORDER</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../OpenAutoLite/ui_files/Images/Icons/document.png</normaloff>../../OpenAutoLite/ui_files/Images/Icons/document.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">color: #ffffff;
+background-color: #f8f8f2;
+background-image: none;</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="3" column="1" colspan="7">
+     <layout class="QHBoxLayout" name="horizontalLayout_17">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="job_line_label">
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+          </property>
+          <property name="text">
+           <string>Description</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_16">
+          <item>
+           <widget class="QComboBox" name="part_labor_box">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QComboBox {
+	border-radius: 10px;
+	color: #fff;
+	background-color: #94C4C1;
+}
+
+QComboBox:hover {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}
+
+QComboBox:drop-down {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}
+
+QComboBox QAbstractItemView {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="job_line_edit">
+            <property name="minimumSize">
+             <size>
+              <width>400</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLabel" name="cost_label">
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+          </property>
+          <property name="text">
+           <string>$ Cost</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="cost_line">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>55</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: red;
+</string>
+          </property>
+          <property name="text">
+           <string>$ Sell</string>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="sell_line">
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QLabel" name="amount_label">
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+          </property>
+          <property name="text">
+           <string>Amount</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="amount_line">
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="QLabel" name="total_label">
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+          </property>
+          <property name="text">
+           <string>Total</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="total_line">
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item>
+         <widget class="QLabel" name="discount_label">
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+          </property>
+          <property name="text">
+           <string>Discount</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="discount_line">
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item>
+         <widget class="QLabel" name="add_line_label">
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+          </property>
+          <property name="text">
+           <string>Add</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="add_update_button">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	border-radius: 10px;
+	color: #fff;
+	background-color: #94C4C1;
+}
+
+QPushButton:hover {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>../../OpenAutoLite/ui_files/Images/Icons/list-check.png</normaloff>../../OpenAutoLite/ui_files/Images/Icons/list-check.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_10">
+        <item>
+         <widget class="QLabel" name="delete_line_label">
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+          </property>
+          <property name="text">
+           <string>Delete</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="delete_button">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	border-radius: 10px;
+	color: #fff;
+	background-color: #94C4C1;
+}
+
+QPushButton:hover {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>../../OpenAutoLite/ui_files/Images/Icons/trash.png</normaloff>../../OpenAutoLite/ui_files/Images/Icons/trash.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="9" column="6" rowspan="3" colspan="3">
+     <widget class="QTextEdit" name="correction_edit">
+      <property name="styleSheet">
+       <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="5" rowspan="4" colspan="4">
+     <widget class="QTextEdit" name="concern_edit">
+      <property name="styleSheet">
+       <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="7" rowspan="2" colspan="2">
+     <widget class="QTextEdit" name="cause_edit">
+      <property name="styleSheet">
+       <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2" colspan="2">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>370</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="5" rowspan="3" colspan="4">
+     <layout class="QHBoxLayout" name="horizontalLayout_30">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_13">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="name_label">
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+            </property>
+            <property name="text">
+             <string>Name </string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="name_line">
+            <property name="minimumSize">
+             <size>
+              <width>143</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_14">
+            <item>
+             <widget class="QLabel" name="ro_number_label">
+              <property name="styleSheet">
+               <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+              </property>
+              <property name="text">
+               <string>RO #</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_26">
+              <item>
+               <widget class="QLabel" name="created_label">
+                <property name="styleSheet">
+                 <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+                </property>
+                <property name="text">
+                 <string>Created</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDateTimeEdit" name="created_edit">
+                <property name="styleSheet">
+                 <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_27">
+              <item>
+               <widget class="QLabel" name="approved_label">
+                <property name="styleSheet">
+                 <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+                </property>
+                <property name="text">
+                 <string>Approved</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDateTimeEdit" name="approved_edit">
+                <property name="styleSheet">
+                 <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="phone_label">
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+            </property>
+            <property name="text">
+             <string>Phone</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="phone_line">
+            <property name="minimumSize">
+             <size>
+              <width>143</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLabel" name="alt_label">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+            </property>
+            <property name="text">
+             <string>Alt       </string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="alt_phone_line">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>143</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QLabel" name="email_label">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+            </property>
+            <property name="text">
+             <string>Email  </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="email_line">
+            <property name="minimumSize">
+             <size>
+              <width>143</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="8">
+     <widget class="QPushButton" name="parts_order_button">
+      <property name="maximumSize">
+       <size>
+        <width>251</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	border-radius: 10px;
+	color: #fff;
+	background-color: #94C4C1;
+}
+
+QPushButton:hover {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../OpenAutoLite/ui_files/Images/Icons/partstech_logo.jpeg</normaloff>../../OpenAutoLite/ui_files/Images/Icons/partstech_logo.jpeg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_14">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+          </property>
+          <property name="text">
+           <string>Miles-IN     </string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit">
+          <property name="maximumSize">
+           <size>
+            <width>142</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_15">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+          </property>
+          <property name="text">
+           <string>Miles-OUT</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_2">
+          <property name="maximumSize">
+           <size>
+            <width>142</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="4" column="1" colspan="8">
+     <widget class="QTableWidget" name="activity_table">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::NoSelection</enum>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::DotLine</enum>
+      </property>
+      <property name="columnCount">
+       <number>6</number>
+      </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
+      <column/>
+      <column/>
+      <column/>
+      <column/>
+      <column/>
+      <column/>
+     </widget>
+    </item>
+    <item row="1" column="1" colspan="2">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_12">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QLabel" name="year_label">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Year    </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="year_line">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QLabel" name="make_label">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Make   </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="make_line">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_13">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <item>
+           <widget class="QLabel" name="model_label">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Model</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="model_line">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <item>
+           <widget class="QLabel" name="engine_label">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Engine</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="engine_line">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="10" column="1">
+     <layout class="QHBoxLayout" name="horizontalLayout_29">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_11">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_18">
+          <item>
+           <widget class="QLabel" name="parts_total_label">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+            </property>
+            <property name="text">
+             <string>Parts</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="parts_total_line">
+            <property name="maximumSize">
+             <size>
+              <width>140</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_19">
+          <item>
+           <widget class="QLabel" name="labor_total_label">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+            </property>
+            <property name="text">
+             <string>Labor</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="labor_total_line">
+            <property name="maximumSize">
+             <size>
+              <width>140</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_20">
+          <item>
+           <widget class="QLabel" name="sublet_total_label">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Sublet</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="sublet_total_line">
+            <property name="maximumSize">
+             <size>
+              <width>140</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_21">
+          <item>
+           <widget class="QLabel" name="sub_total_label">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Sub_Total</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="sub_total_line">
+            <property name="maximumSize">
+             <size>
+              <width>140</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_12">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_22">
+          <item>
+           <widget class="QLabel" name="fees_total_label">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Fees</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="fees_total_line">
+            <property name="maximumSize">
+             <size>
+              <width>140</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_23">
+          <item>
+           <widget class="QLabel" name="EPA_total_label">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Epa_Charges</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="EPA_total_line">
+            <property name="maximumSize">
+             <size>
+              <width>140</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_24">
+          <item>
+           <widget class="QLabel" name="shop_supplies_label">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>ShopSupplies</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="shop_supplies_line">
+            <property name="maximumSize">
+             <size>
+              <width>140</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_25">
+          <item>
+           <widget class="QLabel" name="tax_total_label">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>TAX</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="tax_total_line">
+            <property name="maximumSize">
+             <size>
+              <width>140</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_28">
+          <item>
+           <widget class="QLabel" name="total_label_2">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>TOTAL</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="total_line_edit">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>140</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="1" colspan="2">
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item>
+       <widget class="QLabel" name="vin_label">
+        <property name="styleSheet">
+         <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+        </property>
+        <property name="text">
+         <string>Vin</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="vin_line">
+        <property name="maximumSize">
+         <size>
+          <width>500</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;
+</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="vin_copy_button">
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	border-radius: 10px;
+	color: #fff;
+	background-color: #94C4C1;
+}
+
+QPushButton:hover {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Copy</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../../OpenAutoLite/ui_files/Images/Icons/edit.png</normaloff>../../OpenAutoLite/ui_files/Images/Icons/edit.png</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="7" column="7" colspan="2">
+     <layout class="QHBoxLayout" name="horizontalLayout_9">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QRadioButton" name="concern_button">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+        </property>
+        <property name="text">
+         <string>Concern</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="cause_button">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+        </property>
+        <property name="text">
+         <string>Cause</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="correction_button">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius: 10px;
+background-color: #fefeff;
+color: black;</string>
+        </property>
+        <property name="text">
+         <string>Correction</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="4" rowspan="3">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>164</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="12" column="1">
+     <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="print_button">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	border-radius: 10px;
+	color: #fff;
+	background-color: #94C4C1;
+}
+
+QPushButton:hover {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Print</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../../OpenAutoLite/ui_files/Images/Icons/print.png</normaloff>../../OpenAutoLite/ui_files/Images/Icons/print.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="abort_button">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	border-radius: 10px;
+	color: #fff;
+	background-color: #94C4C1;
+}
+
+QPushButton:hover {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Abort</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../../OpenAutoLite/ui_files/Images/Icons/cross.png</normaloff>../../OpenAutoLite/ui_files/Images/Icons/cross.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="save_button">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	border-radius: 10px;
+	color: #fff;
+	background-color: #94C4C1;
+}
+
+QPushButton:hover {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Save</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../../OpenAutoLite/ui_files/Images/Icons/check.png</normaloff>../../OpenAutoLite/ui_files/Images/Icons/check.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="9" column="1">
+     <layout class="QHBoxLayout" name="horizontalLayout_31">
+      <item>
+       <widget class="QPushButton" name="mpi_button">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	border-radius: 10px;
+	color: #fff;
+	background-color: #94C4C1;
+}
+
+QPushButton:hover {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+        </property>
+        <property name="text">
+         <string>MPI</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../../OpenAutoLite/ui_files/Images/Icons/list-check.png</normaloff>../../OpenAutoLite/ui_files/Images/Icons/list-check.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="profit_loss_button">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	border-radius: 10px;
+	color: #fff;
+	background-color: #94C4C1;
+}
+
+QPushButton:hover {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+        </property>
+        <property name="text">
+         <string> Profit and Loss</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../../OpenAutoLite/ui_files/Images/Icons/chart-histogram.png</normaloff>../../OpenAutoLite/ui_files/Images/Icons/chart-histogram.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="12" column="5" colspan="2">
+     <widget class="QComboBox" name="send_box">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox {
+	border-radius: 10px;
+	color: #fff;
+	background-color: #94C4C1;
+}
+
+QComboBox:hover {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}
+
+QComboBox:drop-down {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}
+
+QComboBox QAbstractItemView {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+      </property>
+      <property name="currentText">
+       <string>SEND</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>SEND</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="12" column="8">
+     <widget class="QComboBox" name="status_box">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox {
+	border-radius: 10px;
+	color: #fff;
+	background-color: #94C4C1;
+}
+
+QComboBox:hover {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}
+
+QComboBox:drop-down {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}
+
+QComboBox QAbstractItemView {
+	background-color: #CE6A6C;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>STATUS</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,3 @@
+[console_scripts]
+vininfo = vininfo.cli:main
+

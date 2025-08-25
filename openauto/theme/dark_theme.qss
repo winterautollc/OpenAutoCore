@@ -1,0 +1,53 @@
+QTableWidget {
+    background-color: #ffffff;
+    alternate-background-color: #f5f5f5;
+    color: #000000;
+    gridline-color: #ccc;
+    font-size: 16px;
+}
+
+QHeaderView::section {
+    background-color: #4A6260;
+    color: #ECF4F4;
+    font-weight: bold;
+    padding: 4px;
+    border: 1px solid #bbb;
+}
+
+QTableWidget::item:selected {
+    background-color: #42899B;
+    color: #162927;
+}
+
+QCalendarWidget {
+    background-color: #2d2d30;
+    color: white;
+    border: 1px solid #444;
+}
+
+QCalendarWidget QWidget#qt_calendar_navigationbar {
+    background-color: #4A6260;
+    color: white;
+}
+
+QCalendarWidget QTableView {
+    selection-background-color: #42899B;
+    gridline-color: #555;
+}
+
+QCalendarWidget QAbstractItemView::item {
+    padding: 5px;
+}
+
+QCalendarWidget QHeaderView::section {
+    background-color: #4A6260;
+    color: white;
+}
+
+QCalendarWidget QAbstractItemView::item:hover {
+    background-color: #828786;
+}
+
+QDateTimeEdit {
+    color: white;
+}

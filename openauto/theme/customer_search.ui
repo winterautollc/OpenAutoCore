@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>636</width>
+    <height>278</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Search Customer</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">color: black;
+background-color: #ebebe6;
+background-image: none;
+border-radius: 10px;</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="1" colspan="3">
+    <widget class="QLineEdit" name="customer_search_edit">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius: 5px;
+background-color: #fefeff;
+color: black;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="placeholderText">
+      <string>Search ...</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="belongs_to_label">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+       <italic>true</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Vehicle Belongs To...</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="3">
+    <widget class="QPushButton" name="confirm_button">
+     <property name="minimumSize">
+      <size>
+       <width>150</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+	border-radius: 5px;
+	color: #fff;
+	background-color: #76ABAE;
+}
+
+QPushButton:hover {
+	background-color: #828786;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Confirm</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icons3/24x24/cil-check.png</normaloff>icons3/24x24/cil-check.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QPushButton" name="cancel_button">
+     <property name="minimumSize">
+      <size>
+       <width>150</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+	border-radius: 5px;
+	color: #fff;
+	background-color: #A0153E;
+}
+
+QPushButton:hover {
+	background-color: #C49497;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icons3/24x24/cil-x.png</normaloff>icons3/24x24/cil-x.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QComboBox" name="customer_name_box">
+     <property name="minimumSize">
+      <size>
+       <width>300</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
+	border-radius: 5px;
+	color: #fff;
+	background-color: #76ABAE;
+}
+
+QComboBox:hover {
+	background-color: #828786;
+	color: #fff;
+	border-radius: 5px;
+}
+
+QComboBox:drop-down {
+	background-color: #828786;
+	color: #fff;
+	border-radius: 5px;
+}
+
+QComboBox QAbstractItemView {
+	background-color: #828786;
+	color: #fff;
+	border-radius: 5px;
+}</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Customer</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QPushButton" name="add_customer_button">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+	border-radius: 5px;
+	color: #fff;
+	background-color: #76ABAE;
+}
+
+QPushButton:hover {
+	background-color: #828786;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string>New Customer</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>Icons/user-add.png</normaloff>Icons/user-add.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

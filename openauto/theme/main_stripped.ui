@@ -1,0 +1,3215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui version="4.0">
+<class>MainWindow</class>
+<widget class="QMainWindow" name="MainWindow">
+<property name="geometry">
+<rect>
+<x>0</x>
+<y>0</y>
+<width>1438</width>
+<height>942</height>
+</rect>
+</property>
+<property name="sizePolicy">
+<sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="minimumSize">
+<size>
+<width>60</width>
+<height>0</height>
+</size>
+</property>
+<property name="windowTitle">
+<string>OpenAuto</string>
+</property>
+
+<widget class="QWidget" name="centralwidget">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+
+<layout class="QGridLayout" name="gridLayout_2">
+<item colspan="2" column="0" row="1">
+<widget class="QStackedWidget" name="top_buttons_stacked">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="minimumSize">
+<size>
+<width>50</width>
+<height>0</height>
+</size>
+</property>
+<property name="maximumSize">
+<size>
+<width>16777215</width>
+<height>50</height>
+</size>
+</property>
+<property name="currentIndex">
+<number>0</number>
+</property>
+<widget class="QWidget" name="ro_header_buttons">
+
+<layout class="QGridLayout" name="gridLayout_15">
+<item column="0" row="0">
+<widget class="QFrame" name="ro_frame">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>50</height>
+</size>
+</property>
+<property name="cursor">
+<cursorShape>ArrowCursor</cursorShape>
+</property>
+
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+<property name="frameShadow">
+<enum>QFrame::Raised</enum>
+</property>
+<layout class="QGridLayout" name="gridLayout_4">
+<item column="3" row="0">
+<widget class="QPushButton" name="working_ro_button">
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+
+<property name="text">
+<string>Working</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/document.png</normaloff>Icons/document.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item column="4" row="0">
+<widget class="QPushButton" name="checkout_button">
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+
+<property name="text">
+<string>Checkout</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/shopping-cart.png</normaloff>Icons/shopping-cart.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item column="1" row="0">
+<widget class="QPushButton" name="estimates_button">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+
+<property name="text">
+<string>Estimates</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/ballot.png</normaloff>Icons/ballot.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item column="5" row="0">
+<widget class="QPushButton" name="show_all_ro_button">
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+
+<property name="text">
+<string>ShowAll</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/apps.png</normaloff>Icons/apps.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item column="0" row="0">
+<widget class="QPushButton" name="new_ro_button">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+
+<property name="text">
+<string> Create New</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/add-document.png</normaloff>Icons/add-document.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item column="2" row="0">
+<widget class="QPushButton" name="approved_button">
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+
+<property name="text">
+<string>Approved</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/list-check.png</normaloff>Icons/list-check.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item column="6" row="0">
+<layout class="QHBoxLayout" name="horizontalLayout">
+<item>
+<widget class="QPushButton" name="search_customer_button">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+<property name="text">
+<string/>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/search.png</normaloff>Icons/search.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="ro_search_edit">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="minimumSize">
+<size>
+<width>250</width>
+<height>0</height>
+</size>
+</property>
+<property name="layoutDirection">
+<enum>Qt::LeftToRight</enum>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+</layout>
+</widget>
+</item>
+</layout>
+</widget>
+<widget class="QWidget" name="vehicle_header_buttons">
+<layout class="QGridLayout" name="gridLayout_16">
+<item column="0" row="0">
+<widget class="QFrame" name="vehicle_header_frame">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>50</height>
+</size>
+</property>
+
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+<property name="frameShadow">
+<enum>QFrame::Raised</enum>
+</property>
+<layout class="QGridLayout" name="gridLayout_17">
+<item column="1" row="0">
+<layout class="QGridLayout" name="gridLayout_20">
+<item column="0" row="0">
+<widget class="QPushButton" name="new_vehicle_button">
+<property name="minimumSize">
+<size>
+<width>200</width>
+<height>0</height>
+</size>
+</property>
+
+<property name="text">
+<string>New</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/add-document.png</normaloff>Icons/add-document.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item column="1" row="0">
+<widget class="QPushButton" name="vehicle_search_button">
+<property name="maximumSize">
+<size>
+<width>300</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="text">
+<string>Search</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/search.png</normaloff>Icons/search.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item column="2" row="0">
+<widget class="QLineEdit" name="vehicle_search_line">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>30</height>
+</size>
+</property>
+<property name="maximumSize">
+<size>
+<width>600</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+</layout>
+</widget>
+</item>
+</layout>
+</widget>
+<widget class="QWidget" name="customer_header_buttons">
+<layout class="QGridLayout" name="gridLayout_27">
+<item column="0" row="0">
+<widget class="QFrame" name="customer_frame">
+<property name="enabled">
+<bool>true</bool>
+</property>
+<property name="sizePolicy">
+<sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>50</height>
+</size>
+</property>
+<property name="layoutDirection">
+<enum>Qt::LeftToRight</enum>
+</property>
+
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+<property name="frameShadow">
+<enum>QFrame::Raised</enum>
+</property>
+<layout class="QGridLayout" name="gridLayout_10">
+<item column="3" row="0">
+<widget class="QPushButton" name="seach_customer_button">
+<property name="maximumSize">
+<size>
+<width>200</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="text">
+<string>Search</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/search.png</normaloff>Icons/search.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+<item column="1" row="0">
+<widget class="QPushButton" name="new_customer_button">
+<property name="maximumSize">
+<size>
+<width>200</width>
+<height>16777215</height>
+</size>
+</property>
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+
+<property name="text">
+<string>New</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/user-add.png</normaloff>Icons/user-add.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item column="4" row="0">
+<widget class="QLineEdit" name="search_customer_line">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="minimumSize">
+<size>
+<width>250</width>
+<height>36</height>
+</size>
+</property>
+<property name="maximumSize">
+<size>
+<width>500</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</widget>
+</item>
+</layout>
+</widget>
+<widget class="QWidget" name="calender_header_buttons">
+<widget class="QFrame" name="calender_frame">
+<property name="geometry">
+<rect>
+<x>70</x>
+<y>10</y>
+<width>1132</width>
+<height>48</height>
+</rect>
+</property>
+
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+<property name="frameShadow">
+<enum>QFrame::Raised</enum>
+</property>
+<layout class="QGridLayout" name="gridLayout_12">
+<item column="0" row="0">
+<widget class="QPushButton" name="day_button">
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+
+<property name="text">
+<string>Day</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/calendar.png</normaloff>Icons/calendar.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item column="2" row="0">
+<widget class="QPushButton" name="month_button">
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+
+<property name="text">
+<string>Month</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/menu-burger.png</normaloff>Icons/menu-burger.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item column="1" row="0">
+<widget class="QPushButton" name="week_button">
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+
+<property name="text">
+<string>Week</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/calendar (1).png</normaloff>Icons/calendar (1).png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+</layout>
+</widget>
+</widget>
+<widget class="QWidget" name="messenger_header_buttons">
+<widget class="QFrame" name="message_button_frame">
+<property name="geometry">
+<rect>
+<x>1</x>
+<y>0</y>
+<width>1221</width>
+<height>48</height>
+</rect>
+</property>
+<property name="sizePolicy">
+<sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+<property name="frameShadow">
+<enum>QFrame::Raised</enum>
+</property>
+<layout class="QHBoxLayout" name="horizontalLayout_3">
+<item>
+<widget class="QPushButton" name="message_cust_find_button">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+<property name="layoutDirection">
+<enum>Qt::LeftToRight</enum>
+</property>
+
+<property name="text">
+<string>Send To:</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/comment-alt.png</normaloff>Icons/comment-alt.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLabel" name="message_recepient_label">
+
+<property name="text">
+<string/>
+</property>
+</widget>
+</item>
+</layout>
+</widget>
+</widget>
+<widget class="QWidget" name="settings_header_buttons">
+<layout class="QGridLayout" name="gridLayout_22">
+<item column="0" row="0">
+<widget class="QFrame" name="frame">
+<property name="minimumSize">
+<size>
+<width>50</width>
+<height>50</height>
+</size>
+</property>
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+<property name="frameShadow">
+<enum>QFrame::Raised</enum>
+</property>
+<layout class="QGridLayout" name="gridLayout_21">
+<item column="5" row="1">
+<widget class="QPushButton" name="quickbooks_button">
+<property name="maximumSize">
+<size>
+<width>150</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="text">
+<string>Quickbooks </string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons2/cil-browser.png</normaloff>icons2/cil-browser.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+<item column="2" row="1">
+<widget class="QPushButton" name="appearance_button">
+<property name="maximumSize">
+<size>
+<width>150</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="text">
+<string>Appearance</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-browser.png</normaloff>icons3/24x24/cil-browser.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+<item column="4" row="1">
+<widget class="QPushButton" name="parts_integrate_button">
+<property name="maximumSize">
+<size>
+<width>150</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="text">
+<string>Parts Integration</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-tag.png</normaloff>icons3/24x24/cil-tag.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+<item column="0" row="1">
+<widget class="QPushButton" name="save_settings_button">
+<property name="maximumSize">
+<size>
+<width>150</width>
+<height>16777215</height>
+</size>
+</property>
+<property name="sizeIncrement">
+<size>
+<width>0</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="text">
+<string>Save</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-save.png</normaloff>icons3/24x24/cil-save.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+<item column="3" row="1">
+<widget class="QPushButton" name="users_button">
+<property name="maximumSize">
+<size>
+<width>150</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="text">
+<string>Users</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons2/cil-user-follow.png</normaloff>icons2/cil-user-follow.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+</layout>
+</widget>
+</item>
+</layout>
+</widget>
+</widget>
+</item>
+<item column="1" row="3">
+<widget class="QStackedWidget" name="hub_stacked_widget">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="maximumSize">
+<size>
+<width>1677215</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="currentIndex">
+<number>6</number>
+</property>
+<widget class="QWidget" name="ro_page">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+
+<layout class="QGridLayout" name="gridLayout_3">
+<item column="0" row="0">
+<widget class="QStackedWidget" name="ro_tabs">
+<property name="sizePolicy">
+<sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+
+<property name="currentIndex">
+<number>0</number>
+</property>
+<widget class="QWidget" name="ro_tabsPage1">
+<layout class="QGridLayout" name="gridLayout_5">
+<item column="0" row="1">
+<widget class="EstimateTable" name="estimates_table">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+</widget>
+</item>
+</layout>
+</widget>
+<widget class="QWidget" name="ro_tabsPage2">
+<layout class="QGridLayout" name="gridLayout_6">
+<item column="0" row="0">
+<widget class="ApprovedTable" name="approved_table">
+
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+</widget>
+</item>
+</layout>
+</widget>
+<widget class="QWidget" name="ro_tabsPage3">
+<layout class="QGridLayout" name="gridLayout_7">
+<item column="0" row="0">
+<widget class="WorkingTable" name="working_table">
+
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+</widget>
+</item>
+</layout>
+</widget>
+<widget class="QWidget" name="ro_tabsPage4">
+<layout class="QGridLayout" name="gridLayout_8">
+<item column="0" row="0">
+<widget class="CheckoutTable" name="checkout_table">
+
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+</widget>
+</item>
+</layout>
+</widget>
+<widget class="QWidget" name="ro_tabsPage5">
+<layout class="QGridLayout" name="gridLayout_9">
+<item column="0" row="0">
+<widget class="QTableWidget" name="show_all_table">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>0</height>
+</size>
+</property>
+
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+</widget>
+</item>
+</layout>
+</widget>
+</widget>
+</item>
+</layout>
+</widget>
+<widget class="QWidget" name="customer_page">
+<layout class="QGridLayout" name="gridLayout">
+<item column="0" row="1">
+<widget class="QStackedWidget" name="customer_tabs">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+
+<widget class="QWidget" name="customer_tabsPage1">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<layout class="QGridLayout" name="gridLayout_11">
+<item column="0" row="0">
+<widget class="CustomerTable" name="customer_table">
+
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+</widget>
+</item>
+</layout>
+</widget>
+</widget>
+</item>
+</layout>
+</widget>
+<widget class="QWidget" name="calender_page">
+<layout class="QGridLayout" name="gridLayout_13">
+<item column="0" row="0">
+<widget class="QCalendarWidget" name="calendarWidget"/>
+</item>
+</layout>
+</widget>
+<widget class="QWidget" name="messaging_page">
+<layout class="QGridLayout" name="gridLayout_14">
+<item colspan="4" column="0" row="0">
+<widget class="QTextBrowser" name="textBrowser">
+<property name="cursor" stdset="0">
+<cursorShape>IBeamCursor</cursorShape>
+</property>
+
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+</widget>
+</item>
+<item column="3" row="2">
+<widget class="QPushButton" name="send_message_button">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="maximumSize">
+<size>
+<width>80</width>
+<height>16777215</height>
+</size>
+</property>
+<property name="text">
+<string/>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/edit.png</normaloff>Icons/edit.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item colspan="3" column="0" row="2">
+<widget class="QTextEdit" name="send_text_edit">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="maximumSize">
+<size>
+<width>16777215</width>
+<height>100</height>
+</size>
+</property>
+<property name="cursor" stdset="0">
+<cursorShape>IBeamCursor</cursorShape>
+</property>
+
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+</widget>
+</item>
+<item column="0" row="1">
+<spacer name="horizontalSpacer">
+<property name="orientation">
+<enum>Qt::Horizontal</enum>
+</property>
+<property name="sizeHint" stdset="0">
+<size>
+<width>40</width>
+<height>20</height>
+</size>
+</property>
+</spacer>
+</item>
+</layout>
+</widget>
+<widget class="QWidget" name="vehicle_page">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<layout class="QGridLayout" name="gridLayout_18">
+<item column="0" row="1">
+<widget class="QStackedWidget" name="vehicle_tabs">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<widget class="QWidget" name="vehicle_tabs_page">
+<layout class="QGridLayout" name="gridLayout_19">
+<item column="0" row="0">
+<widget class="VehicleTable" name="vehicle_table"/>
+</item>
+</layout>
+</widget>
+</widget>
+</item>
+</layout>
+</widget>
+<widget class="QWidget" name="settings_page">
+<layout class="QGridLayout" name="gridLayout_23">
+<item column="0" row="1">
+<widget class="QFrame" name="settings_frame">
+
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+<property name="frameShadow">
+<enum>QFrame::Raised</enum>
+</property>
+<layout class="QGridLayout" name="gridLayout_29">
+<item column="2" row="3">
+<spacer name="verticalSpacer">
+<property name="orientation">
+<enum>Qt::Vertical</enum>
+</property>
+<property name="sizeType">
+<enum>QSizePolicy::Expanding</enum>
+</property>
+<property name="sizeHint" stdset="0">
+<size>
+<width>20</width>
+<height>200</height>
+</size>
+</property>
+</spacer>
+</item>
+<item column="0" row="0" rowspan="2">
+<widget class="QFrame" name="matrix_frame">
+<property name="minimumSize">
+<size>
+<width>621</width>
+<height>0</height>
+</size>
+</property>
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+<property name="frameShadow">
+<enum>QFrame::Raised</enum>
+</property>
+<layout class="QGridLayout" name="gridLayout_24">
+<item column="1" row="6">
+<widget class="QPushButton" name="cancel_matrix_button">
+
+<property name="text">
+<string>Cancel</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/cross.png</normaloff>Icons/cross.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+<item colspan="2" column="0" row="1">
+<widget class="MatrixTable" name="matrix_table">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="alternatingRowColors">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item colspan="2" column="0" row="0">
+<widget class="QLabel" name="matrix_label">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="text">
+<string>Pricing Matrix</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item column="1" row="5">
+<widget class="QPushButton" name="remove_row_button">
+
+<property name="text">
+<string>Remove Row</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-minus.png</normaloff>icons3/24x24/cil-minus.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+<item column="0" row="6">
+<widget class="QPushButton" name="save_matrix_button">
+
+<property name="text">
+<string>Save Matrix</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/check.png</normaloff>Icons/check.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+<item column="0" row="5">
+<widget class="QPushButton" name="add_row_button">
+
+<property name="text">
+<string>Add Row</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-plus.png</normaloff>icons3/24x24/cil-plus.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+</layout>
+</widget>
+</item>
+<item column="2" row="6">
+<layout class="QHBoxLayout" name="horizontalLayout_10">
+<item>
+<widget class="QLabel" name="logo_label">
+<property name="text">
+<string>Shop Logo</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QPushButton" name="import_logo_button">
+
+<property name="text">
+<string>Import</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-external-link.png</normaloff>icons3/24x24/cil-external-link.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item column="0" row="5">
+<widget class="QFrame" name="warranty_frame">
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+<property name="frameShadow">
+<enum>QFrame::Raised</enum>
+</property>
+<layout class="QGridLayout" name="gridLayout_25">
+<item column="1" row="1">
+<widget class="QLineEdit" name="warranty_miles_line">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item colspan="2" column="0" row="0">
+<widget class="QCheckBox" name="warranty_miles_checkbox">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="text">
+<string>Warranty Duration</string>
+</property>
+</widget>
+</item>
+<item column="0" row="1">
+<widget class="QLabel" name="distance_label">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>0</height>
+</size>
+</property>
+<property name="maximumSize">
+<size>
+<width>16777215</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="text">
+<string>Distance</string>
+</property>
+</widget>
+</item>
+<item colspan="2" column="2" row="0">
+<widget class="QCheckBox" name="warranty_time_checkbox">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="text">
+<string>Warranty Time Length</string>
+</property>
+</widget>
+</item>
+<item column="2" row="1">
+<widget class="QLabel" name="months_label">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="maximumSize">
+<size>
+<width>16777215</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="text">
+<string>Months</string>
+</property>
+</widget>
+</item>
+<item column="3" row="1">
+<widget class="QLineEdit" name="warranty_time_line">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</widget>
+</item>
+<item column="2" row="0">
+<layout class="QVBoxLayout" name="verticalLayout_2">
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_4">
+<item>
+<widget class="QLabel" name="shop_name_label">
+<property name="minimumSize">
+<size>
+<width>100</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="text">
+<string>Shop Name</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="shop_name_line">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>30</height>
+</size>
+</property>
+<property name="sizeIncrement">
+<size>
+<width>0</width>
+<height>0</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_5">
+<item>
+<widget class="QLabel" name="facility_id_label">
+<property name="minimumSize">
+<size>
+<width>100</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="text">
+<string>Facility ID</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="facility_id_line">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_6">
+<item>
+<widget class="QLabel" name="address_label">
+<property name="minimumSize">
+<size>
+<width>100</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="text">
+<string>Address</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="address_line">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_7">
+<item>
+<widget class="QLabel" name="city_label">
+<property name="minimumSize">
+<size>
+<width>100</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="text">
+<string>City</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="city_line">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_8">
+<item>
+<widget class="QLabel" name="state_label">
+<property name="minimumSize">
+<size>
+<width>100</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="text">
+<string>State</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="state_line">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_9">
+<item>
+<widget class="QLabel" name="zipcode_label">
+<property name="minimumSize">
+<size>
+<width>100</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="text">
+<string>Zipcode</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="zipcode_line">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="text">
+<string/>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+</layout>
+</item>
+<item column="2" row="4" rowspan="2">
+<widget class="QLabel" name="shop_logo">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>200</height>
+</size>
+</property>
+<property name="text">
+<string>No Image Selected</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item column="2" row="1" rowspan="2">
+<layout class="QVBoxLayout" name="verticalLayout_3">
+<item>
+<widget class="QLabel" name="disclamer_label">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>30</height>
+</size>
+</property>
+<property name="maximumSize">
+<size>
+<width>16777215</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="text">
+<string>Disclamer</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QTextEdit" name="disclamer_edit">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>0</height>
+</size>
+</property>
+<property name="maximumSize">
+<size>
+<width>16777215</width>
+<height>500</height>
+</size>
+</property>
+
+</widget>
+</item>
+</layout>
+</item>
+<item column="1" row="0">
+<spacer name="horizontalSpacer_2">
+<property name="orientation">
+<enum>Qt::Horizontal</enum>
+</property>
+<property name="sizeHint" stdset="0">
+<size>
+<width>40</width>
+<height>20</height>
+</size>
+</property>
+</spacer>
+</item>
+<item column="0" row="2" rowspan="2">
+<widget class="QFrame" name="frame_2">
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+<property name="frameShadow">
+<enum>QFrame::Raised</enum>
+</property>
+<layout class="QGridLayout" name="gridLayout_26">
+<item colspan="2" column="0" row="0">
+<widget class="QLabel" name="label">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>30</height>
+</size>
+</property>
+
+<property name="text">
+<string>Labor Rate</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item colspan="2" column="0" row="1">
+<widget class="LaborTable" name="labor_table"/>
+</item>
+<item column="0" row="2">
+<widget class="QPushButton" name="add_labor_row">
+
+<property name="text">
+<string>Add Row</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-plus.png</normaloff>icons3/24x24/cil-plus.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+<item column="1" row="2">
+<widget class="QPushButton" name="remove_labor_row">
+
+<property name="text">
+<string>Remove Row</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-minus.png</normaloff>icons3/24x24/cil-minus.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+<item column="0" row="3">
+<widget class="QPushButton" name="save_labor_button">
+
+<property name="text">
+<string>Save Labor</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/check.png</normaloff>Icons/check.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+<item column="1" row="3">
+<widget class="QPushButton" name="cancel_labor_button">
+
+<property name="text">
+<string>Cancel</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/cross.png</normaloff>Icons/cross.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+</layout>
+</widget>
+</item>
+</layout>
+</widget>
+</item>
+</layout>
+</widget>
+<widget class="QWidget" name="ro_control_page">
+<layout class="QGridLayout" name="gridLayout_28">
+<item column="0" row="0">
+<layout class="QVBoxLayout" name="verticalLayout_18">
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_42">
+<item>
+<widget class="QLabel" name="vin_ro_label">
+<property name="text">
+<string>VIN</string>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QComboBox" name="vin_ro_box">
+<property name="minimumSize">
+<size>
+<width>300</width>
+<height>0</height>
+</size>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QPushButton" name="vin_copy_button_2">
+<property name="minimumSize">
+<size>
+<width>80</width>
+<height>30</height>
+</size>
+</property>
+<property name="maximumSize">
+<size>
+<width>100</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="text">
+<string>Copy</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/edit.png</normaloff>Icons/edit.png</iconset>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_46">
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_43">
+<item>
+<widget class="QLabel" name="year_label_2">
+<property name="text">
+<string>Year</string>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLabel" name="year_ro_label">
+<property name="text">
+<string>TextLabel</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_45">
+<item>
+<widget class="QLabel" name="make_label_2">
+<property name="text">
+<string>Make</string>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLabel" name="make_ro_label">
+<property name="text">
+<string>ro #</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_48">
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_44">
+<item>
+<widget class="QLabel" name="model_label_2">
+<property name="text">
+<string>Model</string>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLabel" name="model_ro_label">
+<property name="text">
+<string>TextLabel</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_47">
+<item>
+<widget class="QLabel" name="label_3">
+<property name="text">
+<string>Engine Size</string>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLabel" name="engine_size_ro_label">
+<property name="text">
+<string>engine</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_41">
+<item>
+<widget class="QLabel" name="label_5">
+<property name="text">
+<string>Miles In:</string>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLabel" name="miles_in_label">
+<property name="text">
+<string>TextLabel</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLabel" name="label_6">
+<property name="text">
+<string>Miles Out:</string>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLabel" name="miles_out_label">
+<property name="text">
+<string>TextLabel</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+</layout>
+</item>
+<item column="1" row="0">
+<layout class="QVBoxLayout" name="verticalLayout_19">
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_49">
+<item>
+<widget class="QLabel" name="name_ro_label">
+<property name="text">
+<string>Name</string>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QComboBox" name="name_ro_box"/>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_50">
+<item>
+<widget class="QLabel" name="phone_ro_labe">
+<property name="text">
+<string>Phone #</string>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_51">
+<item>
+<widget class="QLabel" name="alt_ro_label">
+<property name="text">
+<string>Alt Phone #</string>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+</layout>
+</item>
+<item column="2" row="0">
+<layout class="QVBoxLayout" name="verticalLayout_20">
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_52">
+<item>
+<widget class="QLabel" name="ro_label">
+<property name="text">
+<string>RO #</string>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLabel" name="estimate_number_label">
+<property name="text">
+<string>ro number</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_53">
+<item>
+<widget class="QLabel" name="invoice_label">
+<property name="text">
+<string>Invoice #</string>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLabel" name="inboice_number_label">
+<property name="text">
+<string>Invoice number</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_54">
+<item>
+<widget class="QLabel" name="create_date_label">
+<property name="text">
+<string>Created</string>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QDateTimeEdit" name="created_time"/>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_55">
+<item>
+<widget class="QLabel" name="approved_ro_label">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="text">
+<string>Approved</string>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QDateTimeEdit" name="dateTimeEdit"/>
+</item>
+</layout>
+</item>
+</layout>
+</item>
+<item column="3" row="0">
+<layout class="QVBoxLayout" name="verticalLayout_32">
+<item>
+<widget class="QPushButton" name="print_ro_button">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>36</height>
+</size>
+</property>
+<property name="maximumSize">
+<size>
+<width>200</width>
+<height>36</height>
+</size>
+</property>
+<property name="font">
+<font>
+<pointsize>13</pointsize>
+</font>
+</property>
+
+<property name="text">
+<string>Print</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>Icons/print.png</normaloff>Icons/print.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QComboBox" name="status_box">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>40</height>
+</size>
+</property>
+<property name="maximumSize">
+<size>
+<width>200</width>
+<height>16777215</height>
+</size>
+</property>
+
+<item>
+<property name="text">
+<string>STATUS</string>
+</property>
+</item>
+</widget>
+</item>
+<item>
+<widget class="QComboBox" name="send_box">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>40</height>
+</size>
+</property>
+<property name="maximumSize">
+<size>
+<width>200</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="currentText">
+<string>SEND</string>
+</property>
+<item>
+<property name="text">
+<string>SEND</string>
+</property>
+</item>
+</widget>
+</item>
+</layout>
+</item>
+<item colspan="4" column="0" row="1">
+<layout class="QHBoxLayout" name="horizontalLayout_57">
+<item>
+<layout class="QVBoxLayout" name="verticalLayout_21">
+<item>
+<widget class="QLabel" name="label_7">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="minimumSize">
+<size>
+<width>300</width>
+<height>0</height>
+</size>
+</property>
+<property name="text">
+<string>Description</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_56">
+<item>
+<widget class="QComboBox" name="service_type_box"/>
+</item>
+<item>
+<widget class="QLineEdit" name="service_type_edit">
+<property name="minimumSize">
+<size>
+<width>500</width>
+<height>0</height>
+</size>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QVBoxLayout" name="verticalLayout_22">
+<item>
+<widget class="QLabel" name="label_8">
+<property name="text">
+<string>Cost</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="cost_item_line">
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QVBoxLayout" name="verticalLayout_27">
+<item>
+<widget class="QLabel" name="label_9">
+<property name="text">
+<string>Sell</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="sell_item_line">
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QVBoxLayout" name="verticalLayout_23">
+<item>
+<widget class="QLabel" name="label_10">
+<property name="text">
+<string>Amount</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="amount_item_line">
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QVBoxLayout" name="verticalLayout_24">
+<item>
+<widget class="QLabel" name="label_12">
+<property name="text">
+<string>Discount</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="discount_item_line">
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QVBoxLayout" name="verticalLayout_28">
+<item>
+<widget class="QLabel" name="label_11">
+<property name="text">
+<string>Total</string>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="total_amount_line">
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QVBoxLayout" name="verticalLayout_25">
+<item>
+<widget class="QLabel" name="label_13">
+<property name="text">
+<string>Add</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QPushButton" name="add_update_button_2">
+
+<property name="text">
+<string/>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-plus.png</normaloff>icons3/24x24/cil-plus.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QVBoxLayout" name="verticalLayout_26">
+<item>
+<widget class="QLabel" name="label_14">
+<property name="text">
+<string>Remove</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QPushButton" name="delete_button_2">
+
+<property name="text">
+<string/>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-minus.png</normaloff>icons3/24x24/cil-minus.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QVBoxLayout" name="verticalLayout_29">
+<item>
+<widget class="QLabel" name="label_15">
+<property name="text">
+<string>Order</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QPushButton" name="parts_order_button">
+
+<property name="text">
+<string/>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-rss.png</normaloff>icons3/24x24/cil-rss.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+</layout>
+</item>
+<item colspan="4" column="0" row="2">
+<widget class="QTableWidget" name="activity_table">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>500</height>
+</size>
+</property>
+</widget>
+</item>
+<item colspan="2" column="0" row="3">
+<layout class="QHBoxLayout" name="horizontalLayout_58">
+<item>
+<layout class="QVBoxLayout" name="verticalLayout_30">
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_59">
+<item>
+<widget class="QLabel" name="parts_total_label_2">
+
+<property name="text">
+<string>Parts</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="parts_total_line_2">
+<property name="maximumSize">
+<size>
+<width>140</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_60">
+<item>
+<widget class="QLabel" name="labor_total_label_2">
+
+<property name="text">
+<string>Labor</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="labor_total_line_2">
+<property name="maximumSize">
+<size>
+<width>140</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_61">
+<item>
+<widget class="QLabel" name="sublet_total_label_2">
+
+<property name="text">
+<string>Sublet</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="sublet_total_line_2">
+<property name="maximumSize">
+<size>
+<width>140</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_62">
+<item>
+<widget class="QLabel" name="sub_total_label_2">
+
+<property name="text">
+<string>Sub_Total</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="sub_total_line_2">
+<property name="maximumSize">
+<size>
+<width>140</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QVBoxLayout" name="verticalLayout_31">
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_63">
+<item>
+<widget class="QLabel" name="fees_total_label_2">
+
+<property name="text">
+<string>Fees</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="fees_total_line_2">
+<property name="maximumSize">
+<size>
+<width>140</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_64">
+<item>
+<widget class="QLabel" name="EPA_total_label_2">
+
+<property name="text">
+<string>Epa</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="EPA_total_line_2">
+<property name="maximumSize">
+<size>
+<width>140</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_65">
+<item>
+<widget class="QLabel" name="shop_supplies_label_2">
+
+<property name="text">
+<string>ShopSupplies</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="shop_supplies_line_2">
+<property name="maximumSize">
+<size>
+<width>140</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_66">
+<item>
+<widget class="QLabel" name="tax_total_label_2">
+
+<property name="text">
+<string>TAX</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="tax_total_line_2">
+<property name="maximumSize">
+<size>
+<width>140</width>
+<height>16777215</height>
+</size>
+</property>
+
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_67">
+<item>
+<widget class="QLabel" name="total_label_3">
+
+<property name="text">
+<string>TOTAL</string>
+</property>
+<property name="alignment">
+<set>Qt::AlignCenter</set>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QLineEdit" name="total_line_edit_2">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>0</height>
+</size>
+</property>
+<property name="maximumSize">
+<size>
+<width>140</width>
+<height>16777215</height>
+</size>
+</property>
+
+</widget>
+</item>
+</layout>
+</item>
+</layout>
+</item>
+</layout>
+</item>
+<item column="2" row="3">
+<layout class="QVBoxLayout" name="verticalLayout_33">
+<item>
+<layout class="QHBoxLayout" name="horizontalLayout_69">
+<property name="spacing">
+<number>0</number>
+</property>
+<item>
+<widget class="QRadioButton" name="concern_button_3">
+<property name="maximumSize">
+<size>
+<width>16777215</width>
+<height>36</height>
+</size>
+</property>
+
+<property name="text">
+<string>Concern</string>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QRadioButton" name="cause_button_3">
+<property name="maximumSize">
+<size>
+<width>16777215</width>
+<height>36</height>
+</size>
+</property>
+
+<property name="text">
+<string>Cause</string>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QRadioButton" name="correction_button_3">
+<property name="maximumSize">
+<size>
+<width>16777215</width>
+<height>36</height>
+</size>
+</property>
+
+<property name="text">
+<string>Correction</string>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+<item>
+<widget class="QTextEdit" name="concern_edit">
+
+</widget>
+</item>
+</layout>
+</item>
+<item column="3" row="3">
+<layout class="QVBoxLayout" name="verticalLayout_4">
+<item>
+<widget class="QPushButton" name="ro_save_button">
+<property name="sizePolicy">
+<sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>36</height>
+</size>
+</property>
+<property name="maximumSize">
+<size>
+<width>16777215</width>
+<height>36</height>
+</size>
+</property>
+<property name="font">
+<font>
+<pointsize>13</pointsize>
+</font>
+</property>
+<property name="layoutDirection">
+<enum>Qt::LeftToRight</enum>
+</property>
+
+<property name="text">
+<string>Save</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-check.png</normaloff>icons3/24x24/cil-check.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QPushButton" name="ro_cancel_button">
+<property name="minimumSize">
+<size>
+<width>0</width>
+<height>36</height>
+</size>
+</property>
+<property name="maximumSize">
+<size>
+<width>16777215</width>
+<height>36</height>
+</size>
+</property>
+<property name="font">
+<font>
+<pointsize>13</pointsize>
+</font>
+</property>
+<property name="layoutDirection">
+<enum>Qt::LeftToRight</enum>
+</property>
+
+<property name="text">
+<string>Cancel</string>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-x.png</normaloff>icons3/24x24/cil-x.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>true</bool>
+</property>
+</widget>
+</item>
+</layout>
+</item>
+</layout>
+</widget>
+</widget>
+</item>
+<item column="0" row="2" rowspan="2">
+<widget class="ControlMenu" name="cmenu_frame">
+<property name="enabled">
+<bool>true</bool>
+</property>
+<property name="sizePolicy">
+<sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+<horstretch>0</horstretch>
+<verstretch>0</verstretch>
+</sizepolicy>
+</property>
+<property name="minimumSize">
+<size>
+<width>60</width>
+<height>0</height>
+</size>
+</property>
+<property name="maximumSize">
+<size>
+<width>1677215</width>
+<height>1677215</height>
+</size>
+</property>
+<property name="sizeIncrement">
+<size>
+<width>0</width>
+<height>0</height>
+</size>
+</property>
+<property name="layoutDirection">
+<enum>Qt::LeftToRight</enum>
+</property>
+
+<property name="frameShape">
+<enum>QFrame::NoFrame</enum>
+</property>
+<property name="frameShadow">
+<enum>QFrame::Raised</enum>
+</property>
+<property name="lineWidth">
+<number>1</number>
+</property>
+<layout class="QVBoxLayout" name="verticalLayout">
+<item>
+<widget class="QPushButton" name="customers_button">
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+<property name="toolTip">
+<string/>
+</property>
+<property name="toolTipDuration">
+<number>-4</number>
+</property>
+<property name="layoutDirection">
+<enum>Qt::LeftToRight</enum>
+</property>
+
+<property name="text">
+<string/>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-user.png</normaloff>icons3/24x24/cil-user.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+<property name="flat">
+<bool>false</bool>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QPushButton" name="repair_orders_button">
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+<property name="toolTip">
+<string/>
+</property>
+<property name="toolTipDuration">
+<number>-4</number>
+</property>
+
+<property name="text">
+<string/>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-copy.png</normaloff>icons3/24x24/cil-copy.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>40</width>
+<height>40</height>
+</size>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QPushButton" name="vehicles_button">
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+<property name="toolTip">
+<string/>
+</property>
+<property name="toolTipDuration">
+<number>-4</number>
+</property>
+
+<property name="text">
+<string/>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/car.png</normaloff>icons3/24x24/car.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>40</width>
+<height>40</height>
+</size>
+</property>
+<property name="flat">
+<bool>false</bool>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QPushButton" name="messaging_button">
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+<property name="toolTip">
+<string/>
+</property>
+<property name="toolTipDuration">
+<number>-4</number>
+</property>
+
+<property name="text">
+<string/>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-speech.png</normaloff>icons3/24x24/cil-speech.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>40</width>
+<height>40</height>
+</size>
+</property>
+<property name="flat">
+<bool>false</bool>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QPushButton" name="scheduling_button">
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+<property name="mouseTracking">
+<bool>true</bool>
+</property>
+<property name="toolTip">
+<string/>
+</property>
+<property name="toolTipDuration">
+<number>-4</number>
+</property>
+
+<property name="text">
+<string/>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-watch.png</normaloff>icons3/24x24/cil-watch.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>40</width>
+<height>40</height>
+</size>
+</property>
+<property name="flat">
+<bool>false</bool>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QPushButton" name="analytics_button">
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+<property name="toolTip">
+<string/>
+</property>
+<property name="toolTipDuration">
+<number>-4</number>
+</property>
+
+<property name="text">
+<string/>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-window-restore.png</normaloff>icons3/24x24/cil-window-restore.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>40</width>
+<height>40</height>
+</size>
+</property>
+<property name="flat">
+<bool>false</bool>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QPushButton" name="settings_button">
+<property name="cursor">
+<cursorShape>OpenHandCursor</cursorShape>
+</property>
+<property name="toolTip">
+<string/>
+</property>
+<property name="toolTipDuration">
+<number>-4</number>
+</property>
+
+<property name="text">
+<string/>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-settings.png</normaloff>icons3/24x24/cil-settings.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>40</width>
+<height>40</height>
+</size>
+</property>
+<property name="default">
+<bool>false</bool>
+</property>
+<property name="flat">
+<bool>false</bool>
+</property>
+</widget>
+</item>
+<item>
+<widget class="QPushButton" name="quit_button">
+
+<property name="text">
+<string/>
+</property>
+<property name="icon">
+<iconset>
+<normaloff>icons3/24x24/cil-power-standby.png</normaloff>icons3/24x24/cil-power-standby.png</iconset>
+</property>
+<property name="iconSize">
+<size>
+<width>30</width>
+<height>30</height>
+</size>
+</property>
+</widget>
+</item>
+</layout>
+</widget>
+</item>
+</layout>
+</widget>
+</widget>
+<customwidgets>
+<customwidget>
+<class>ControlMenu</class>
+<extends>QFrame</extends>
+<header>control_menu</header>
+<container>1</container>
+</customwidget>
+<customwidget>
+<class>EstimateTable</class>
+<extends>QTableWidget</extends>
+<header>workflow_tables</header>
+</customwidget>
+<customwidget>
+<class>ApprovedTable</class>
+<extends>QTableWidget</extends>
+<header>workflow_tables</header>
+</customwidget>
+<customwidget>
+<class>WorkingTable</class>
+<extends>QTableWidget</extends>
+<header>workflow_tables</header>
+</customwidget>
+<customwidget>
+<class>CheckoutTable</class>
+<extends>QTableWidget</extends>
+<header>workflow_tables</header>
+</customwidget>
+<customwidget>
+<class>CustomerTable</class>
+<extends>QTableWidget</extends>
+<header>workflow_tables</header>
+</customwidget>
+<customwidget>
+<class>VehicleTable</class>
+<extends>QTableWidget</extends>
+<header>workflow_tables</header>
+</customwidget>
+<customwidget>
+<class>MatrixTable</class>
+<extends>QTableWidget</extends>
+<header>small_tables</header>
+</customwidget>
+<customwidget>
+<class>LaborTable</class>
+<extends>QTableWidget</extends>
+<header>small_tables</header>
+</customwidget>
+</customwidgets>
+<resources>
+<include location="openauto_resources.qrc"/>
+</resources>
+<connections/>
+</ui>
