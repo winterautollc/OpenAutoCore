@@ -96,3 +96,22 @@ Contributions are welcome! If you're interested in helping:
 If you're an automotive shop interested in trying OpenAuto, or a developer looking to contribute, reach out at:
 
 **📧 winterautomotivellc@gmail.com**
+
+<img width="1920" height="1080" alt="Screenshot from 2025-08-24 20-39-24" src="https://github.com/user-attachments/assets/85fd44fd-57ba-4378-85b5-7ce56aeef2fe" />
+
+
+<img width="1920" height="1080" alt="Screenshot from 2025-08-24 20-38-38" src="https://github.com/user-attachments/assets/76bda173-c156-4f4b-a90e-e640a7296125" />
+
+<img width="1920" height="1080" alt="Screenshot from 2025-08-24 20-37-52" src="https://github.com/user-attachments/assets/714ba014-2198-45eb-8b76-f0787d62671b" />
+
+
+<img width="1920" height="1080" alt="Screenshot from 2025-05-11 20-01-11" src="https://github.com/user-attachments/assets/9e0121a7-b263-4abf-9e31-43a6d9bddf21" />
+
+
+
+
+
+
+
+
+
