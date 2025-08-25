@@ -4,6 +4,8 @@ OpenAuto is free and open-source thanks to our supporters.
 Your sponsorship helps cover development time, hosting, and future features.  
 [Become a Sponsor »](https://github.com/sponsors/winterautollc)
 
+📖 [See the full roadmap →] (https://github.com/winterautollc/OpenAutoCore/wiki)
+
 # OpenAuto
 
 **OpenAuto** is a free and open-source automotive shop management system built using **Python**, **PyQt6**, and **MySQL**. It is designed to help independent auto repair shops manage customers, vehicles, invoices, appointments, and more — all from one modular interface.
