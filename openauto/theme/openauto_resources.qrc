@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="OpenAuto">
-    <file>Icons/users.svg</file>
-    <file>Icons/list-check.png</file>
-  </qresource>
-</RCC>
