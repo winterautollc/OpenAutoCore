@@ -4,7 +4,7 @@ OpenAuto is free and open-source thanks to our supporters.
 Your sponsorship helps cover development time, hosting, and future features.  
 [Become a Sponsor »](https://github.com/sponsors/winterautollc)
 
-📖 [See the full roadmap →] (https://github.com/winterautollc/OpenAutoCore/wiki)
+📖 [See the full roadmap →] (https://github.com/winterautollc/OpenAutoCore/wiki/Roadmap)
 
 # OpenAuto
 
