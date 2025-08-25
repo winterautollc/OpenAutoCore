@@ -103,7 +103,11 @@ If you're an automotive shop interested in trying OpenAuto, or a developer looki
 
 **📧 winterautomotivellc@gmail.com**
 
-![Screenshot from 2025-05-11 20-01-11.png](../../Pictures/Screenshots/Screenshot%20from%202025-05-11%2020-01-11.png)
-![Screenshot from 2025-08-24 20-37-52.png](../../Pictures/Screenshots/Screenshot%20from%202025-08-24%2020-37-52.png)
-![Screenshot from 2025-08-24 20-38-38.png](../../Pictures/Screenshots/Screenshot%20from%202025-08-24%2020-38-38.png)
-![Screenshot from 2025-08-24 20-39-24.png](../../Pictures/Screenshots/Screenshot%20from%202025-08-24%2020-39-24.png)
+![Screenshot from 2025-05-11 20-01-11.png](assets/images/Screenshot%20from%202025-05-11%2020-01-11.png)
+
+![Screenshot from 2025-08-24 20-37-52.png](assets/images/Screenshot%20from%202025-08-24%2020-37-52.png)
+
+![Screenshot from 2025-08-24 20-38-38.png](assets/images/Screenshot%20from%202025-08-24%2020-38-38.png)
+
+![Screenshot from 2025-08-24 20-39-24.png](assets/images/Screenshot%20from%202025-08-24%2020-39-24.png)
+
