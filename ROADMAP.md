@@ -45,6 +45,3 @@ Completed features are marked with ✅, partially completed with ⏳, and not st
 
 ---
 
-## 📊 Visual Roadmap
-
-![OpenAuto Roadmap](openauto_roadmap_updated2.png)
