@@ -44,7 +44,7 @@ class CustomerTable(QTableWidget):
 ###  LOADS DATA FROM MYSQL TO CUSTOMERS PAGE.  FUNCTION IS ONLY CALLED ONCE ON STARTUP ###
     def load_customer_data(self):
         self.setRowCount(db_handlers.customer_rows())
-        result = customer_repository.CustomerRepository.get_all_customer_info()
+        result = customer_repository.CustomerRepository.get_all_customer_info() or []
         table_row = 0
         for row in result:
             for col in range(10):
@@ -95,7 +95,7 @@ class EstimateTable(QTableWidget):
 
     def _show_estimates(self):
         self.setRowCount(db_handlers.estimate_rows())
-        result = estimates_repository.EstimateRepository.load_estimate()
+        result = estimates_repository.EstimateRepository.load_estimate() or []
         table_row = 0
         for row in result:
             for col in range(8):
@@ -176,7 +176,7 @@ class VehicleTable(QtWidgets.QTableWidget):
 
 ### INITIAL LOADING OF VEHICLE DATA FROM DATABASE TABLE TO THE QTABLEWIDGET. CALLED ONLY ONCE ####
     def load_vehicle_data(self):
-        result = vehicle_repository.VehicleRepository.get_all_vehicle_info()
+        result = vehicle_repository.VehicleRepository.get_all_vehicle_info() or []
         table_row = 0
         for row in result:
             for col in range(9):
