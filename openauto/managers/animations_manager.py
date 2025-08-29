@@ -126,7 +126,7 @@ class AnimationsManager:
         self.ui.animate_settings_header.setEasingCurve(QEasingCurve.Type.InOutQuart)
         self.ui.animate_settings_header.start()
         self.ui.animate_settings_frame.start()
-        self.show_page(hub_index=7, table_widget=self.ui.matrix_table, top_bar_index=5)
+        self.show_page(hub_index=7, table_widget=self.ui.matrix_table, top_bar_index=6)
 
     def ro_page_show(self):
         self.show_page(hub_index=0, top_bar_index=0)  # RO page base view only
