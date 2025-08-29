@@ -79,7 +79,7 @@ class VehicleTableSmall(QTableWidget):
 
     def load_vehicle_data(self):
         self.setRowCount(db_handlers.vehicle_rows())
-        result = vehicle_repository.VehicleRepository.get_all_vehicles() []
+        result = vehicle_repository.VehicleRepository.get_all_vehicles() or []
         table_row = 0
         for row in result:
             for col in range(5):
@@ -196,7 +196,7 @@ class LaborTable(QTableWidget):
 
 
     def load_labor_rates(self):
-        result = settings_repository.SettingsRepository.load_labor_table() []
+        result = settings_repository.SettingsRepository.load_labor_table() or []
 
         for row_index, row_data in enumerate(result):
             self.insertRow(row_index)
