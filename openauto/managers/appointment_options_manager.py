@@ -38,10 +38,12 @@ class AppointmentOptionsManager:
         self.message.setWindowTitle("Confirm Delete")
         self.message.setText("Delete Appointment?")
         self.message.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        self.message.setWindowFlag(QtCore.Qt.WindowType.WindowStaysOnTopHint)
         self.message.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
         response = self.message.exec()
         self.message_confirm.setStyleSheet("QLabel { color: black; }")
         self.message_confirm.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        self.message_confirm.setWindowFlag(QtCore.Qt.WindowType.WindowStaysOnTopHint)
         self.message_confirm.setText("Appointment Deleted")
         if response == QtWidgets.QMessageBox.StandardButton.Yes:
             appt_id = self.appointment_id
