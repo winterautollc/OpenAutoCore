@@ -95,10 +95,10 @@ class VehicleRepository:
 
 
     @staticmethod
-    def get_vehicles_by_customer_id(vehc_id):
+    def get_vehicles_by_customer_id(cust_id):
         conn = db_handlers.connect_db()
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor()
         query = """SELECT vin, year, make, model, customer_id FROM vehicles WHERE customer_id = %s"""
-        cursor.execute(query, (vehc_id, ))
-        result = cursor.fetchone()
+        cursor.execute(query, (cust_id, ))
+        result = cursor.fetchall()
         return result

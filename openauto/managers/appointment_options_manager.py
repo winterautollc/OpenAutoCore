@@ -63,15 +63,19 @@ class AppointmentOptionsManager:
         self.appt_data = appointment_repository.AppointmentRepository.get_appointment_details_by_id(self.appointment_id)
 
     def name_box_items(self):
-        appt_data = self.appt_data
+        appt_data = self.appt_data or []
         vehicle_id = appt_data.get("vehicle_id")
         results = vehicle_repository.VehicleRepository.get_vehicles_by_customer_id(vehicle_id)
         combo = self.edit_ui.vehicle_box
         combo.clear()
+        
+        if not results:
+            combo.addItem("No vehicles found", None)
+            return
 
         for row in results:
              vin, year, make, model, customer_id = row
-             combo.addItem(f"{vin} - {year} - {make} - {model}", vin)
+             combo.addItem(f"{vin} - {year} - {make} - {model}", customer_id)
 
     def edit_appt_show(self):
         appt = self.appt_data
