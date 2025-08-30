@@ -13,9 +13,13 @@ class ScheduleManager:
             "appointment_popup", QtWidgets.QWidget, new_ro.Ui_create_ro
         )
 
+        self.ui.appointment_popup.setParent(self.ui, QtCore.Qt.WindowType.Dialog)
+
         self.ui.appointment_popup.setWindowFlags(
-            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint
+            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.Dialog
         )
+
+        self.ui.appointment_popup.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
         self.selected_time = selected_time
         self.selected_date = selected_date

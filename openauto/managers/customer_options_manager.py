@@ -23,13 +23,13 @@ class CustomerOptionsManager:
 
 ### SETS UP customer_options POPUP ###
     def _setup_ui(self):
+        self.customer_options.setParent(self.parent, QtCore.Qt.WindowType.Dialog)
         self.customer_options.setWindowFlags(
             QtCore.Qt.WindowType.FramelessWindowHint |
-            QtCore.Qt.WindowType.WindowStaysOnTopHint
+            QtCore.Qt.WindowType.Dialog
         )
-        self.customer_options.setAttribute(QtCore.Qt.WidgetAttribute.WA_ShowWithoutActivating)
 
-        self.customer_options.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.customer_options.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
         self.customer_options_ui.cancel_button.clicked.connect(
             lambda: self.widget_manager.close_and_delete("customer_options")
@@ -43,7 +43,8 @@ class CustomerOptionsManager:
         self.customer_options.show()
 
     def confirm_delete(self):
-        message_box = QtWidgets.QMessageBox(self.parent)
+        message_box = QtWidgets.QMessageBox(self.customer_options)
+        message_box.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
         message_box.setWindowTitle("Confirm Delete")
         message_box.setText(
             "This will permanently delete the customer, all vehicles associated, and any open estimates.\n\nAre you sure?"
@@ -51,7 +52,8 @@ class CustomerOptionsManager:
         message_box.setIcon(QtWidgets.QMessageBox.Icon.Warning)
         message_box.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
         response = message_box.exec()
-        message_confirm = QtWidgets.QMessageBox(self.parent)
+        message_confirm = QtWidgets.QMessageBox(self.customer_options)
+        message_confirm.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
         message_confirm.setStyleSheet("QLabel { color: black; }")
         message_confirm.setIcon(QtWidgets.QMessageBox.Icon.Warning)
         message_confirm.setText("Customer Deleted!! This Cannot Be Undone")
@@ -69,11 +71,12 @@ class CustomerOptionsManager:
             "edit_customer_page", QtWidgets.QWidget, new_customer_form.Ui_create_customer_form
         )
 
+        self.edit_customer_page.setParent(self.parent, QtCore.Qt.WindowType.Dialog)
         self.edit_customer_page.setWindowFlags(
-            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint
+            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.Dialog
         )
 
-        self.edit_customer_page.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.edit_customer_page.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
         self.edit_customer_page_ui.abort_button.clicked.connect(
             lambda: self.widget_manager.close_and_delete("edit_customer_page")

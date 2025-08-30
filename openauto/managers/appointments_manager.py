@@ -24,11 +24,12 @@ class AppointmentsManager:
         self.ui.new_appointment, self.ui.new_appointment_ui = self.ui.widget_manager.create_or_restore(
             "new_appointment", QtWidgets.QWidget, new_appointment.Ui_Form)
 
+        self.ui.new_appointment.setParent(self.ui, QtCore.Qt.WindowType.Dialog)
         self.ui.new_appointment.setWindowFlags(
-            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint
+            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.Dialog
         )
 
-        self.ui.new_appointment.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.ui.new_appointment.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
         self.ui.new_appointment_ui.cancel_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("new_appointment"))
 
@@ -66,10 +67,13 @@ class AppointmentsManager:
             "new_customer", QtWidgets.QWidget, new_customer_form.Ui_create_customer_form
         )
 
+        self.ui.show_new_customer_page.setParent(self.ui, QtCore.Qt.WindowType.Dialog)
+
         self.ui.show_new_customer_page.setWindowFlags(
-            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint
+            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.Dialog
         )
-        self.ui.show_new_customer_page.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+
+        self.ui.show_new_customer_page.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
         self.ui.show_new_customer_page_ui.abort_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("new_customer"))
 
@@ -179,11 +183,13 @@ class AppointmentsManager:
             "vehicle_window", QtWidgets.QWidget, vehicle_search_form.Ui_Form
         )
 
+        self.ui.vehicle_window.setParent(self.ui, QtCore.Qt.WindowType.Dialog
+                                         )
         self.ui.vehicle_window.setWindowFlags(
-            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint
+            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.Dialog
         )
 
-        self.ui.vehicle_window.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.ui.vehicle_window.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
         self.ui.vehicle_window_ui.abort_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("vehicle_window"))

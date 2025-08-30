@@ -17,12 +17,14 @@ class NewROManager:
             "new_repair_order", QtWidgets.QWidget, new_ro.Ui_create_ro
         )
 
+        self.ui.new_ro_page.setParent(self.ui, QtCore.Qt.WindowType.Dialog)
+
         self.ui.new_ro_page.setWindowFlags(
             QtCore.Qt.WindowType.FramelessWindowHint |
-            QtCore.Qt.WindowType.WindowStaysOnTopHint
+            QtCore.Qt.WindowType.Dialog
         )
 
-        self.ui.new_ro_page.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.ui.new_ro_page.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
         self.ui.new_ro_page_ui.abort_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("new_repair_order"))

@@ -26,8 +26,12 @@ class AppointmentOptionsManager:
 
 
     def _setup_ui(self):
-        self.window.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint)
-        self.window.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.window.setParent(self.parent, QtCore.Qt.WindowType.Dialog)
+        self.window.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.Dialog)
+        self.window.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
+        self.edit_window.setParent(self.parent, QtCore.Qt.WindowType.Dialog)
+        self.edit_window.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.Dialog)
+        self.edit_window.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
         self.ui.cancel_button.clicked.connect(lambda: self.widget_manager.close_and_delete("appointment_options"))
         self.ui.delete_button.clicked.connect(self._delete_appointment)
         self.ui.edit_appointment_button.clicked.connect(self._edit_calls)
@@ -68,14 +72,14 @@ class AppointmentOptionsManager:
         results = vehicle_repository.VehicleRepository.get_vehicles_by_customer_id(vehicle_id)
         combo = self.edit_ui.vehicle_box
         combo.clear()
-        
+
         if not results:
             combo.addItem("No vehicles found", None)
             return
 
         for row in results:
              vin, year, make, model, customer_id = row
-             combo.addItem(f"{vin} - {year} - {make} - {model}", customer_id)
+             combo.addItem(f"{vin}  {year}  {make}  {model}", customer_id)
 
     def edit_appt_show(self):
         appt = self.appt_data
@@ -86,9 +90,6 @@ class AppointmentOptionsManager:
             self.edit_ui.drop_button.setChecked(True)
         else:
             self.edit_ui.wait_button.setChecked(True)
-
-        self.edit_window.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint)
-        self.edit_window.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
 
         self.edit_ui.name_edit.setText(f"{appt.get("first_name")} {appt.get("last_name")},  {appt.get("phone")}")
         self.edit_ui.notes_edit.setText(str(self.appt_data.get("notes")))

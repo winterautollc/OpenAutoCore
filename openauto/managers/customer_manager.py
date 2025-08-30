@@ -12,11 +12,12 @@ class CustomerManager:
         self.ui.show_new_customer_page, self.ui.show_new_customer_page_ui = self.ui.widget_manager.create_or_restore(
             "new_customer", QtWidgets.QWidget, new_customer_form.Ui_create_customer_form
         )
+        self.ui.show_new_customer_page.setParent(self.ui, QtCore.Qt.WindowType.Dialog)
 
         self.ui.show_new_customer_page.setWindowFlags(
-            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint
+            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.Dialog
         )
-        self.ui.show_new_customer_page.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.ui.show_new_customer_page.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
         self.ui.show_new_customer_page_ui.abort_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("new_customer"))
 

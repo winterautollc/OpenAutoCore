@@ -26,11 +26,12 @@ class BelongsToManager:
             "belongs_to", QtWidgets.QWidget, customer_search_form.Ui_Form
         )
 
+        self.ui.belongs_to_window.setParent(self.ui, QtCore.Qt.WindowType.Dialog)
         self.ui.belongs_to_window.setWindowFlags(
-            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint
+            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.Dialog
         )
 
-        self.ui.belongs_to_window.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.ui.belongs_to_window.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
         self.ui.belongs_to_window.setFixedSize(636, 256)
 
@@ -79,11 +80,12 @@ class BelongsToManager:
             "new_customer", QtWidgets.QWidget, new_customer_form.Ui_create_customer_form
         )
 
+        self.ui.show_new_customer_page.setParent(self.ui, QtCore.Qt.WindowType.Dialog)
         self.ui.show_new_customer_page.setWindowFlags(
-            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint
+            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.Dialog
         )
 
-        self.ui.show_new_customer_page.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.ui.show_new_customer_page.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
         self.ui.show_new_customer_page_ui.abort_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("new_customer"))
@@ -150,9 +152,10 @@ class BelongsToManager:
             combo.addItem(f"{last_name} - {first_name} - {cust_id}", cust_id)
 
     def _show_message(self, text):
+        self.ui.message.setParent(self.ui)
         self.ui.message.setText(text)
-        self.ui.message.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
-        self.ui.message.setWindowFlags(QtCore.Qt.WindowType.WindowStaysOnTopHint)
+        self.ui.message.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
+        self.ui.message.setWindowFlags(QtCore.Qt.WindowType.Dialog)
         self.ui.message.show()
 
     def _close_windows(self, window_keys):
@@ -166,11 +169,12 @@ class BelongsToManager:
             "belongs_to", QtWidgets.QWidget, customer_search_form.Ui_Form
         )
 
+        self.ui.belongs_to_window.setParent(self.ui, QtCore.Qt.WindowType.Dialog)
         self.ui.belongs_to_window.setWindowFlags(
-            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint
+            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.Dialog
         )
 
-        self.ui.belongs_to_window.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.ui.belongs_to_window.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
         self.ui.belongs_to_window.setFixedSize(636, 256)
 
@@ -230,11 +234,13 @@ class BelongsToManager:
             "new_customer", QtWidgets.QWidget, new_customer_form.Ui_create_customer_form
         )
 
+        self.ui.show_new_customer_page.setParent(self.ui, QtCore.Qt.WindowType.Dialog)
+
         self.ui.show_new_customer_page.setWindowFlags(
-            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint
+            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.Dialog
         )
 
-        self.ui.show_new_customer_page.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.ui.show_new_customer_page.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
         self.ui.show_new_customer_page_ui.abort_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("new_customer"))

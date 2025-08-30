@@ -20,13 +20,13 @@ class VehicleOptionsManager:
 
 
     def _setup_ui(self):
+        self.vehicle_options.setParent(self.parent, QtCore.Qt.WindowType.Dialog)
         self.vehicle_options.setWindowFlags(
             QtCore.Qt.WindowType.FramelessWindowHint |
-            QtCore.Qt.WindowType.WindowStaysOnTopHint
+            QtCore.Qt.WindowType.Dialog
         )
-        self.vehicle_options.setAttribute(QtCore.Qt.WidgetAttribute.WA_ShowWithoutActivating)
 
-        self.vehicle_options.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.vehicle_options.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
         self.vehicle_options_ui.cancel_button.clicked.connect(
             lambda: self.widget_manager.close_and_delete("vehicle_options")
@@ -41,7 +41,7 @@ class VehicleOptionsManager:
     def change_owner(self):
         from openauto.managers import belongs_to_manager
 
-        temp_belongs_to_manager = belongs_to_manager.BelongsToManager(self, vehicle_id=self.vehicle_id)
+        temp_belongs_to_manager = belongs_to_manager.BelongsToManager(self.parent, vehicle_id=self.vehicle_id)
         temp_belongs_to_manager.belongs_to_cust_change()
         self.widget_manager.close_and_delete("vehicle_options")
 
@@ -51,7 +51,7 @@ class VehicleOptionsManager:
         self.widget_manager.close_and_delete("vehicle_options")
 
     def delete_vehicle(self):
-        confirmation = QtWidgets.QMessageBox(self.parent)
+        confirmation = QtWidgets.QMessageBox(self.vehicle_options)
         confirmation.setWindowTitle("Confirm Delete")
         confirmation.setText("Are you sure you want to delete this vehicle?")
         confirmation.setIcon(QtWidgets.QMessageBox.Icon.Warning)

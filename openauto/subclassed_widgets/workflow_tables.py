@@ -32,7 +32,7 @@ class CustomerTable(QTableWidget):
 ### DECLARES customer_options SEE managers/customer_options_manager.py ###
     def show_customer_options(self):
         self.customer_options_manager = CustomerOptionsManager(
-            parent=self,
+            parent=self.window(),
             customer_id=self.customer_id,
             vehicle_signal=self.vehicle_signal_request,
             ro_signal=self.ro_signal_request
@@ -223,7 +223,7 @@ class VehicleTable(QtWidgets.QTableWidget):
         from openauto.managers.vehicle_options_manager import VehicleOptionsManager
 
         self.vehicle_options_manager = VehicleOptionsManager(
-            parent=self,
+            parent=self.window(),
             vehicle_id=self.vin_veh_id,
             new_ro_request=self.ro_signal_request
             )

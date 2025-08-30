@@ -26,11 +26,12 @@ class VehicleManager:
             "vehicle_window", QtWidgets.QWidget, vehicle_search_form.Ui_Form
         )
 
+        self.ui.vehicle_window.setParent(self.ui, QtCore.Qt.WindowType.Dialog)
         self.ui.vehicle_window.setWindowFlags(
-            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint
+            QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.Dialog
         )
 
-        self.ui.vehicle_window.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.ui.vehicle_window.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
         self.ui.vehicle_window_ui.abort_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("vehicle_window"))
@@ -50,7 +51,8 @@ class VehicleManager:
             form.engine_line.setText(vin.DisplacementL)
             form.trim_line.setText(vin.Trim)
         except:
-            Validator.show_validation_error(self.ui.message, "Invalid VIN")
+            self._show_message("Please Enter A Valid 17 Digit VIN")
+            # Validator.show_validation_error(self.ui.message, "Please Enter A Valid 17 Digit VIN")
             self.ui.vehicle_window_ui.vin_line.clear()
 
     def load_customer_id(self):
@@ -102,8 +104,8 @@ class VehicleManager:
         self.ui.vehicle_window_ui.save_create_button.clicked.connect(self.belongs_to_manager.belongs_to)
 
     def _show_message(self, text):
+        self.ui.message.setParent(self.ui.vehicle_window)
         self.ui.message.setText(text)
-        self.ui.message.setWindowFlags(QtCore.Qt.WindowType.WindowStaysOnTopHint)
         self.ui.message.show()
 
     def _enforce_uppercase_vin(self, text):
