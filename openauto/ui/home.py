@@ -9,7 +9,6 @@ from openauto.managers import (
 )
 from pyvin import VIN
 import os
-from PyQt6.QtWidgets import QGraphicsOpacityEffect
 
 
 def apply_stylesheet(widget, relative_path):
@@ -31,13 +30,12 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-     #   self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
+        # self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.sql_monitor = event_handlers.SQLMonitor()
         self.sql_monitor.start()
         self._init_managers()
         self._init_validators()
         self._init_tables()
-        # self._cmenu_hover_guard()
         self._init_state()
         self._connect_signals()
         self._setup_animations()
@@ -97,11 +95,6 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
 ### ADD ALL SUBCLASSED WIDGETS TO LAYOUT ###
         self.gridLayout_2.addWidget(self.cmenu_frame, 2, 0, 2, 1)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout_2.setSpacing(0)
-        self.gridLayout_42.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout_42.setSpacing(0)
-        self.centralwidget.layout().setContentsMargins(0, 0, 0, 0)
-        self.centralwidget.layout().setSpacing(0)
         self.gridLayout_11.addWidget(self.customer_table, 0, 0, 1, 1)
         self.gridLayout_19.addWidget(self.vehicle_table, 0, 0, 1, 1)
         self.gridLayout_24.addWidget(self.matrix_table, 1, 0, 1, 2)
@@ -156,62 +149,6 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         ]
         for button, text in zip(buttons, texts):
             QtWidgets.QPushButton.setText(button, "")
-
-
-### GUARDS LEFT EDGE OF MAINWINDOW TO PREVENT MENU COLLAPSE WHEN MOUSE CURSOR IS DRAGGED TOO FAR LEFT ###
-    # def _cmenu_hover_guard(self):
-    #     # Thin transparent strip pinned to the far-left edge
-    #     self._hover_guard = QtWidgets.QWidget(self.centralwidget)
-    #     self._hover_guard.setObjectName("cmenu_hover_guard")
-    #     self._hover_guard.setFixedWidth(6)
-    #     self._hover_guard.setStyleSheet("#cmenu_hover_guard { background: transparent; }")
-    #     self._hover_guard.setMouseTracking(True)
-    #
-    #     # Timer to debounce collapse
-    #     self._cmenu_leave_timer = QtCore.QTimer(self)
-    #     self._cmenu_leave_timer.setSingleShot(True)
-    #     self._cmenu_leave_timer.setInterval(180)
-    #
-    #     # Position guard initially
-    #     self._reposition_guard()
-    #
-    #     # Reposition on layout/resize
-    #     self.centralwidget.installEventFilter(self)
-    #
-    #     # Guard events forward to cmenu
-    #     self._hover_guard.enterEvent = lambda e: self._synth_enter()
-    #     self._hover_guard.leaveEvent = lambda e: self._synth_leave()
-    #
-    #     self._cmenu_leave_timer.timeout.connect(
-    #         lambda: QtCore.QCoreApplication.postEvent(
-    #             self.cmenu_frame, QtCore.QEvent(QtCore.QEvent.Type.Leave)
-    #         )
-    #     )
-    #
-    # def _reposition_guard(self):
-    #     self._hover_guard.setGeometry(
-    #         0,
-    #         self.cmenu_frame.y(),
-    #         self._hover_guard.width(),
-    #         self.cmenu_frame.height()
-    #     )
-    #     self._hover_guard.raise_()
-    #
-    # def _synth_enter(self):
-    #     QtCore.QCoreApplication.postEvent(self.cmenu_frame, QtCore.QEvent(QtCore.QEvent.Type.Enter))
-    #     self._cmenu_leave_timer.stop()
-    #
-    # def _synth_leave(self):
-    #     self._cmenu_leave_timer.start()
-    #
-    # # Proper Qt eventFilter signature
-    # def eventFilter(self, obj, event):
-    #     if obj is self.centralwidget and event.type() in (
-    #         QtCore.QEvent.Type.Resize,
-    #         QtCore.QEvent.Type.LayoutRequest,
-    #     ):
-    #         self._reposition_guard()
-    #     return super().eventFilter(obj, event)
 
 
 ### SIGNALS/SLOTS FOR PUSHBUTTONS ETC.. ###
