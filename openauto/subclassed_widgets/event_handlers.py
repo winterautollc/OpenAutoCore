@@ -11,11 +11,6 @@ import time
 
 ### EVENT FILTER TO ANIMATE MENU COLLAPSE WHEN MOUSE ISIN'T HOVERED OVER IT AND EXPAND ON MOUSE HOVER  ###
 class CMenuHandler(QObject):
-    """
-    OPEN  = width (minimumWidth) -> short pause -> fade-in label opacities
-    CLOSE = fade-out label opacities -> width (minimumWidth) back to collapsed
-    Animations & effects are persistent to avoid jank and 'disappearing' widgets.
-    """
     def __init__(self, target_widget):
         super().__init__()
         self.target = target_widget
@@ -27,18 +22,12 @@ class CMenuHandler(QObject):
         self.animate_menu_open  = QPropertyAnimation(self.target, b"minimumWidth")
         self.animate_menu_close = QPropertyAnimation(self.target, b"minimumWidth")
         for a in (self.animate_menu_open, self.animate_menu_close):
-            a.setDuration(300)
+            a.setDuration(350)
             a.setEasingCurve(QEasingCurve.Type.InOutQuart)
 
         # sane padding for width calc
         self.icon_area = 40
         self.side_pad  = 24
-
-        # Collect the 8 labels you created in Designer (by objectName)
-        label_names = {
-            "customers_label", "repair_orders_label", "vehicles_label", "messaging_label",
-            "scheduling_label", "analytics_label", "settings_label", "quit_label"
-        }
         self.labels = self.target.findChildren(QtWidgets.QWidget)
 
         # Ensure each label has a persistent opacity effect (start invisible)
@@ -97,24 +86,6 @@ class CMenuHandler(QObject):
                 self.open_seq.start()
                 for button, text in zip(buttons, self.texts):
                     QtWidgets.QPushButton.setText(button, text)
-                    button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolTip {\n"
-"    background-color: #828786;  \n"
-"    border-radius: 10px;       \n"
-"    font-size: 14px;      \n"
-"    padding: 5px;\n"
-"}")
 
             elif event.type() == QEvent.Type.Leave:
                 self.open_seq.stop(); self.close_seq.stop()
@@ -123,7 +94,6 @@ class CMenuHandler(QObject):
                 self.close_seq.start()
                 for button, text in zip(buttons, self.texts):
                     QtWidgets.QPushButton.setText(button, "")
-                    button.setStyleSheet("color: transparent;")
         return super().eventFilter(obj, event)
     
 ### QTHREAD TO MONITOR CHANGES IN DATABASE. USING ONE QTHREAD FOR ALL TABLES AS IT SHOULD BE MORE EFFICIENT###
