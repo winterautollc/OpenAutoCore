@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="resources">
+    <file>Icons/copy.svg</file>
     <file>Icons/activity.svg</file>
     <file>Icons/add-document.png</file>
     <file>Icons/airplay.svg</file>

@@ -5,7 +5,7 @@ from PyQt6.QtCore import (QPropertyAnimation, QEasingCurve, QRect, QSequentialAn
                           QPauseAnimation, QParallelAnimationGroup)
 from PyQt6.QtWidgets import QGraphicsOpacityEffect
 from PyQt6 import QtWidgets
-from openauto.repositories import customer_repository, vehicle_repository, appointment_repository
+from openauto.repositories import customer_repository, vehicle_repository, appointment_repository, estimates_repository
 import time
 
 
@@ -127,12 +127,13 @@ class SQLMonitor(QThread):
     def run(self):
             while True:
                 try:
-                    customer_data = customer_repository.CustomerRepository.get_all_customer_info()
-                    vehicle_data = vehicle_repository.VehicleRepository.get_all_vehicle_info()
+                    estimate_data = estimates_repository.EstimateRepository.load_estimate() or []
+                    customer_data = customer_repository.CustomerRepository.get_all_customer_info() or []
+                    vehicle_data = vehicle_repository.VehicleRepository.get_all_vehicle_info() or []
                     # belongs_to_data = customer_repository.CustomerRepository.get_all_customer_names()
-                    customer_small_data = customer_repository.CustomerRepository.get_all_customer_names()
-                    vehicle_small_data = vehicle_repository.VehicleRepository.get_all_vehicles()
-                    appointment_data = appointment_repository.AppointmentRepository.get_appointment_ids_and_timestamps()
+                    customer_small_data = customer_repository.CustomerRepository.get_all_customer_names() or []
+                    vehicle_small_data = vehicle_repository.VehicleRepository.get_all_vehicles() or []
+                    appointment_data = appointment_repository.AppointmentRepository.get_appointment_ids_and_timestamps() or []
                     # try:
                     #     today = QDate.currentDate().toString("yyyy-MM-dd")
                     #     data = appointment_repository.AppointmentRepository.get_appointments_for_week(
@@ -145,6 +146,9 @@ class SQLMonitor(QThread):
                     #         self.hourly_schedule_update.emit()
                     # except Exception as e:
                     #     print("[SQLMonitor] Error in hourly schedule polling:", e)
+                    if estimate_data != self.last_estimates_data:
+                        self.last_estimates_data = estimate_data
+                        self.estimate_updates.emit(estimate_data)
 
                     if customer_data != self.last_customer_data:
                         self.last_customer_data = customer_data

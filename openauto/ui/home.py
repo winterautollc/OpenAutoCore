@@ -5,7 +5,7 @@ from openauto.ui import main_form
 from openauto.managers import (
     customer_manager, vehicle_manager, settings_manager,
     animations_manager, new_ro_manager, belongs_to_manager, appointments_manager, appointment_options_manager,
-    ro_hub_manager
+    ro_hub_manager, ro_status_manager
 )
 from pyvin import VIN
 import os
@@ -201,6 +201,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.weekly_schedule_table.add_appointment.connect(self.appointments_manager.open_new_appointment)
         self.weekly_schedule_table.appointment_options.connect(self._open_appointment_options)
         self.sql_monitor.customer_updates.connect(self.customer_table.update_customers)
+        self.sql_monitor.estimate_updates.connect(self.estimates_table.update_estimates)
         self.sql_monitor.vehicle_update.connect(self.vehicle_table.update_vehicles)
         self.sql_monitor.appointment_data.connect(lambda: self.weekly_schedule_table.load_appointments(self.schedule_calendar.selectedDate()))
         self.sql_monitor.appointment_data.connect(lambda: self.hourly_schedule_table.load_schedule_for_day(self.schedule_calendar.selectedDate()))

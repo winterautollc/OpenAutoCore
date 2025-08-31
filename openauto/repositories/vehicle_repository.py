@@ -102,3 +102,15 @@ class VehicleRepository:
         cursor.execute(query, (cust_id, ))
         result = cursor.fetchall()
         return result
+
+    @staticmethod
+    def get_vehicle_info_for_new_ro(customer_id):
+        conn = db_handlers.connect_db()
+        cursor = conn.cursor(dictionary=True)
+        query = """SELECT vin, year, make, model, engine_size, trim, customer_id FROM vehicles WHERE customer_id = %s
+                    LIMIT 1"""
+        cursor.execute(query, (customer_id, ))
+        result = cursor.fetchone()
+        cursor.close()
+        conn.close()
+        return result

@@ -3,12 +3,15 @@ from PyQt6.QtWidgets import QTableWidget, QApplication
 from PyQt6 import QtWidgets, QtCore
 from openauto.repositories import db_handlers, customer_repository, vehicle_repository, estimates_repository
 from openauto.managers.customer_options_manager import CustomerOptionsManager
+from openauto.managers.estimate_options_manager import EstimateOptionsManager
 
 
 ### SUBCLASSED QTABLEWIDGET THAT LOADS ALL RECORDED CUSTOMERS AND CONTACT INFO STORED IN MYSQL ###
 class CustomerTable(QTableWidget):
     vehicle_signal_request = pyqtSignal(int)  ### PYQTSIGNALS FOR PUSHBUTTONS IN managers.customer_options_manager.py ###
     ro_signal_request = pyqtSignal()
+    estimate_signal_request = pyqtSignal(int)
+
     def __init__(self, parent=None):
         super().__init__(parent)
         customer_table_names = ("LAST NAME", "FIRST NAME", "ADDRESS", "CITY", "STATE", "ZIP", "PHONE", "ALT PHONE", "EMAIL", "ID")
@@ -82,27 +85,60 @@ class EstimateTable(QTableWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setMouseTracking(True)
-        estimate_names = ("RO NUMBER", "DATE", "NAME", "YEAR", "MAKE", "MODEL", "TECH", "TOTAL")
+        self.estimate_id = None
+        estimate_names = ("ID", "RO NUMBER", "DATE", "NAME", "YEAR", "MAKE", "MODEL", "TECH", "TOTAL")
         self.setGridStyle(QtCore.Qt.PenStyle.DashDotLine)
-        self.setColumnCount(8)
+        self.setColumnCount(9)
         self.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
         self.setHorizontalHeaderLabels(estimate_names)
         self.verticalHeader().setVisible(False)
         self.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         self.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.setAlternatingRowColors(True)
+        self.setColumnHidden(0, True)
         self._show_estimates()
+        self.cellDoubleClicked.connect(self._estimate_options_load)
 
     def _show_estimates(self):
         self.setRowCount(db_handlers.estimate_rows())
         result = estimates_repository.EstimateRepository.load_estimate() or []
         table_row = 0
         for row in result:
-            for col in range(8):
+            for col in range(9):
                 item = QtWidgets.QTableWidgetItem(str(row[col]))
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.setItem(table_row, col, item)
             table_row += 1
+    def update_estimates(self, estimate_data):
+        table_row = 0
+        self.setRowCount(db_handlers.estimate_rows())
+        for row in estimate_data:
+            for col in range(9):
+                item = QtWidgets.QTableWidgetItem(str(row[col]))
+                item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                self.setItem(table_row, col, item)
+            table_row += 1
+
+
+
+    def _estimate_options_load(self):
+        self.get_estimate_id()
+        self._show_options()
+
+    def get_estimate_id(self):
+        selected_row = self.currentRow()
+        selected_column = self.currentColumn()
+        selected_data = []
+        selected_name = self.itemAt(selected_row, selected_column)
+        for column in range(self.model().columnCount()):
+            index = self.model().index(selected_row, column)
+            selected_data.append(index.data())
+        self.estimate_id = selected_data[0]
+
+    def _show_options(self):
+        self.estimate_options_manager = EstimateOptionsManager(
+            parent=self.window(),
+            estimate_id = self.estimate_id)
 
 
 

@@ -1,12 +1,12 @@
 from openauto.repositories.repair_orders_repository import RepairOrdersRepository
 from openauto.repositories.customer_repository import CustomerRepository
 from openauto.repositories.vehicle_repository import VehicleRepository
+from openauto.managers import ro_status_manager
 
 class ROHubManager:
     def __init__(self, ui):
         self.ui = ui
         self._connect_signals()
-
     def _connect_signals(self):
         self.ui.save_ro_button.clicked.connect(self._save_repair_order)
         self.ui.cancel_ro_button.clicked.connect(self._cancel_edit)
@@ -28,19 +28,25 @@ class ROHubManager:
         self.ui.total_label.setText("0.00")
         self.ui.fees_label.setText("0.00")
 
+
     def load_ro_into_hub(self, ro_id):
         self.ui.current_ro_id = ro_id
 
         ro_data = RepairOrdersRepository.get_repair_order_by_id(ro_id)
         customer = CustomerRepository.get_customer_info_by_id(ro_data['customer_id'])
-        vehicle = VehicleRepository.get_vehicles_by_customer_id(ro_data['vehicle_id'])
+        vehicle = VehicleRepository.get_vehicle_info_for_new_ro(ro_data['customer_id'])
 
         full_name = f"{customer['first_name']} {customer['last_name']}"
-        vehicle_desc = f"{vehicle['vin']}   {vehicle['year']}, {vehicle['make']}, {vehicle['model']}"
-
+        vehicle_desc = f"{vehicle['vin']}   {vehicle['year']}   {vehicle['make']}   {vehicle['model']}"
         self.ui.name_edit.setText(full_name)
-        self.ui.number_edit.setText(ro_data['ro_number'])
+        self.ui.ro_number_label.setText(ro_data['ro_number'])
+        self.ui.number_edit.setText(customer['phone'])
         self.ui.vehcle_line.setText(vehicle_desc)
+        # self.ui.ro_created_edit.setDisplayFormat("MM/dd/YY HH:mm")
+        # self.ui.ro_approved_edit.setDisplayFormat("MM/dd/YY HH:mm")
+        self.ui.ro_created_edit.setReadOnly(True)
+        self.ui.ro_approved_edit.setReadOnly(True)
+        self.ui.ro_status_button.clicked.connect(self.open_ro_status)
 
     def _toggle_3c_stack(self, index, checked):
         if checked:
@@ -63,3 +69,5 @@ class ROHubManager:
     def _cancel_edit(self):
         # Optionally clear fields or go back to RO list
         pass
+    def open_ro_status(self, checked=False):
+        ro_status_manager.ROStatusManager(self.ui)
