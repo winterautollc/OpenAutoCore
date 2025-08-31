@@ -1,21 +1,12 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-import os
-from PyQt6 import QtGui
-_QPIX = QtGui.QPixmap
-
-class _QPixFix(QtGui.QPixmap):
-    def __init__(self, path=None, *a, **kw):
-        if isinstance(path, str) and (path.startswith("../theme/") or path.startswith("theme/")):
-            path = os.path.normpath(os.path.join(os.path.dirname(__file__), path))
-        super().__init__(path)
-QtGui.QPixmap = _QPixFix
+from openauto.theme import resources_rc
 
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(593, 600)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../theme/Icons/car.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("theme/../../OpenAutoLite/ui_files/Images/Icons/car.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         Form.setWindowIcon(icon)
         Form.setStyleSheet("color: black;\n"
 "background-color: #ebebe6;\n"
@@ -129,7 +120,7 @@ class Ui_Form(object):
 "    border-radius: 10px;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.save_create_button.setIcon(icon1)
         self.save_create_button.setIconSize(QtCore.QSize(30, 30))
         self.save_create_button.setFlat(True)
@@ -150,7 +141,7 @@ class Ui_Form(object):
 "    border-radius: 10px;\n"
 "}")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../theme/Icons/search.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/resources/Icons/search.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.vin_search_button.setIcon(icon2)
         self.vin_search_button.setIconSize(QtCore.QSize(30, 30))
         self.vin_search_button.setFlat(True)
@@ -184,7 +175,7 @@ class Ui_Form(object):
 "    border-radius: 10px;\n"
 "}")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon3.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.abort_button.setIcon(icon3)
         self.abort_button.setIconSize(QtCore.QSize(30, 30))
         self.abort_button.setAutoRepeatDelay(100)

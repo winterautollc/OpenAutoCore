@@ -257,7 +257,7 @@ background-image: none;</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_33">
            <item row="0" column="0">
-            <widget class="AptCalender" name="schedule_calendar">
+            <widget class="AptCalendar" name="schedule_calendar">
              <property name="gridVisible">
               <bool>true</bool>
              </property>
@@ -323,8 +323,8 @@ QPushButton:hover {
            <string>Send</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>Icons/edit.png</normaloff>Icons/edit.png</iconset>
+           <iconset resource="openauto_resources.qrc">
+            <normaloff>:/resources/Icons/edit.png</normaloff>:/resources/Icons/edit.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -558,8 +558,8 @@ QPushButton:hover {
                  <string>Remove Row</string>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>icons3/24x24/cil-minus.png</normaloff>icons3/24x24/cil-minus.png</iconset>
+                 <iconset resource="openauto_resources.qrc">
+                  <normaloff>:/resources/icons3/24x24/cil-minus.png</normaloff>:/resources/icons3/24x24/cil-minus.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -588,8 +588,8 @@ QPushButton:hover {
                  <string>Add Row</string>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>icons3/24x24/cil-plus.png</normaloff>icons3/24x24/cil-plus.png</iconset>
+                 <iconset resource="openauto_resources.qrc">
+                  <normaloff>:/resources/icons3/24x24/cil-plus.png</normaloff>:/resources/icons3/24x24/cil-plus.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -663,8 +663,8 @@ QPushButton:hover {
                 <string>Import</string>
                </property>
                <property name="icon">
-                <iconset>
-                 <normaloff>icons3/24x24/cil-external-link.png</normaloff>icons3/24x24/cil-external-link.png</iconset>
+                <iconset resource="openauto_resources.qrc">
+                 <normaloff>:/resources/icons3/24x24/cil-external-link.png</normaloff>:/resources/icons3/24x24/cil-external-link.png</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -1299,8 +1299,8 @@ QPushButton:hover {
                  <string>Add Row</string>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>icons3/24x24/cil-plus.png</normaloff>icons3/24x24/cil-plus.png</iconset>
+                 <iconset resource="openauto_resources.qrc">
+                  <normaloff>:/resources/icons3/24x24/cil-plus.png</normaloff>:/resources/icons3/24x24/cil-plus.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -1329,8 +1329,8 @@ QPushButton:hover {
                  <string>Remove Row</string>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>icons3/24x24/cil-minus.png</normaloff>icons3/24x24/cil-minus.png</iconset>
+                 <iconset resource="openauto_resources.qrc">
+                  <normaloff>:/resources/icons3/24x24/cil-minus.png</normaloff>:/resources/icons3/24x24/cil-minus.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -1359,8 +1359,8 @@ QPushButton:hover {
                  <string>Save Labor</string>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>icons3/24x24/cil-check.png</normaloff>icons3/24x24/cil-check.png</iconset>
+                 <iconset resource="openauto_resources.qrc">
+                  <normaloff>:/resources/icons3/24x24/cil-check.png</normaloff>:/resources/icons3/24x24/cil-check.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -1405,8 +1405,8 @@ QPushButton:hover {
            <string>Status</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>icons3/24x24/cil-transfer.png</normaloff>icons3/24x24/cil-transfer.png</iconset>
+           <iconset resource="openauto_resources.qrc">
+            <normaloff>:/resources/icons3/24x24/cil-transfer.png</normaloff>:/resources/icons3/24x24/cil-transfer.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -1441,8 +1441,8 @@ QPushButton:hover {
            <string>Profit</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>icons3/24x24/cil-chart-line.png</normaloff>icons3/24x24/cil-chart-line.png</iconset>
+           <iconset resource="openauto_resources.qrc">
+            <normaloff>:/resources/icons3/24x24/cil-chart-line.png</normaloff>:/resources/icons3/24x24/cil-chart-line.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -1643,8 +1643,8 @@ QPushButton:hover {
            <string>Place Order</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>icons3/24x24/cil-check-circle.png</normaloff>icons3/24x24/cil-check-circle.png</iconset>
+           <iconset resource="openauto_resources.qrc">
+            <normaloff>:/resources/icons3/24x24/cil-check-circle.png</normaloff>:/resources/icons3/24x24/cil-check-circle.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -2273,8 +2273,8 @@ QPushButton:hover {
              <string>Add</string>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>icons3/24x24/cil-plus.png</normaloff>icons3/24x24/cil-plus.png</iconset>
+             <iconset resource="openauto_resources.qrc">
+              <normaloff>:/resources/icons3/24x24/cil-plus.png</normaloff>:/resources/icons3/24x24/cil-plus.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -2309,8 +2309,8 @@ QPushButton:hover {
              <string>Remove</string>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>icons3/24x24/cil-minus.png</normaloff>icons3/24x24/cil-minus.png</iconset>
+             <iconset resource="openauto_resources.qrc">
+              <normaloff>:/resources/icons3/24x24/cil-minus.png</normaloff>:/resources/icons3/24x24/cil-minus.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -2486,8 +2486,8 @@ QPushButton:hover {
            <string>MPI</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>icons3/24x24/cil-camera.png</normaloff>icons3/24x24/cil-camera.png</iconset>
+           <iconset resource="openauto_resources.qrc">
+            <normaloff>:/resources/icons3/24x24/cil-camera.png</normaloff>:/resources/icons3/24x24/cil-camera.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -2906,8 +2906,8 @@ QPushButton:hover {
               <string>Working</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>Icons/document.png</normaloff>Icons/document.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/Icons/document.png</normaloff>:/resources/Icons/document.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -2942,8 +2942,8 @@ QPushButton:hover {
               <string>Checkout</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>Icons/shopping-cart.png</normaloff>Icons/shopping-cart.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/Icons/shopping-cart.png</normaloff>:/resources/Icons/shopping-cart.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -2984,8 +2984,8 @@ QPushButton:hover {
               <string>Estimates</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>Icons/ballot.png</normaloff>Icons/ballot.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/Icons/ballot.png</normaloff>:/resources/Icons/ballot.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -3020,8 +3020,8 @@ QPushButton:hover {
               <string>ShowAll</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>Icons/apps.png</normaloff>Icons/apps.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/Icons/apps.png</normaloff>:/resources/Icons/apps.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -3062,8 +3062,8 @@ QPushButton:hover {
               <string> Create New</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>Icons/add-document.png</normaloff>Icons/add-document.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/Icons/add-document.png</normaloff>:/resources/Icons/add-document.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -3098,8 +3098,8 @@ QPushButton:hover {
               <string>Approved</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>Icons/list-check.png</normaloff>Icons/list-check.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/Icons/list-check.png</normaloff>:/resources/Icons/list-check.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -3221,8 +3221,8 @@ QPushButton:hover {
                 <string>New</string>
                </property>
                <property name="icon">
-                <iconset>
-                 <normaloff>Icons/add-document.png</normaloff>Icons/add-document.png</iconset>
+                <iconset resource="openauto_resources.qrc">
+                 <normaloff>:/resources/Icons/add-document.png</normaloff>:/resources/Icons/add-document.png</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -3296,8 +3296,8 @@ QPushButton:hover {
               <string>Cancel</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>icons3/24x24/cil-x.png</normaloff>icons3/24x24/cil-x.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-x.png</normaloff>:/resources/icons3/24x24/cil-x.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -3344,8 +3344,8 @@ QPushButton:hover {
               <string>Save</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>icons3/24x24/cil-save.png</normaloff>icons3/24x24/cil-save.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-save.png</normaloff>:/resources/icons3/24x24/cil-save.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -3386,8 +3386,8 @@ QPushButton:hover {
               <string>Message</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>icons3/24x24/cil-speech.png</normaloff>icons3/24x24/cil-speech.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-speech.png</normaloff>:/resources/icons3/24x24/cil-speech.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -3428,8 +3428,8 @@ QPushButton:hover {
               <string>Add Parts</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>icons3/24x24/cil-plus.png</normaloff>icons3/24x24/cil-plus.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-plus.png</normaloff>:/resources/icons3/24x24/cil-plus.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -3470,8 +3470,8 @@ QPushButton:hover {
               <string>Print</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>icons3/24x24/cil-print.png</normaloff>icons3/24x24/cil-print.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-print.png</normaloff>:/resources/icons3/24x24/cil-print.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -3548,8 +3548,8 @@ QPushButton:hover {
               <string>New</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>Icons/user-add.png</normaloff>Icons/user-add.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/Icons/user-add.png</normaloff>:/resources/Icons/user-add.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -3640,8 +3640,8 @@ QPushButton:hover {
             <string>Day</string>
            </property>
            <property name="icon">
-            <iconset>
-             <normaloff>Icons/calendar.png</normaloff>Icons/calendar.png</iconset>
+            <iconset resource="openauto_resources.qrc">
+             <normaloff>:/resources/Icons/calendar.png</normaloff>:/resources/Icons/calendar.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -3676,8 +3676,8 @@ QPushButton:hover {
             <string>Month</string>
            </property>
            <property name="icon">
-            <iconset>
-             <normaloff>Icons/menu-burger.png</normaloff>Icons/menu-burger.png</iconset>
+            <iconset resource="openauto_resources.qrc">
+             <normaloff>:/resources/Icons/menu-burger.png</normaloff>:/resources/Icons/menu-burger.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -3712,8 +3712,8 @@ QPushButton:hover {
             <string>Week</string>
            </property>
            <property name="icon">
-            <iconset>
-             <normaloff>Icons/calendar.png</normaloff>Icons/calendar.png</iconset>
+            <iconset resource="openauto_resources.qrc">
+             <normaloff>:/resources/Icons/calendar.png</normaloff>:/resources/Icons/calendar.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -3783,8 +3783,8 @@ QPushButton:hover {
             <string>Send To:</string>
            </property>
            <property name="icon">
-            <iconset>
-             <normaloff>Icons/comment-alt.png</normaloff>Icons/comment-alt.png</iconset>
+            <iconset resource="openauto_resources.qrc">
+             <normaloff>:/resources/Icons/comment-alt.png</normaloff>:/resources/Icons/comment-alt.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -3853,8 +3853,8 @@ QPushButton:hover {
               <string>Quickbooks </string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>icons3/24x24/cil-browser.png</normaloff>icons3/24x24/cil-browser.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-browser.png</normaloff>:/resources/icons3/24x24/cil-browser.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -3889,8 +3889,8 @@ QPushButton:hover {
               <string>Appearance</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>icons3/24x24/cil-browser.png</normaloff>icons3/24x24/cil-browser.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-browser.png</normaloff>:/resources/icons3/24x24/cil-browser.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -3925,8 +3925,8 @@ QPushButton:hover {
               <string>Parts Integration</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>icons3/24x24/cil-tag.png</normaloff>icons3/24x24/cil-tag.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-tag.png</normaloff>:/resources/icons3/24x24/cil-tag.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -3967,8 +3967,8 @@ QPushButton:hover {
               <string>Save</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>icons3/24x24/cil-save.png</normaloff>icons3/24x24/cil-save.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-save.png</normaloff>:/resources/icons3/24x24/cil-save.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -4003,8 +4003,8 @@ QPushButton:hover {
               <string>Users</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>icons3/24x24/cil-user-follow.png</normaloff>icons3/24x24/cil-user-follow.png</iconset>
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-user-follow.png</normaloff>:/resources/icons3/24x24/cil-user-follow.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -4068,9 +4068,15 @@ border-radius: 5px;</string>
       <property name="lineWidth">
        <number>1</number>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
+      <layout class="QGridLayout" name="gridLayout_42">
+       <item row="0" column="0">
         <widget class="QPushButton" name="customers_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="cursor">
           <cursorShape>OpenHandCursor</cursorShape>
          </property>
@@ -4104,8 +4110,8 @@ QToolTip {
 }</string>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>icons3/24x24/cil-people.png</normaloff>icons3/24x24/cil-people.png</iconset>
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-people.png</normaloff>:/resources/icons3/24x24/cil-people.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -4118,8 +4124,14 @@ QToolTip {
          </property>
         </widget>
        </item>
-       <item>
+       <item row="1" column="0">
         <widget class="QPushButton" name="repair_orders_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="cursor">
           <cursorShape>OpenHandCursor</cursorShape>
          </property>
@@ -4153,8 +4165,8 @@ QToolTip {
           <string/>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>icons3/24x24/cil-copy.png</normaloff>icons3/24x24/cil-copy.png</iconset>
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-copy.png</normaloff>:/resources/icons3/24x24/cil-copy.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -4164,8 +4176,14 @@ QToolTip {
          </property>
         </widget>
        </item>
-       <item>
+       <item row="2" column="0">
         <widget class="QPushButton" name="vehicles_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="cursor">
           <cursorShape>OpenHandCursor</cursorShape>
          </property>
@@ -4199,8 +4217,8 @@ QToolTip {
           <string/>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>icons3/24x24/car.png</normaloff>icons3/24x24/car.png</iconset>
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/car.png</normaloff>:/resources/icons3/24x24/car.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -4213,8 +4231,14 @@ QToolTip {
          </property>
         </widget>
        </item>
-       <item>
+       <item row="3" column="0">
         <widget class="QPushButton" name="messaging_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="cursor">
           <cursorShape>OpenHandCursor</cursorShape>
          </property>
@@ -4248,8 +4272,8 @@ QToolTip {
           <string/>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>icons3/24x24/cil-speech.png</normaloff>icons3/24x24/cil-speech.png</iconset>
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-speech.png</normaloff>:/resources/icons3/24x24/cil-speech.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -4262,8 +4286,14 @@ QToolTip {
          </property>
         </widget>
        </item>
-       <item>
+       <item row="4" column="0">
         <widget class="QPushButton" name="scheduling_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="cursor">
           <cursorShape>OpenHandCursor</cursorShape>
          </property>
@@ -4300,8 +4330,8 @@ QToolTip {
           <string/>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>icons3/24x24/cil-watch.png</normaloff>icons3/24x24/cil-watch.png</iconset>
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/calendar-865.png</normaloff>:/resources/icons3/24x24/calendar-865.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -4314,8 +4344,14 @@ QToolTip {
          </property>
         </widget>
        </item>
-       <item>
+       <item row="5" column="0">
         <widget class="QPushButton" name="analytics_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="cursor">
           <cursorShape>OpenHandCursor</cursorShape>
          </property>
@@ -4349,8 +4385,8 @@ QToolTip {
           <string/>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>icons3/24x24/cil-chart-line.png</normaloff>icons3/24x24/cil-chart-line.png</iconset>
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-chart-line.png</normaloff>:/resources/icons3/24x24/cil-chart-line.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -4363,8 +4399,14 @@ QToolTip {
          </property>
         </widget>
        </item>
-       <item>
+       <item row="6" column="0">
         <widget class="QPushButton" name="settings_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="cursor">
           <cursorShape>OpenHandCursor</cursorShape>
          </property>
@@ -4398,8 +4440,8 @@ QToolTip {
           <string/>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>icons3/24x24/cil-settings.png</normaloff>icons3/24x24/cil-settings.png</iconset>
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-settings.png</normaloff>:/resources/icons3/24x24/cil-settings.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -4415,8 +4457,14 @@ QToolTip {
          </property>
         </widget>
        </item>
-       <item>
+       <item row="7" column="0">
         <widget class="QPushButton" name="quit_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	border-radius: 5px;
@@ -4443,8 +4491,8 @@ QToolTip {
           <string/>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>icons3/24x24/cil-power-standby.png</normaloff>icons3/24x24/cil-power-standby.png</iconset>
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-power-standby.png</normaloff>:/resources/icons3/24x24/cil-power-standby.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -4508,7 +4556,7 @@ QToolTip {
    <header>small_tables</header>
   </customwidget>
   <customwidget>
-   <class>AptCalender</class>
+   <class>AptCalendar</class>
    <extends>QCalendarWidget</extends>
    <header>apt_calendar</header>
   </customwidget>

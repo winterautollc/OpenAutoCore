@@ -33,8 +33,8 @@ QPushButton:hover {
       <string>Create RO</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>Icons/add-document.png</normaloff>Icons/add-document.png</iconset>
+      <iconset resource="openauto_resources.qrc">
+       <normaloff>:/resources/Icons/add-document.png</normaloff>:/resources/Icons/add-document.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -63,8 +63,8 @@ QPushButton:hover {
       <string>Edit Appt</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>Icons/edit.png</normaloff>Icons/edit.png</iconset>
+      <iconset resource="openauto_resources.qrc">
+       <normaloff>:/resources/Icons/edit.png</normaloff>:/resources/Icons/edit.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -96,8 +96,8 @@ QPushButton:hover {
       <string>Delete</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>Icons/trash.png</normaloff>Icons/trash.png</iconset>
+      <iconset resource="openauto_resources.qrc">
+       <normaloff>:/resources/Icons/trash.png</normaloff>:/resources/Icons/trash.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -129,8 +129,8 @@ QPushButton:hover {
       <string>Cancel</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>icons3/24x24/cil-x.png</normaloff>icons3/24x24/cil-x.png</iconset>
+      <iconset resource="openauto_resources.qrc">
+       <normaloff>:/resources/icons3/24x24/cil-x.png</normaloff>:/resources/icons3/24x24/cil-x.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -142,6 +142,8 @@ QPushButton:hover {
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="openauto_resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

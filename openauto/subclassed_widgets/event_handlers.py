@@ -1,7 +1,8 @@
 from PyQt6 import QtCore
 from PyQt6.QtCore import QEvent, QObject, pyqtSignal, QThread, QDate
 from PyQt6.QtGui import QMouseEvent
-from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QRect
+from PyQt6.QtCore import (QPropertyAnimation, QEasingCurve, QRect, QSequentialAnimationGroup,
+                          QPauseAnimation, QParallelAnimationGroup)
 from PyQt6.QtWidgets import QGraphicsOpacityEffect
 from PyQt6 import QtWidgets
 from openauto.repositories import customer_repository, vehicle_repository, appointment_repository
@@ -10,40 +11,119 @@ import time
 
 ### EVENT FILTER TO ANIMATE MENU COLLAPSE WHEN MOUSE ISIN'T HOVERED OVER IT AND EXPAND ON MOUSE HOVER  ###
 class CMenuHandler(QObject):
+    """
+    OPEN  = width (minimumWidth) -> short pause -> fade-in label opacities
+    CLOSE = fade-out label opacities -> width (minimumWidth) back to collapsed
+    Animations & effects are persistent to avoid jank and 'disappearing' widgets.
+    """
     def __init__(self, target_widget):
         super().__init__()
-        self.target_widget = target_widget
-        self.animate_menu_open = QPropertyAnimation(self.target_widget, b'geometry')
-        self.animate_menu_close = QPropertyAnimation(self.target_widget, b'geometry')
-        self.animate_menu_open.setDuration(300)
-        self.animate_menu_close.setDuration(300)
-        self.opacity_effect = QGraphicsOpacityEffect()
-        self.frame_height = self.target_widget.height()
-        self.texts = ["Customers", "Repair Orders", "Vehicles", "Messages", "Schedule", "Analytics", "Settings", "Quit"]
+        self.target = target_widget
+        self.texts = [
+            "  Customers", "  Repair Orders", "  Vehicles", "  Messages",
+            "  Schedule", "  Analytics", "  Settings", "  Quit"
+        ]
+        # Width animations: use minimumWidth so grid honors it
+        self.animate_menu_open  = QPropertyAnimation(self.target, b"minimumWidth")
+        self.animate_menu_close = QPropertyAnimation(self.target, b"minimumWidth")
+        for a in (self.animate_menu_open, self.animate_menu_close):
+            a.setDuration(300)
+            a.setEasingCurve(QEasingCurve.Type.InOutQuart)
 
-    def eventFilter(self, obj, event: QMouseEvent):
+        # sane padding for width calc
+        self.icon_area = 40
+        self.side_pad  = 24
+
+        # Collect the 8 labels you created in Designer (by objectName)
+        label_names = {
+            "customers_label", "repair_orders_label", "vehicles_label", "messaging_label",
+            "scheduling_label", "analytics_label", "settings_label", "quit_label"
+        }
+        self.labels = self.target.findChildren(QtWidgets.QWidget)
+
+        # Ensure each label has a persistent opacity effect (start invisible)
+        self.effects = []
+        for lab in self.labels:
+            eff = lab.graphicsEffect()
+            if not isinstance(eff, QGraphicsOpacityEffect):
+                eff = QGraphicsOpacityEffect(lab)
+                eff.setOpacity(0.0)
+                lab.setGraphicsEffect(eff)
+            self.effects.append(eff)
+
+        # 4) Build persistent fade groups (no per-hover allocations)
+        self.fade_in  = QParallelAnimationGroup(self.target)
+        self.fade_out = QParallelAnimationGroup(self.target)
+        for eff in self.effects:
+            ain = QPropertyAnimation(eff, b"opacity")
+            ain.setDuration(180)
+            ain.setStartValue(0.0)
+            ain.setEndValue(1.0)
+            ain.setEasingCurve(QEasingCurve.Type.InOutQuad)
+            self.fade_in.addAnimation(ain)
+
+            aout = QPropertyAnimation(eff, b"opacity")
+            aout.setDuration(120)
+            aout.setStartValue(1.0)
+            aout.setEndValue(0.0)
+            aout.setEasingCurve(QEasingCurve.Type.InOutQuad)
+            self.fade_out.addAnimation(aout)
+
+        # 5) Sequences: OPEN = width -> pause -> fade-in; CLOSE = fade-out -> width
+        self.open_seq  = QSequentialAnimationGroup(self.target)
+        self.close_seq = QSequentialAnimationGroup(self.target)
+        self.pause = QPauseAnimation(60)
+        self.open_seq.addAnimation(self.animate_menu_open)
+        self.open_seq.addAnimation(self.pause)
+        self.open_seq.addAnimation(self.fade_in)
+
+        self.close_seq.addAnimation(self.fade_out)
+        self.close_seq.addAnimation(self.animate_menu_close)
+
+    def _expanded_width(self) -> int:
+        fm = self.target.fontMetrics()
+        # use the canonical texts instead of empty labels
+        text_w = max(fm.horizontalAdvance(t) for t in self.texts) if self.texts else 0
+        collapsed = max(self.target.minimumWidth(), 60)
+        return max(collapsed + 1, self.icon_area + self.side_pad + text_w)
+
+    def eventFilter(self, obj, event):
         buttons = obj.findChildren(QtWidgets.QPushButton)
-
-        if obj is self.target_widget:
+        if obj is self.target:
             if event.type() == QEvent.Type.Enter:
-                self.animate_menu_open.setEndValue(QRect(9, 65, 125, 890))
-                self.animate_menu_open.setEasingCurve(QEasingCurve.Type.InOutQuart)
-                self.animate_menu_open.start()
+                self.close_seq.stop(); self.open_seq.stop()
+                self.animate_menu_open.setStartValue(self.target.width())
+                self.animate_menu_open.setEndValue(self._expanded_width())
+                self.open_seq.start()
                 for button, text in zip(buttons, self.texts):
-                    button.setToolTip(text)
-                    # QtWidgets.QToolTip.showText(button, text)
-                    # QtWidgets.QToolTip.showText(button.mapToGlobal(QtCore.QPoint(0, button.height())), text)
-
+                    QtWidgets.QPushButton.setText(button, text)
+                    button.setStyleSheet("QPushButton {\n"
+"    border-radius: 5px;\n"
+"    color: #fff;\n"
+"    background-color: #76ABAE;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #828786;\n"
+"    color: #fff;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QToolTip {\n"
+"    background-color: #828786;  \n"
+"    border-radius: 10px;       \n"
+"    font-size: 14px;      \n"
+"    padding: 5px;\n"
+"}")
 
             elif event.type() == QEvent.Type.Leave:
-                self.animate_menu_close.setEndValue(QRect(9, 65, 60, 890))
-                self.animate_menu_close.setEasingCurve(QEasingCurve.Type.InOutQuart)
-                self.animate_menu_close.start()
-
+                self.open_seq.stop(); self.close_seq.stop()
+                self.animate_menu_close.setStartValue(self.target.width())
+                self.animate_menu_close.setEndValue(60)
+                self.close_seq.start()
                 for button, text in zip(buttons, self.texts):
-                    button.setToolTip("")
-                    # QtWidgets.QToolTip.hideText()
-
+                    QtWidgets.QPushButton.setText(button, "")
+                    button.setStyleSheet("color: transparent;")
         return super().eventFilter(obj, event)
     
 ### QTHREAD TO MONITOR CHANGES IN DATABASE. USING ONE QTHREAD FOR ALL TABLES AS IT SHOULD BE MORE EFFICIENT###

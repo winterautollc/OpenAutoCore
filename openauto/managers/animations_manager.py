@@ -8,7 +8,7 @@ class AnimationsManager:
         self._setup_animations()
 
     def _setup_animations(self):
-        def anim(target, duration=300):
+        def anim(target, duration= 500):
             return QtCore.QPropertyAnimation(target, b'geometry', duration=duration)
 
 
@@ -23,8 +23,6 @@ class AnimationsManager:
         self.animate_ro_hub_page = anim(self.ui.ro_control_page, 300)
         self.animate_schedule_header = anim(self.ui.calender_header_buttons, 500)
 
-        self.cmenu_hover_filter = event_handlers.CMenuHandler(self.ui.cmenu_frame)
-        self.ui.cmenu_frame.installEventFilter(self.cmenu_hover_filter)
 
     def show_page(self, hub_index: int, tab_index: int = None, table_widget=None, top_bar_index: int = None):
         self.ui.hub_stacked_widget.setCurrentIndex(hub_index)

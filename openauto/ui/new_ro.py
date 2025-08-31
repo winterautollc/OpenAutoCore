@@ -1,21 +1,13 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-import os
-from PyQt6 import QtGui
-_QPIX = QtGui.QPixmap
+from openauto.theme import resources_rc
 
-class _QPixFix(QtGui.QPixmap):
-    def __init__(self, path=None, *a, **kw):
-        if isinstance(path, str) and (path.startswith("../theme/") or path.startswith("theme/")):
-            path = os.path.normpath(os.path.join(os.path.dirname(__file__), path))
-        super().__init__(path)
-QtGui.QPixmap = _QPixFix
 
 class Ui_create_ro(object):
     def setupUi(self, create_ro):
         create_ro.setObjectName("create_ro")
         create_ro.resize(993, 527)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../theme/Icons/edit.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("theme/../../OpenAutoLite/ui_files/designer_files/Images/Icons/edit.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         create_ro.setWindowIcon(icon)
         create_ro.setStyleSheet("color: black;\n"
 "background-color: #ebebe6;\n"
@@ -107,7 +99,7 @@ class Ui_create_ro(object):
 "    border-radius: 10px;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.abort_button.setIcon(icon1)
         self.abort_button.setIconSize(QtCore.QSize(30, 30))
         self.abort_button.setFlat(True)
@@ -127,7 +119,7 @@ class Ui_create_ro(object):
 "    border-radius: 10px;\n"
 "}")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.save_button.setIcon(icon2)
         self.save_button.setIconSize(QtCore.QSize(30, 30))
         self.save_button.setFlat(True)
@@ -174,7 +166,7 @@ class Ui_create_ro(object):
 "    border-radius: 10px;\n"
 "}")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-plus.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon3.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-plus.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.add_vehicle_button.setIcon(icon3)
         self.add_vehicle_button.setIconSize(QtCore.QSize(30, 30))
         self.add_vehicle_button.setObjectName("add_vehicle_button")

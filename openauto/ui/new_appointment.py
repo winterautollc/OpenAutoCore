@@ -1,14 +1,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-import os
-from PyQt6 import QtGui
-_QPIX = QtGui.QPixmap
+from openauto.theme import resources_rc
 
-class _QPixFix(QtGui.QPixmap):
-    def __init__(self, path=None, *a, **kw):
-        if isinstance(path, str) and (path.startswith("../theme/") or path.startswith("theme/")):
-            path = os.path.normpath(os.path.join(os.path.dirname(__file__), path))
-        super().__init__(path)
-QtGui.QPixmap = _QPixFix
+
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
@@ -70,7 +63,7 @@ class Ui_Form(object):
 "    border-radius: 10px;\n"
 "}")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-plus.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-plus.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.new_customer_button.setIcon(icon)
         self.new_customer_button.setIconSize(QtCore.QSize(30, 30))
         self.new_customer_button.setObjectName("new_customer_button")
@@ -142,7 +135,7 @@ class Ui_Form(object):
 "    border-radius: 10px;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.cancel_button.setIcon(icon1)
         self.cancel_button.setIconSize(QtCore.QSize(30, 30))
         self.cancel_button.setObjectName("cancel_button")
@@ -160,7 +153,7 @@ class Ui_Form(object):
 "    border-radius: 10px;\n"
 "}")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.save_button.setIcon(icon2)
         self.save_button.setIconSize(QtCore.QSize(30, 30))
         self.save_button.setObjectName("save_button")

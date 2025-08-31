@@ -1,22 +1,14 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-import os
-from PyQt6 import QtGui
-_QPIX = QtGui.QPixmap
+from openauto.theme import resources_rc
 
-class _QPixFix(QtGui.QPixmap):
-    def __init__(self, path=None, *a, **kw):
-        if isinstance(path, str) and (path.startswith("../theme/") or path.startswith("theme/")):
-            path = os.path.normpath(os.path.join(os.path.dirname(__file__), path))
-        super().__init__(path)
-QtGui.QPixmap = _QPixFix
 
 class Ui_create_customer_form(object):
     def setupUi(self, create_customer_form):
         create_customer_form.setObjectName("create_customer_form")
         create_customer_form.resize(606, 693)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("/home/fred/PycharmProjects/OpenAuto/openauto/theme/../../OpenAutoLite/ui_files/designer_files/Images/winter_auto.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        icon.addPixmap(QtGui.QPixmap("/home/fred/PycharmProjects/OpenAuto/openauto/theme/../../OpenAutoLite/ui_files/designer_files/Images/winter_auto.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
+        icon.addPixmap(QtGui.QPixmap("theme/../../OpenAutoLite/ui_files/designer_files/Images/winter_auto.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("theme/../../OpenAutoLite/ui_files/designer_files/Images/winter_auto.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
         create_customer_form.setWindowIcon(icon)
         create_customer_form.setStyleSheet("color: #ffffff;\n"
 "background-color: #f2f2f8;\n"
@@ -168,7 +160,7 @@ class Ui_create_customer_form(object):
 "    border-radius: 10px;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.abort_button.setIcon(icon1)
         self.abort_button.setIconSize(QtCore.QSize(30, 30))
         self.abort_button.setFlat(True)
@@ -188,7 +180,7 @@ class Ui_create_customer_form(object):
 "    border-radius: 10px;\n"
 "}")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.edit_button.setIcon(icon2)
         self.edit_button.setIconSize(QtCore.QSize(30, 30))
         self.edit_button.setObjectName("edit_button")

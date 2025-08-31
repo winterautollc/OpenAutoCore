@@ -1,14 +1,6 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-import os
-from PyQt6 import QtGui
-_QPIX = QtGui.QPixmap
+from openauto.theme import resources_rc
 
-class _QPixFix(QtGui.QPixmap):
-    def __init__(self, path=None, *a, **kw):
-        if isinstance(path, str) and (path.startswith("../theme/") or path.startswith("theme/")):
-            path = os.path.normpath(os.path.join(os.path.dirname(__file__), path))
-        super().__init__(path)
-QtGui.QPixmap = _QPixFix
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
@@ -32,7 +24,7 @@ class Ui_Form(object):
 "    border-radius: 10px;\n"
 "}")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../theme/Icons/trash.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap(":/resources/Icons/trash.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.delete_button.setIcon(icon)
         self.delete_button.setIconSize(QtCore.QSize(30, 30))
         self.delete_button.setFlat(True)
@@ -52,7 +44,7 @@ class Ui_Form(object):
 "    border-radius: 10px;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../theme/Icons/car.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/resources/Icons/car.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.add_customer_vehicle.setIcon(icon1)
         self.add_customer_vehicle.setIconSize(QtCore.QSize(30, 30))
         self.add_customer_vehicle.setFlat(True)
@@ -72,7 +64,7 @@ class Ui_Form(object):
 "    border-radius: 10px;\n"
 "}")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../theme/Icons/add-document.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/resources/Icons/add-document.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.create_ro_button.setIcon(icon2)
         self.create_ro_button.setIconSize(QtCore.QSize(30, 30))
         self.create_ro_button.setFlat(True)
@@ -91,7 +83,7 @@ class Ui_Form(object):
 "    border-radius: 10px;\n"
 "}")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon3.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.cancel_button.setIcon(icon3)
         self.cancel_button.setIconSize(QtCore.QSize(30, 30))
         self.cancel_button.setObjectName("cancel_button")
@@ -109,7 +101,7 @@ class Ui_Form(object):
 "    border-radius: 10px;\n"
 "}")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("../theme/Icons/user.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon4.addPixmap(QtGui.QPixmap(":/resources/Icons/user.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.edit_customer_button.setIcon(icon4)
         self.edit_customer_button.setIconSize(QtCore.QSize(30, 30))
         self.edit_customer_button.setObjectName("edit_customer_button")

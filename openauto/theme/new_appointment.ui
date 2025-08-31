@@ -104,8 +104,8 @@ QPushButton:hover {
       <string>New Customer</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>icons3/24x24/cil-plus.png</normaloff>icons3/24x24/cil-plus.png</iconset>
+      <iconset resource="openauto_resources.qrc">
+       <normaloff>:/resources/icons3/24x24/cil-plus.png</normaloff>:/resources/icons3/24x24/cil-plus.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -134,8 +134,8 @@ QPushButton:hover {
       <string>New Vehicle</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>icons3/24x24/cil-plus.png</normaloff>icons3/24x24/cil-plus.png</iconset>
+      <iconset resource="openauto_resources.qrc">
+       <normaloff>:/resources/icons3/24x24/cil-plus.png</normaloff>:/resources/icons3/24x24/cil-plus.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -230,8 +230,8 @@ QPushButton:hover {
       <string>Cancel</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>icons3/24x24/cil-x.png</normaloff>icons3/24x24/cil-x.png</iconset>
+      <iconset resource="openauto_resources.qrc">
+       <normaloff>:/resources/icons3/24x24/cil-x.png</normaloff>:/resources/icons3/24x24/cil-x.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -260,8 +260,8 @@ QPushButton:hover {
       <string>Save</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>icons3/24x24/cil-check.png</normaloff>icons3/24x24/cil-check.png</iconset>
+      <iconset resource="openauto_resources.qrc">
+       <normaloff>:/resources/icons3/24x24/cil-check.png</normaloff>:/resources/icons3/24x24/cil-check.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -285,6 +285,8 @@ QPushButton:hover {
    <header>small_tables</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="openauto_resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

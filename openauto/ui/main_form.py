@@ -1,14 +1,5 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-import os
-from PyQt6 import QtGui
-_QPIX = QtGui.QPixmap
 
-class _QPixFix(QtGui.QPixmap):
-    def __init__(self, path=None, *a, **kw):
-        if isinstance(path, str) and (path.startswith("../theme/") or path.startswith("theme/")):
-            path = os.path.normpath(os.path.join(os.path.dirname(__file__), path))
-        super().__init__(path)
-QtGui.QPixmap = _QPixFix
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -234,7 +225,7 @@ class Ui_MainWindow(object):
 "    border-radius: 10px;\n"
 "}")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../theme/Icons/edit.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap(":/resources/Icons/edit.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.send_message_button.setIcon(icon)
         self.send_message_button.setIconSize(QtCore.QSize(30, 30))
         self.send_message_button.setFlat(True)
@@ -377,7 +368,7 @@ class Ui_MainWindow(object):
 "    border-radius: 10px;\n"
 "}")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-minus.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-minus.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.remove_row_button.setIcon(icon1)
         self.remove_row_button.setIconSize(QtCore.QSize(30, 30))
         self.remove_row_button.setObjectName("remove_row_button")
@@ -395,7 +386,7 @@ class Ui_MainWindow(object):
 "    border-radius: 10px;\n"
 "}")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-plus.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-plus.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.add_row_button.setIcon(icon2)
         self.add_row_button.setIconSize(QtCore.QSize(30, 30))
         self.add_row_button.setObjectName("add_row_button")
@@ -413,7 +404,7 @@ class Ui_MainWindow(object):
 "    border-radius: 10px;\n"
 "}")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon3.addPixmap(QtGui.QPixmap("theme/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.save_matrix_button.setIcon(icon3)
         self.save_matrix_button.setIconSize(QtCore.QSize(30, 30))
         self.save_matrix_button.setObjectName("save_matrix_button")
@@ -438,7 +429,7 @@ class Ui_MainWindow(object):
 "    border-radius: 10px;\n"
 "}")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-external-link.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon4.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-external-link.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.import_logo_button.setIcon(icon4)
         self.import_logo_button.setIconSize(QtCore.QSize(30, 30))
         self.import_logo_button.setObjectName("import_logo_button")
@@ -759,7 +750,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        self.save_labor_button.setIcon(icon3)
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.save_labor_button.setIcon(icon5)
         self.save_labor_button.setIconSize(QtCore.QSize(30, 30))
         self.save_labor_button.setObjectName("save_labor_button")
         self.gridLayout_26.addWidget(self.save_labor_button, 3, 0, 1, 1)
@@ -783,9 +776,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-transfer.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.ro_status_button.setIcon(icon5)
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-transfer.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.ro_status_button.setIcon(icon6)
         self.ro_status_button.setIconSize(QtCore.QSize(30, 30))
         self.ro_status_button.setObjectName("ro_status_button")
         self.gridLayout_41.addWidget(self.ro_status_button, 5, 5, 1, 1)
@@ -802,9 +795,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-chart-line.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.ro_profit_button.setIcon(icon6)
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-chart-line.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.ro_profit_button.setIcon(icon7)
         self.ro_profit_button.setIconSize(QtCore.QSize(30, 30))
         self.ro_profit_button.setObjectName("ro_profit_button")
         self.gridLayout_41.addWidget(self.ro_profit_button, 5, 3, 1, 1)
@@ -914,9 +907,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-check-circle.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.place_order_button.setIcon(icon7)
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-check-circle.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.place_order_button.setIcon(icon8)
         self.place_order_button.setIconSize(QtCore.QSize(30, 30))
         self.place_order_button.setObjectName("place_order_button")
         self.gridLayout_41.addWidget(self.place_order_button, 3, 4, 1, 2)
@@ -1375,9 +1368,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-camera.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.mpi_button.setIcon(icon8)
+        icon9 = QtGui.QIcon()
+        icon9.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-camera.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.mpi_button.setIcon(icon9)
         self.mpi_button.setIconSize(QtCore.QSize(30, 30))
         self.mpi_button.setObjectName("mpi_button")
         self.gridLayout_41.addWidget(self.mpi_button, 5, 4, 1, 1)
@@ -1605,9 +1598,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon9 = QtGui.QIcon()
-        icon9.addPixmap(QtGui.QPixmap("../theme/Icons/document.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.working_ro_button.setIcon(icon9)
+        icon10 = QtGui.QIcon()
+        icon10.addPixmap(QtGui.QPixmap(":/resources/Icons/document.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.working_ro_button.setIcon(icon10)
         self.working_ro_button.setIconSize(QtCore.QSize(30, 30))
         self.working_ro_button.setFlat(True)
         self.working_ro_button.setObjectName("working_ro_button")
@@ -1625,9 +1618,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon10 = QtGui.QIcon()
-        icon10.addPixmap(QtGui.QPixmap("../theme/Icons/shopping-cart.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.checkout_button.setIcon(icon10)
+        icon11 = QtGui.QIcon()
+        icon11.addPixmap(QtGui.QPixmap(":/resources/Icons/shopping-cart.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.checkout_button.setIcon(icon11)
         self.checkout_button.setIconSize(QtCore.QSize(30, 30))
         self.checkout_button.setFlat(True)
         self.checkout_button.setObjectName("checkout_button")
@@ -1650,9 +1643,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon11 = QtGui.QIcon()
-        icon11.addPixmap(QtGui.QPixmap("../theme/Icons/ballot.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.estimates_button.setIcon(icon11)
+        icon12 = QtGui.QIcon()
+        icon12.addPixmap(QtGui.QPixmap(":/resources/Icons/ballot.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.estimates_button.setIcon(icon12)
         self.estimates_button.setIconSize(QtCore.QSize(30, 30))
         self.estimates_button.setFlat(True)
         self.estimates_button.setObjectName("estimates_button")
@@ -1670,9 +1663,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon12 = QtGui.QIcon()
-        icon12.addPixmap(QtGui.QPixmap("../theme/Icons/apps.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.show_all_ro_button.setIcon(icon12)
+        icon13 = QtGui.QIcon()
+        icon13.addPixmap(QtGui.QPixmap(":/resources/Icons/apps.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.show_all_ro_button.setIcon(icon13)
         self.show_all_ro_button.setIconSize(QtCore.QSize(30, 30))
         self.show_all_ro_button.setFlat(True)
         self.show_all_ro_button.setObjectName("show_all_ro_button")
@@ -1695,9 +1688,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon13 = QtGui.QIcon()
-        icon13.addPixmap(QtGui.QPixmap("../theme/Icons/add-document.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.new_ro_button.setIcon(icon13)
+        icon14 = QtGui.QIcon()
+        icon14.addPixmap(QtGui.QPixmap(":/resources/Icons/add-document.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.new_ro_button.setIcon(icon14)
         self.new_ro_button.setIconSize(QtCore.QSize(30, 30))
         self.new_ro_button.setFlat(True)
         self.new_ro_button.setObjectName("new_ro_button")
@@ -1715,9 +1708,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon14 = QtGui.QIcon()
-        icon14.addPixmap(QtGui.QPixmap("../theme/Icons/list-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.approved_button.setIcon(icon14)
+        icon15 = QtGui.QIcon()
+        icon15.addPixmap(QtGui.QPixmap(":/resources/Icons/list-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.approved_button.setIcon(icon15)
         self.approved_button.setIconSize(QtCore.QSize(30, 30))
         self.approved_button.setFlat(True)
         self.approved_button.setObjectName("approved_button")
@@ -1779,7 +1772,7 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        self.new_vehicle_button.setIcon(icon13)
+        self.new_vehicle_button.setIcon(icon14)
         self.new_vehicle_button.setIconSize(QtCore.QSize(30, 30))
         self.new_vehicle_button.setFlat(True)
         self.new_vehicle_button.setObjectName("new_vehicle_button")
@@ -1817,9 +1810,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon15 = QtGui.QIcon()
-        icon15.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.cancel_ro_button.setIcon(icon15)
+        icon16 = QtGui.QIcon()
+        icon16.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.cancel_ro_button.setIcon(icon16)
         self.cancel_ro_button.setIconSize(QtCore.QSize(30, 30))
         self.cancel_ro_button.setObjectName("cancel_ro_button")
         self.gridLayout_35.addWidget(self.cancel_ro_button, 0, 5, 1, 1)
@@ -1842,9 +1835,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon16 = QtGui.QIcon()
-        icon16.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-save.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.save_ro_button.setIcon(icon16)
+        icon17 = QtGui.QIcon()
+        icon17.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-save.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.save_ro_button.setIcon(icon17)
         self.save_ro_button.setIconSize(QtCore.QSize(30, 30))
         self.save_ro_button.setObjectName("save_ro_button")
         self.gridLayout_35.addWidget(self.save_ro_button, 0, 2, 1, 1)
@@ -1866,9 +1859,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon17 = QtGui.QIcon()
-        icon17.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-speech.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.message_customer_button.setIcon(icon17)
+        icon18 = QtGui.QIcon()
+        icon18.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-speech.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.message_customer_button.setIcon(icon18)
         self.message_customer_button.setIconSize(QtCore.QSize(30, 30))
         self.message_customer_button.setObjectName("message_customer_button")
         self.gridLayout_35.addWidget(self.message_customer_button, 0, 4, 1, 1)
@@ -1912,9 +1905,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon18 = QtGui.QIcon()
-        icon18.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-print.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.print_ro_button.setIcon(icon18)
+        icon19 = QtGui.QIcon()
+        icon19.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-print.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.print_ro_button.setIcon(icon19)
         self.print_ro_button.setIconSize(QtCore.QSize(30, 30))
         self.print_ro_button.setObjectName("print_ro_button")
         self.gridLayout_35.addWidget(self.print_ro_button, 0, 3, 1, 1)
@@ -1955,9 +1948,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon19 = QtGui.QIcon()
-        icon19.addPixmap(QtGui.QPixmap("../theme/Icons/user-add.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.new_customer_button.setIcon(icon19)
+        icon20 = QtGui.QIcon()
+        icon20.addPixmap(QtGui.QPixmap(":/resources/Icons/user-add.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.new_customer_button.setIcon(icon20)
         self.new_customer_button.setIconSize(QtCore.QSize(30, 30))
         self.new_customer_button.setFlat(True)
         self.new_customer_button.setObjectName("new_customer_button")
@@ -2002,9 +1995,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon20 = QtGui.QIcon()
-        icon20.addPixmap(QtGui.QPixmap("../theme/Icons/calendar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.day_button.setIcon(icon20)
+        icon21 = QtGui.QIcon()
+        icon21.addPixmap(QtGui.QPixmap(":/resources/Icons/calendar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.day_button.setIcon(icon21)
         self.day_button.setIconSize(QtCore.QSize(30, 30))
         self.day_button.setFlat(True)
         self.day_button.setObjectName("day_button")
@@ -2022,9 +2015,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon21 = QtGui.QIcon()
-        icon21.addPixmap(QtGui.QPixmap("../theme/Icons/menu-burger.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.month_button.setIcon(icon21)
+        icon22 = QtGui.QIcon()
+        icon22.addPixmap(QtGui.QPixmap(":/resources/Icons/menu-burger.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.month_button.setIcon(icon22)
         self.month_button.setIconSize(QtCore.QSize(30, 30))
         self.month_button.setFlat(True)
         self.month_button.setObjectName("month_button")
@@ -2042,7 +2035,7 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        self.week_button.setIcon(icon20)
+        self.week_button.setIcon(icon21)
         self.week_button.setIconSize(QtCore.QSize(30, 30))
         self.week_button.setFlat(True)
         self.week_button.setObjectName("week_button")
@@ -2081,9 +2074,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon22 = QtGui.QIcon()
-        icon22.addPixmap(QtGui.QPixmap("../theme/Icons/comment-alt.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.message_cust_find_button.setIcon(icon22)
+        icon23 = QtGui.QIcon()
+        icon23.addPixmap(QtGui.QPixmap(":/resources/Icons/comment-alt.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.message_cust_find_button.setIcon(icon23)
         self.message_cust_find_button.setIconSize(QtCore.QSize(30, 30))
         self.message_cust_find_button.setFlat(True)
         self.message_cust_find_button.setObjectName("message_cust_find_button")
@@ -2119,9 +2112,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon23 = QtGui.QIcon()
-        icon23.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-browser.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.quickbooks_button.setIcon(icon23)
+        icon24 = QtGui.QIcon()
+        icon24.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-browser.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.quickbooks_button.setIcon(icon24)
         self.quickbooks_button.setIconSize(QtCore.QSize(30, 30))
         self.quickbooks_button.setObjectName("quickbooks_button")
         self.gridLayout_21.addWidget(self.quickbooks_button, 1, 5, 1, 1)
@@ -2138,7 +2131,7 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        self.appearance_button.setIcon(icon23)
+        self.appearance_button.setIcon(icon24)
         self.appearance_button.setIconSize(QtCore.QSize(30, 30))
         self.appearance_button.setObjectName("appearance_button")
         self.gridLayout_21.addWidget(self.appearance_button, 1, 2, 1, 1)
@@ -2155,9 +2148,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon24 = QtGui.QIcon()
-        icon24.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-tag.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.parts_integrate_button.setIcon(icon24)
+        icon25 = QtGui.QIcon()
+        icon25.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-tag.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.parts_integrate_button.setIcon(icon25)
         self.parts_integrate_button.setIconSize(QtCore.QSize(30, 30))
         self.parts_integrate_button.setObjectName("parts_integrate_button")
         self.gridLayout_21.addWidget(self.parts_integrate_button, 1, 4, 1, 1)
@@ -2175,7 +2168,7 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        self.save_settings_button.setIcon(icon16)
+        self.save_settings_button.setIcon(icon17)
         self.save_settings_button.setIconSize(QtCore.QSize(30, 30))
         self.save_settings_button.setObjectName("save_settings_button")
         self.gridLayout_21.addWidget(self.save_settings_button, 1, 0, 1, 1)
@@ -2192,9 +2185,9 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon25 = QtGui.QIcon()
-        icon25.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-user-follow.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.users_button.setIcon(icon25)
+        icon26 = QtGui.QIcon()
+        icon26.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-user-follow.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.users_button.setIcon(icon26)
         self.users_button.setIconSize(QtCore.QSize(30, 30))
         self.users_button.setObjectName("users_button")
         self.gridLayout_21.addWidget(self.users_button, 1, 3, 1, 1)
@@ -2220,9 +2213,13 @@ class Ui_MainWindow(object):
         self.cmenu_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.cmenu_frame.setLineWidth(1)
         self.cmenu_frame.setObjectName("cmenu_frame")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.cmenu_frame)
-        self.verticalLayout.setObjectName("verticalLayout")
+        self.gridLayout_42 = QtWidgets.QGridLayout(self.cmenu_frame)
+        self.gridLayout_42.setObjectName("gridLayout_42")
         self.customers_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.customers_button.setFont(font)
         self.customers_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
         self.customers_button.setToolTip("")
         self.customers_button.setToolTipDuration(-4)
@@ -2245,14 +2242,18 @@ class Ui_MainWindow(object):
 "    font-size: 14px;      \n"
 "    padding: 5px;\n"
 "}")
-        icon26 = QtGui.QIcon()
-        icon26.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-people.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.customers_button.setIcon(icon26)
+        icon27 = QtGui.QIcon()
+        icon27.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-people.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.customers_button.setIcon(icon27)
         self.customers_button.setIconSize(QtCore.QSize(30, 30))
         self.customers_button.setFlat(False)
         self.customers_button.setObjectName("customers_button")
-        self.verticalLayout.addWidget(self.customers_button)
+        self.gridLayout_42.addWidget(self.customers_button, 0, 0, 1, 1)
         self.repair_orders_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.repair_orders_button.setFont(font)
         self.repair_orders_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
         self.repair_orders_button.setToolTip("")
         self.repair_orders_button.setToolTipDuration(-4)
@@ -2275,13 +2276,17 @@ class Ui_MainWindow(object):
 "    padding: 5px;\n"
 "}")
         self.repair_orders_button.setText("")
-        icon27 = QtGui.QIcon()
-        icon27.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-copy.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.repair_orders_button.setIcon(icon27)
+        icon28 = QtGui.QIcon()
+        icon28.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-copy.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.repair_orders_button.setIcon(icon28)
         self.repair_orders_button.setIconSize(QtCore.QSize(30, 30))
         self.repair_orders_button.setObjectName("repair_orders_button")
-        self.verticalLayout.addWidget(self.repair_orders_button)
+        self.gridLayout_42.addWidget(self.repair_orders_button, 1, 0, 1, 1)
         self.vehicles_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.vehicles_button.setFont(font)
         self.vehicles_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
         self.vehicles_button.setToolTip("")
         self.vehicles_button.setToolTipDuration(-4)
@@ -2304,14 +2309,18 @@ class Ui_MainWindow(object):
 "    padding: 5px;\n"
 "}")
         self.vehicles_button.setText("")
-        icon28 = QtGui.QIcon()
-        icon28.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/car.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.vehicles_button.setIcon(icon28)
+        icon29 = QtGui.QIcon()
+        icon29.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/car.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.vehicles_button.setIcon(icon29)
         self.vehicles_button.setIconSize(QtCore.QSize(30, 30))
         self.vehicles_button.setFlat(False)
         self.vehicles_button.setObjectName("vehicles_button")
-        self.verticalLayout.addWidget(self.vehicles_button)
+        self.gridLayout_42.addWidget(self.vehicles_button, 2, 0, 1, 1)
         self.messaging_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.messaging_button.setFont(font)
         self.messaging_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
         self.messaging_button.setToolTip("")
         self.messaging_button.setToolTipDuration(-4)
@@ -2334,12 +2343,16 @@ class Ui_MainWindow(object):
 "    padding: 5px;\n"
 "}")
         self.messaging_button.setText("")
-        self.messaging_button.setIcon(icon17)
+        self.messaging_button.setIcon(icon18)
         self.messaging_button.setIconSize(QtCore.QSize(30, 30))
         self.messaging_button.setFlat(False)
         self.messaging_button.setObjectName("messaging_button")
-        self.verticalLayout.addWidget(self.messaging_button)
+        self.gridLayout_42.addWidget(self.messaging_button, 3, 0, 1, 1)
         self.scheduling_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.scheduling_button.setFont(font)
         self.scheduling_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
         self.scheduling_button.setMouseTracking(True)
         self.scheduling_button.setToolTip("")
@@ -2363,14 +2376,18 @@ class Ui_MainWindow(object):
 "    padding: 5px;\n"
 "}")
         self.scheduling_button.setText("")
-        icon29 = QtGui.QIcon()
-        icon29.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-watch.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.scheduling_button.setIcon(icon29)
+        icon30 = QtGui.QIcon()
+        icon30.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/calendar-865.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.scheduling_button.setIcon(icon30)
         self.scheduling_button.setIconSize(QtCore.QSize(30, 30))
         self.scheduling_button.setFlat(False)
         self.scheduling_button.setObjectName("scheduling_button")
-        self.verticalLayout.addWidget(self.scheduling_button)
+        self.gridLayout_42.addWidget(self.scheduling_button, 4, 0, 1, 1)
         self.analytics_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.analytics_button.setFont(font)
         self.analytics_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
         self.analytics_button.setToolTip("")
         self.analytics_button.setToolTipDuration(-4)
@@ -2393,12 +2410,16 @@ class Ui_MainWindow(object):
 "    padding: 5px;\n"
 "}")
         self.analytics_button.setText("")
-        self.analytics_button.setIcon(icon6)
+        self.analytics_button.setIcon(icon7)
         self.analytics_button.setIconSize(QtCore.QSize(30, 30))
         self.analytics_button.setFlat(False)
         self.analytics_button.setObjectName("analytics_button")
-        self.verticalLayout.addWidget(self.analytics_button)
+        self.gridLayout_42.addWidget(self.analytics_button, 5, 0, 1, 1)
         self.settings_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.settings_button.setFont(font)
         self.settings_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
         self.settings_button.setToolTip("")
         self.settings_button.setToolTipDuration(-4)
@@ -2421,15 +2442,19 @@ class Ui_MainWindow(object):
 "    padding: 5px;\n"
 "}")
         self.settings_button.setText("")
-        icon30 = QtGui.QIcon()
-        icon30.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-settings.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.settings_button.setIcon(icon30)
+        icon31 = QtGui.QIcon()
+        icon31.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-settings.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.settings_button.setIcon(icon31)
         self.settings_button.setIconSize(QtCore.QSize(30, 30))
         self.settings_button.setDefault(False)
         self.settings_button.setFlat(False)
         self.settings_button.setObjectName("settings_button")
-        self.verticalLayout.addWidget(self.settings_button)
+        self.gridLayout_42.addWidget(self.settings_button, 6, 0, 1, 1)
         self.quit_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.quit_button.setFont(font)
         self.quit_button.setStyleSheet("QPushButton {\n"
 "    border-radius: 5px;\n"
 "    color: #fff;\n"
@@ -2451,12 +2476,12 @@ class Ui_MainWindow(object):
 "    padding: 5px;\n"
 "}")
         self.quit_button.setText("")
-        icon31 = QtGui.QIcon()
-        icon31.addPixmap(QtGui.QPixmap("../theme/icons3/24x24/cil-power-standby.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.quit_button.setIcon(icon31)
+        icon32 = QtGui.QIcon()
+        icon32.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-power-standby.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.quit_button.setIcon(icon32)
         self.quit_button.setIconSize(QtCore.QSize(30, 30))
         self.quit_button.setObjectName("quit_button")
-        self.verticalLayout.addWidget(self.quit_button)
+        self.gridLayout_42.addWidget(self.quit_button, 7, 0, 1, 1)
         self.gridLayout_2.addWidget(self.cmenu_frame, 2, 0, 2, 1)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -2564,6 +2589,7 @@ from openauto.subclassed_widgets.apt_calendar import AptCalendar, HourlySchedule
 from openauto.subclassed_widgets.control_menu import ControlMenu
 from openauto.subclassed_widgets.small_tables import LaborTable, MatrixTable
 from openauto.subclassed_widgets.workflow_tables import ApprovedTable, CheckoutTable, CustomerTable, EstimateTable, ROTable, VehicleTable, WorkingTable
+from openauto.theme import resources_rc
 
 
 if __name__ == "__main__":

@@ -1,8 +1,7 @@
-from PyQt6 import QtCore, QtWidgets
+from PyQt6 import QtCore, QtWidgets, QtGui
 from PyQt6.QtGui import QDoubleValidator
-from openauto.subclassed_widgets import small_tables, workflow_tables, apt_calendar, event_handlers
+from openauto.subclassed_widgets import small_tables, workflow_tables, apt_calendar, event_handlers, control_menu
 from openauto.ui import main_form
-from PyQt6.QtCore import QDate
 from openauto.managers import (
     customer_manager, vehicle_manager, settings_manager,
     animations_manager, new_ro_manager, belongs_to_manager, appointments_manager, appointment_options_manager,
@@ -10,7 +9,7 @@ from openauto.managers import (
 )
 from pyvin import VIN
 import os
-
+from PyQt6.QtWidgets import QGraphicsOpacityEffect
 
 
 def apply_stylesheet(widget, relative_path):
@@ -21,13 +20,18 @@ def apply_stylesheet(widget, relative_path):
             widget.setStyleSheet(f.read())
     except FileNotFoundError:
         print(f"⚠️ Could not load theme: {theme_path}")
-
+def load_icon(rel_path: str) -> QtGui.QIcon:
+    base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    full_path = os.path.join(base_path, rel_path)
+    icon = QtGui.QIcon()
+    icon.addPixmap(QtGui.QPixmap(full_path), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+    return icon
 
 class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
+     #   self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.sql_monitor = event_handlers.SQLMonitor()
         self.sql_monitor.start()
         self._init_managers()
@@ -37,7 +41,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self._connect_signals()
         self._setup_animations()
         self.toggle_theme()
-        self.cmenu_frame.raise_()
+        self._setup_menu_label_opacity()
 
     ### DECLARE MANAGERS ###
     def _init_managers(self):
@@ -62,6 +66,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
 
 ### DECLARE SUBCLASSED TABLE WIDGETS ###
     def _init_tables(self):
+        self.cmenu_frame = control_menu.ControlMenu(parent=self)
         self.customer_table = workflow_tables.CustomerTable(parent=self)
         self.vehicle_table = workflow_tables.VehicleTable(parent=self)
         self.matrix_table = small_tables.MatrixTable(parent=self)
@@ -76,6 +81,20 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.weekly_schedule_table = apt_calendar.WeeklySchedule(parent=self)
         self.ro_items_table = workflow_tables.ROTable(parent=self)
 
+### ADD MAIN BUTTONS TO CMENU ###
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.cmenu_frame)
+        self.verticalLayout.addWidget(self.customers_button)
+        self.verticalLayout.addWidget(self.repair_orders_button)
+        self.verticalLayout.addWidget(self.vehicles_button)
+        self.verticalLayout.addWidget(self.messaging_button)
+        self.verticalLayout.addWidget(self.scheduling_button)
+        self.verticalLayout.addWidget(self.analytics_button)
+        self.verticalLayout.addWidget(self.settings_button)
+        self.verticalLayout.addWidget(self.quit_button)
+
+
+### ADD ALL SUBCLASSED WIDGETS TO LAYOUT ###
+        self.gridLayout_2.addWidget(self.cmenu_frame, 2, 0, 2, 1)
         self.gridLayout_11.addWidget(self.customer_table, 0, 0, 1, 1)
         self.gridLayout_19.addWidget(self.vehicle_table, 0, 0, 1, 1)
         self.gridLayout_24.addWidget(self.matrix_table, 1, 0, 1, 2)
@@ -89,7 +108,6 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.gridLayout_31.addWidget(self.weekly_schedule_table, 0, 0, 1, 1)
         self.gridLayout_34.addWidget(self.hourly_schedule_table, 0, 0, 1, 1)
         self.gridLayout_41.addWidget(self.ro_items_table, 3, 0, 2, 2)
-
 
     def _init_state(self):
         self.message = QtWidgets.QMessageBox()
@@ -116,6 +134,22 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.vin = VIN
         self.current_ro_id = None
         self.settings_manager.load_shop_info()
+
+
+### HIDE LABELS IN CMENU ###
+    def _setup_menu_label_opacity(self):
+        texts = [
+            "Customers", "Repair Orders", "Vehicles", "Messages",
+            "Schedule", "Analytics", "Settings", "Quit"
+        ]
+        buttons = [
+            self.customers_button, self.repair_orders_button, self.vehicles_button,
+            self.messaging_button, self.scheduling_button, self.analytics_button,
+            self.settings_button, self.quit_button
+        ]
+        for button, text in zip(buttons, texts):
+            QtWidgets.QPushButton.setText(button, "")
+            button.setStyleSheet("color: transparent; ")
 
 
 ### SIGNALS/SLOTS FOR PUSHBUTTONS ETC.. ###
@@ -193,18 +227,6 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.animate_week = anim(self.weekly_schedule_table, 300)
         self.animate_day = anim(self.hourly_schedule_table, 300)
 
-
-        self.cmenu_hover_filter = event_handlers.CMenuHandler(self.cmenu_frame)
-        self.cmenu_frame.installEventFilter(self.cmenu_hover_filter)
-
-
-    def _start_sql_monitor(self):
-        # self.belongs_to_worker = event_handlers.SQLMonitor()
-        # self.belongs_to_worker.belongs_to_update.connect(self.update_belongs_to)
-        # self.belongs_to_worker.start()
-        pass
-
-
     def toggle_theme(self):
         theme = "theme/dark_theme.qss"
         apply_stylesheet(self, theme)
@@ -221,22 +243,6 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         )
         if reply == QtWidgets.QMessageBox.StandardButton.Yes:
             QtWidgets.QApplication.quit()
-
-    # def update_belongs_to(self, belongs_to_data):
-    #     self.belongs_to_window, self.belongs_to_window_ui = self.widget_manager.create_or_restore(
-    #         "belongs_to", QtWidgets.QWidget, customer_search_form.Ui_Form
-    #     )
-    #     self.belongs_to_window.setWindowFlags(
-    #         QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint
-    #     )
-    #     self.belongs_to_window.setFixedSize(636, 256)
-    #     self.belongs_to_window_ui.cancel_button.clicked.connect(
-    #         lambda: self.widget_manager.close_and_delete("belongs_to")
-    #     )
-    #
-    #     self.belongs_to_window_ui.customer_name_box.clear()
-    #     for last, first, cid in belongs_to_data:
-    #         self.belongs_to_window_ui.customer_name_box.addItem(f"{last} - {first} - {cid}", cid)
 
 
     def ro_hub_items(self):
