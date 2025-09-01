@@ -2,6 +2,7 @@ from PyQt6 import QtWidgets, QtCore
 from openauto.subclassed_widgets.event_handlers import WidgetManager
 from openauto.ui import estimate_options
 from openauto.repositories import estimates_repository
+from openauto.managers import ro_status_manager
 
 
 class EstimateOptionsManager:
@@ -31,6 +32,7 @@ class EstimateOptionsManager:
         )
         self.estimate_options_ui.delete_ro_button.clicked.connect(self.confirm_delete)
         self.estimate_options_ui.open_ro_button.clicked.connect(self._open_ro_page)
+        self.estimate_options_ui.change_status_button.clicked.connect(self.open_ro_status)
         self.estimate_options.show()
 
     def confirm_delete(self):
@@ -63,3 +65,7 @@ class EstimateOptionsManager:
         self.ui.ro_hub_manager.load_ro_into_hub(ro_id)
         self.widget_manager.close_and_delete("estimate_options")
         self.ui.animations_manager.ro_hub_page_show()
+
+    def open_ro_status(self, checked=False):
+        self.widget_manager.close_and_delete("estimate_options")
+        ro_status_manager.ROStatusManager(self.ui)

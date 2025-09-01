@@ -1701,42 +1701,6 @@ class Ui_MainWindow(object):
         self.ro_control_page.setObjectName("ro_control_page")
         self.gridLayout_41 = QtWidgets.QGridLayout(self.ro_control_page)
         self.gridLayout_41.setObjectName("gridLayout_41")
-        self.ro_status_button = QtWidgets.QPushButton(parent=self.ro_control_page)
-        self.ro_status_button.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.ro_status_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon30 = QtGui.QIcon()
-        icon30.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-transfer.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.ro_status_button.setIcon(icon30)
-        self.ro_status_button.setIconSize(QtCore.QSize(30, 30))
-        self.ro_status_button.setObjectName("ro_status_button")
-        self.gridLayout_41.addWidget(self.ro_status_button, 5, 5, 1, 1)
-        self.ro_profit_button = QtWidgets.QPushButton(parent=self.ro_control_page)
-        self.ro_profit_button.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.ro_profit_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        self.ro_profit_button.setIcon(icon22)
-        self.ro_profit_button.setIconSize(QtCore.QSize(30, 30))
-        self.ro_profit_button.setObjectName("ro_profit_button")
-        self.gridLayout_41.addWidget(self.ro_profit_button, 5, 3, 1, 1)
         self.horizontalLayout_30 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_30.setObjectName("horizontalLayout_30")
         self.horizontalLayout_14 = QtWidgets.QHBoxLayout()
@@ -1784,35 +1748,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_17.setObjectName("horizontalLayout_17")
         self.horizontalLayout_13 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_13.setObjectName("horizontalLayout_13")
-        self.miles_out_label = QtWidgets.QLabel(parent=self.ro_control_page)
-        font = QtGui.QFont()
-        font.setPointSize(13)
-        font.setBold(True)
-        self.miles_out_label.setFont(font)
-        self.miles_out_label.setObjectName("miles_out_label")
-        self.horizontalLayout_13.addWidget(self.miles_out_label)
-        self.miles_out_edit = QtWidgets.QLineEdit(parent=self.ro_control_page)
-        self.miles_out_edit.setMinimumSize(QtCore.QSize(0, 30))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        self.miles_out_edit.setFont(font)
-        self.miles_out_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
-        self.miles_out_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.miles_out_edit.setObjectName("miles_out_edit")
-        self.horizontalLayout_13.addWidget(self.miles_out_edit)
-        self.horizontalLayout_17.addLayout(self.horizontalLayout_13)
-        self.horizontalLayout_12 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_12.setObjectName("horizontalLayout_12")
         self.miles_in_label = QtWidgets.QLabel(parent=self.ro_control_page)
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
         self.miles_in_label.setFont(font)
-        self.miles_in_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.miles_in_label.setObjectName("miles_in_label")
-        self.horizontalLayout_12.addWidget(self.miles_in_label)
+        self.horizontalLayout_13.addWidget(self.miles_in_label)
         self.miles_in_edit = QtWidgets.QLineEdit(parent=self.ro_control_page)
         self.miles_in_edit.setMinimumSize(QtCore.QSize(0, 30))
         font = QtGui.QFont()
@@ -1823,7 +1765,29 @@ class Ui_MainWindow(object):
 "background-color: #fefeff;")
         self.miles_in_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.miles_in_edit.setObjectName("miles_in_edit")
-        self.horizontalLayout_12.addWidget(self.miles_in_edit)
+        self.horizontalLayout_13.addWidget(self.miles_in_edit)
+        self.horizontalLayout_17.addLayout(self.horizontalLayout_13)
+        self.horizontalLayout_12 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_12.setObjectName("horizontalLayout_12")
+        self.miles_out_label = QtWidgets.QLabel(parent=self.ro_control_page)
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        self.miles_out_label.setFont(font)
+        self.miles_out_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.miles_out_label.setObjectName("miles_out_label")
+        self.horizontalLayout_12.addWidget(self.miles_out_label)
+        self.milies_out_edit = QtWidgets.QLineEdit(parent=self.ro_control_page)
+        self.milies_out_edit.setMinimumSize(QtCore.QSize(0, 30))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.milies_out_edit.setFont(font)
+        self.milies_out_edit.setStyleSheet("border-radius: 5px;\n"
+"background-color: #fefeff;")
+        self.milies_out_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.milies_out_edit.setObjectName("milies_out_edit")
+        self.horizontalLayout_12.addWidget(self.milies_out_edit)
         self.horizontalLayout_17.addLayout(self.horizontalLayout_12)
         self.horizontalLayout_30.addLayout(self.horizontalLayout_17)
         self.gridLayout_41.addLayout(self.horizontalLayout_30, 0, 0, 1, 1)
@@ -1843,41 +1807,208 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "    border-radius: 10px;\n"
 "}")
-        icon31 = QtGui.QIcon()
-        icon31.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-check-circle.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.place_order_button.setIcon(icon31)
+        icon30 = QtGui.QIcon()
+        icon30.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-check-circle.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.place_order_button.setIcon(icon30)
         self.place_order_button.setIconSize(QtCore.QSize(30, 30))
         self.place_order_button.setObjectName("place_order_button")
         self.gridLayout_41.addWidget(self.place_order_button, 3, 4, 1, 2)
-        self.verticalLayout_6 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.notes_label = QtWidgets.QLabel(parent=self.ro_control_page)
+        self.horizontalLayout_24 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_24.setSpacing(12)
+        self.horizontalLayout_24.setObjectName("horizontalLayout_24")
+        self.verticalLayout_7 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_7.setSpacing(10)
+        self.verticalLayout_7.setObjectName("verticalLayout_7")
+        self.horizontalLayout_19 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_19.setObjectName("horizontalLayout_19")
+        self.ro_placer_label = QtWidgets.QLabel(parent=self.ro_control_page)
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        self.ro_placer_label.setFont(font)
+        self.ro_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.ro_placer_label.setObjectName("ro_placer_label")
+        self.horizontalLayout_19.addWidget(self.ro_placer_label)
+        self.ro_number_label = QtWidgets.QLabel(parent=self.ro_control_page)
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
         font.setItalic(True)
-        self.notes_label.setFont(font)
-        self.notes_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.notes_label.setObjectName("notes_label")
-        self.verticalLayout_6.addWidget(self.notes_label)
-        self.notes_text_edit = QtWidgets.QTextEdit(parent=self.ro_control_page)
+        self.ro_number_label.setFont(font)
+        self.ro_number_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.ro_number_label.setObjectName("ro_number_label")
+        self.horizontalLayout_19.addWidget(self.ro_number_label)
+        self.verticalLayout_7.addLayout(self.horizontalLayout_19)
+        self.horizontalLayout_23 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_23.setObjectName("horizontalLayout_23")
+        self.writer_placer_label = QtWidgets.QLabel(parent=self.ro_control_page)
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
-        self.notes_text_edit.setFont(font)
-        self.notes_text_edit.setStyleSheet("border-radius: 5px;\n"
+        self.writer_placer_label.setFont(font)
+        self.writer_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.writer_placer_label.setObjectName("writer_placer_label")
+        self.horizontalLayout_23.addWidget(self.writer_placer_label)
+        self.writer_box = QtWidgets.QComboBox(parent=self.ro_control_page)
+        self.writer_box.setMinimumSize(QtCore.QSize(150, 30))
+        self.writer_box.setSizeIncrement(QtCore.QSize(0, 0))
+        self.writer_box.setStyleSheet("QComboBox {\n"
+"    border-radius: 5px;\n"
+"    color: #fff;\n"
+"    background-color: #76ABAE;\n"
+"}\n"
+"\n"
+"QComboBox:hover {\n"
+"    background-color: #828786;\n"
+"    color: #fff;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QComboBox:drop-down {\n"
+"    background-color: #828786;\n"
+"    color: #fff;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    background-color: #828786;\n"
+"    color: #fff;\n"
+"    border-radius: 5px;\n"
+"}")
+        self.writer_box.setObjectName("writer_box")
+        self.horizontalLayout_23.addWidget(self.writer_box)
+        self.verticalLayout_7.addLayout(self.horizontalLayout_23)
+        self.horizontalLayout_22 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_22.setObjectName("horizontalLayout_22")
+        self.tech_placer_label = QtWidgets.QLabel(parent=self.ro_control_page)
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setItalic(False)
+        self.tech_placer_label.setFont(font)
+        self.tech_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.tech_placer_label.setObjectName("tech_placer_label")
+        self.horizontalLayout_22.addWidget(self.tech_placer_label)
+        self.technician_box = QtWidgets.QComboBox(parent=self.ro_control_page)
+        self.technician_box.setMinimumSize(QtCore.QSize(150, 30))
+        self.technician_box.setSizeIncrement(QtCore.QSize(0, 30))
+        self.technician_box.setStyleSheet("QComboBox {\n"
+"    border-radius: 5px;\n"
+"    color: #fff;\n"
+"    background-color: #76ABAE;\n"
+"}\n"
+"\n"
+"QComboBox:hover {\n"
+"    background-color: #828786;\n"
+"    color: #fff;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QComboBox:drop-down {\n"
+"    background-color: #828786;\n"
+"    color: #fff;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    background-color: #828786;\n"
+"    color: #fff;\n"
+"    border-radius: 5px;\n"
+"}")
+        self.technician_box.setObjectName("technician_box")
+        self.horizontalLayout_22.addWidget(self.technician_box)
+        self.verticalLayout_7.addLayout(self.horizontalLayout_22)
+        self.horizontalLayout_24.addLayout(self.verticalLayout_7)
+        self.verticalLayout_5 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_5.setObjectName("verticalLayout_5")
+        self.horizontalLayout_15 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_15.setObjectName("horizontalLayout_15")
+        self.first_placer_label = QtWidgets.QLabel(parent=self.ro_control_page)
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        self.first_placer_label.setFont(font)
+        self.first_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.first_placer_label.setObjectName("first_placer_label")
+        self.horizontalLayout_15.addWidget(self.first_placer_label)
+        self.name_edit = QtWidgets.QLineEdit(parent=self.ro_control_page)
+        self.name_edit.setMinimumSize(QtCore.QSize(0, 30))
+        self.name_edit.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setItalic(False)
+        self.name_edit.setFont(font)
+        self.name_edit.setStyleSheet("border-radius: 5px;\n"
 "background-color: #fefeff;")
-        self.notes_text_edit.setLineWidth(3)
-        self.notes_text_edit.setObjectName("notes_text_edit")
-        self.verticalLayout_6.addWidget(self.notes_text_edit)
-        self.gridLayout_41.addLayout(self.verticalLayout_6, 0, 2, 2, 4)
-        self.ro_items_table = ROTable(parent=self.ro_control_page)
-        self.ro_items_table.setMinimumSize(QtCore.QSize(0, 0))
-        self.ro_items_table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.ro_items_table.setObjectName("ro_items_table")
-        self.ro_items_table.setColumnCount(0)
-        self.ro_items_table.setRowCount(0)
-        self.gridLayout_41.addWidget(self.ro_items_table, 3, 0, 2, 3)
+        self.name_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.name_edit.setObjectName("name_edit")
+        self.horizontalLayout_15.addWidget(self.name_edit)
+        self.verticalLayout_5.addLayout(self.horizontalLayout_15)
+        self.horizontalLayout_16 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_16.setObjectName("horizontalLayout_16")
+        self.phone_placer_label = QtWidgets.QLabel(parent=self.ro_control_page)
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        self.phone_placer_label.setFont(font)
+        self.phone_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.phone_placer_label.setObjectName("phone_placer_label")
+        self.horizontalLayout_16.addWidget(self.phone_placer_label)
+        self.number_edit = QtWidgets.QLineEdit(parent=self.ro_control_page)
+        self.number_edit.setMinimumSize(QtCore.QSize(0, 30))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        self.number_edit.setFont(font)
+        self.number_edit.setStyleSheet("border-radius: 5px;\n"
+"background-color: #fefeff;")
+        self.number_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.number_edit.setObjectName("number_edit")
+        self.horizontalLayout_16.addWidget(self.number_edit)
+        self.verticalLayout_5.addLayout(self.horizontalLayout_16)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.vehicle_label = QtWidgets.QLabel(parent=self.ro_control_page)
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        self.vehicle_label.setFont(font)
+        self.vehicle_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.vehicle_label.setObjectName("vehicle_label")
+        self.horizontalLayout_2.addWidget(self.vehicle_label)
+        self.vehcle_line = QtWidgets.QLineEdit(parent=self.ro_control_page)
+        self.vehcle_line.setMinimumSize(QtCore.QSize(0, 30))
+        font = QtGui.QFont()
+        font.setBold(True)
+        self.vehcle_line.setFont(font)
+        self.vehcle_line.setStyleSheet("border-radius: 5px;\n"
+"background-color: #fefeff;")
+        self.vehcle_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.vehcle_line.setObjectName("vehcle_line")
+        self.horizontalLayout_2.addWidget(self.vehcle_line)
+        self.verticalLayout_5.addLayout(self.horizontalLayout_2)
+        self.horizontalLayout_24.addLayout(self.verticalLayout_5)
+        self.gridLayout_41.addLayout(self.horizontalLayout_24, 1, 0, 1, 1)
+        self.ro_status_button = QtWidgets.QPushButton(parent=self.ro_control_page)
+        self.ro_status_button.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.ro_status_button.setStyleSheet("QPushButton {\n"
+"    border-radius: 5px;\n"
+"    color: #fff;\n"
+"    background-color: #76ABAE;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #828786;\n"
+"    color: #fff;\n"
+"    border-radius: 10px;\n"
+"}")
+        icon31 = QtGui.QIcon()
+        icon31.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-transfer.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.ro_status_button.setIcon(icon31)
+        self.ro_status_button.setIconSize(QtCore.QSize(30, 30))
+        self.ro_status_button.setObjectName("ro_status_button")
+        self.gridLayout_41.addWidget(self.ro_status_button, 8, 5, 1, 1)
         self.price_scrollarea = QtWidgets.QScrollArea(parent=self.ro_control_page)
         self.price_scrollarea.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.price_scrollarea.setWidgetResizable(True)
@@ -2290,7 +2421,7 @@ class Ui_MainWindow(object):
         self.three_c_stacked.addWidget(self.cause_page)
         self.horizontalLayout_11.addWidget(self.three_c_stacked)
         self.gridLayout_40.addLayout(self.horizontalLayout_11, 0, 0, 1, 1)
-        self.gridLayout_41.addWidget(self.groupBox, 5, 0, 1, 1)
+        self.gridLayout_41.addWidget(self.groupBox, 8, 0, 1, 1)
         self.mpi_button = QtWidgets.QPushButton(parent=self.ro_control_page)
         self.mpi_button.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.mpi_button.setStyleSheet("QPushButton {\n"
@@ -2309,186 +2440,64 @@ class Ui_MainWindow(object):
         self.mpi_button.setIcon(icon32)
         self.mpi_button.setIconSize(QtCore.QSize(30, 30))
         self.mpi_button.setObjectName("mpi_button")
-        self.gridLayout_41.addWidget(self.mpi_button, 5, 4, 1, 1)
-        self.horizontalLayout_24 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_24.setSpacing(12)
-        self.horizontalLayout_24.setObjectName("horizontalLayout_24")
-        self.verticalLayout_7 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_7.setSpacing(10)
-        self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.horizontalLayout_19 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_19.setObjectName("horizontalLayout_19")
-        self.ro_placer_label = QtWidgets.QLabel(parent=self.ro_control_page)
-        font = QtGui.QFont()
-        font.setPointSize(13)
-        font.setBold(True)
-        self.ro_placer_label.setFont(font)
-        self.ro_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.ro_placer_label.setObjectName("ro_placer_label")
-        self.horizontalLayout_19.addWidget(self.ro_placer_label)
-        self.ro_number_label = QtWidgets.QLabel(parent=self.ro_control_page)
+        self.gridLayout_41.addWidget(self.mpi_button, 8, 4, 1, 1)
+        self.verticalLayout_6 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.notes_label = QtWidgets.QLabel(parent=self.ro_control_page)
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
         font.setItalic(True)
-        self.ro_number_label.setFont(font)
-        self.ro_number_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.ro_number_label.setObjectName("ro_number_label")
-        self.horizontalLayout_19.addWidget(self.ro_number_label)
-        self.verticalLayout_7.addLayout(self.horizontalLayout_19)
-        self.horizontalLayout_23 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_23.setObjectName("horizontalLayout_23")
-        self.writer_placer_label = QtWidgets.QLabel(parent=self.ro_control_page)
+        self.notes_label.setFont(font)
+        self.notes_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.notes_label.setObjectName("notes_label")
+        self.verticalLayout_6.addWidget(self.notes_label)
+        self.notes_text_edit = QtWidgets.QTextEdit(parent=self.ro_control_page)
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
-        self.writer_placer_label.setFont(font)
-        self.writer_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.writer_placer_label.setObjectName("writer_placer_label")
-        self.horizontalLayout_23.addWidget(self.writer_placer_label)
-        self.writer_box = QtWidgets.QComboBox(parent=self.ro_control_page)
-        self.writer_box.setMinimumSize(QtCore.QSize(150, 30))
-        self.writer_box.setSizeIncrement(QtCore.QSize(0, 0))
-        self.writer_box.setStyleSheet("QComboBox {\n"
+        self.notes_text_edit.setFont(font)
+        self.notes_text_edit.setStyleSheet("border-radius: 5px;\n"
+"background-color: #fefeff;")
+        self.notes_text_edit.setLineWidth(3)
+        self.notes_text_edit.setObjectName("notes_text_edit")
+        self.verticalLayout_6.addWidget(self.notes_text_edit)
+        self.gridLayout_41.addLayout(self.verticalLayout_6, 0, 2, 2, 4)
+        self.ro_profit_button = QtWidgets.QPushButton(parent=self.ro_control_page)
+        self.ro_profit_button.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.ro_profit_button.setStyleSheet("QPushButton {\n"
 "    border-radius: 5px;\n"
 "    color: #fff;\n"
 "    background-color: #76ABAE;\n"
 "}\n"
 "\n"
-"QComboBox:hover {\n"
+"QPushButton:hover {\n"
 "    background-color: #828786;\n"
 "    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QComboBox:drop-down {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QComboBox QAbstractItemView {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
+"    border-radius: 10px;\n"
 "}")
-        self.writer_box.setObjectName("writer_box")
-        self.horizontalLayout_23.addWidget(self.writer_box)
-        self.verticalLayout_7.addLayout(self.horizontalLayout_23)
-        self.horizontalLayout_22 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_22.setObjectName("horizontalLayout_22")
-        self.tech_placer_label = QtWidgets.QLabel(parent=self.ro_control_page)
-        font = QtGui.QFont()
-        font.setPointSize(13)
-        font.setBold(True)
-        font.setItalic(False)
-        self.tech_placer_label.setFont(font)
-        self.tech_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.tech_placer_label.setObjectName("tech_placer_label")
-        self.horizontalLayout_22.addWidget(self.tech_placer_label)
-        self.technician_box = QtWidgets.QComboBox(parent=self.ro_control_page)
-        self.technician_box.setMinimumSize(QtCore.QSize(150, 30))
-        self.technician_box.setSizeIncrement(QtCore.QSize(0, 30))
-        self.technician_box.setStyleSheet("QComboBox {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QComboBox:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QComboBox:drop-down {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QComboBox QAbstractItemView {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}")
-        self.technician_box.setObjectName("technician_box")
-        self.horizontalLayout_22.addWidget(self.technician_box)
-        self.verticalLayout_7.addLayout(self.horizontalLayout_22)
-        self.horizontalLayout_24.addLayout(self.verticalLayout_7)
-        self.verticalLayout_5 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.horizontalLayout_15 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_15.setObjectName("horizontalLayout_15")
-        self.first_placer_label = QtWidgets.QLabel(parent=self.ro_control_page)
-        font = QtGui.QFont()
-        font.setPointSize(13)
-        font.setBold(True)
-        self.first_placer_label.setFont(font)
-        self.first_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.first_placer_label.setObjectName("first_placer_label")
-        self.horizontalLayout_15.addWidget(self.first_placer_label)
-        self.name_edit = QtWidgets.QLineEdit(parent=self.ro_control_page)
-        self.name_edit.setMinimumSize(QtCore.QSize(0, 30))
-        self.name_edit.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        font = QtGui.QFont()
-        font.setPointSize(13)
-        font.setBold(True)
-        font.setItalic(False)
-        self.name_edit.setFont(font)
-        self.name_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
-        self.name_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.name_edit.setObjectName("name_edit")
-        self.horizontalLayout_15.addWidget(self.name_edit)
-        self.verticalLayout_5.addLayout(self.horizontalLayout_15)
-        self.horizontalLayout_16 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_16.setObjectName("horizontalLayout_16")
-        self.phone_placer_label = QtWidgets.QLabel(parent=self.ro_control_page)
-        font = QtGui.QFont()
-        font.setPointSize(13)
-        font.setBold(True)
-        self.phone_placer_label.setFont(font)
-        self.phone_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.phone_placer_label.setObjectName("phone_placer_label")
-        self.horizontalLayout_16.addWidget(self.phone_placer_label)
-        self.number_edit = QtWidgets.QLineEdit(parent=self.ro_control_page)
-        self.number_edit.setMinimumSize(QtCore.QSize(0, 30))
-        font = QtGui.QFont()
-        font.setPointSize(13)
-        font.setBold(True)
-        self.number_edit.setFont(font)
-        self.number_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
-        self.number_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.number_edit.setObjectName("number_edit")
-        self.horizontalLayout_16.addWidget(self.number_edit)
-        self.verticalLayout_5.addLayout(self.horizontalLayout_16)
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.vehicle_label = QtWidgets.QLabel(parent=self.ro_control_page)
-        font = QtGui.QFont()
-        font.setPointSize(13)
-        font.setBold(True)
-        self.vehicle_label.setFont(font)
-        self.vehicle_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.vehicle_label.setObjectName("vehicle_label")
-        self.horizontalLayout_2.addWidget(self.vehicle_label)
-        self.vehcle_line = QtWidgets.QLineEdit(parent=self.ro_control_page)
-        self.vehcle_line.setMinimumSize(QtCore.QSize(0, 30))
-        font = QtGui.QFont()
-        font.setBold(True)
-        self.vehcle_line.setFont(font)
-        self.vehcle_line.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
-        self.vehcle_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.vehcle_line.setObjectName("vehcle_line")
-        self.horizontalLayout_2.addWidget(self.vehcle_line)
-        self.verticalLayout_5.addLayout(self.horizontalLayout_2)
-        self.horizontalLayout_24.addLayout(self.verticalLayout_5)
-        self.gridLayout_41.addLayout(self.horizontalLayout_24, 1, 0, 1, 1)
+        self.ro_profit_button.setIcon(icon22)
+        self.ro_profit_button.setIconSize(QtCore.QSize(30, 30))
+        self.ro_profit_button.setObjectName("ro_profit_button")
+        self.gridLayout_41.addWidget(self.ro_profit_button, 8, 3, 1, 1)
         spacerItem3 = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.gridLayout_41.addItem(spacerItem3, 1, 1, 1, 1)
+        self.ro_items_table = ROTable(parent=self.ro_control_page)
+        self.ro_items_table.setMinimumSize(QtCore.QSize(0, 0))
+        self.ro_items_table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.ro_items_table.setObjectName("ro_items_table")
+        self.ro_items_table.setColumnCount(0)
+        self.ro_items_table.setRowCount(0)
+        self.gridLayout_41.addWidget(self.ro_items_table, 3, 0, 2, 3)
+        self.ro_status_label = QtWidgets.QLabel(parent=self.ro_control_page)
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setItalic(True)
+        self.ro_status_label.setFont(font)
+        self.ro_status_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.ro_status_label.setObjectName("ro_status_label")
+        self.gridLayout_41.addWidget(self.ro_status_label, 0, 1, 1, 1)
         self.hub_stacked_widget.addWidget(self.ro_control_page)
         self.gridLayout_2.addWidget(self.hub_stacked_widget, 3, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -2547,14 +2556,19 @@ class Ui_MainWindow(object):
         self.add_labor_row.setText(_translate("MainWindow", "Add Row"))
         self.remove_labor_row.setText(_translate("MainWindow", "Remove Row"))
         self.save_labor_button.setText(_translate("MainWindow", "Save Labor"))
-        self.ro_status_button.setText(_translate("MainWindow", "Status"))
-        self.ro_profit_button.setText(_translate("MainWindow", "Profit"))
         self.created_placer_label.setText(_translate("MainWindow", "Created:"))
         self.approved_placer_label.setText(_translate("MainWindow", "Approved:"))
-        self.miles_out_label.setText(_translate("MainWindow", "Miles-OUT"))
         self.miles_in_label.setText(_translate("MainWindow", "Miles-IN"))
+        self.miles_out_label.setText(_translate("MainWindow", "Miles-OUT"))
         self.place_order_button.setText(_translate("MainWindow", "Place Order"))
-        self.notes_label.setText(_translate("MainWindow", "Notes:"))
+        self.ro_placer_label.setText(_translate("MainWindow", "RO #:"))
+        self.ro_number_label.setText(_translate("MainWindow", "RO Number"))
+        self.writer_placer_label.setText(_translate("MainWindow", "Writer:"))
+        self.tech_placer_label.setText(_translate("MainWindow", "Technician:"))
+        self.first_placer_label.setText(_translate("MainWindow", "Name"))
+        self.phone_placer_label.setText(_translate("MainWindow", "Phone"))
+        self.vehicle_label.setText(_translate("MainWindow", "Vehicle"))
+        self.ro_status_button.setText(_translate("MainWindow", "Status"))
         self.parts_placer_label.setText(_translate("MainWindow", "Parts:"))
         self.parts_label.setText(_translate("MainWindow", "Parts"))
         self.labor_placer_label.setText(_translate("MainWindow", "Labor:"))
@@ -2586,20 +2600,14 @@ class Ui_MainWindow(object):
         self.cause_button.setText(_translate("MainWindow", "Cause"))
         self.correction_button.setText(_translate("MainWindow", "Correction"))
         self.mpi_button.setText(_translate("MainWindow", "MPI"))
-        self.ro_placer_label.setText(_translate("MainWindow", "RO #:"))
-        self.ro_number_label.setText(_translate("MainWindow", "RO Number"))
-        self.writer_placer_label.setText(_translate("MainWindow", "Writer:"))
-        self.tech_placer_label.setText(_translate("MainWindow", "Technician:"))
-        self.first_placer_label.setText(_translate("MainWindow", "Name"))
-        self.phone_placer_label.setText(_translate("MainWindow", "Phone"))
-        self.vehicle_label.setText(_translate("MainWindow", "Vehicle"))
+        self.notes_label.setText(_translate("MainWindow", "Notes:"))
+        self.ro_profit_button.setText(_translate("MainWindow", "Profit"))
+        self.ro_status_label.setText(_translate("MainWindow", "STATUS"))
 from openauto.subclassed_widgets.apt_calendar import AptCalendar, HourlySchedule, WeeklySchedule
 from openauto.subclassed_widgets.control_menu import ControlMenu
 from openauto.subclassed_widgets.small_tables import LaborTable, MatrixTable
 from openauto.subclassed_widgets.workflow_tables import ApprovedTable, CheckoutTable, CustomerTable, EstimateTable, ROTable, VehicleTable, WorkingTable
 from openauto.theme import resources_rc
-
-
 
 
 if __name__ == "__main__":

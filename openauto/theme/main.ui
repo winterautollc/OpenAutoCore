@@ -3058,78 +3058,6 @@ QPushButton:hover {
       </widget>
       <widget class="QWidget" name="ro_control_page">
        <layout class="QGridLayout" name="gridLayout_41">
-        <item row="5" column="5">
-         <widget class="QPushButton" name="ro_status_button">
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-          </property>
-          <property name="text">
-           <string>Status</string>
-          </property>
-          <property name="icon">
-           <iconset resource="openauto_resources.qrc">
-            <normaloff>:/resources/icons3/24x24/cil-transfer.png</normaloff>:/resources/icons3/24x24/cil-transfer.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="3">
-         <widget class="QPushButton" name="ro_profit_button">
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-          </property>
-          <property name="text">
-           <string>Profit</string>
-          </property>
-          <property name="icon">
-           <iconset resource="openauto_resources.qrc">
-            <normaloff>:/resources/icons3/24x24/cil-chart-line.png</normaloff>:/resources/icons3/24x24/cil-chart-line.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_30">
           <item>
@@ -3207,7 +3135,7 @@ QPushButton:hover {
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_13">
               <item>
-               <widget class="QLabel" name="miles_out_label">
+               <widget class="QLabel" name="miles_in_label">
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
@@ -3215,12 +3143,12 @@ QPushButton:hover {
                  </font>
                 </property>
                 <property name="text">
-                 <string>Miles-OUT</string>
+                 <string>Miles-IN</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="miles_out_edit">
+               <widget class="QLineEdit" name="miles_in_edit">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -3247,7 +3175,7 @@ background-color: #fefeff;</string>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_12">
               <item>
-               <widget class="QLabel" name="miles_in_label">
+               <widget class="QLabel" name="miles_out_label">
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
@@ -3255,7 +3183,7 @@ background-color: #fefeff;</string>
                  </font>
                 </property>
                 <property name="text">
-                 <string>Miles-IN</string>
+                 <string>Miles-OUT</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -3263,7 +3191,7 @@ background-color: #fefeff;</string>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="miles_in_edit">
+               <widget class="QLineEdit" name="milies_out_edit">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -3332,54 +3260,352 @@ QPushButton:hover {
           </property>
          </widget>
         </item>
-        <item row="0" column="2" rowspan="2" colspan="4">
-         <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item row="1" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_24">
+          <property name="spacing">
+           <number>12</number>
+          </property>
           <item>
-           <widget class="QLabel" name="notes_label">
-            <property name="font">
-             <font>
-              <pointsize>13</pointsize>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <property name="spacing">
+             <number>10</number>
             </property>
-            <property name="text">
-             <string>Notes:</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_19">
+              <item>
+               <widget class="QLabel" name="ro_placer_label">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>RO #:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="ro_number_label">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                  <italic>true</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>RO Number</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_23">
+              <item>
+               <widget class="QLabel" name="writer_placer_label">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Writer:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="writer_box">
+                <property name="minimumSize">
+                 <size>
+                  <width>150</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="sizeIncrement">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QComboBox {
+	border-radius: 5px;
+	color: #fff;
+	background-color: #76ABAE;
+}
+
+QComboBox:hover {
+	background-color: #828786;
+	color: #fff;
+	border-radius: 5px;
+}
+
+QComboBox:drop-down {
+	background-color: #828786;
+	color: #fff;
+	border-radius: 5px;
+}
+
+QComboBox QAbstractItemView {
+	background-color: #828786;
+	color: #fff;
+	border-radius: 5px;
+}</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_22">
+              <item>
+               <widget class="QLabel" name="tech_placer_label">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Technician:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="technician_box">
+                <property name="minimumSize">
+                 <size>
+                  <width>150</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="sizeIncrement">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QComboBox {
+	border-radius: 5px;
+	color: #fff;
+	background-color: #76ABAE;
+}
+
+QComboBox:hover {
+	background-color: #828786;
+	color: #fff;
+	border-radius: 5px;
+}
+
+QComboBox:drop-down {
+	background-color: #828786;
+	color: #fff;
+	border-radius: 5px;
+}
+
+QComboBox QAbstractItemView {
+	background-color: #828786;
+	color: #fff;
+	border-radius: 5px;
+}</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QTextEdit" name="notes_text_edit">
-            <property name="font">
-             <font>
-              <pointsize>13</pointsize>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">border-radius: 5px;
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_15">
+              <item>
+               <widget class="QLabel" name="first_placer_label">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Name</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="name_edit">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">border-radius: 5px;
 background-color: #fefeff;</string>
-            </property>
-            <property name="lineWidth">
-             <number>3</number>
-            </property>
-           </widget>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_16">
+              <item>
+               <widget class="QLabel" name="phone_placer_label">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Phone</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="number_edit">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">border-radius: 5px;
+background-color: #fefeff;</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QLabel" name="vehicle_label">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Vehicle</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="vehcle_line">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">border-radius: 5px;
+background-color: #fefeff;</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </item>
          </layout>
         </item>
-        <item row="3" column="0" rowspan="2" colspan="3">
-         <widget class="ROTable" name="ro_items_table">
-          <property name="minimumSize">
+        <item row="8" column="5">
+         <widget class="QPushButton" name="ro_status_button">
+          <property name="maximumSize">
            <size>
-            <width>0</width>
-            <height>0</height>
+            <width>16777215</width>
+            <height>16777215</height>
            </size>
           </property>
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	border-radius: 5px;
+	color: #fff;
+	background-color: #76ABAE;
+}
+
+QPushButton:hover {
+	background-color: #828786;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+          </property>
+          <property name="text">
+           <string>Status</string>
+          </property>
+          <property name="icon">
+           <iconset resource="openauto_resources.qrc">
+            <normaloff>:/resources/icons3/24x24/cil-transfer.png</normaloff>:/resources/icons3/24x24/cil-transfer.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -4000,7 +4226,7 @@ QPushButton:hover {
           </item>
          </layout>
         </item>
-        <item row="5" column="0">
+        <item row="8" column="0">
          <widget class="QGroupBox" name="groupBox">
           <property name="maximumSize">
            <size>
@@ -4139,7 +4365,7 @@ background-color: #fefeff;</string>
           </layout>
          </widget>
         </item>
-        <item row="5" column="4">
+        <item row="8" column="4">
          <widget class="QPushButton" name="mpi_button">
           <property name="maximumSize">
            <size>
@@ -4175,318 +4401,79 @@ QPushButton:hover {
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_24">
-          <property name="spacing">
-           <number>12</number>
-          </property>
+        <item row="0" column="2" rowspan="2" colspan="4">
+         <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_7">
-            <property name="spacing">
-             <number>10</number>
+           <widget class="QLabel" name="notes_label">
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
             </property>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_19">
-              <item>
-               <widget class="QLabel" name="ro_placer_label">
-                <property name="font">
-                 <font>
-                  <pointsize>13</pointsize>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>RO #:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="ro_number_label">
-                <property name="font">
-                 <font>
-                  <pointsize>13</pointsize>
-                  <italic>true</italic>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>RO Number</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_23">
-              <item>
-               <widget class="QLabel" name="writer_placer_label">
-                <property name="font">
-                 <font>
-                  <pointsize>13</pointsize>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Writer:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="writer_box">
-                <property name="minimumSize">
-                 <size>
-                  <width>150</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="sizeIncrement">
-                 <size>
-                  <width>0</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QComboBox {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QComboBox:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox:drop-down {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox QAbstractItemView {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_22">
-              <item>
-               <widget class="QLabel" name="tech_placer_label">
-                <property name="font">
-                 <font>
-                  <pointsize>13</pointsize>
-                  <italic>false</italic>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Technician:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="technician_box">
-                <property name="minimumSize">
-                 <size>
-                  <width>150</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="sizeIncrement">
-                 <size>
-                  <width>0</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QComboBox {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QComboBox:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox:drop-down {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox QAbstractItemView {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
+            <property name="text">
+             <string>Notes:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_5">
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_15">
-              <item>
-               <widget class="QLabel" name="first_placer_label">
-                <property name="font">
-                 <font>
-                  <pointsize>13</pointsize>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Name</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="name_edit">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <pointsize>13</pointsize>
-                  <italic>false</italic>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
+           <widget class="QTextEdit" name="notes_text_edit">
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 5px;
 background-color: #fefeff;</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_16">
-              <item>
-               <widget class="QLabel" name="phone_placer_label">
-                <property name="font">
-                 <font>
-                  <pointsize>13</pointsize>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Phone</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="number_edit">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <pointsize>13</pointsize>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_2">
-              <item>
-               <widget class="QLabel" name="vehicle_label">
-                <property name="font">
-                 <font>
-                  <pointsize>13</pointsize>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Vehicle</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="vehcle_line">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
+            </property>
+            <property name="lineWidth">
+             <number>3</number>
+            </property>
+           </widget>
           </item>
          </layout>
+        </item>
+        <item row="8" column="3">
+         <widget class="QPushButton" name="ro_profit_button">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	border-radius: 5px;
+	color: #fff;
+	background-color: #76ABAE;
+}
+
+QPushButton:hover {
+	background-color: #828786;
+	color: #fff;
+	border-radius: 10px;
+}</string>
+          </property>
+          <property name="text">
+           <string>Profit</string>
+          </property>
+          <property name="icon">
+           <iconset resource="openauto_resources.qrc">
+            <normaloff>:/resources/icons3/24x24/cil-chart-line.png</normaloff>:/resources/icons3/24x24/cil-chart-line.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+         </widget>
         </item>
         <item row="1" column="1">
          <spacer name="horizontalSpacer_3">
@@ -4500,6 +4487,36 @@ background-color: #fefeff;</string>
            </size>
           </property>
          </spacer>
+        </item>
+        <item row="3" column="0" rowspan="2" colspan="3">
+         <widget class="ROTable" name="ro_items_table">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="ro_status_label">
+          <property name="font">
+           <font>
+            <pointsize>13</pointsize>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>STATUS</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>

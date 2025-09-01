@@ -5,7 +5,7 @@ from openauto.ui import main_form
 from openauto.managers import (
     customer_manager, vehicle_manager, settings_manager,
     animations_manager, new_ro_manager, belongs_to_manager, appointments_manager, appointment_options_manager,
-    ro_hub_manager, ro_status_manager
+    ro_hub_manager
 )
 from pyvin import VIN
 import os

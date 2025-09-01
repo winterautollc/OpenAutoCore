@@ -20,6 +20,6 @@ if __name__ == "__main__":
     app = QApplication([])
     window = MainWindow()
     window.show()
-    QtCore.QTimer.singleShot(1, window.showMaximized)
+    QtCore.QTimer.singleShot(5, window.showMaximized)
     app.exec()
 
