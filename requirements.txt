@@ -6,7 +6,6 @@ CacheControl==0.12.14
 certifi==2023.7.22
 charset-normalizer==3.3.2
 deprecation==2.1.0
-enum34==1.1.10
 idna==3.4
 jsonpickle==3.0.2
 jsonpointer==2.4
@@ -16,16 +15,21 @@ mysql-connector-python==8.2.0
 packaging==23.2
 patchelf==0.17.2.1
 protobuf==4.21.12
-pyinstaller==6.2.0
-pyinstaller-hooks-contrib==2023.10
-PyQt6==6.5.3
-PyQt6-Qt6==6.5.3
-PyQt6-sip==13.6.0
+pyinstaller @ https://github.com/pyinstaller/pyinstaller/archive/develop.tar.gz#sha256=85177911d45cb7bf1b0d3ad685b7c7e0f85664da56181f8dea63894847a6a8d0
+pyinstaller-hooks-contrib==2025.4
+PyQt6==6.9.0
+PyQt6-Qt6==6.9.0
+PyQt6-WebEngine==6.9.0
+PyQt6-WebEngine-Qt6==6.9.0
+PyQt6-WebEngineSubwheel-Qt6==6.7.3
+PyQt6_sip==13.10.2
 python-dateutil==2.8.2
+python-dotenv==1.0.1
 pyvin==0.0.2
 requests==2.31.0
+setuptools==80.9.0
 six==1.16.0
 squareup==33.0.0.20231115
 urllib3==2.0.7
-python-dotenv~=1.0.1
-vininfo~=1.8.0
+vininfo==1.8.0
+wheel==0.45.1
