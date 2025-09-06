@@ -11,6 +11,27 @@ from pyvin import VIN
 import os
 
 
+class ExpandingTabBar(QtWidgets.QTabBar):
+    def tabSizeHint(self, index: int) -> QtCore.QSize:
+        s = super().tabSizeHint(index)
+        count = max(1, self.count())
+        # width: fall back safely if width() is 0 early in layout
+        avail = self.width()
+        if not avail and self.parent():
+            avail = self.parent().width()
+        if not avail:
+            avail = s.width() or 1
+        w = max(s.width(), avail // count)
+
+        # height: never let it collapse
+        fm = self.fontMetrics()
+        min_h = max(28, fm.height() + fm.leading() + 12)  # ~ one line + padding
+        return QtCore.QSize(w, max(min_h, s.height()))
+
+    def resizeEvent(self, e):
+        super().resizeEvent(e)
+        self.updateGeometry()
+
 def apply_stylesheet(widget, relative_path):
     base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     theme_path = os.path.join(base_path, relative_path)
@@ -30,6 +51,8 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.ro_hub_tabs.tabBar().setUsesScrollButtons(True)
+        self.ro_hub_tabs.setUsesScrollButtons(True)
         # self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.sql_monitor = event_handlers.SQLMonitor()
         self.sql_monitor.start()
@@ -41,6 +64,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self._setup_animations()
         self.toggle_theme()
         self._setup_menu_label_opacity()
+
 
     ### DECLARE MANAGERS ###
     def _init_managers(self):
@@ -78,7 +102,6 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.schedule_calendar = apt_calendar.AptCalendar(parent=self)
         self.hourly_schedule_table = apt_calendar.HourlySchedule(parent=self)
         self.weekly_schedule_table = apt_calendar.WeeklySchedule(parent=self)
-        self.ro_items_table = workflow_tables.ROTable(parent=self)
 
 ### ADD MAIN BUTTONS TO CMENU ###
         self.verticalLayout = QtWidgets.QVBoxLayout(self.cmenu_frame)
@@ -107,7 +130,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.gridLayout_33.addWidget(self.schedule_calendar, 0, 0, 1, 1)
         self.gridLayout_31.addWidget(self.weekly_schedule_table, 0, 0, 1, 1)
         self.gridLayout_34.addWidget(self.hourly_schedule_table, 0, 0, 1, 1)
-        self.gridLayout_41.addWidget(self.ro_items_table, 3, 0, 2, 2)
+
 
     def _init_state(self):
         self.message = QtWidgets.QMessageBox()

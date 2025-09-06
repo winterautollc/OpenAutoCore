@@ -12,7 +12,7 @@ class ROHubManager:
     def _connect_signals(self):
         self.ui.type_box.addItems(["Part", "Labor", "Fee", "Sublet"])
         self.ui.save_ro_button.clicked.connect(self._save_repair_order)
-        self.ui.add_item_button.clicked.connect(self._add_item)
+        self.ui.add_job_item_button.clicked.connect(self._add_item)
         self.ui.remove_item_button.clicked.connect(self._remove_selected_item)
         self.ui.concern_button.toggled.connect(lambda checked: self._toggle_3c_stack(0, checked))
         self.ui.cause_button.toggled.connect(lambda checked: self._toggle_3c_stack(1, checked))
@@ -68,7 +68,7 @@ class ROHubManager:
 
         if not all([sku, desc, cost_text, sell_text, tax_text]):
             QtWidgets.QToolTip.showText(
-                self.ui.add_item_button.mapToGlobal(self.ui.add_item_button.rect().center()),
+                self.ui.add_job_item_button.mapToGlobal(self.ui.add_job_item_button.rect().center()),
                 "Fill SKU, Description, Cost, Sell, and Tax before adding."
             )
             return
@@ -78,7 +78,7 @@ class ROHubManager:
         tax  = self._parse_money(tax_text)
         if any(v is None for v in (cost, sell, tax)):
             QtWidgets.QToolTip.showText(
-                self.ui.add_item_button.mapToGlobal(self.ui.add_item_button.rect().center()),
+                self.ui.add_job_item_button.mapToGlobal(self.ui.add_job_item_button.rect().center()),
                 "Cost, Sell, and Tax must be numbers."
             )
             return
@@ -178,16 +178,16 @@ class ROHubManager:
         return items or ["Part", "Labor", "Fee", "Sublet"]
 
 ### REAPPLY EXPECTED COLUMNS/HEADERS IF setupUi RESETS THEM TO 0 COLUMNS
-    def _ensure_ro_table_configured(self):
-        """(Re)apply expected columns/headers if setupUi reset them to 0 columns."""
-        t = self.ui.ro_items_table
-        if t.columnCount() < 6:
-            t.setColumnCount(6)
-            t.setHorizontalHeaderLabels(["TYPE", "PART NUMBER", "DESCRIPTION", "COST", "SELL", "TAX"])
-            t.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
-            t.verticalHeader().setVisible(False)
-            t.setEditTriggers(QtWidgets.QTableWidget.EditTrigger.NoEditTriggers)
-            t.setSelectionBehavior(QtWidgets.QTableWidget.SelectionBehavior.SelectRows)
+    # def _ensure_ro_table_configured(self):
+    #     """(Re)apply expected columns/headers if setupUi reset them to 0 columns."""
+    #     t = self.ui.ro_items_table
+    #     if t.columnCount() < 6:
+    #         t.setColumnCount(6)
+    #         t.setHorizontalHeaderLabels(["TYPE", "PART NUMBER", "DESCRIPTION", "COST", "SELL", "TAX"])
+    #         t.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
+    #         t.verticalHeader().setVisible(False)
+    #         t.setEditTriggers(QtWidgets.QTableWidget.EditTrigger.NoEditTriggers)
+    #         t.setSelectionBehavior(QtWidgets.QTableWidget.SelectionBehavior.SelectRows)
 
     @staticmethod
     def _parse_money(text: str):

@@ -1,9 +1,13 @@
 from PyQt6.QtCore import pyqtSignal
 from PyQt6.QtWidgets import QTableWidget, QApplication
-from PyQt6 import QtWidgets, QtCore
+from PyQt6 import QtWidgets, QtCore, QtGui
 from openauto.repositories import db_handlers, customer_repository, vehicle_repository, estimates_repository
 from openauto.managers.customer_options_manager import CustomerOptionsManager
 from openauto.managers.estimate_options_manager import EstimateOptionsManager
+from decimal import Decimal, ROUND_HALF_UP
+
+from collections import defaultdict
+
 
 
 ### SUBCLASSED QTABLEWIDGET THAT LOADS ALL RECORDED CUSTOMERS AND CONTACT INFO STORED IN MYSQL ###
@@ -271,17 +275,250 @@ class VehicleTable(QtWidgets.QTableWidget):
             clipboard = QApplication.clipboard()
             clipboard.setText(item.text())
 
-class ROTable(QTableWidget):
+COL_TYPE, COL_DESC, COL_QTY, COL_RATE, COL_PRICE, COL_TOTAL = range(6)
+
+TYPE_JOB = "JOB"
+TYPE_PART = "PART"
+TYPE_LABOR = "LABOR"
+
+money = lambda x: f"${Decimal(x).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)}"
+
+class ROTable(QtWidgets.QTreeWidget):
+    totalsChanged = QtCore.pyqtSignal(Decimal, Decimal)  # jobTotals, grandTotal
+
     def __init__(self, parent=None):
         super().__init__(parent)
-        ro_headers = ["TYPE", "PART NUMBER", "DESCRIPTION", "COST", "SELL", "TAX"]
         self.setColumnCount(6)
-        self.setHorizontalHeaderLabels(ro_headers)
+        self.setHeaderLabels(["Type", "Description", "Qty/Hrs", "Rate", "Unit Price", "Line Total"])
+        self.header().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Interactive)
+        self.header().setStretchLastSection(True)
+        self.setAlternatingRowColors(True)
+        self.header().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
+        self.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.DoubleClicked |
+                             QtWidgets.QAbstractItemView.EditTrigger.EditKeyPressed |
+                             QtWidgets.QAbstractItemView.EditTrigger.SelectedClicked)
 
-        self.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
-        self.resizeColumnsToContents()
-        self.verticalHeader().setVisible(False)
-        self.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
-        self.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
+        # Only connect once
+        # self.itemChanged.connect(self._onItemChanged)
+        # self._updating = False
+        #
+        # # Context menu
+        # self.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.CustomContextMenu)
+        # self.customContextMenuRequested.connect(self._openContextMenu)
+
+        # (Optional) fonts
+        self._bold = QtGui.QFont()
+        self._bold.setBold(True)
+        self._italic = QtGui.QFont()
+        self._italic.setItalic(True)
+
+    # ---------- Public API ----------
+    def addJob(self, title: str = "New Job"):
+        job = QtWidgets.QTreeWidgetItem([TYPE_JOB, title, "", "", "", ""])
+        job.setFirstColumnSpanned(False)
+        job.setFlags(
+            job.flags() | QtCore.Qt.ItemFlag.ItemIsEditable | QtCore.Qt.ItemFlag.ItemIsSelectable | QtCore.Qt.ItemFlag.ItemIsEnabled)
+        self._styleJob(job)
+        self.addTopLevelItem(job)
+
+        # Add a “subtotal” pseudo-row under job
+        self._ensureJobSubtotal(job)
+        self.expandItem(job)
+        return job
+
+    def addPart(self, jobItem: QtWidgets.QTreeWidgetItem, desc="New Part", qty="1", unit_price="0.00"):
+        part = QtWidgets.QTreeWidgetItem([TYPE_PART, desc, qty, "", unit_price, ""])
+        self._makeEditable(part, editable_cols=[COL_DESC, COL_QTY, COL_PRICE])
+        jobItem.insertChild(jobItem.childCount() - 1, part)  # before subtotal row
+        self._recalcRow(part)
+        self._recalcJob(jobItem)
+        return part
+
+    def addLabor(self, jobItem: QtWidgets.QTreeWidgetItem, desc="Labor", hours="1.0", rate="100.00"):
+        labor = QtWidgets.QTreeWidgetItem([TYPE_LABOR, desc, hours, rate, "", ""])
+        self._makeEditable(labor, editable_cols=[COL_DESC, COL_QTY, COL_RATE])
+        jobItem.insertChild(jobItem.childCount() - 1, labor)  # before subtotal row
+        self._recalcRow(labor)
+        self._recalcJob(jobItem)
+        return labor
+
+    # ---------- UI Helpers ----------
+    def _styleJob(self, job):
+        for c in range(self.columnCount()):
+            job.setFont(c, self._bold)
+        job.setForeground(0, QtGui.QBrush(QtGui.QColor("#0b6efd")))
+        job.setText(COL_TOTAL, "")  # job header row shows no total
+
+    def _styleSubtotal(self, row):
+        for c in range(self.columnCount()):
+            row.setFont(c, self._italic)
+        row.setForeground(0, QtGui.QBrush(QtGui.QColor("#444")))
+        row.setFirstColumnSpanned(False)
+
+    def _makeEditable(self, item, editable_cols):
+        flags = item.flags() | QtCore.Qt.ItemFlag.ItemIsEditable | QtCore.Qt.ItemFlag.ItemIsSelectable | QtCore.Qt.ItemFlag.ItemIsEnabled
+        item.setFlags(flags)
+        # lock other columns
+        for c in range(self.columnCount()):
+            if c not in editable_cols:
+                itf = item.flags()
+                item.setFlags(itf & ~QtCore.Qt.ItemFlag.ItemIsEditable)
+
+    def _ensureJobSubtotal(self, jobItem):
+        # Ensure last child is a subtotal row
+        if jobItem.childCount() == 0 or jobItem.child(jobItem.childCount() - 1).text(COL_TYPE) != "SUBTOTAL":
+            st = QtWidgets.QTreeWidgetItem(["SUBTOTAL", "Job Subtotal", "", "", "", "$0.00"])
+            self._styleSubtotal(st)
+            # subtotal row not editable
+            st.setFlags(st.flags() & ~QtCore.Qt.ItemFlag.ItemIsEditable)
+            jobItem.addChild(st)
+        self._recalcJob(jobItem)
+
+    # ---------- Calculations ----------
+    def _onItemChanged(self, item, column):
+        if self._updating:
+            return
+        t = item.text(COL_TYPE)
+        if t in (TYPE_PART, TYPE_LABOR):
+            self._recalcRow(item)
+            job = item.parent()
+            if job is not None:
+                self._recalcJob(job)
+
+    def _recalcRow(self, item):
+        """Compute line total for PART or LABOR rows."""
+        t = item.text(COL_TYPE)
+        qty = Decimal(self._safe(item.text(COL_QTY), default="0"))
+        rate = Decimal(self._safe(item.text(COL_RATE), default="0"))
+        price = Decimal(self._safe(item.text(COL_PRICE), default="0"))
+
+        if t == TYPE_PART:
+            # qty * unit_price
+            line_total = qty * price
+        elif t == TYPE_LABOR:
+            # hours * labor_rate
+            line_total = qty * rate
+        else:
+            return
+
+        self._setText(item, COL_TOTAL, money(line_total))
+
+    def _recalcJob(self, jobItem):
+        """Sum all child line totals (exclude the subtotal row)."""
+        self._updating = True
+        try:
+            subtotal = Decimal("0")
+            n = jobItem.childCount()
+            for i in range(n):
+                row = jobItem.child(i)
+                if row.text(COL_TYPE) == "SUBTOTAL":
+                    continue
+                val = self._parseMoney(row.text(COL_TOTAL))
+                subtotal += val
+            # write to subtotal row (last child)
+            st = jobItem.child(jobItem.childCount() - 1)
+            if st and st.text(COL_TYPE) == "SUBTOTAL":
+                self._setText(st, COL_TOTAL, money(subtotal))
+        finally:
+            self._updating = False
+
+        self._recalcGrandTotal()
+
+    def _recalcGrandTotal(self):
+        gt = Decimal("0")
+        for i in range(self.topLevelItemCount()):
+            job = self.topLevelItem(i)
+            st = job.child(job.childCount() - 1) if job.childCount() else None
+            if st and st.text(COL_TYPE) == "SUBTOTAL":
+                gt += self._parseMoney(st.text(COL_TOTAL))
+        # Emit if you want to mirror totals elsewhere
+        self.totalsChanged.emit(Decimal("0"), gt)
+
+    # ---------- Utils ----------
+    def _parseMoney(self, s: str) -> Decimal:
+        return Decimal(self._safe(s.replace("$", ""), default="0")).quantize(Decimal("0.01"))
+
+    def _safe(self, s, default="0"):
+        try:
+            return str(Decimal(str(s)))
+        except Exception:
+            return default
+
+    def _setText(self, item, col, text):
+        self._updating = True
+        try:
+            item.setText(col, text)
+        finally:
+            self._updating = False
+
+    # ---------- Context Menu ----------
+    def _openContextMenu(self, pos):
+        item = self.itemAt(pos)
+        menu = QtWidgets.QMenu(self)
+
+        actAddJob = menu.addAction("Add Job")
+        act = menu.addSeparator()
+
+        actAddPart = menu.addAction("Add Part to Job")
+        actAddLabor = menu.addAction("Add Labor to Job")
+        menu.addSeparator()
+        actDelete = menu.addAction("Delete Selected")
+
+        chosen = menu.exec(self.viewport().mapToGlobal(pos))
+        if not chosen:
+            return
+
+        if chosen == actAddJob:
+            job = self.addJob("New Job")
+            self.editItem(job, COL_DESC)
+            return
+
+        # Find job context
+        jobItem = None
+        if item:
+            if item.parent() is None and item.text(COL_TYPE) == TYPE_JOB:
+                jobItem = item
+            elif item.parent() is not None:
+                jobItem = item.parent()
+
+        if chosen == actAddPart:
+            if jobItem is None:
+                jobItem = self.addJob("New Job")
+            row = self.addPart(jobItem)
+            self.editItem(row, COL_DESC)
+
+        elif chosen == actAddLabor:
+            if jobItem is None:
+                jobItem = self.addJob("New Job")
+            row = self.addLabor(jobItem)
+            self.editItem(row, COL_DESC)
+
+        elif chosen == actDelete:
+            self._deleteSelected()
+
+    def _deleteSelected(self):
+        item = self.currentItem()
+        if not item:
+            return
+        if item.text(COL_TYPE) == "SUBTOTAL":
+            return  # don't delete subtotal row directly
+        parent = item.parent()
+        if parent is None:
+            # deleting a job: remove entire job
+            idx = self.indexOfTopLevelItem(item)
+            if idx >= 0:
+                self.takeTopLevelItem(idx)
+        else:
+            parent.removeChild(item)
+            self._ensureJobSubtotal(parent)
+            self._recalcJob(parent)
+        self._recalcGrandTotal()
+
+
+
+class PartsTree(QtWidgets.QTreeWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
 
 

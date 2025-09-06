@@ -51,3 +51,26 @@ QCalendarWidget QAbstractItemView::item:hover {
 QDateTimeEdit {
     color: white;
 }
+
+QTabBar::tab {
+     background-color: #4A6260;
+     color: #ECF4F4;
+     border-radius: 1px;
+     min-width: 600px;
+     min-height: 20px;
+}
+
+
+QTabWidget::tab-bar {
+     alignment: left;
+}
+
+QTabBar::tab:selected {
+     font-weight: 600;
+     background-color: #42899B;
+     color: #ECF4F4;
+     font-weight: bold;
+     padding: 4px;
+     border: 1px solid #bbb;
+     border-radius: 2px;
+}
