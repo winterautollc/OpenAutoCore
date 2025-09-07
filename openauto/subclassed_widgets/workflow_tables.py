@@ -21,13 +21,14 @@ class CustomerTable(QTableWidget):
         customer_table_names = ("LAST NAME", "FIRST NAME", "ADDRESS", "CITY", "STATE", "ZIP", "PHONE", "ALT PHONE", "EMAIL", "ID")
         self.setColumnCount(10)
         self.setColumnHidden(9, True)
-        self.setGridStyle(QtCore.Qt.PenStyle.DashDotLine)
+        # self.setGridStyle(QtCore.Qt.PenStyle.DashDotLine)
+        self.setShowGrid(False)
         self.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
         self.setHorizontalHeaderLabels(customer_table_names)
         self.verticalHeader().setVisible(False)
         self.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         self.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
-        self.setAlternatingRowColors(True)
+        # self.setAlternatingRowColors(True)
         self.customer_id = None
         self.load_customer_data()
         self.cellDoubleClicked.connect(self.options_load)
@@ -58,6 +59,7 @@ class CustomerTable(QTableWidget):
                 item = QtWidgets.QTableWidgetItem(str(row[col]))
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.setItem(table_row, col, item)
+                self.setStyleSheet("background-color: #97aabd")
             table_row += 1
 
 
@@ -70,6 +72,8 @@ class CustomerTable(QTableWidget):
                 item = QtWidgets.QTableWidgetItem(str(row[col]))
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.setItem(table_row, col, item)
+                self.setStyleSheet("background-color: #97aabd")
+
             table_row += 1
 
 
@@ -88,17 +92,18 @@ class CustomerTable(QTableWidget):
 class EstimateTable(QTableWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.setMouseTracking(True)
         self.estimate_id = None
         estimate_names = ("ID", "RO NUMBER", "DATE", "NAME", "YEAR", "MAKE", "MODEL", "TECH", "TOTAL")
-        self.setGridStyle(QtCore.Qt.PenStyle.DashDotLine)
+        # self.setGridStyle(QtCore.Qt.PenStyle.DashDotLine)
         self.setColumnCount(9)
         self.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
         self.setHorizontalHeaderLabels(estimate_names)
         self.verticalHeader().setVisible(False)
         self.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         self.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
-        self.setAlternatingRowColors(True)
+        self.setShowGrid(False)
         self.setColumnHidden(0, True)
         self._show_estimates()
         self.cellDoubleClicked.connect(self._estimate_options_load)
@@ -112,6 +117,8 @@ class EstimateTable(QTableWidget):
                 item = QtWidgets.QTableWidgetItem(str(row[col]))
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.setItem(table_row, col, item)
+                self.setStyleSheet("background-color: #97aabd")
+
             table_row += 1
     def update_estimates(self, estimate_data):
         table_row = 0
@@ -121,6 +128,8 @@ class EstimateTable(QTableWidget):
                 item = QtWidgets.QTableWidgetItem(str(row[col]))
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.setItem(table_row, col, item)
+                self.setStyleSheet("background-color: #97aabd")
+
             table_row += 1
 
 
@@ -149,6 +158,7 @@ class EstimateTable(QTableWidget):
 class ShowAll(QTableWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         all_table_names = ("RO NUMBER", "DATE", "NAME", "YEAR", "MAKE", "MODEL", "TECH", "TOTAL", "STATUS")
         self.setMouseTracking(True)
         self.setColumnCount(9)
@@ -160,6 +170,7 @@ class ShowAll(QTableWidget):
 class WorkingTable(QtWidgets.QTableWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         working_names = ("RO NUMBER", "DATE", "NAME", "YEAR", "MAKE", "MODEL", "TECH", "TOTAL")
         self.setGridStyle(QtCore.Qt.PenStyle.DashDotLine)
         self.setColumnCount(8)
@@ -182,6 +193,7 @@ class ApprovedTable(QTableWidget):
 class CheckoutTable(QtWidgets.QTableWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         checkout_names = ("RO NUMBER", "DATE", "NAME", "YEAR", "MAKE", "MODEL", "TECH", "TOTAL")
         self.setMouseTracking(True)
         self.setGridStyle(QtCore.Qt.PenStyle.DashDotLine)
@@ -200,14 +212,14 @@ class VehicleTable(QtWidgets.QTableWidget):
         self.setColumnHidden(8, True)
         self.clearSelection()
         self.setRowCount(db_handlers.vehicle_rows())
-        self.setGridStyle(QtCore.Qt.PenStyle.DashDotLine)
+        # self.setGridStyle(QtCore.Qt.PenStyle.DashDotLine)
+        self.setShowGrid(False)
         self.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
         self.setHorizontalHeaderLabels(vehicle_table_names)
         self.verticalHeader().setVisible(False)
         self.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         self.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.setFrameStyle(QtWidgets.QFrame.Shape.NoFrame)
-        self.setAlternatingRowColors(True)
         self.vehicle_id = None
         self.load_vehicle_data()
         self.cellClicked.connect(self.copy_vin)
@@ -223,6 +235,8 @@ class VehicleTable(QtWidgets.QTableWidget):
                 item = QtWidgets.QTableWidgetItem(str(row[col]))
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.setItem(table_row, col, item)
+                self.setStyleSheet("background-color: #97aabd")
+
             table_row += 1
 
 
@@ -236,6 +250,8 @@ class VehicleTable(QtWidgets.QTableWidget):
                 item = QtWidgets.QTableWidgetItem(str(row[col]))
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.setItem(table_row, col, item)
+                self.setStyleSheet("background-color: #97aabd")
+
             table_row += 1
 
     def on_vehicle_row_clicked(self):
@@ -299,12 +315,12 @@ class ROTable(QtWidgets.QTreeWidget):
                              QtWidgets.QAbstractItemView.EditTrigger.SelectedClicked)
 
         # Only connect once
-        # self.itemChanged.connect(self._onItemChanged)
-        # self._updating = False
-        #
-        # # Context menu
-        # self.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.CustomContextMenu)
-        # self.customContextMenuRequested.connect(self._openContextMenu)
+        self.itemChanged.connect(self._onItemChanged)
+        self._updating = False
+
+        # Context menu
+        self.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.CustomContextMenu)
+        self.customContextMenuRequested.connect(self._openContextMenu)
 
         # (Optional) fonts
         self._bold = QtGui.QFont()

@@ -30,7 +30,7 @@ class CustomerTableSmall(QtWidgets.QTableWidget):
         self.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         self.verticalHeader().setVisible(False)
-        self.setAlternatingRowColors(True)
+        # self.setAlternatingRowColors(True)
         theme = "theme/dark_theme.qss"
         apply_stylesheet(self, theme)
         self.load_customer_data()
@@ -72,7 +72,7 @@ class VehicleTableSmall(QTableWidget):
         self.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         self.verticalHeader().setVisible(False)
-        self.setAlternatingRowColors(True)
+        # self.setAlternatingRowColors(True)
         theme = "theme/dark_theme.qss"
         apply_stylesheet(self, theme)
         self.load_vehicle_data()
@@ -109,7 +109,7 @@ class MatrixTable(QtWidgets.QTableWidget):
         self.setHorizontalHeaderLabels(matrix_table_names)
         self.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.verticalHeader().setVisible(False)
-        self.setAlternatingRowColors(True)
+        # self.setAlternatingRowColors(True)
         self.setItemDelegateForColumn(0, FloatDelegate(self))
         self.setItemDelegateForColumn(1, FloatDelegate(self))
         self.setItemDelegateForColumn(3, FloatDelegate(self))
@@ -190,7 +190,7 @@ class LaborTable(QTableWidget):
         self.setHorizontalHeaderLabels(labor_items)
         self.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.verticalHeader().setVisible(False)
-        self.setAlternatingRowColors(True)
+        # self.setAlternatingRowColors(True)
         self.setItemDelegateForColumn(0, FloatDelegate(self))
         self.load_labor_rates()
 

@@ -33,10 +33,10 @@ class ROHubManager:
         self.ui.tax_label.setText("0.00")
         self.ui.total_label.setText("0.00")
         self.ui.fees_label.setText("0.00")
-        self.ui.ro_status_label.setText("Open: Not Approved")
-        self.ui.ro_status_label.setStyleSheet("background-color: #76ABAE; \n"
-                                              "color: #fff; \n"
-                                              "border-radius: 5px;")
+        # self.ui.ro_status_label.setText("Open: Not Approved")
+        # self.ui.ro_status_label.setStyleSheet("background-color: #76ABAE; \n"
+        #                                       "color: #fff; \n"
+        #                                       "border-radius: 5px;")
 
 
     def load_ro_into_hub(self, ro_id):
@@ -89,29 +89,29 @@ class ROHubManager:
 
         # --- TYPE column as a per-row QComboBox mirroring type_box ---
         combo = QtWidgets.QComboBox(t)
-        combo.setStyleSheet("QComboBox {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QComboBox:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QComboBox:drop-down {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QComboBox QAbstractItemView {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}")
+#         combo.setStyleSheet("QComboBox {\n"
+# "    border-radius: 5px;\n"
+# "    color: #fff;\n"
+# "    background-color: #76ABAE;\n"
+# "}\n"
+# "\n"
+# "QComboBox:hover {\n"
+# "    background-color: #828786;\n"
+# "    color: #fff;\n"
+# "    border-radius: 5px;\n"
+# "}\n"
+# "\n"
+# "QComboBox:drop-down {\n"
+# "    background-color: #828786;\n"
+# "    color: #fff;\n"
+# "    border-radius: 5px;\n"
+# "}\n"
+# "\n"
+# "QComboBox QAbstractItemView {\n"
+# "    background-color: #828786;\n"
+# "    color: #fff;\n"
+# "    border-radius: 5px;\n"
+# "}")
         combo.addItems(self._type_options())
         # default to the current selection in the toolbar type_box (if any), else first option
         current = self.ui.type_box.currentText().strip()
@@ -178,16 +178,16 @@ class ROHubManager:
         return items or ["Part", "Labor", "Fee", "Sublet"]
 
 ### REAPPLY EXPECTED COLUMNS/HEADERS IF setupUi RESETS THEM TO 0 COLUMNS
-    # def _ensure_ro_table_configured(self):
-    #     """(Re)apply expected columns/headers if setupUi reset them to 0 columns."""
-    #     t = self.ui.ro_items_table
-    #     if t.columnCount() < 6:
-    #         t.setColumnCount(6)
-    #         t.setHorizontalHeaderLabels(["TYPE", "PART NUMBER", "DESCRIPTION", "COST", "SELL", "TAX"])
-    #         t.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
-    #         t.verticalHeader().setVisible(False)
-    #         t.setEditTriggers(QtWidgets.QTableWidget.EditTrigger.NoEditTriggers)
-    #         t.setSelectionBehavior(QtWidgets.QTableWidget.SelectionBehavior.SelectRows)
+    def _ensure_ro_table_configured(self):
+        """(Re)apply expected columns/headers if setupUi reset them to 0 columns."""
+        t = self.ui.ro_items_table
+        if t.columnCount() < 6:
+            t.setColumnCount(6)
+            t.setHorizontalHeaderLabels(["TYPE", "PART NUMBER", "DESCRIPTION", "COST", "SELL", "TAX"])
+            t.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
+            t.verticalHeader().setVisible(False)
+            t.setEditTriggers(QtWidgets.QTableWidget.EditTrigger.NoEditTriggers)
+            t.setSelectionBehavior(QtWidgets.QTableWidget.SelectionBehavior.SelectRows)
 
     @staticmethod
     def _parse_money(text: str):

@@ -1,22 +1,306 @@
+#centralwidget {
+    background-color: #97AABD;
+}
+
+#ro_frame QPushButton {
+    background-color: #314455;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#ro_frame QPushButton::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#save_ro_button,
+#print_ro_button,
+#message_customer_button {
+    background-color: #314455;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#save_ro_button::hover,
+#print_ro_button::hover,
+#message_customer_button::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#new_customer_button,
+#new_vehicle_button {
+    background-color: #314455;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#new_customer_button::hover,
+#new_vehicle_button::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius:5px;
+}
+
+#add_job_item_button {
+    background-color: #75937c;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#add_job_item_button::hover {
+    background-color: #759093;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#new_job_button {
+    background-color: #759093;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#new_job_button::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius:5px;
+}
+
+#order_parts_button {
+    background-color: #759093;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#order_parts_button::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius:5px;
+}
+
+#place_order_button {
+    background-color: #75937c;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#place_order_button::hover {
+    background-color: #759093;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#cancel_ro_button {
+    background-color: #C96567;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#cancel_ro_button::hover {
+    background-color: #9E5A63;
+    color: #050608;
+    border-radius: 5px
+}
+
+#remove_item_button {
+    background-color: #C96567;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#remove_item_button::hover {
+    background-color: #9E5A63;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#quickbooks_button {
+    background-color: #2CA01C;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#quickbooks_button::hover {
+    background-color: #7a9375;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#parts_integrate_button {
+    background-color: #D62C27;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#parts_integrate_button::hover {
+    background-color: #F38021;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#delete_parts_button {
+    background-color: #C96567;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#delete_parts_button::hover {
+    background-color: #9E5A63;
+    color: #050608;
+    border-radius: 5px
+}
+
+#ro_profit_button {
+    background-color: #7a9375;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#ro_profit_button::hover{
+    background-color: #759389;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#mpi_button {
+    background-color: #93758e;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#mpi_button::hover {
+    background-color: #7f7593;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#ro_status_button {
+    background-color: #6288aa;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#ro_status_button::hover {
+    background-color: #7baad4;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#remove_row_button,
+#remove_labor_row {
+    background-color: #C96567;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#remove_row_button::hover,
+#remove_labor_row::hover {
+    background-color: #9E5A63;
+    color: #050608;
+    border-radius: 5px
+}
+
+#add_row_button,
+#add_labor_row {
+    background-color: #759093;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#add_row_button::hover,
+#add_labor_row::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius:5px;
+}
+
+#save_matrix_button,
+#save_labor_button {
+    background-color: #75937c;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#save_matrix_button::hover,
+#save_labor_button::hover {
+    background-color: #759093;
+    color: #050608;
+    border-radius: 5px;
+}
+
+
+#import_logo_button {
+    background-color: #6288aa;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#import_logo_button::hover {
+    background-color: #7baad4;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#calender_frame QPushButton {
+    background-color: #314455;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#calender_frame QPushButton::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius: 5px;
+}
+
+QComboBox {
+    background-color: #759093;
+    color: #050608;
+    border-radius: 2px;
+}
+
+
+QLineEdit {
+    background-color: #e2e5e9;
+    border-radius: 2px;
+    color: #1c2025;
+}
+
+QLineEdit::placeholder {
+    color: #0f1216;
+    font-style: italic;
+}
+
+QTextEdit {
+    background-color: #e2e5e9;
+    border-radius: 2px;
+    color: #1c2025;
+}
 QTableWidget {
-    background-color: #ffffff;
-    alternate-background-color: #f5f5f5;
-    color: #000000;
+    background-color: #AAB3BD;
+    color: #333;
     gridline-color: #ccc;
     font-size: 16px;
 }
 
 QHeaderView::section {
-    background-color: #4A6260;
+    background-color: #644E5B;
     color: #ECF4F4;
     font-weight: bold;
     padding: 4px;
     border: 1px solid #bbb;
 }
 
+QTableWidget::item {
+    border-right: none;
+    border-bottom: 1px solid #b8c0c8
+}
+
 QTableWidget::item:selected {
-    background-color: #42899B;
-    color: #162927;
+    background-color: #464f59;
+    color: #e2e5e9;
 }
 
 QCalendarWidget {

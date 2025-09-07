@@ -1,7 +1,7 @@
 from PyQt6 import QtCore, QtWidgets, QtGui
 from PyQt6.QtGui import QDoubleValidator
 from openauto.subclassed_widgets import small_tables, workflow_tables, apt_calendar, event_handlers, control_menu
-from openauto.ui import main_form
+from openauto.ui import main_no_stylesheets as main_form
 from openauto.managers import (
     customer_manager, vehicle_manager, settings_manager,
     animations_manager, new_ro_manager, belongs_to_manager, appointments_manager, appointment_options_manager,
@@ -11,27 +11,6 @@ from pyvin import VIN
 import os
 
 
-class ExpandingTabBar(QtWidgets.QTabBar):
-    def tabSizeHint(self, index: int) -> QtCore.QSize:
-        s = super().tabSizeHint(index)
-        count = max(1, self.count())
-        # width: fall back safely if width() is 0 early in layout
-        avail = self.width()
-        if not avail and self.parent():
-            avail = self.parent().width()
-        if not avail:
-            avail = s.width() or 1
-        w = max(s.width(), avail // count)
-
-        # height: never let it collapse
-        fm = self.fontMetrics()
-        min_h = max(28, fm.height() + fm.leading() + 12)  # ~ one line + padding
-        return QtCore.QSize(w, max(min_h, s.height()))
-
-    def resizeEvent(self, e):
-        super().resizeEvent(e)
-        self.updateGeometry()
-
 def apply_stylesheet(widget, relative_path):
     base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     theme_path = os.path.join(base_path, relative_path)
@@ -40,6 +19,7 @@ def apply_stylesheet(widget, relative_path):
             widget.setStyleSheet(f.read())
     except FileNotFoundError:
         print(f"⚠️ Could not load theme: {theme_path}")
+
 def load_icon(rel_path: str) -> QtGui.QIcon:
     base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     full_path = os.path.join(base_path, rel_path)
@@ -51,8 +31,6 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.ro_hub_tabs.tabBar().setUsesScrollButtons(True)
-        self.ro_hub_tabs.setUsesScrollButtons(True)
         # self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.sql_monitor = event_handlers.SQLMonitor()
         self.sql_monitor.start()
@@ -62,8 +40,19 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self._init_state()
         self._connect_signals()
         self._setup_animations()
-        self.toggle_theme()
         self._setup_menu_label_opacity()
+        self.toggle_theme()
+        self.toggle_theme()
+        self._repolish_subtree(self.hub_stacked_widget)
+
+
+    def _repolish_subtree(self, root: QtWidgets.QWidget):
+        st = root.style()
+        st.unpolish(root);st.polish(root)
+        for w in root.findChildren(QtWidgets.QWidget):
+            st.unpolish(w);st.polish(w)
+            w.update()
+
 
 
     ### DECLARE MANAGERS ###
@@ -131,6 +120,13 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.gridLayout_31.addWidget(self.weekly_schedule_table, 0, 0, 1, 1)
         self.gridLayout_34.addWidget(self.hourly_schedule_table, 0, 0, 1, 1)
 
+    def debug_selector(self, widget):
+        w = widget
+        chain = []
+        while w:
+            chain.append(f"{w.metaObject().className()}#{w.objectName()}")
+            w = w.parent()
+        print(" -> ".join(chain))
 
     def _init_state(self):
         self.message = QtWidgets.QMessageBox()
@@ -173,6 +169,54 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         for button, text in zip(buttons, texts):
             QtWidgets.QPushButton.setText(button, "")
 
+        button_icon_size = QtCore.QSize(50, 50)
+        self.customers_button.setIconSize(button_icon_size)
+        self.repair_orders_button.setIconSize(button_icon_size)
+        self.vehicles_button.setIconSize(button_icon_size)
+        self.messaging_button.setIconSize(button_icon_size)
+        self.scheduling_button.setIconSize(button_icon_size)
+        self.analytics_button.setIconSize(button_icon_size)
+        self.settings_button.setIconSize(button_icon_size)
+        self.quit_button.setIconSize(button_icon_size)
+
+        stylesheet = """QPushButton {
+	border-radius: 5px;
+	color: #fff;
+	background-color: #314455;
+}
+
+QPushButton:hover {
+	background-color: #644E5B;
+	color: #fff;
+	border-radius: 5px;
+}
+
+QToolTip {
+    background-color: #828786;  
+    border-radius: 10px;       
+    font-size: 14px;      
+	padding: 5px;
+}"""
+
+        quit_style_sheet = """QPushButton {
+	border-radius: 5px;
+	color: #fff;
+	background-color: #C96567;
+}
+
+QPushButton:hover {
+	background-color: #9E5A63;
+	color: #fff;
+	border-radius: 10px;
+}"""
+        self.customers_button.setStyleSheet(stylesheet)
+        self.vehicles_button.setStyleSheet(stylesheet)
+        self.repair_orders_button.setStyleSheet(stylesheet)
+        self.messaging_button.setStyleSheet(stylesheet)
+        self.scheduling_button.setStyleSheet(stylesheet)
+        self.analytics_button.setStyleSheet(stylesheet)
+        self.settings_button.setStyleSheet(stylesheet)
+        self.quit_button.setStyleSheet(quit_style_sheet)
 
 ### SIGNALS/SLOTS FOR PUSHBUTTONS ETC.. ###
     def _connect_signals(self):
@@ -250,9 +294,16 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.animate_week = anim(self.weekly_schedule_table, 300)
         self.animate_day = anim(self.hourly_schedule_table, 300)
 
+    def _set_all_buttons_flat(self, flat: bool):
+        """Helper to setFlat() on every QPushButton in the window."""
+        for btn in self.findChildren(QtWidgets.QPushButton):
+            btn.setFlat(flat)
+
+
     def toggle_theme(self):
         theme = "theme/dark_theme.qss"
         apply_stylesheet(self, theme)
+
 
     def show_appearance(self):
         self.message.setText("I Know It's Ugly But Appearance Customization Isn't Ready Yet... Sorry")
