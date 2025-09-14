@@ -1,6 +1,9 @@
 from openauto.repositories.db_handlers import connect_db
 import datetime
+from openauto.repositories import db_handlers
 class RepairOrdersRepository:
+    ALLOWED_STATUSES = {"open", "approved", "working", "checkout", "archived"}
+
 
     @staticmethod
     def create_repair_order(customer_id, vehicle_id, appointment_id=None, ro_number=None):
@@ -32,14 +35,6 @@ class RepairOrdersRepository:
         conn.close()
         return result
 
-    @staticmethod
-    def update_status(ro_id, status):
-        conn = connect_db()
-        cursor = conn.cursor()
-        cursor.execute("UPDATE repair_orders SET status = %s WHERE id = %s", (status, ro_id))
-        conn.commit()
-        cursor.close()
-        conn.close()
 
     @staticmethod
     def lock_repair_order(ro_id, locked_by):
@@ -91,3 +86,57 @@ class RepairOrdersRepository:
             last_seq = 0
 
         return f"{year}-{last_seq + 1:05d}"
+
+    @staticmethod
+    def load_repair_orders(status="open", limit=200, offset=0):
+        conn = db_handlers.connect_db()
+        cursor = conn.cursor()
+        query = """
+             SELECT
+                 ro.id,
+                 ro.ro_number,
+                 ro.created_at,
+                 CONCAT(c.first_name, ' ', c.last_name) AS name,
+                 v.year,
+                 v.make,
+                 v.model,
+                 ''  AS tech,   
+                 0.00 AS total 
+             FROM repair_orders ro
+             LEFT JOIN customers c ON c.customer_id = ro.customer_id
+             LEFT JOIN vehicles v ON v.id = ro.vehicle_id
+             WHERE ro.status = %s
+             ORDER BY ro.ro_number
+             LIMIT %s OFFSET %s
+         """
+        cursor.execute(query, (status, limit, offset))
+        result = cursor.fetchall() or []
+        cursor.close()
+        conn.close()
+        return result
+
+    @staticmethod
+    def delete_repair_order(estimate_id: int):
+        conn = db_handlers.connect_db()
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM repair_orders WHERE id = %s", (estimate_id,))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+
+    @staticmethod
+    def update_status(ro_id: int, new_status: str):
+        new_status = (new_status or "").strip().lower()
+        if new_status not in RepairOrdersRepository.ALLOWED_STATUSES:
+            raise ValueError(f"Invalid status: {new_status}")
+
+        conn = db_handlers.connect_db()
+        cursor = conn.cursor()
+        cursor.execute(
+            "UPDATE repair_orders SET status = %s WHERE id = %s",
+            (new_status, ro_id)
+        )
+        conn.commit()
+        cursor.close()
+        conn.close()

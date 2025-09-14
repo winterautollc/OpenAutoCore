@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>edit_appt_form</class>
+ <widget class="QWidget" name="edit_appt_form">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,10 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">color: black;
-background-color: #A2A29D;
-background-image: none;
-border-radius: 10px;</string>
+   <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" colspan="2">
@@ -25,12 +22,15 @@ border-radius: 10px;</string>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QLabel" name="name_label">
+        <widget class="QLabel" name="name_edit_label">
          <property name="font">
           <font>
            <pointsize>13</pointsize>
            <bold>true</bold>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Customer</string>
@@ -41,7 +41,7 @@ border-radius: 10px;</string>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="name_edit">
+        <widget class="QLineEdit" name="name_edit_line">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -61,9 +61,7 @@ border-radius: 10px;</string>
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">border-radius: 5px;
-background-color: #fefeff;
-color: black;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -84,6 +82,9 @@ color: black;</string>
            <pointsize>13</pointsize>
            <bold>true</bold>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Vehicle</string>
@@ -108,29 +109,7 @@ color: black;</string>
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">QComboBox {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QComboBox:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox:drop-down {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox QAbstractItemView {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}</string>
+          <string notr="true"/>
          </property>
         </widget>
        </item>
@@ -151,6 +130,9 @@ QComboBox QAbstractItemView {
            <pointsize>13</pointsize>
            <bold>true</bold>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Time</string>
@@ -187,29 +169,7 @@ QComboBox QAbstractItemView {
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">QComboBox {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QComboBox:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox:drop-down {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox QAbstractItemView {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}</string>
+          <string notr="true"/>
          </property>
         </widget>
        </item>
@@ -220,9 +180,7 @@ QComboBox QAbstractItemView {
    <item row="0" column="2" rowspan="2" colspan="2">
     <widget class="QCalendarWidget" name="date_widget">
      <property name="styleSheet">
-      <string notr="true">border-radius: 5px;
-background-color: #fefeff;
-color: black;</string>
+      <string notr="true"/>
      </property>
     </widget>
    </item>
@@ -236,6 +194,9 @@ color: black;</string>
          <bold>true</bold>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>Notes</string>
        </property>
@@ -245,7 +206,7 @@ color: black;</string>
       </widget>
      </item>
      <item>
-      <widget class="QTextEdit" name="notes_edit">
+      <widget class="QTextEdit" name="notes_appt_edit">
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -253,16 +214,14 @@ color: black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius: 5px;
-background-color: #fefeff;
-color: black;</string>
+        <string notr="true"/>
        </property>
       </widget>
      </item>
     </layout>
    </item>
    <item row="2" column="0">
-    <widget class="QRadioButton" name="wait_button">
+    <widget class="QRadioButton" name="wait_edit_button">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -274,6 +233,9 @@ color: black;</string>
        <pointsize>12</pointsize>
        <bold>true</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Wait</string>
@@ -281,7 +243,7 @@ color: black;</string>
     </widget>
    </item>
    <item row="2" column="1">
-    <widget class="QRadioButton" name="drop_button">
+    <widget class="QRadioButton" name="drop_edit_button">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -294,13 +256,16 @@ color: black;</string>
        <bold>true</bold>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="text">
       <string>Drop</string>
      </property>
     </widget>
    </item>
    <item row="2" column="2">
-    <widget class="QPushButton" name="cancel_button">
+    <widget class="QPushButton" name="cancel_edit_appt_button">
      <property name="minimumSize">
       <size>
        <width>150</width>
@@ -308,17 +273,7 @@ color: black;</string>
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #A0153E;
-}
-
-QPushButton:hover {
-	background-color: #C49497;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Cancel</string>
@@ -336,7 +291,7 @@ QPushButton:hover {
     </widget>
    </item>
    <item row="2" column="3">
-    <widget class="QPushButton" name="confirm_button">
+    <widget class="QPushButton" name="confirm_edit_appt_button">
      <property name="minimumSize">
       <size>
        <width>150</width>
@@ -344,17 +299,7 @@ QPushButton:hover {
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #0B5598;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Confirm</string>

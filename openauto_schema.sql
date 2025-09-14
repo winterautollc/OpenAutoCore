@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `appointments`;
 CREATE TABLE `appointments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `customer_id` int NOT NULL,
-  `vehicle_id` int NOT NULL,
+  `vehicle_id` int unsigned DEFAULT NULL,
   `vin` varchar(30) DEFAULT NULL,
   `appointment_date` date NOT NULL,
   `appointment_time` time NOT NULL,
@@ -37,10 +37,10 @@ CREATE TABLE `appointments` (
   `last_updated` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `customer_id` (`customer_id`),
-  KEY `vehicle_id` (`vehicle_id`),
+  KEY `fk_appointments_vehicle` (`vehicle_id`),
   CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE CASCADE,
-  CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`customer_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_appointments_vehicle` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +63,7 @@ CREATE TABLE `customers` (
   `customer_id` int NOT NULL AUTO_INCREMENT,
   `archived` tinyint(1) DEFAULT (0),
   PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,8 +172,8 @@ CREATE TABLE `repair_orders` (
   `id` int NOT NULL AUTO_INCREMENT,
   `appointment_id` int DEFAULT NULL,
   `customer_id` int NOT NULL,
-  `vehicle_id` int NOT NULL,
-  `status` enum('open','in_progress','completed','cancelled') DEFAULT 'open',
+  `vehicle_id` int unsigned NOT NULL,
+  `status` enum('open','approved','working','checkout','archived') NOT NULL DEFAULT 'open',
   `ro_number` varchar(10) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -186,12 +186,12 @@ CREATE TABLE `repair_orders` (
   UNIQUE KEY `ro_number_2` (`ro_number`),
   UNIQUE KEY `ro_number_3` (`ro_number`),
   KEY `customer_id` (`customer_id`),
-  KEY `vehicle_id` (`vehicle_id`),
   KEY `appointment_id` (`appointment_id`),
+  KEY `fk_ro_vehicle` (`vehicle_id`),
+  CONSTRAINT `fk_ro_vehicle` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `repair_orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
-  CONSTRAINT `repair_orders_ibfk_2` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`customer_id`),
   CONSTRAINT `repair_orders_ibfk_3` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,6 +220,42 @@ CREATE TABLE `shop_info` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `user_sessions`
+--
+
+DROP TABLE IF EXISTS `user_sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_sessions` (
+  `token` char(64) NOT NULL,
+  `user_id` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`token`),
+  KEY `fk_user_sessions_user` (`user_id`),
+  CONSTRAINT `fk_user_sessions_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `user_settings`
+--
+
+DROP TABLE IF EXISTS `user_settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_settings` (
+  `user_id` int NOT NULL,
+  `theme` varchar(32) NOT NULL DEFAULT 'light',
+  PRIMARY KEY (`user_id`),
+  CONSTRAINT `fk_user_settings_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_settings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `chk_theme_valid` CHECK ((`theme` in (_utf8mb4'light',_utf8mb4'dark',_utf8mb4'system'))),
+  CONSTRAINT `user_settings_chk_1` CHECK ((`theme` in (_utf8mb4'light',_utf8mb4'dark',_utf8mb4'system')))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `users`
 --
 
@@ -231,7 +267,7 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `user_type` varchar(12) NOT NULL,
+  `user_type` enum('writer','technician','manager') NOT NULL DEFAULT 'writer',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `phone` varchar(15) NOT NULL,
   `first_name` varchar(30) NOT NULL,
@@ -239,7 +275,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -250,7 +286,8 @@ DROP TABLE IF EXISTS `vehicles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vehicles` (
-  `vin` varchar(30) DEFAULT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `vin` varchar(17) DEFAULT NULL,
   `year` varchar(30) DEFAULT NULL,
   `make` varchar(30) DEFAULT NULL,
   `model` varchar(30) DEFAULT NULL,
@@ -258,9 +295,11 @@ CREATE TABLE `vehicles` (
   `trim` varchar(50) DEFAULT NULL,
   `customer_id` int DEFAULT NULL,
   `archived` tinyint(1) DEFAULT (0),
-  KEY `fk_vehicles_customer` (`customer_id`),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_vehicles_vin` (`vin`),
+  KEY `idx_vehicles_customer` (`customer_id`),
   CONSTRAINT `fk_vehicles_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -272,4 +311,4 @@ CREATE TABLE `vehicles` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-08-24 20:26:54
+-- Dump completed on 2025-09-13 23:32:09

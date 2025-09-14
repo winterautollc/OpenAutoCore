@@ -31,7 +31,9 @@ class WeeklySchedule(QTableWidget):
         super().__init__(parent)
         self.setColumnCount(7)
         self.set_horizontal_headers_for_date(QDate.currentDate())
-
+        self.selected_row = None
+        self.selected_column = None
+        self.selected_date = QDate.currentDate()
         self.setRowCount(23)
         self.setVerticalHeaderLabels([
             "7:00 AM", "7:30 AM", "8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM",
@@ -107,7 +109,9 @@ class HourlySchedule(QTableWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setColumnCount(1)
-        self.setRowCount(23)  # Example: 8 AM to 5 PM
+        self.setRowCount(23)
+        self.selected_row = None
+        self.selected_date = QDate.currentDate()
         self.setHorizontalHeaderLabels(["Appointments"])
         self.setVerticalHeaderLabels([
             "7:00 AM", "7:30 AM", "8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM",
@@ -124,7 +128,7 @@ class HourlySchedule(QTableWidget):
 
     def load_schedule_for_day(self, date: QDate):
         self.clearContents()
-
+        self.selected_date = date
         appointments = AppointmentRepository.get_appointments_for_week(date, date)
         for appt in appointments:
             time_delta = appt["appointment_time"]
@@ -142,6 +146,7 @@ class HourlySchedule(QTableWidget):
 
 
     def add_or_edit_appointment(self, row, column):
+        self.selected_row = row
         item = self.item(row, column)
         if item is None or item.text().strip() == "":
             self.add_appointment.emit()

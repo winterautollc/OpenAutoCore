@@ -1,0 +1,730 @@
+/* ========= OpenAuto Light Theme =========
+Base
+  Bg            #F5F7FA
+  Text          #1E1E1E
+  Text/2        #5C5C5C
+  Accent        #314455
+  Accent/Hover  #4F6D7A
+  Accent/Press  #22313F
+  Card          #FFFFFF
+  Divider       #C7CDD3
+  Header Bg     #E6EBF1
+  Selection     #4F6D7A
+  Success       #2E7D32
+  Warning       #F9A825
+  Error         #C62828
+*/
+
+/* ---- Global ---- */
+* {
+  outline: 0;
+}
+
+QWidget {
+  background: #F5F7FA;
+  color: #1E1E1E;
+  font-size: 12pt;
+}
+
+#login_label {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#ro_frame QPushButton {
+    background-color: #314455;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#ro_frame QPushButton::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#cmenu_frame {
+  background: #314455;
+}
+
+#repair_orders_button {
+  background-color: #314455;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+}
+
+#customers_button {
+  background-color: #314455;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 12px;
+}
+
+#vehicles_button {
+  background-color: #314455;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 12px;
+}
+
+#messaging_button {
+  background-color: #314455;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 12px;
+}
+
+#scheduling_button {
+  background-color: #314455;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 12px;
+}
+
+#analytics_button {
+  background-color: #314455;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 12px;
+}
+
+#settings_button {
+  background-color: #314455;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 12px;
+}
+
+#repair_orders_button::hover {
+    background-color: #4F6D7A;
+}
+
+#customers_button::hover {
+    background-color: #4F6D7A;
+}
+
+#vehicles_button::hover {
+    background-color: #4F6D7A;
+}
+
+#messaging_button::hover {
+    background-color: #4F6D7A;
+}
+
+#scheduling_button::hover {
+    background-color: #4F6D7A;
+}
+
+#analytics_button::hover {
+    background-color: #4F6D7A;
+}
+
+#settings_button::hover {
+    background-color: #4F6D7A;
+}
+
+
+#quit_button {
+ 	border-radius: 5px;
+ 	color: #fff;
+ 	background-color: #C62828;
+}
+
+
+#quit_button::hover {
+ 	background-color: #a72222;
+ 	color: #fff;
+ 	border-radius: 10px;
+}
+
+
+#quickbooks_button {
+    background-color: #2CA01C;
+    color: #fff;
+    border-radius: 2px;
+    padding: 6px 12px;
+    font-size: 16px;
+}
+
+#quickbooks_button::hover {
+    background-color: #7a9375;
+    color: #050608;
+    border-radius: 5px;
+    padding: 6px 12px;
+}
+
+#save_ro_button,
+#print_ro_button,
+#message_customer_button {
+    background-color: #314455;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#save_ro_button::hover,
+#print_ro_button::hover,
+#message_customer_button::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#new_customer_button,
+#new_vehicle_button {
+    background-color: #314455;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+
+}
+
+#new_customer_button::hover,
+#new_vehicle_button::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius:5px;
+}
+
+#parts_integrate_button {
+    background-color: #D62C27;
+    color: #fff;
+    border-radius: 2px;
+    font-size:16px;
+}
+
+#parts_integrate_button::hover {
+    background-color: #F38021;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#delete_parts_button {
+    background-color: #C96567;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#delete_parts_button::hover {
+    background-color: #9E5A63;
+    color: #050608;
+    border-radius: 5px
+}
+
+#ro_profit_button {
+    background-color: #7a9375;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#ro_profit_button::hover{
+    background-color: #759389;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#mpi_button {
+    background-color: #93758e;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#mpi_button::hover {
+    background-color: #7f7593;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#ro_status_button {
+    background-color: #6288aa;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#ro_status_button::hover {
+    background-color: #7baad4;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#remove_row_button,
+#remove_labor_row {
+    background-color: #C96567;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#remove_row_button::hover,
+#remove_labor_row::hover {
+    background-color: #9E5A63;
+    color: #050608;
+    border-radius: 5px
+}
+
+#vin_search_button,
+#new_customer_appt_button,
+#new_vehicle_appt_button,
+#add_row_button,
+#add_labor_row {
+    background-color: #759093;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#vin_search_button::hover,
+#new_customer_appt_button::hover,
+#new_vehicle_appt_button::hover,
+#add_row_button::hover,
+#add_labor_row::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius:5px;
+}
+
+#vehicle_save_button,
+#save_customer_button,
+#edit_customer_button,
+#save_matrix_button,
+#save_labor_button {
+    background-color: #75937c;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#vehicle_save_button::hover,
+#save_customer_button::hover,
+#edit_customer_button::hover,
+#save_matrix_button::hover,
+#save_labor_button::hover {
+    background-color: #759093;
+    color: #050608;
+    border-radius: 5px;
+}
+
+
+#import_logo_button {
+    background-color: #6288aa;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#appearance_button {
+    border: 1px solid black;
+    border-radius: 2px;
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:0,
+        stop:0 #314455,   /* left color */
+        stop:0.5 #314455,
+        stop:0.5 #4A90E2, /* switch color at halfway */
+        stop:1 #4A90E2    /* right color */
+    );
+    color: #fff;
+    font-weight: bold;
+}
+
+
+#appearance_button::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius: 5px;
+}
+
+
+#import_logo_button::hover {
+    background-color: #7baad4;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#calender_frame QPushButton {
+    background-color: #314455;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#calender_frame QPushButton::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#add_job_item_button {
+    background-color: #75937c;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#add_job_item_button::hover {
+    background-color: #759093;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#new_job_button {
+    background-color: #759093;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#new_job_button::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius:5px;
+}
+
+#order_parts_button {
+    background-color: #759093;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#order_parts_button::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius:5px;
+}
+
+
+#confirm_edit_appt_button,
+#save_appt_button,
+#confirm_customer_search_button,
+#place_order_button {
+    background-color: #75937c;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#confirm_edit_appt_button::hover,
+#save_appt_button::hover,
+#confirm_customer_search_button::hover,
+#place_order_button::hover {
+    background-color: #759093;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#cancel_appt_button,
+#cancel_ro_button {
+    background-color: #C96567;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+
+#cancel_appt_button::hover,
+#cancel_ro_button::hover {
+    background-color: #9E5A63;
+    color: #050608;
+    border-radius: 5px
+}
+
+#remove_item_button {
+    background-color: #C96567;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#remove_item_button::hover {
+    background-color: #9E5A63;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#login_tab_button {
+    background-color: #314455;
+    color: #fff;
+    border-radius: 2px;
+    padding: 6px 8px;
+    font-size: 16px;
+}
+
+#login_tab_button::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#create_user_button {
+    background-color: #759093;
+    color: #fff;
+    border-radius: 2px;
+    padding: 6px 8px;
+    font-size: 16px;
+}
+
+#create_user_button::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius:5px;
+}
+
+#login_button,
+#save_user_button {
+    background-color: #75937c;
+    color: #fff;
+    border-radius: 2px;
+}
+
+
+#login_button::hover,
+#save_user_button::hover {
+    background-color: #759093;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#cancel_login_button,
+#cancel_create_button {
+    background-color: #C96567;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#cancel_login_button::hover,
+#cancel_create_button::hover {
+    background-color: #9E5A63;
+    color: #050608;
+    border-radius: 5px
+}
+
+#save_settings_button,
+#users_button,
+#open_status_button,
+#approved_status_button,
+#completed_status_button,
+#in_progress_status_button {
+	border-radius: 2px;
+	color: #fff;
+	background-color: #4A6260;
+	font-size: 16px;
+}
+
+#save_settings_button::hover,
+#users_button::hover,
+#open_status_button::hover,
+#approved_status_button::hover,
+#completed_status_button::hover,
+#in_progress_status_button::hover {
+	background-color: #759093;
+	color: #fff;
+	border-radius: 5px;
+}
+
+#create_ro_button,
+#edit_appointment_button,
+#delete_appointment_button,
+#add_customer_button,
+#change_ro_status_button,
+#delete_ro_button,
+#duplicate_ro_button,
+#open_ro_button,
+#add_customer_vehicle_button,
+#create_ro_customer_button,
+#delete_customer_button,
+#edit_customer_button,
+#change_owner_vehicle_button,
+#create_ro_vehicle_button,
+#delete_vehicle_button {
+    border-radius: 2px;
+    color: #fff;
+    background-color: #4A6260;
+    font-size: 16px;
+}
+
+#create_ro_button::hover,
+#edit_appointment_button::hover,
+#delete_appointment_button::hover,
+#add_customer_button::hover,
+#change_ro_status_button::hover,
+#delete_ro_button::hover,
+#duplicate_ro_button::hover,
+#open_ro_button::hover,
+#add_customer_vehicle_button::hover,
+#create_ro_customer_button::hover,
+#delete_customer_button::hover,
+#edit_customer_button::hover,
+#change_owner_vehicle_button::hover,
+#create_ro_vehicle_button::hover,
+#delete_vehicle_button::hover {
+	background-color: #759093;
+	color: #fff;
+	border-radius: 5px;
+}
+
+#vehicle_cancel_button,
+#cancel_customer_button,
+#cancel_edit_appt_button,
+#cancel_appt_options_button,
+#cancel_customer_search_button,
+#cancel_ro_options_button,
+#cancel_customer_options_button,
+#cancel_vehicle_options_button,
+#cancel_status_button {
+	border-radius: 2px;
+	color: #fff;
+	background-color: #C96567;
+	font-size: 16px;
+}
+
+
+#vehicle_cancel_button::hover,
+#cancel_customer_button::hover,
+#cancel_edit_appt_button::hover,
+#cancel_appt_options_button::hover,
+#cancel_customer_search_button::hover,
+#cancel_ro_options_button::hover,
+#cancel_customer_options_button::hover,
+#cancel_vehicle_options_button::hover,
+#cancel_status_button::hover {
+	background-color: #9E5A63;
+	color: #fff;
+	border-radius: 5px;
+}
+
+/* Tooltips */
+QToolTip {
+  background: #FFFFFF;
+  color: #1E1E1E;
+  border: 1px solid #C7CDD3;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 12px;
+}
+
+
+
+/* ---- Tables / Views ---- */
+QTableView, QTreeView {
+  background: #FFFFFF;
+  alternate-background-color: #F9FAFB;
+  gridline-color: #E6EBF1;
+  border: 1px solid #E6EBF1;
+  selection-background-color: #4F6D7A;
+  selection-color: #FFFFFF;
+}
+
+/* Headers */
+QHeaderView::section {
+  background: #E6EBF1;
+  color: #314455;
+  border: none;
+  border-bottom: 1px solid #C7CDD3;
+  padding: 6px 8px;
+  font-weight: 600;
+}
+QHeaderView::section:horizontal {
+  border-right: 1px solid #C7CDD3;
+}
+
+/* ---- Inputs ---- */
+QLineEdit, QPlainTextEdit, QTextEdit, QComboBox, QSpinBox, QDoubleSpinBox, QDateEdit, QTimeEdit, QDateTimeEdit {
+  background: #FFFFFF;
+  color: #1E1E1E;
+  border: 1px solid #C7CDD3;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-weight: bold;
+}
+QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus, QComboBox:focus,
+QSpinBox:focus, QDoubleSpinBox:focus, QDateEdit:focus, QTimeEdit:focus, QDateTimeEdit:focus {
+  border: 1px solid #4F6D7A;
+}
+
+/* ---- Scrollbars (subtle) ---- */
+QScrollBar:vertical, QScrollBar:horizontal {
+  background: transparent;
+  margin: 4px;
+}
+QScrollBar::handle {
+  background: #C7CDD3;
+  border-radius: 6px;
+  min-width: 20px; min-height: 20px;
+}
+QScrollBar::handle:hover { background: #B6BCC3; }
+QScrollBar::add-line, QScrollBar::sub-line { background: transparent; height: 0; width: 0; }
+
+/* ---- Cards / Tiles ---- */
+QFrame#ro_tile {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid #E6EBF1;
+}
+QLabel#title {
+  font-weight: 700;
+  font-size: 14pt;
+  color: #1E1E1E;
+}
+
+/* tile scroll area */
+QScrollArea#ro_tile_scroll {
+  border: none;
+  background: transparent;
+}
+QWidget#ro_tile_viewport {
+  background: transparent;
+}
+
+/* Role chips on tile */
+QWidget#chip_block {
+  background: #E6EBF1;
+  color: #1E1E1E;
+  border-radius: 8px;
+  padding: 3px 6px;
+}
+
+QCalendarWidget {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+QTabBar::tab {
+     background-color: #4A6260;
+     color: #ECF4F4;
+     border-radius: 1px;
+     min-width: 600px;
+     min-height: 20px;
+}
+
+QTabWidget::tab-bar {
+     alignment: left;
+}
+
+QTabBar::tab:selected {
+     font-weight: 600;
+     background-color: #42899B;
+     color: #ECF4F4;
+     font-weight: bold;
+     padding: 4px;
+     border: 1px solid #bbb;
+     border-radius: 2px;
+}
+
+/* ---- Status colors (opt-in via dynamic properties) ---- */
+[status="approved"] { border-color: #2E7D32; }
+[status="working"]  { border-color: #F9A825; }
+[status="checkout"] { border-color: #314455; }
+[status="archived"] { border-color: #C7CDD3; opacity: 0.7; }

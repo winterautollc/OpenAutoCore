@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>customer_search_form</class>
+ <widget class="QWidget" name="customer_search_form">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,10 +14,7 @@
    <string>Search Customer</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">color: black;
-background-color: #ebebe6;
-background-image: none;
-border-radius: 10px;</string>
+   <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="1" colspan="3">
@@ -35,9 +32,7 @@ border-radius: 10px;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-radius: 5px;
-background-color: #fefeff;
-color: black;</string>
+      <string notr="true"/>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -62,6 +57,9 @@ color: black;</string>
        <bold>true</bold>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="text">
       <string>Vehicle Belongs To...</string>
      </property>
@@ -71,7 +69,7 @@ color: black;</string>
     </widget>
    </item>
    <item row="4" column="3">
-    <widget class="QPushButton" name="confirm_button">
+    <widget class="QPushButton" name="confirm_customer_search_button">
      <property name="minimumSize">
       <size>
        <width>150</width>
@@ -79,17 +77,7 @@ color: black;</string>
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Confirm</string>
@@ -107,7 +95,7 @@ QPushButton:hover {
     </widget>
    </item>
    <item row="4" column="2">
-    <widget class="QPushButton" name="cancel_button">
+    <widget class="QPushButton" name="cancel_customer_search_button">
      <property name="minimumSize">
       <size>
        <width>150</width>
@@ -115,17 +103,7 @@ QPushButton:hover {
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #A0153E;
-}
-
-QPushButton:hover {
-	background-color: #C49497;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Cancel</string>
@@ -151,29 +129,7 @@ QPushButton:hover {
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">QComboBox {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QComboBox:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox:drop-down {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox QAbstractItemView {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}</string>
+      <string notr="true"/>
      </property>
      <item>
       <property name="text">
@@ -185,17 +141,7 @@ QComboBox QAbstractItemView {
    <item row="0" column="3">
     <widget class="QPushButton" name="add_customer_button">
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>New Customer</string>

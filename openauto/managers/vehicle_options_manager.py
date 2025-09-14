@@ -14,7 +14,7 @@ class VehicleOptionsManager:
         self.animations_manager = animations_manager.AnimationsManager
 
         self.vehicle_options, self.vehicle_options_ui = self.widget_manager.create_or_restore(
-            "vehicle_options", QtWidgets.QWidget, vehicle_options.Ui_Form)
+            "vehicle_options", QtWidgets.QWidget, vehicle_options.Ui_vehcile_options_form)
 
         self._setup_ui()
 
@@ -28,12 +28,12 @@ class VehicleOptionsManager:
 
         self.vehicle_options.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
-        self.vehicle_options_ui.cancel_button.clicked.connect(
+        self.vehicle_options_ui.cancel_vehicle_options_button.clicked.connect(
             lambda: self.widget_manager.close_and_delete("vehicle_options")
         )
-        self.vehicle_options_ui.change_owner_button.clicked.connect(self.change_owner)
-        self.vehicle_options_ui.create_ro_button.clicked.connect(self.create_ro)
-        self.vehicle_options_ui.delete_button.clicked.connect(self.delete_vehicle)
+        self.vehicle_options_ui.change_owner_vehicle_button.clicked.connect(self.change_owner)
+        self.vehicle_options_ui.create_ro_vehicle_button.clicked.connect(self.create_ro)
+        self.vehicle_options_ui.delete_vehicle_button.clicked.connect(self.delete_vehicle)
 
         self.vehicle_options.show()
 

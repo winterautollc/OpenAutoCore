@@ -16,13 +16,14 @@ class AppointmentsManager:
         self.ui = main_window
         self.sql_monitor = sql_monitor
         self.selected_vehicle_id = None  ### ID NUMBER DECLARED EARLY
+        self.selected_customer_id = None
         self.waiter = None
         self.dropper = None
 
 ### OPENS new_appointment WIDGET ###
     def open_new_appointment(self):
         self.ui.new_appointment, self.ui.new_appointment_ui = self.ui.widget_manager.create_or_restore(
-            "new_appointment", QtWidgets.QWidget, new_appointment.Ui_Form)
+            "new_appointment", QtWidgets.QWidget, new_appointment.Ui_new_appointment_form)
 
         self.ui.new_appointment.setParent(self.ui, QtCore.Qt.WindowType.Dialog)
         self.ui.new_appointment.setWindowFlags(
@@ -30,14 +31,17 @@ class AppointmentsManager:
         )
 
         self.ui.new_appointment.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
-        self.ui.new_appointment_ui.cancel_button.clicked.connect(
+        self.ui.new_appointment_ui.cancel_appt_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("new_appointment"))
 
         self._load_small_tables()
         self._connect_signals()
-        self.ui.new_appointment_ui.new_customer_button.clicked.connect(self._create_new_customer)
-        self.ui.new_appointment_ui.new_vehicle_button.clicked.connect(lambda: self.add_vehicle(self.selected_vehicle_id))
-        self.ui.new_appointment_ui.save_button.clicked.connect(self._save_appointment)
+        self.ui.new_appointment_ui.new_customer_appt_button.clicked.connect(self._create_new_customer)
+
+        self.ui.new_appointment_ui.new_vehicle_appt_button.clicked.connect(
+            lambda: self.add_vehicle(getattr(self.ui, "customer_id_small", None)))
+
+        self.ui.new_appointment_ui.save_appt_button.clicked.connect(self._save_appointment)
         self.ui.new_appointment.show()
 
 ### LOADS SUBCLASSED WIDGETS customer_table_small AND vehicle_table_small ###
@@ -55,12 +59,27 @@ class AppointmentsManager:
 ### CONNECTS SIGNALS TO ELIMINATE TABLE CELLS USING LINE EDIT AS SEARCH BAR, AND CELLCLICKED ON custoemr_table_small
 ### FILTERS OUT vehicle_table_small WITH MATCHING ID NUMBERS ###
     def _connect_signals(self):
-        self.ui.new_appointment_ui.customer_search_line.textChanged.connect(self._filter_customers_and_vehicles)
+        self.ui.new_appointment_ui.customer_search__appt_line.textChanged.connect(self._filter_customers_and_vehicles)
         self.ui.customer_table_small.cellClicked.connect(self._filter_vehicles_by_customer)
-        self.ui.customer_table_small.cellClicked.connect(self.store_selected_vehicle_id)
+        self.ui.vehicle_table_small.cellClicked.connect(self._remember_vehicle_pk)
+        self.ui.customer_table_small.cellClicked.connect(self._remember_customer_pk)
 
+    def _remember_vehicle_pk(self, row, column):
+        # VehicleTableSmall should now have hidden VEHICLE_ID in column 5
+        item = self.ui.vehicle_table_small.item(row, 5)
+        try:
+            self.selected_vehicle_id = int(item.text()) if item else None
+        except (TypeError, ValueError):
+            self.selected_vehicle_id = None
 
-### OPENS new_customer_form ###
+    def _remember_customer_pk(self, row, column):
+        item = self.ui.customer_table_small.item(row, 3)  # customer ID column
+        try:
+            self.selected_customer_id = int(item.text()) if item else None
+        except (TypeError, ValueError):
+            self.selected_customer_id = None
+
+    ### OPENS new_customer_form ###
     def _create_new_customer(self):
         from openauto.ui import new_customer_form
         self.ui.show_new_customer_page, self.ui.show_new_customer_page_ui = self.ui.widget_manager.create_or_restore(
@@ -74,17 +93,17 @@ class AppointmentsManager:
         )
 
         self.ui.show_new_customer_page.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
-        self.ui.show_new_customer_page_ui.abort_button.clicked.connect(
+        self.ui.show_new_customer_page_ui.cancel_customer_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("new_customer"))
 
-        self.ui.show_new_customer_page_ui.edit_button.hide()
+        self.ui.show_new_customer_page_ui.edit_customer_button.hide()
         self.ui.show_new_customer_page_ui.first_name_line.setFocus()
         self.ui.show_new_customer_page.setFixedSize(606, 693)
         self.ui.show_new_customer_page.setWindowTitle("New Customer")
         self.ui.show_new_customer_page_ui.phone_line.setInputMask('(000) 000-0000;_')
         self.ui.new_appointment.hide()
         self.ui.show_new_customer_page.show()
-        self.ui.show_new_customer_page_ui.save_button.clicked.connect(self.save_customer)
+        self.ui.show_new_customer_page_ui.save_customer_button.clicked.connect(self.save_customer)
 
 
 
@@ -116,12 +135,16 @@ class AppointmentsManager:
 
 ### FILTERS VEHICLES WHEN A CELL IS CLICKED IN customer_table_small ###
     def _filter_vehicles_by_customer(self, row):
-        id_item = self.ui.customer_table_small.item(row, 3)  # ID column
+        id_item = self.ui.customer_table_small.item(row, 3)
         if not id_item:
             return
-
         customer_id = id_item.text().strip()
         self.ui.customer_id_small = customer_id
+        try:
+            self.selected_customer_id = int(customer_id)
+        except ValueError:
+            self.selected_customer_id = None
+
 
         for v_row in range(self.ui.vehicle_table_small.rowCount()):
             vehicle_owner_item = self.ui.vehicle_table_small.item(v_row, 3)  # Vehicle owner ID column
@@ -136,17 +159,25 @@ class AppointmentsManager:
                 self.ui.vehicle_table_small.selectRow(v_row)
                 break
 
+        for v_row in range(self.ui.vehicle_table_small.rowCount()):
+            if not self.ui.vehicle_table_small.isRowHidden(v_row):
+                self.ui.vehicle_table_small.selectRow(v_row)
+                self._remember_vehicle_pk(v_row, 0)  # set selected_vehicle_id
+                break
+        else:
+            # No vehicles visible for this customer
+            self.selected_vehicle_id = None
+
 ### GRABS THE ID NUMBER OF THE CUSTOMER SELECTED SO OTHER FUNCTIONS CAN USE IT FOR MYSQL ###
     def store_selected_vehicle_id(self, row, column):
         item = self.ui.customer_table_small.item(row, 3)
         if item:
             try:
-                self.selected_vehicle_id = int(item.text())
+                self.selected_customer_id = int(item.text())
             except ValueError:
-                self.selected_vehicle_id = None
+                self.selected_customer_id = None
         else:
-            print("No vehicle_id found in that cell.")
-            self.selected_vehicle_id = None
+            self.selected_customer_id = None
 
     ### SAVES NEW CUSTOMER TO DB ###
     def save_customer(self):
@@ -180,7 +211,7 @@ class AppointmentsManager:
         from openauto.ui import vehicle_search_form
 
         self.ui.vehicle_window, self.ui.vehicle_window_ui = self.ui.widget_manager.create_or_restore(
-            "vehicle_window", QtWidgets.QWidget, vehicle_search_form.Ui_Form
+            "vehicle_window", QtWidgets.QWidget, vehicle_search_form.Ui_vehicle_search_form
         )
 
         self.ui.vehicle_window.setParent(self.ui, QtCore.Qt.WindowType.Dialog
@@ -191,11 +222,11 @@ class AppointmentsManager:
 
         self.ui.vehicle_window.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
-        self.ui.vehicle_window_ui.abort_button.clicked.connect(
+        self.ui.vehicle_window_ui.vehicle_cancel_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("vehicle_window"))
         self.ui.vehicle_window_ui.vin_line.textChanged.connect(self._enforce_uppercase_vin)
         self.ui.vehicle_window_ui.vin_search_button.clicked.connect(self.search_vehicle)
-        self.ui.vehicle_window_ui.save_create_button.clicked.connect(self.save_vehicle)
+        self.ui.vehicle_window_ui.vehicle_save_button.clicked.connect(self.save_vehicle)
         self.ui.vehicle_window.show()
 
 
@@ -247,38 +278,61 @@ class AppointmentsManager:
         self.ui.widget_manager.close_and_delete("vehicle_window")
         self.ui.new_appointment.show()
 
-
-
     def _save_appointment(self):
-        row = self.ui.weekly_schedule_table.selected_row  # <- store this when cellClicked is triggered
-        col = self.ui.weekly_schedule_table.selected_column
+        w = self.ui.weekly_schedule_table
+        d = self.ui.hourly_schedule_table
 
-        # Calculate the time based on the row index
+        # Prefer weekly context; if not available, use hourly context
+        row = getattr(w, "selected_row", None)
+        date = getattr(w, "selected_date", None)
+        if row is None or date is None:
+            row = getattr(d, "selected_row", None)
+            date = getattr(d, "selected_date", None)
+
+        if row is None or date is None:
+            self.ui.message.setText("Pick a time slot in the schedule first.")
+            self.ui.message.show()
+            return
+
+        # Row -> time (7:00 AM start, 30-min slots)
         base_hour = 7
-        half_hour_slots = row
-        hour = base_hour + half_hour_slots // 2
-        minute = 30 if half_hour_slots % 2 else 0
-
-        # Build QTime
+        hour = base_hour + (row // 2)
+        minute = 30 if (row % 2) else 0
         time = QTime(hour, minute)
 
-        # Then continue with your normal save logic
-        date = self.ui.weekly_schedule_table.selected_date  # <- should be the selected day from schedule_calendar
-        notes = self.ui.new_appointment_ui.notes_edit.toPlainText()
-        customer_id = self.ui.customer_id_small
+        # --- Save rest as before ---
+        notes = self.ui.new_appointment_ui.notes_appt_edit.toPlainText().strip()
+        customer_id = self.selected_customer_id or getattr(self.ui, "customer_id_small", None)
+
         vehicle_id = self.selected_vehicle_id
-        selected_row = self.ui.vehicle_table_small.currentRow()
-        vin_item= self.ui.vehicle_table_small.item(selected_row, 4)
-        vin = vin_item.text().strip() if vin_item else None
-        if self.ui.new_appointment_ui.drop_button.isChecked():
+
+        if not customer_id:
+            self.ui.message.setText("Select a customer first.")
+            self.ui.message.show()
+            return
+
+        # VIN (optional, for reference/search)
+        vin = None
+        vr = self.ui.vehicle_table_small.currentRow()
+        if vr is not None and vr >= 0:
+            vin_item = self.ui.vehicle_table_small.item(vr, 4)  # hidden VIN col
+            vin = vin_item.text().strip() if vin_item else None
+
+        if self.ui.new_appointment_ui.drop_appt_button.isChecked():
             dropoff_type = "drop"
-        elif self.ui.new_appointment_ui.wait_button.isChecked():
+        elif self.ui.new_appointment_ui.wait_appt_button.isChecked():
             dropoff_type = "wait"
         else:
             self.ui.message.setText("Please select 'wait' or 'drop'")
             self.ui.message.show()
             return
 
+        if not customer_id:
+            self.ui.message.setText("Select a customer first.")
+            self.ui.message.show()
+            return
+
+        # Insert: vehicle_id may be None (DB now allows it)
         AppointmentRepository.insert_appointment(
             customer_id=customer_id,
             vehicle_id=vehicle_id,
@@ -290,6 +344,7 @@ class AppointmentsManager:
         )
 
         self.ui.widget_manager.close_and_delete("new_appointment")
-
         self.ui.message.setText("Appointment saved successfully.")
         self.ui.message.show()
+
+

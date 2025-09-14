@@ -6,27 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1008</width>
-    <height>730</height>
+    <width>661</width>
+    <height>437</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>30</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">color: black;
-background-color: #ebebe6;
-background-image: none;
-border-radius: 10px;</string>
+   <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
-   <item row="0" column="1">
-    <widget class="QFrame" name="frame">
+   <item row="0" column="0">
+    <widget class="QFrame" name="login_create_frame">
      <property name="styleSheet">
-      <string notr="true">color: black;
-background-color: #d8d8d2;
-background-image: none;
-border-radius: 10px;</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -39,24 +39,21 @@ border-radius: 10px;</string>
        <widget class="QPushButton" name="create_user_button">
         <property name="minimumSize">
          <size>
-          <width>90</width>
-          <height>40</height>
+          <width>0</width>
+          <height>30</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton {
-	color: #fff;
-	background-color: #94C4C1;
-}
-
-QPushButton:hover {
-	background-color: #CE6A6C;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Create</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
         </property>
        </widget>
       </item>
@@ -64,42 +61,39 @@ QPushButton:hover {
        <widget class="QPushButton" name="login_tab_button">
         <property name="minimumSize">
          <size>
-          <width>90</width>
-          <height>40</height>
+          <width>0</width>
+          <height>30</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton {
-	color: #fff;
-	background-color: #94C4C1;
-}
-
-QPushButton:hover {
-	background-color: #CE6A6C;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Login</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
    </item>
-   <item row="1" column="1">
+   <item row="1" column="0">
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="styleSheet">
-      <string notr="true">color: black;
-background-color: #ebebe6;
-background-image: none;
-border-radius: 10px;</string>
+      <string notr="true"/>
      </property>
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="page">
+     <widget class="QWidget" name="login_page">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="6" column="0">
         <widget class="QLabel" name="password_label">
@@ -108,6 +102,9 @@ border-radius: 10px;</string>
            <pointsize>13</pointsize>
            <bold>true</bold>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Password</string>
@@ -125,6 +122,9 @@ border-radius: 10px;</string>
            <bold>true</bold>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string>User Or Email</string>
          </property>
@@ -133,13 +133,6 @@ border-radius: 10px;</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="3">
-        <widget class="QCheckBox" name="remember_me">
-         <property name="text">
-          <string>Remember Me</string>
          </property>
         </widget>
        </item>
@@ -158,9 +151,7 @@ border-radius: 10px;</string>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -182,9 +173,7 @@ color: black;</string>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -206,24 +195,14 @@ color: black;</string>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: #fff;
-	border-radius: 10px;
-	background-color: #CE6A6C;
-}
-
-QPushButton:hover {
-	background-color: #94C4C1;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Cancel</string>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>Icons/cross.png</normaloff>Icons/cross.png</iconset>
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-x.png</normaloff>:/resources/icons3/24x24/cil-x.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -248,24 +227,14 @@ QPushButton:hover {
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: #fff;
-	border-radius: 10px;
-	background-color: #94C4C1;
-}
-
-QPushButton:hover {
-	background-color: #CE6A6C;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Login</string>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>Icons/check.png</normaloff>Icons/check.png</iconset>
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-check.png</normaloff>:/resources/icons3/24x24/cil-check.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -275,9 +244,16 @@ QPushButton:hover {
          </property>
         </widget>
        </item>
+       <item row="5" column="3">
+        <widget class="QCheckBox" name="remember_me">
+         <property name="text">
+          <string>Remember Me</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="page_2">
+     <widget class="QWidget" name="create_user_page">
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
         <layout class="QVBoxLayout" name="verticalLayout">
@@ -294,6 +270,9 @@ QPushButton:hover {
              <pointsize>13</pointsize>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
            </property>
            <property name="text">
             <string>First Name</string>
@@ -315,9 +294,7 @@ QPushButton:hover {
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;</string>
+            <string notr="true"/>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -331,6 +308,9 @@ color: black;</string>
              <pointsize>13</pointsize>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
            </property>
            <property name="text">
             <string>Last Name</string>
@@ -352,9 +332,7 @@ color: black;</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;</string>
+            <string notr="true"/>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -368,6 +346,9 @@ color: black;</string>
              <pointsize>13</pointsize>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
            </property>
            <property name="text">
             <string>Phone</string>
@@ -389,9 +370,7 @@ color: black;</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;</string>
+            <string notr="true"/>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -413,29 +392,7 @@ color: black;</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">QComboBox {
-	border-radius: 10px;
-	color: #fff;
-	background-color: #94C4C1;
-}
-
-QComboBox:hover {
-	background-color: #CE6A6C;
-	color: #fff;
-	border-radius: 10px;
-}
-
-QComboBox:drop-down {
-	background-color: #CE6A6C;
-	color: #fff;
-	border-radius: 10px;
-}
-
-QComboBox QAbstractItemView {
-	background-color: #CE6A6C;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+            <string notr="true"/>
            </property>
            <item>
             <property name="text">
@@ -461,7 +418,33 @@ QComboBox QAbstractItemView {
          </item>
         </layout>
        </item>
-       <item row="0" column="1">
+       <item row="1" column="2">
+        <widget class="QPushButton" name="save_user_button">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>Save</string>
+         </property>
+         <property name="icon">
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-check.png</normaloff>:/resources/icons3/24x24/cil-check.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QLabel" name="username_label">
@@ -476,6 +459,9 @@ QComboBox QAbstractItemView {
              <pointsize>13</pointsize>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
            </property>
            <property name="text">
             <string>User Name</string>
@@ -500,9 +486,7 @@ QComboBox QAbstractItemView {
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;</string>
+            <string notr="true"/>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -522,6 +506,9 @@ color: black;</string>
              <pointsize>13</pointsize>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
            </property>
            <property name="text">
             <string>Email</string>
@@ -543,9 +530,7 @@ color: black;</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;</string>
+            <string notr="true"/>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -565,6 +550,9 @@ color: black;</string>
              <pointsize>13</pointsize>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
            </property>
            <property name="text">
             <string>Password</string>
@@ -586,9 +574,7 @@ color: black;</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;</string>
+            <string notr="true"/>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -601,64 +587,19 @@ color: black;</string>
         <widget class="QPushButton" name="cancel_create_button">
          <property name="minimumSize">
           <size>
-           <width>150</width>
-           <height>35</height>
+           <width>0</width>
+           <height>0</height>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: #fff;
-	border-radius: 10px;
-	background-color: #CE6A6C;
-}
-
-QPushButton:hover {
-	background-color: #94C4C1;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Cancel</string>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>Icons/cross.png</normaloff>Icons/cross.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="save_user_button">
-         <property name="minimumSize">
-          <size>
-           <width>150</width>
-           <height>35</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: #fff;
-	background-color: #94C4C1;
-}
-
-QPushButton:hover {
-	background-color: #CE6A6C;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-         </property>
-         <property name="text">
-          <string>Save</string>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>Icons/check.png</normaloff>Icons/check.png</iconset>
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-x.png</normaloff>:/resources/icons3/24x24/cil-x.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -674,6 +615,8 @@ QPushButton:hover {
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="openauto_resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

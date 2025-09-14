@@ -5,7 +5,8 @@ from PyQt6.QtCore import (QPropertyAnimation, QEasingCurve, QRect, QSequentialAn
                           QPauseAnimation, QParallelAnimationGroup)
 from PyQt6.QtWidgets import QGraphicsOpacityEffect
 from PyQt6 import QtWidgets
-from openauto.repositories import customer_repository, vehicle_repository, appointment_repository, estimates_repository
+from openauto.repositories import (customer_repository, vehicle_repository,
+                                   appointment_repository, repair_orders_repository)
 import time
 
 
@@ -15,8 +16,8 @@ class CMenuHandler(QObject):
         super().__init__()
         self.target = target_widget
         self.texts = [
-            "  Customers", "  Repair Orders", "  Vehicles", "  Messages",
-            "  Schedule", "  Analytics", "  Settings", "  Quit"
+            "RO's", "Customers", "Vehicles", "Messages",
+            "Schedule", "Analytics", "Settings", "Quit"
         ]
         # Width animations: use minimumWidth so grid honors it
         self.animate_menu_open  = QPropertyAnimation(self.target, b"minimumWidth")
@@ -74,7 +75,7 @@ class CMenuHandler(QObject):
         # use the canonical texts instead of empty labels
         text_w = max(fm.horizontalAdvance(t) for t in self.texts) if self.texts else 0
         collapsed = max(self.target.minimumWidth(), 60)
-        return max(collapsed + 1, self.icon_area + self.side_pad + text_w)
+        return max(collapsed + 1, self.icon_area + self.side_pad + text_w) + 20
 
     def eventFilter(self, obj, event):
         buttons = obj.findChildren(QtWidgets.QPushButton)
@@ -100,9 +101,8 @@ class CMenuHandler(QObject):
 ### MAY CHANGE TO QEVENT LATER ###
 class SQLMonitor(QThread):
     customer_updates = pyqtSignal(list)
-    estimate_updates = pyqtSignal(list)
+    ro_updates = pyqtSignal(list)
     estimate_item_updates = pyqtSignal(list)
-    invoice_update = pyqtSignal(list)
     vehicle_update = pyqtSignal(list)
     belongs_to_update = pyqtSignal(list)
     small_customers_update = pyqtSignal(list)
@@ -114,7 +114,7 @@ class SQLMonitor(QThread):
     def __init__(self):
         super().__init__()
         self.last_customer_data = None
-        self.last_estimates_data = None
+        self.last_ro_data = None
         self.last_estimate_item_data = None
         self.last_invoice_data = None
         self.last_vehicle_data = None
@@ -127,28 +127,17 @@ class SQLMonitor(QThread):
     def run(self):
             while True:
                 try:
-                    estimate_data = estimates_repository.EstimateRepository.load_estimate() or []
+                    ro_data = repair_orders_repository.RepairOrdersRepository.load_repair_orders() or []
                     customer_data = customer_repository.CustomerRepository.get_all_customer_info() or []
                     vehicle_data = vehicle_repository.VehicleRepository.get_all_vehicle_info() or []
                     # belongs_to_data = customer_repository.CustomerRepository.get_all_customer_names()
                     customer_small_data = customer_repository.CustomerRepository.get_all_customer_names() or []
                     vehicle_small_data = vehicle_repository.VehicleRepository.get_all_vehicles() or []
                     appointment_data = appointment_repository.AppointmentRepository.get_appointment_ids_and_timestamps() or []
-                    # try:
-                    #     today = QDate.currentDate().toString("yyyy-MM-dd")
-                    #     data = appointment_repository.AppointmentRepository.get_appointments_for_week(
-                    #         QDate.fromString(today, "yyyy-MM-dd"), QDate.fromString(today, "yyyy-MM-dd")
-                    #     )
-                    #
-                    #     # Simple version: compare row count
-                    #     if self.last_hourly_data is None or len(data) != len(self.last_hourly_data):
-                    #         self.last_hourly_data = data
-                    #         self.hourly_schedule_update.emit()
-                    # except Exception as e:
-                    #     print("[SQLMonitor] Error in hourly schedule polling:", e)
-                    if estimate_data != self.last_estimates_data:
-                        self.last_estimates_data = estimate_data
-                        self.estimate_updates.emit(estimate_data)
+
+                    if ro_data != self.last_ro_data:
+                        self.last_ro_data = ro_data
+                        self.ro_updates.emit(ro_data)
 
                     if customer_data != self.last_customer_data:
                         self.last_customer_data = customer_data

@@ -1,116 +1,60 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-from openauto.theme import resources_rc
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        Form.setObjectName("Form")
-        Form.resize(636, 278)
-        Form.setStyleSheet("color: black;\n"
-"background-color: #ebebe6;\n"
-"background-image: none;\n"
-"border-radius: 10px;")
-        self.gridLayout = QtWidgets.QGridLayout(Form)
+
+class Ui_customer_search_form(object):
+    def setupUi(self, customer_search_form):
+        customer_search_form.setObjectName("customer_search_form")
+        customer_search_form.resize(636, 278)
+        customer_search_form.setStyleSheet("")
+        self.gridLayout = QtWidgets.QGridLayout(customer_search_form)
         self.gridLayout.setObjectName("gridLayout")
-        self.customer_search_edit = QtWidgets.QLineEdit(parent=Form)
+        self.customer_search_edit = QtWidgets.QLineEdit(parent=customer_search_form)
         self.customer_search_edit.setMinimumSize(QtCore.QSize(0, 30))
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
         self.customer_search_edit.setFont(font)
-        self.customer_search_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;\n"
-"color: black;")
+        self.customer_search_edit.setStyleSheet("")
         self.customer_search_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.customer_search_edit.setObjectName("customer_search_edit")
         self.gridLayout.addWidget(self.customer_search_edit, 1, 1, 1, 3)
-        self.belongs_to_label = QtWidgets.QLabel(parent=Form)
+        self.belongs_to_label = QtWidgets.QLabel(parent=customer_search_form)
         self.belongs_to_label.setMinimumSize(QtCore.QSize(0, 30))
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
         font.setItalic(True)
         self.belongs_to_label.setFont(font)
+        self.belongs_to_label.setStyleSheet("")
         self.belongs_to_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.belongs_to_label.setObjectName("belongs_to_label")
         self.gridLayout.addWidget(self.belongs_to_label, 1, 0, 1, 1)
-        self.confirm_button = QtWidgets.QPushButton(parent=Form)
-        self.confirm_button.setMinimumSize(QtCore.QSize(150, 30))
-        self.confirm_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
+        self.confirm_customer_search_button = QtWidgets.QPushButton(parent=customer_search_form)
+        self.confirm_customer_search_button.setMinimumSize(QtCore.QSize(150, 30))
+        self.confirm_customer_search_button.setStyleSheet("")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.confirm_button.setIcon(icon)
-        self.confirm_button.setIconSize(QtCore.QSize(30, 30))
-        self.confirm_button.setObjectName("confirm_button")
-        self.gridLayout.addWidget(self.confirm_button, 4, 3, 1, 1)
-        self.cancel_button = QtWidgets.QPushButton(parent=Form)
-        self.cancel_button.setMinimumSize(QtCore.QSize(150, 30))
-        self.cancel_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #A0153E;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #C49497;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
+        self.confirm_customer_search_button.setIcon(icon)
+        self.confirm_customer_search_button.setIconSize(QtCore.QSize(30, 30))
+        self.confirm_customer_search_button.setObjectName("confirm_customer_search_button")
+        self.gridLayout.addWidget(self.confirm_customer_search_button, 4, 3, 1, 1)
+        self.cancel_customer_search_button = QtWidgets.QPushButton(parent=customer_search_form)
+        self.cancel_customer_search_button.setMinimumSize(QtCore.QSize(150, 30))
+        self.cancel_customer_search_button.setStyleSheet("")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.cancel_button.setIcon(icon1)
-        self.cancel_button.setIconSize(QtCore.QSize(30, 30))
-        self.cancel_button.setObjectName("cancel_button")
-        self.gridLayout.addWidget(self.cancel_button, 4, 2, 1, 1)
-        self.customer_name_box = QtWidgets.QComboBox(parent=Form)
+        self.cancel_customer_search_button.setIcon(icon1)
+        self.cancel_customer_search_button.setIconSize(QtCore.QSize(30, 30))
+        self.cancel_customer_search_button.setObjectName("cancel_customer_search_button")
+        self.gridLayout.addWidget(self.cancel_customer_search_button, 4, 2, 1, 1)
+        self.customer_name_box = QtWidgets.QComboBox(parent=customer_search_form)
         self.customer_name_box.setMinimumSize(QtCore.QSize(300, 30))
-        self.customer_name_box.setStyleSheet("QComboBox {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QComboBox:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QComboBox:drop-down {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QComboBox QAbstractItemView {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}")
+        self.customer_name_box.setStyleSheet("")
         self.customer_name_box.setObjectName("customer_name_box")
         self.customer_name_box.addItem("")
         self.gridLayout.addWidget(self.customer_name_box, 0, 0, 1, 1)
-        self.add_customer_button = QtWidgets.QPushButton(parent=Form)
-        self.add_customer_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
+        self.add_customer_button = QtWidgets.QPushButton(parent=customer_search_form)
+        self.add_customer_button.setStyleSheet("")
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap(":/resources/Icons/user-add.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.add_customer_button.setIcon(icon2)
@@ -118,25 +62,26 @@ class Ui_Form(object):
         self.add_customer_button.setObjectName("add_customer_button")
         self.gridLayout.addWidget(self.add_customer_button, 0, 3, 1, 1)
 
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        self.retranslateUi(customer_search_form)
+        QtCore.QMetaObject.connectSlotsByName(customer_search_form)
 
-    def retranslateUi(self, Form):
+    def retranslateUi(self, customer_search_form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Search Customer"))
-        self.customer_search_edit.setPlaceholderText(_translate("Form", "Search ..."))
-        self.belongs_to_label.setText(_translate("Form", "Vehicle Belongs To..."))
-        self.confirm_button.setText(_translate("Form", "Confirm"))
-        self.cancel_button.setText(_translate("Form", "Cancel"))
-        self.customer_name_box.setItemText(0, _translate("Form", "Customer"))
-        self.add_customer_button.setText(_translate("Form", "New Customer"))
+        customer_search_form.setWindowTitle(_translate("customer_search_form", "Search Customer"))
+        self.customer_search_edit.setPlaceholderText(_translate("customer_search_form", "Search ..."))
+        self.belongs_to_label.setText(_translate("customer_search_form", "Vehicle Belongs To..."))
+        self.confirm_customer_search_button.setText(_translate("customer_search_form", "Confirm"))
+        self.cancel_customer_search_button.setText(_translate("customer_search_form", "Cancel"))
+        self.customer_name_box.setItemText(0, _translate("customer_search_form", "Customer"))
+        self.add_customer_button.setText(_translate("customer_search_form", "New Customer"))
+from openauto.theme import resources_rc
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
-    ui = Ui_Form()
-    ui.setupUi(Form)
-    Form.show()
+    customer_search_form = QtWidgets.QWidget()
+    ui = Ui_customer_search_form()
+    ui.setupUi(customer_search_form)
+    customer_search_form.show()
     sys.exit(app.exec())

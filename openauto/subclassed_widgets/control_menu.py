@@ -17,10 +17,6 @@ class ControlMenu(QtWidgets.QFrame):
         self.collapsed_width = 60
         self.setMinimumWidth(self.collapsed_width)
         self.setMaximumWidth(60)
-        self.setStyleSheet("color: #ffffff;\n"
-                                       "background-color: #314455;\n"
-                                       "background-image: none;\n"
-                                       "border-radius: 5px;")
 
         self.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)

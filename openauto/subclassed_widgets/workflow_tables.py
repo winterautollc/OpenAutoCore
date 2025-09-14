@@ -1,12 +1,10 @@
 from PyQt6.QtCore import pyqtSignal
 from PyQt6.QtWidgets import QTableWidget, QApplication
 from PyQt6 import QtWidgets, QtCore, QtGui
-from openauto.repositories import db_handlers, customer_repository, vehicle_repository, estimates_repository
+from openauto.repositories import db_handlers, customer_repository, vehicle_repository, repair_orders_repository
 from openauto.managers.customer_options_manager import CustomerOptionsManager
 from openauto.managers.estimate_options_manager import EstimateOptionsManager
 from decimal import Decimal, ROUND_HALF_UP
-
-from collections import defaultdict
 
 
 
@@ -59,7 +57,7 @@ class CustomerTable(QTableWidget):
                 item = QtWidgets.QTableWidgetItem(str(row[col]))
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.setItem(table_row, col, item)
-                self.setStyleSheet("background-color: #97aabd")
+                # self.setStyleSheet("background-color: #97aabd")
             table_row += 1
 
 
@@ -72,7 +70,7 @@ class CustomerTable(QTableWidget):
                 item = QtWidgets.QTableWidgetItem(str(row[col]))
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.setItem(table_row, col, item)
-                self.setStyleSheet("background-color: #97aabd")
+                # self.setStyleSheet("background-color: #97aabd")
 
             table_row += 1
 
@@ -110,14 +108,14 @@ class EstimateTable(QTableWidget):
 
     def _show_estimates(self):
         self.setRowCount(db_handlers.estimate_rows())
-        result = estimates_repository.EstimateRepository.load_estimate() or []
+        result = repair_orders_repository.RepairOrdersRepository.load_repair_orders() or []
         table_row = 0
         for row in result:
             for col in range(9):
                 item = QtWidgets.QTableWidgetItem(str(row[col]))
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.setItem(table_row, col, item)
-                self.setStyleSheet("background-color: #97aabd")
+                # self.setStyleSheet("background-color: #97aabd")
 
             table_row += 1
     def update_estimates(self, estimate_data):
@@ -128,7 +126,7 @@ class EstimateTable(QTableWidget):
                 item = QtWidgets.QTableWidgetItem(str(row[col]))
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.setItem(table_row, col, item)
-                self.setStyleSheet("background-color: #97aabd")
+                # self.setStyleSheet("background-color: #97aabd")
 
             table_row += 1
 
@@ -235,7 +233,7 @@ class VehicleTable(QtWidgets.QTableWidget):
                 item = QtWidgets.QTableWidgetItem(str(row[col]))
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.setItem(table_row, col, item)
-                self.setStyleSheet("background-color: #97aabd")
+                # self.setStyleSheet("background-color: #97aabd")
 
             table_row += 1
 
@@ -250,7 +248,7 @@ class VehicleTable(QtWidgets.QTableWidget):
                 item = QtWidgets.QTableWidgetItem(str(row[col]))
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.setItem(table_row, col, item)
-                self.setStyleSheet("background-color: #97aabd")
+                # self.setStyleSheet("background-color: #97aabd")
 
             table_row += 1
 

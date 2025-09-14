@@ -12,936 +12,41 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1335, 880)
+        MainWindow.resize(1334, 932)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setMinimumSize(QtCore.QSize(0, 0))
-        MainWindow.setStyleSheet("color: #ffffff;\n"
-"background-color: #647082;\n"
-"background-image: none;")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/resources/OpenAuto_Icons_48x48_dark_light/dark/logo_for_dark_theme.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        MainWindow.setWindowIcon(icon)
+        MainWindow.setStyleSheet("")
+        MainWindow.setIconSize(QtCore.QSize(16, 16))
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.centralwidget.sizePolicy().hasHeightForWidth())
         self.centralwidget.setSizePolicy(sizePolicy)
-        self.centralwidget.setStyleSheet("color: #ffffff;\n"
-"background-color: #f8f8f2;\n"
-"background-image: none;")
+        self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.top_buttons_stacked = QtWidgets.QStackedWidget(parent=self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.label_3 = QtWidgets.QLabel(parent=self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Maximum, QtWidgets.QSizePolicy.Policy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.top_buttons_stacked.sizePolicy().hasHeightForWidth())
-        self.top_buttons_stacked.setSizePolicy(sizePolicy)
-        self.top_buttons_stacked.setMinimumSize(QtCore.QSize(50, 0))
-        self.top_buttons_stacked.setMaximumSize(QtCore.QSize(16777215, 50))
-        self.top_buttons_stacked.setObjectName("top_buttons_stacked")
-        self.ro_header_buttons = QtWidgets.QWidget()
-        self.ro_header_buttons.setStyleSheet("")
-        self.ro_header_buttons.setObjectName("ro_header_buttons")
-        self.gridLayout_15 = QtWidgets.QGridLayout(self.ro_header_buttons)
-        self.gridLayout_15.setObjectName("gridLayout_15")
-        self.ro_frame = QtWidgets.QFrame(parent=self.ro_header_buttons)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.ro_frame.sizePolicy().hasHeightForWidth())
-        self.ro_frame.setSizePolicy(sizePolicy)
-        self.ro_frame.setMinimumSize(QtCore.QSize(0, 50))
-        self.ro_frame.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ArrowCursor))
-        self.ro_frame.setStyleSheet("color: #333;\n"
-"background-color: #f8f8f2;\n"
-"background-image: none;")
-        self.ro_frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.ro_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.ro_frame.setObjectName("ro_frame")
-        self.gridLayout_4 = QtWidgets.QGridLayout(self.ro_frame)
-        self.gridLayout_4.setObjectName("gridLayout_4")
-        self.working_ro_button = QtWidgets.QPushButton(parent=self.ro_frame)
-        self.working_ro_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.working_ro_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/resources/Icons/document.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.working_ro_button.setIcon(icon)
-        self.working_ro_button.setIconSize(QtCore.QSize(30, 30))
-        self.working_ro_button.setFlat(True)
-        self.working_ro_button.setObjectName("working_ro_button")
-        self.gridLayout_4.addWidget(self.working_ro_button, 0, 3, 1, 1)
-        self.checkout_button = QtWidgets.QPushButton(parent=self.ro_frame)
-        self.checkout_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.checkout_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/resources/Icons/shopping-cart.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.checkout_button.setIcon(icon1)
-        self.checkout_button.setIconSize(QtCore.QSize(30, 30))
-        self.checkout_button.setFlat(True)
-        self.checkout_button.setObjectName("checkout_button")
-        self.gridLayout_4.addWidget(self.checkout_button, 0, 4, 1, 1)
-        self.estimates_button = QtWidgets.QPushButton(parent=self.ro_frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.estimates_button.sizePolicy().hasHeightForWidth())
-        self.estimates_button.setSizePolicy(sizePolicy)
-        self.estimates_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.estimates_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/resources/Icons/ballot.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.estimates_button.setIcon(icon2)
-        self.estimates_button.setIconSize(QtCore.QSize(30, 30))
-        self.estimates_button.setFlat(True)
-        self.estimates_button.setObjectName("estimates_button")
-        self.gridLayout_4.addWidget(self.estimates_button, 0, 1, 1, 1)
-        self.show_all_ro_button = QtWidgets.QPushButton(parent=self.ro_frame)
-        self.show_all_ro_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.show_all_ro_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/resources/Icons/apps.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.show_all_ro_button.setIcon(icon3)
-        self.show_all_ro_button.setIconSize(QtCore.QSize(30, 30))
-        self.show_all_ro_button.setFlat(True)
-        self.show_all_ro_button.setObjectName("show_all_ro_button")
-        self.gridLayout_4.addWidget(self.show_all_ro_button, 0, 5, 1, 1)
-        self.new_ro_button = QtWidgets.QPushButton(parent=self.ro_frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.new_ro_button.sizePolicy().hasHeightForWidth())
-        self.new_ro_button.setSizePolicy(sizePolicy)
-        self.new_ro_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.new_ro_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(":/resources/Icons/add-document.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.new_ro_button.setIcon(icon4)
-        self.new_ro_button.setIconSize(QtCore.QSize(30, 30))
-        self.new_ro_button.setFlat(True)
-        self.new_ro_button.setObjectName("new_ro_button")
-        self.gridLayout_4.addWidget(self.new_ro_button, 0, 0, 1, 1)
-        self.approved_button = QtWidgets.QPushButton(parent=self.ro_frame)
-        self.approved_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.approved_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(":/resources/Icons/list-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.approved_button.setIcon(icon5)
-        self.approved_button.setIconSize(QtCore.QSize(30, 30))
-        self.approved_button.setFlat(True)
-        self.approved_button.setObjectName("approved_button")
-        self.gridLayout_4.addWidget(self.approved_button, 0, 2, 1, 1)
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.ro_search_edit = QtWidgets.QLineEdit(parent=self.ro_frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Maximum, QtWidgets.QSizePolicy.Policy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.ro_search_edit.sizePolicy().hasHeightForWidth())
-        self.ro_search_edit.setSizePolicy(sizePolicy)
-        self.ro_search_edit.setMinimumSize(QtCore.QSize(250, 0))
-        self.ro_search_edit.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
-        self.ro_search_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;\n"
-"")
-        self.ro_search_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.ro_search_edit.setObjectName("ro_search_edit")
-        self.horizontalLayout.addWidget(self.ro_search_edit)
-        self.gridLayout_4.addLayout(self.horizontalLayout, 0, 6, 1, 1)
-        self.gridLayout_15.addWidget(self.ro_frame, 0, 0, 1, 1)
-        self.top_buttons_stacked.addWidget(self.ro_header_buttons)
-        self.vehicle_header_buttons = QtWidgets.QWidget()
-        self.vehicle_header_buttons.setObjectName("vehicle_header_buttons")
-        self.gridLayout_16 = QtWidgets.QGridLayout(self.vehicle_header_buttons)
-        self.gridLayout_16.setObjectName("gridLayout_16")
-        self.vehicle_header_frame = QtWidgets.QFrame(parent=self.vehicle_header_buttons)
-        self.vehicle_header_frame.setMinimumSize(QtCore.QSize(0, 50))
-        self.vehicle_header_frame.setStyleSheet("color: #333;\n"
-"background-color: #f8f8f2;\n"
-"background-image: none;")
-        self.vehicle_header_frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.vehicle_header_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.vehicle_header_frame.setObjectName("vehicle_header_frame")
-        self.gridLayout_17 = QtWidgets.QGridLayout(self.vehicle_header_frame)
-        self.gridLayout_17.setObjectName("gridLayout_17")
-        self.gridLayout_20 = QtWidgets.QGridLayout()
-        self.gridLayout_20.setObjectName("gridLayout_20")
-        self.vehicle_search_line = QtWidgets.QLineEdit(parent=self.vehicle_header_frame)
-        self.vehicle_search_line.setMinimumSize(QtCore.QSize(0, 30))
-        self.vehicle_search_line.setMaximumSize(QtCore.QSize(600, 16777215))
-        self.vehicle_search_line.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;\n"
-"color: black;")
-        self.vehicle_search_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.vehicle_search_line.setObjectName("vehicle_search_line")
-        self.gridLayout_20.addWidget(self.vehicle_search_line, 0, 1, 1, 1)
-        self.new_vehicle_button = QtWidgets.QPushButton(parent=self.vehicle_header_frame)
-        self.new_vehicle_button.setMinimumSize(QtCore.QSize(200, 0))
-        self.new_vehicle_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        self.new_vehicle_button.setIcon(icon4)
-        self.new_vehicle_button.setIconSize(QtCore.QSize(30, 30))
-        self.new_vehicle_button.setFlat(True)
-        self.new_vehicle_button.setObjectName("new_vehicle_button")
-        self.gridLayout_20.addWidget(self.new_vehicle_button, 0, 0, 1, 1)
-        self.gridLayout_17.addLayout(self.gridLayout_20, 0, 1, 1, 1)
-        self.gridLayout_16.addWidget(self.vehicle_header_frame, 0, 0, 1, 1)
-        self.top_buttons_stacked.addWidget(self.vehicle_header_buttons)
-        self.ro_hub_buttons = QtWidgets.QWidget()
-        self.ro_hub_buttons.setMinimumSize(QtCore.QSize(0, 50))
-        self.ro_hub_buttons.setObjectName("ro_hub_buttons")
-        self.gridLayout_28 = QtWidgets.QGridLayout(self.ro_hub_buttons)
-        self.gridLayout_28.setObjectName("gridLayout_28")
-        self.frame_6 = QtWidgets.QFrame(parent=self.ro_hub_buttons)
-        self.frame_6.setMinimumSize(QtCore.QSize(0, 50))
-        self.frame_6.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.frame_6.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_6.setObjectName("frame_6")
-        self.gridLayout_35 = QtWidgets.QGridLayout(self.frame_6)
-        self.gridLayout_35.setObjectName("gridLayout_35")
-        self.cancel_ro_button = QtWidgets.QPushButton(parent=self.frame_6)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.cancel_ro_button.sizePolicy().hasHeightForWidth())
-        self.cancel_ro_button.setSizePolicy(sizePolicy)
-        self.cancel_ro_button.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.cancel_ro_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #A0153E;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #C49497;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.cancel_ro_button.setIcon(icon6)
-        self.cancel_ro_button.setIconSize(QtCore.QSize(30, 30))
-        self.cancel_ro_button.setObjectName("cancel_ro_button")
-        self.gridLayout_35.addWidget(self.cancel_ro_button, 0, 5, 1, 1)
-        self.save_ro_button = QtWidgets.QPushButton(parent=self.frame_6)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.save_ro_button.sizePolicy().hasHeightForWidth())
-        self.save_ro_button.setSizePolicy(sizePolicy)
-        self.save_ro_button.setMinimumSize(QtCore.QSize(0, 0))
-        self.save_ro_button.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.save_ro_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-save.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.save_ro_button.setIcon(icon7)
-        self.save_ro_button.setIconSize(QtCore.QSize(30, 30))
-        self.save_ro_button.setObjectName("save_ro_button")
-        self.gridLayout_35.addWidget(self.save_ro_button, 0, 2, 1, 1)
-        self.message_customer_button = QtWidgets.QPushButton(parent=self.frame_6)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.message_customer_button.sizePolicy().hasHeightForWidth())
-        self.message_customer_button.setSizePolicy(sizePolicy)
-        self.message_customer_button.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.message_customer_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-speech.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.message_customer_button.setIcon(icon8)
-        self.message_customer_button.setIconSize(QtCore.QSize(30, 30))
-        self.message_customer_button.setObjectName("message_customer_button")
-        self.gridLayout_35.addWidget(self.message_customer_button, 0, 4, 1, 1)
-        self.print_ro_button = QtWidgets.QPushButton(parent=self.frame_6)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.print_ro_button.sizePolicy().hasHeightForWidth())
-        self.print_ro_button.setSizePolicy(sizePolicy)
-        self.print_ro_button.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.print_ro_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon9 = QtGui.QIcon()
-        icon9.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-print.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.print_ro_button.setIcon(icon9)
-        self.print_ro_button.setIconSize(QtCore.QSize(30, 30))
-        self.print_ro_button.setObjectName("print_ro_button")
-        self.gridLayout_35.addWidget(self.print_ro_button, 0, 3, 1, 1)
-        self.gridLayout_28.addWidget(self.frame_6, 0, 0, 1, 1)
-        self.top_buttons_stacked.addWidget(self.ro_hub_buttons)
-        self.customer_header_buttons = QtWidgets.QWidget()
-        self.customer_header_buttons.setObjectName("customer_header_buttons")
-        self.gridLayout_27 = QtWidgets.QGridLayout(self.customer_header_buttons)
-        self.gridLayout_27.setObjectName("gridLayout_27")
-        self.customer_frame = QtWidgets.QFrame(parent=self.customer_header_buttons)
-        self.customer_frame.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customer_frame.sizePolicy().hasHeightForWidth())
-        self.customer_frame.setSizePolicy(sizePolicy)
-        self.customer_frame.setMinimumSize(QtCore.QSize(0, 50))
-        self.customer_frame.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
-        self.customer_frame.setStyleSheet("color: #333;\n"
-"background-color: #f8f8f2;\n"
-"background-image: none;")
-        self.customer_frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.customer_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.customer_frame.setObjectName("customer_frame")
-        self.gridLayout_10 = QtWidgets.QGridLayout(self.customer_frame)
-        self.gridLayout_10.setObjectName("gridLayout_10")
-        self.new_customer_button = QtWidgets.QPushButton(parent=self.customer_frame)
-        self.new_customer_button.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.new_customer_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.new_customer_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon10 = QtGui.QIcon()
-        icon10.addPixmap(QtGui.QPixmap(":/resources/Icons/user-add.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.new_customer_button.setIcon(icon10)
-        self.new_customer_button.setIconSize(QtCore.QSize(30, 30))
-        self.new_customer_button.setFlat(True)
-        self.new_customer_button.setObjectName("new_customer_button")
-        self.gridLayout_10.addWidget(self.new_customer_button, 0, 1, 1, 1)
-        self.search_customer_line = QtWidgets.QLineEdit(parent=self.customer_frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.search_customer_line.sizePolicy().hasHeightForWidth())
-        self.search_customer_line.setSizePolicy(sizePolicy)
-        self.search_customer_line.setMinimumSize(QtCore.QSize(250, 36))
-        self.search_customer_line.setMaximumSize(QtCore.QSize(500, 16777215))
-        self.search_customer_line.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
-        self.search_customer_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.search_customer_line.setObjectName("search_customer_line")
-        self.gridLayout_10.addWidget(self.search_customer_line, 0, 3, 1, 1)
-        self.gridLayout_27.addWidget(self.customer_frame, 0, 0, 1, 1)
-        self.top_buttons_stacked.addWidget(self.customer_header_buttons)
-        self.calender_header_buttons = QtWidgets.QWidget()
-        self.calender_header_buttons.setObjectName("calender_header_buttons")
-        self.calender_frame = QtWidgets.QFrame(parent=self.calender_header_buttons)
-        self.calender_frame.setGeometry(QtCore.QRect(70, 10, 1132, 48))
-        self.calender_frame.setStyleSheet("color: #333;\n"
-"background-color: #f8f8f2;\n"
-"background-image: none;")
-        self.calender_frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.calender_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.calender_frame.setObjectName("calender_frame")
-        self.gridLayout_12 = QtWidgets.QGridLayout(self.calender_frame)
-        self.gridLayout_12.setObjectName("gridLayout_12")
-        self.day_button = QtWidgets.QPushButton(parent=self.calender_frame)
-        self.day_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.day_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon11 = QtGui.QIcon()
-        icon11.addPixmap(QtGui.QPixmap(":/resources/Icons/calendar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.day_button.setIcon(icon11)
-        self.day_button.setIconSize(QtCore.QSize(30, 30))
-        self.day_button.setFlat(True)
-        self.day_button.setObjectName("day_button")
-        self.gridLayout_12.addWidget(self.day_button, 0, 0, 1, 1)
-        self.month_button = QtWidgets.QPushButton(parent=self.calender_frame)
-        self.month_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.month_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon12 = QtGui.QIcon()
-        icon12.addPixmap(QtGui.QPixmap(":/resources/Icons/menu-burger.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.month_button.setIcon(icon12)
-        self.month_button.setIconSize(QtCore.QSize(30, 30))
-        self.month_button.setFlat(True)
-        self.month_button.setObjectName("month_button")
-        self.gridLayout_12.addWidget(self.month_button, 0, 2, 1, 1)
-        self.week_button = QtWidgets.QPushButton(parent=self.calender_frame)
-        self.week_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.week_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        self.week_button.setIcon(icon11)
-        self.week_button.setIconSize(QtCore.QSize(30, 30))
-        self.week_button.setFlat(True)
-        self.week_button.setObjectName("week_button")
-        self.gridLayout_12.addWidget(self.week_button, 0, 1, 1, 1)
-        self.top_buttons_stacked.addWidget(self.calender_header_buttons)
-        self.messenger_header_buttons = QtWidgets.QWidget()
-        self.messenger_header_buttons.setObjectName("messenger_header_buttons")
-        self.message_button_frame = QtWidgets.QFrame(parent=self.messenger_header_buttons)
-        self.message_button_frame.setGeometry(QtCore.QRect(1, 0, 1221, 48))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.message_button_frame.sizePolicy().hasHeightForWidth())
-        self.message_button_frame.setSizePolicy(sizePolicy)
-        self.message_button_frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.message_button_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.message_button_frame.setObjectName("message_button_frame")
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.message_button_frame)
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.message_cust_find_button = QtWidgets.QPushButton(parent=self.message_button_frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.message_cust_find_button.sizePolicy().hasHeightForWidth())
-        self.message_cust_find_button.setSizePolicy(sizePolicy)
-        self.message_cust_find_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.message_cust_find_button.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
-        self.message_cust_find_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon13 = QtGui.QIcon()
-        icon13.addPixmap(QtGui.QPixmap(":/resources/Icons/comment-alt.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.message_cust_find_button.setIcon(icon13)
-        self.message_cust_find_button.setIconSize(QtCore.QSize(30, 30))
-        self.message_cust_find_button.setFlat(True)
-        self.message_cust_find_button.setObjectName("message_cust_find_button")
-        self.horizontalLayout_3.addWidget(self.message_cust_find_button)
-        self.message_recepient_label = QtWidgets.QLabel(parent=self.message_button_frame)
-        self.message_recepient_label.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
-        self.message_recepient_label.setText("")
-        self.message_recepient_label.setObjectName("message_recepient_label")
-        self.horizontalLayout_3.addWidget(self.message_recepient_label)
-        self.top_buttons_stacked.addWidget(self.messenger_header_buttons)
-        self.settings_header_buttons = QtWidgets.QWidget()
-        self.settings_header_buttons.setObjectName("settings_header_buttons")
-        self.gridLayout_22 = QtWidgets.QGridLayout(self.settings_header_buttons)
-        self.gridLayout_22.setObjectName("gridLayout_22")
-        self.frame = QtWidgets.QFrame(parent=self.settings_header_buttons)
-        self.frame.setMinimumSize(QtCore.QSize(50, 50))
-        self.frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame.setObjectName("frame")
-        self.gridLayout_21 = QtWidgets.QGridLayout(self.frame)
-        self.gridLayout_21.setObjectName("gridLayout_21")
-        self.quickbooks_button = QtWidgets.QPushButton(parent=self.frame)
-        self.quickbooks_button.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.quickbooks_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon14 = QtGui.QIcon()
-        icon14.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-browser.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.quickbooks_button.setIcon(icon14)
-        self.quickbooks_button.setIconSize(QtCore.QSize(30, 30))
-        self.quickbooks_button.setObjectName("quickbooks_button")
-        self.gridLayout_21.addWidget(self.quickbooks_button, 1, 5, 1, 1)
-        self.appearance_button = QtWidgets.QPushButton(parent=self.frame)
-        self.appearance_button.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.appearance_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        self.appearance_button.setIcon(icon14)
-        self.appearance_button.setIconSize(QtCore.QSize(30, 30))
-        self.appearance_button.setObjectName("appearance_button")
-        self.gridLayout_21.addWidget(self.appearance_button, 1, 2, 1, 1)
-        self.parts_integrate_button = QtWidgets.QPushButton(parent=self.frame)
-        self.parts_integrate_button.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.parts_integrate_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon15 = QtGui.QIcon()
-        icon15.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-tag.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.parts_integrate_button.setIcon(icon15)
-        self.parts_integrate_button.setIconSize(QtCore.QSize(30, 30))
-        self.parts_integrate_button.setObjectName("parts_integrate_button")
-        self.gridLayout_21.addWidget(self.parts_integrate_button, 1, 4, 1, 1)
-        self.save_settings_button = QtWidgets.QPushButton(parent=self.frame)
-        self.save_settings_button.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.save_settings_button.setSizeIncrement(QtCore.QSize(0, 30))
-        self.save_settings_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #CE6A6C;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        self.save_settings_button.setIcon(icon7)
-        self.save_settings_button.setIconSize(QtCore.QSize(30, 30))
-        self.save_settings_button.setObjectName("save_settings_button")
-        self.gridLayout_21.addWidget(self.save_settings_button, 1, 0, 1, 1)
-        self.users_button = QtWidgets.QPushButton(parent=self.frame)
-        self.users_button.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.users_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon16 = QtGui.QIcon()
-        icon16.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-user-follow.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.users_button.setIcon(icon16)
-        self.users_button.setIconSize(QtCore.QSize(30, 30))
-        self.users_button.setObjectName("users_button")
-        self.gridLayout_21.addWidget(self.users_button, 1, 3, 1, 1)
-        self.gridLayout_22.addWidget(self.frame, 0, 0, 1, 1)
-        self.top_buttons_stacked.addWidget(self.settings_header_buttons)
-        self.gridLayout_2.addWidget(self.top_buttons_stacked, 1, 0, 1, 2)
-        self.cmenu_frame = ControlMenu(parent=self.centralwidget)
-        self.cmenu_frame.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.cmenu_frame.sizePolicy().hasHeightForWidth())
-        self.cmenu_frame.setSizePolicy(sizePolicy)
-        self.cmenu_frame.setMinimumSize(QtCore.QSize(60, 0))
-        self.cmenu_frame.setMaximumSize(QtCore.QSize(1677215, 1677215))
-        self.cmenu_frame.setSizeIncrement(QtCore.QSize(0, 0))
-        self.cmenu_frame.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
-        self.cmenu_frame.setStyleSheet("color: #ffffff;\n"
-"background-color: #76ABAE;\n"
-"background-image: none;\n"
-"border-radius: 5px;")
-        self.cmenu_frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.cmenu_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.cmenu_frame.setLineWidth(1)
-        self.cmenu_frame.setObjectName("cmenu_frame")
-        self.gridLayout_42 = QtWidgets.QGridLayout(self.cmenu_frame)
-        self.gridLayout_42.setObjectName("gridLayout_42")
-        self.customers_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        self.customers_button.setFont(font)
-        self.customers_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.customers_button.setToolTip("")
-        self.customers_button.setToolTipDuration(-4)
-        self.customers_button.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
-        self.customers_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolTip {\n"
-"    background-color: #828786;  \n"
-"    border-radius: 10px;       \n"
-"    font-size: 14px;      \n"
-"    padding: 5px;\n"
-"}")
-        icon17 = QtGui.QIcon()
-        icon17.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-people.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.customers_button.setIcon(icon17)
-        self.customers_button.setIconSize(QtCore.QSize(30, 30))
-        self.customers_button.setFlat(False)
-        self.customers_button.setObjectName("customers_button")
-        self.gridLayout_42.addWidget(self.customers_button, 0, 0, 1, 1)
-        self.repair_orders_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        self.repair_orders_button.setFont(font)
-        self.repair_orders_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.repair_orders_button.setToolTip("")
-        self.repair_orders_button.setToolTipDuration(-4)
-        self.repair_orders_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 10px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolTip {\n"
-"    background-color: #828786;  \n"
-"    border-radius: 10px;       \n"
-"    font-size: 14px;      \n"
-"    padding: 5px;\n"
-"}")
-        self.repair_orders_button.setText("")
-        icon18 = QtGui.QIcon()
-        icon18.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-copy.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.repair_orders_button.setIcon(icon18)
-        self.repair_orders_button.setIconSize(QtCore.QSize(30, 30))
-        self.repair_orders_button.setObjectName("repair_orders_button")
-        self.gridLayout_42.addWidget(self.repair_orders_button, 1, 0, 1, 1)
-        self.vehicles_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        self.vehicles_button.setFont(font)
-        self.vehicles_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.vehicles_button.setToolTip("")
-        self.vehicles_button.setToolTipDuration(-4)
-        self.vehicles_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 10px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolTip {\n"
-"    background-color: #828786;  \n"
-"    border-radius: 10px;       \n"
-"    font-size: 14px;      \n"
-"    padding: 5px;\n"
-"}")
-        self.vehicles_button.setText("")
-        icon19 = QtGui.QIcon()
-        icon19.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/car.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.vehicles_button.setIcon(icon19)
-        self.vehicles_button.setIconSize(QtCore.QSize(30, 30))
-        self.vehicles_button.setFlat(False)
-        self.vehicles_button.setObjectName("vehicles_button")
-        self.gridLayout_42.addWidget(self.vehicles_button, 2, 0, 1, 1)
-        self.messaging_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        self.messaging_button.setFont(font)
-        self.messaging_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.messaging_button.setToolTip("")
-        self.messaging_button.setToolTipDuration(-4)
-        self.messaging_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolTip {\n"
-"    background-color: #828786;  \n"
-"    border-radius: 10px;       \n"
-"    font-size: 14px;      \n"
-"    padding: 5px;\n"
-"}")
-        self.messaging_button.setText("")
-        self.messaging_button.setIcon(icon8)
-        self.messaging_button.setIconSize(QtCore.QSize(30, 30))
-        self.messaging_button.setFlat(False)
-        self.messaging_button.setObjectName("messaging_button")
-        self.gridLayout_42.addWidget(self.messaging_button, 3, 0, 1, 1)
-        self.scheduling_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        self.scheduling_button.setFont(font)
-        self.scheduling_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.scheduling_button.setMouseTracking(True)
-        self.scheduling_button.setToolTip("")
-        self.scheduling_button.setToolTipDuration(-4)
-        self.scheduling_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolTip {\n"
-"    background-color: #828786;  \n"
-"    border-radius: 10px;       \n"
-"    font-size: 14px;      \n"
-"    padding: 5px;\n"
-"}")
-        self.scheduling_button.setText("")
-        icon20 = QtGui.QIcon()
-        icon20.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/calendar-865.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.scheduling_button.setIcon(icon20)
-        self.scheduling_button.setIconSize(QtCore.QSize(30, 30))
-        self.scheduling_button.setFlat(False)
-        self.scheduling_button.setObjectName("scheduling_button")
-        self.gridLayout_42.addWidget(self.scheduling_button, 4, 0, 1, 1)
-        self.analytics_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        self.analytics_button.setFont(font)
-        self.analytics_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.analytics_button.setToolTip("")
-        self.analytics_button.setToolTipDuration(-4)
-        self.analytics_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}\n"
-"\n"
-"QToolTip {\n"
-"    background-color: #828786;  \n"
-"    border-radius: 5px;       \n"
-"    font-size: 14px;      \n"
-"    padding: 5px;\n"
-"}")
-        self.analytics_button.setText("")
-        icon21 = QtGui.QIcon()
-        icon21.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-chart-line.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.analytics_button.setIcon(icon21)
-        self.analytics_button.setIconSize(QtCore.QSize(30, 30))
-        self.analytics_button.setFlat(False)
-        self.analytics_button.setObjectName("analytics_button")
-        self.gridLayout_42.addWidget(self.analytics_button, 5, 0, 1, 1)
-        self.settings_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        self.settings_button.setFont(font)
-        self.settings_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
-        self.settings_button.setToolTip("")
-        self.settings_button.setToolTipDuration(-4)
-        self.settings_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QToolTip {\n"
-"    background-color: #828786;  \n"
-"    border-radius: 10px;       \n"
-"    font-size: 14px;      \n"
-"    padding: 5px;\n"
-"}")
-        self.settings_button.setText("")
-        icon22 = QtGui.QIcon()
-        icon22.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-settings.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.settings_button.setIcon(icon22)
-        self.settings_button.setIconSize(QtCore.QSize(30, 30))
-        self.settings_button.setDefault(False)
-        self.settings_button.setFlat(False)
-        self.settings_button.setObjectName("settings_button")
-        self.gridLayout_42.addWidget(self.settings_button, 6, 0, 1, 1)
-        self.quit_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        self.quit_button.setFont(font)
-        self.quit_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #A0153E;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"\n"
-"}\n"
-"\n"
-"QToolTip {\n"
-"    background-color: #CE6A6C;  \n"
-"    border-radius: 10px;       \n"
-"    font-size: 14px;      \n"
-"    padding: 5px;\n"
-"}")
-        self.quit_button.setText("")
-        icon23 = QtGui.QIcon()
-        icon23.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-power-standby.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.quit_button.setIcon(icon23)
-        self.quit_button.setIconSize(QtCore.QSize(30, 30))
-        self.quit_button.setObjectName("quit_button")
-        self.gridLayout_42.addWidget(self.quit_button, 7, 0, 1, 1)
-        self.gridLayout_2.addWidget(self.cmenu_frame, 2, 0, 2, 1)
+        sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(sizePolicy)
+        self.label_3.setMaximumSize(QtCore.QSize(60, 50))
+        self.label_3.setText("")
+        self.label_3.setPixmap(QtGui.QPixmap(":/resources/OpenAuto_Icons_48x48_dark_light/mainwindow_icon/light_theme_logo.png"))
+        self.label_3.setScaledContents(True)
+        self.label_3.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.label_3.setObjectName("label_3")
+        self.gridLayout_2.addWidget(self.label_3, 0, 0, 1, 1)
         self.hub_stacked_widget = QtWidgets.QStackedWidget(parent=self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -953,9 +58,7 @@ class Ui_MainWindow(object):
         font.setBold(False)
         font.setItalic(False)
         self.hub_stacked_widget.setFont(font)
-        self.hub_stacked_widget.setStyleSheet("color: #333;\n"
-"background-color: #f8f8f2;\n"
-"background-image: none;")
+        self.hub_stacked_widget.setStyleSheet("")
         self.hub_stacked_widget.setObjectName("hub_stacked_widget")
         self.ro_page = QtWidgets.QWidget()
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
@@ -973,9 +76,10 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.ro_tabs.sizePolicy().hasHeightForWidth())
         self.ro_tabs.setSizePolicy(sizePolicy)
-        self.ro_tabs.setStyleSheet("border: 0;")
+        self.ro_tabs.setStyleSheet("")
         self.ro_tabs.setObjectName("ro_tabs")
         self.ro_tabsPage1 = QtWidgets.QWidget()
+        self.ro_tabsPage1.setStyleSheet("")
         self.ro_tabsPage1.setObjectName("ro_tabsPage1")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.ro_tabsPage1)
         self.gridLayout_5.setObjectName("gridLayout_5")
@@ -985,10 +89,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.estimates_table.sizePolicy().hasHeightForWidth())
         self.estimates_table.setSizePolicy(sizePolicy)
-        self.estimates_table.setStyleSheet("color: #333;\n"
-"background-color: #f8f8f2;\n"
-"background-image: none;\n"
-"")
+        self.estimates_table.setStyleSheet("")
         self.estimates_table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.estimates_table.setObjectName("estimates_table")
         self.estimates_table.setColumnCount(0)
@@ -1001,10 +102,7 @@ class Ui_MainWindow(object):
         self.gridLayout_6 = QtWidgets.QGridLayout(self.ro_tabsPage2)
         self.gridLayout_6.setObjectName("gridLayout_6")
         self.approved_table = ApprovedTable(parent=self.ro_tabsPage2)
-        self.approved_table.setStyleSheet("color: #333;\n"
-"background-color: #f8f8f2;\n"
-"background-image: none;\n"
-"")
+        self.approved_table.setStyleSheet("")
         self.approved_table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.approved_table.setObjectName("approved_table")
         self.approved_table.setColumnCount(0)
@@ -1012,14 +110,12 @@ class Ui_MainWindow(object):
         self.gridLayout_6.addWidget(self.approved_table, 0, 0, 1, 1)
         self.ro_tabs.addWidget(self.ro_tabsPage2)
         self.ro_tabsPage3 = QtWidgets.QWidget()
+        self.ro_tabsPage3.setStyleSheet("")
         self.ro_tabsPage3.setObjectName("ro_tabsPage3")
         self.gridLayout_7 = QtWidgets.QGridLayout(self.ro_tabsPage3)
         self.gridLayout_7.setObjectName("gridLayout_7")
         self.working_table = WorkingTable(parent=self.ro_tabsPage3)
-        self.working_table.setStyleSheet("color: #333;\n"
-"background-color: #f8f8f2;\n"
-"background-image: none;\n"
-"")
+        self.working_table.setStyleSheet("")
         self.working_table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.working_table.setObjectName("working_table")
         self.working_table.setColumnCount(0)
@@ -1027,14 +123,12 @@ class Ui_MainWindow(object):
         self.gridLayout_7.addWidget(self.working_table, 0, 0, 1, 1)
         self.ro_tabs.addWidget(self.ro_tabsPage3)
         self.ro_tabsPage4 = QtWidgets.QWidget()
+        self.ro_tabsPage4.setStyleSheet("")
         self.ro_tabsPage4.setObjectName("ro_tabsPage4")
         self.gridLayout_8 = QtWidgets.QGridLayout(self.ro_tabsPage4)
         self.gridLayout_8.setObjectName("gridLayout_8")
         self.checkout_table = CheckoutTable(parent=self.ro_tabsPage4)
-        self.checkout_table.setStyleSheet("color: #333;\n"
-"background-color: #f8f8f2;\n"
-"background-image: none;\n"
-"")
+        self.checkout_table.setStyleSheet("")
         self.checkout_table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.checkout_table.setObjectName("checkout_table")
         self.checkout_table.setColumnCount(0)
@@ -1042,15 +136,13 @@ class Ui_MainWindow(object):
         self.gridLayout_8.addWidget(self.checkout_table, 0, 0, 1, 1)
         self.ro_tabs.addWidget(self.ro_tabsPage4)
         self.ro_tabsPage5 = QtWidgets.QWidget()
+        self.ro_tabsPage5.setStyleSheet("")
         self.ro_tabsPage5.setObjectName("ro_tabsPage5")
         self.gridLayout_9 = QtWidgets.QGridLayout(self.ro_tabsPage5)
         self.gridLayout_9.setObjectName("gridLayout_9")
         self.show_all_table = QtWidgets.QTableWidget(parent=self.ro_tabsPage5)
         self.show_all_table.setMinimumSize(QtCore.QSize(0, 0))
-        self.show_all_table.setStyleSheet("color: #333;\n"
-"background-color: #f8f8f2;\n"
-"background-image: none;\n"
-"")
+        self.show_all_table.setStyleSheet("")
         self.show_all_table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.show_all_table.setObjectName("show_all_table")
         self.show_all_table.setColumnCount(0)
@@ -1083,9 +175,7 @@ class Ui_MainWindow(object):
         self.gridLayout_11 = QtWidgets.QGridLayout(self.customer_tabsPage1)
         self.gridLayout_11.setObjectName("gridLayout_11")
         self.customer_table = CustomerTable(parent=self.customer_tabsPage1)
-        self.customer_table.setStyleSheet("color: #333;\n"
-"background-color: #f8f8f2;\n"
-"background-image: none;")
+        self.customer_table.setStyleSheet("")
         self.customer_table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.customer_table.setObjectName("customer_table")
         self.customer_table.setColumnCount(0)
@@ -1099,6 +189,7 @@ class Ui_MainWindow(object):
         self.gridLayout_13 = QtWidgets.QGridLayout(self.calender_page)
         self.gridLayout_13.setObjectName("gridLayout_13")
         self.frame_4 = QtWidgets.QFrame(parent=self.calender_page)
+        self.frame_4.setStyleSheet("")
         self.frame_4.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_4.setObjectName("frame_4")
@@ -1115,12 +206,12 @@ class Ui_MainWindow(object):
         self.messaging_page.setObjectName("messaging_page")
         self.gridLayout_14 = QtWidgets.QGridLayout(self.messaging_page)
         self.gridLayout_14.setObjectName("gridLayout_14")
-        self.textBrowser = QtWidgets.QTextBrowser(parent=self.messaging_page)
-        self.textBrowser.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
-        self.textBrowser.setStyleSheet("background-color: #9aa3b1;")
-        self.textBrowser.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.textBrowser.setObjectName("textBrowser")
-        self.gridLayout_14.addWidget(self.textBrowser, 0, 0, 1, 4)
+        self.messaging_text_browser = QtWidgets.QTextBrowser(parent=self.messaging_page)
+        self.messaging_text_browser.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
+        self.messaging_text_browser.setStyleSheet("")
+        self.messaging_text_browser.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.messaging_text_browser.setObjectName("messaging_text_browser")
+        self.gridLayout_14.addWidget(self.messaging_text_browser, 0, 0, 1, 4)
         self.send_message_button = QtWidgets.QPushButton(parent=self.messaging_page)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
@@ -1129,20 +220,10 @@ class Ui_MainWindow(object):
         self.send_message_button.setSizePolicy(sizePolicy)
         self.send_message_button.setMinimumSize(QtCore.QSize(150, 0))
         self.send_message_button.setMaximumSize(QtCore.QSize(80, 30))
-        self.send_message_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon24 = QtGui.QIcon()
-        icon24.addPixmap(QtGui.QPixmap(":/resources/Icons/edit.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.send_message_button.setIcon(icon24)
+        self.send_message_button.setStyleSheet("")
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(":/resources/Icons/edit.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.send_message_button.setIcon(icon1)
         self.send_message_button.setIconSize(QtCore.QSize(30, 30))
         self.send_message_button.setFlat(True)
         self.send_message_button.setObjectName("send_message_button")
@@ -1155,8 +236,7 @@ class Ui_MainWindow(object):
         self.send_text_edit.setSizePolicy(sizePolicy)
         self.send_text_edit.setMaximumSize(QtCore.QSize(16777215, 100))
         self.send_text_edit.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
-        self.send_text_edit.setStyleSheet("background-color: #d4d8de;\n"
-"")
+        self.send_text_edit.setStyleSheet("")
         self.send_text_edit.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.send_text_edit.setObjectName("send_text_edit")
         self.gridLayout_14.addWidget(self.send_text_edit, 2, 0, 1, 3)
@@ -1169,6 +249,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.vehicle_page.sizePolicy().hasHeightForWidth())
         self.vehicle_page.setSizePolicy(sizePolicy)
+        self.vehicle_page.setStyleSheet("")
         self.vehicle_page.setObjectName("vehicle_page")
         self.gridLayout_18 = QtWidgets.QGridLayout(self.vehicle_page)
         self.gridLayout_18.setObjectName("gridLayout_18")
@@ -1178,12 +259,15 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.vehicle_tabs.sizePolicy().hasHeightForWidth())
         self.vehicle_tabs.setSizePolicy(sizePolicy)
+        self.vehicle_tabs.setStyleSheet("")
         self.vehicle_tabs.setObjectName("vehicle_tabs")
         self.vehicle_tabs_page = QtWidgets.QWidget()
+        self.vehicle_tabs_page.setStyleSheet("")
         self.vehicle_tabs_page.setObjectName("vehicle_tabs_page")
         self.gridLayout_19 = QtWidgets.QGridLayout(self.vehicle_tabs_page)
         self.gridLayout_19.setObjectName("gridLayout_19")
         self.vehicle_table = VehicleTable(parent=self.vehicle_tabs_page)
+        self.vehicle_table.setStyleSheet("")
         self.vehicle_table.setObjectName("vehicle_table")
         self.vehicle_table.setColumnCount(0)
         self.vehicle_table.setRowCount(0)
@@ -1208,6 +292,7 @@ class Ui_MainWindow(object):
         self.gridLayout_34 = QtWidgets.QGridLayout(self.frame_5)
         self.gridLayout_34.setObjectName("gridLayout_34")
         self.hourly_schedule_table = HourlySchedule(parent=self.frame_5)
+        self.hourly_schedule_table.setStyleSheet("")
         self.hourly_schedule_table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.hourly_schedule_table.setObjectName("hourly_schedule_table")
         self.hourly_schedule_table.setColumnCount(0)
@@ -1217,10 +302,12 @@ class Ui_MainWindow(object):
         self.gridLayout_30.addWidget(self.frame_3, 0, 0, 1, 1)
         self.hub_stacked_widget.addWidget(self.hourly_schedule_page)
         self.weekly_schedule_page = QtWidgets.QWidget()
+        self.weekly_schedule_page.setStyleSheet("")
         self.weekly_schedule_page.setObjectName("weekly_schedule_page")
         self.gridLayout_31 = QtWidgets.QGridLayout(self.weekly_schedule_page)
         self.gridLayout_31.setObjectName("gridLayout_31")
         self.weekly_schedule_table = WeeklySchedule(parent=self.weekly_schedule_page)
+        self.weekly_schedule_table.setStyleSheet("")
         self.weekly_schedule_table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.weekly_schedule_table.setObjectName("weekly_schedule_table")
         self.weekly_schedule_table.setColumnCount(0)
@@ -1228,13 +315,12 @@ class Ui_MainWindow(object):
         self.gridLayout_31.addWidget(self.weekly_schedule_table, 0, 0, 1, 1)
         self.hub_stacked_widget.addWidget(self.weekly_schedule_page)
         self.settings_page = QtWidgets.QWidget()
+        self.settings_page.setStyleSheet("")
         self.settings_page.setObjectName("settings_page")
         self.gridLayout_23 = QtWidgets.QGridLayout(self.settings_page)
         self.gridLayout_23.setObjectName("gridLayout_23")
         self.settings_frame = QtWidgets.QFrame(parent=self.settings_page)
-        self.settings_frame.setStyleSheet("color: #333;\n"
-"background-color: #f8f8f2;\n"
-"background-image: none;")
+        self.settings_frame.setStyleSheet("")
         self.settings_frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.settings_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.settings_frame.setObjectName("settings_frame")
@@ -1244,6 +330,7 @@ class Ui_MainWindow(object):
         self.gridLayout_29.addItem(spacerItem1, 3, 2, 1, 1)
         self.matrix_frame = QtWidgets.QFrame(parent=self.settings_frame)
         self.matrix_frame.setMinimumSize(QtCore.QSize(621, 0))
+        self.matrix_frame.setStyleSheet("")
         self.matrix_frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.matrix_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.matrix_frame.setObjectName("matrix_frame")
@@ -1255,6 +342,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.matrix_table.sizePolicy().hasHeightForWidth())
         self.matrix_table.setSizePolicy(sizePolicy)
+        self.matrix_table.setStyleSheet("")
         self.matrix_table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.matrix_table.setAlternatingRowColors(True)
         self.matrix_table.setObjectName("matrix_table")
@@ -1266,62 +354,33 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.matrix_label.setFont(font)
         self.matrix_label.setStyleSheet("")
         self.matrix_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.matrix_label.setObjectName("matrix_label")
         self.gridLayout_24.addWidget(self.matrix_label, 0, 0, 1, 2)
         self.remove_row_button = QtWidgets.QPushButton(parent=self.matrix_frame)
-        self.remove_row_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #A0153E;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #C49497;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon25 = QtGui.QIcon()
-        icon25.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-minus.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.remove_row_button.setIcon(icon25)
+        self.remove_row_button.setStyleSheet("")
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-minus.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.remove_row_button.setIcon(icon2)
         self.remove_row_button.setIconSize(QtCore.QSize(30, 30))
         self.remove_row_button.setObjectName("remove_row_button")
         self.gridLayout_24.addWidget(self.remove_row_button, 5, 1, 1, 1)
         self.add_row_button = QtWidgets.QPushButton(parent=self.matrix_frame)
-        self.add_row_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon26 = QtGui.QIcon()
-        icon26.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-plus.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.add_row_button.setIcon(icon26)
+        self.add_row_button.setStyleSheet("")
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-plus.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.add_row_button.setIcon(icon3)
         self.add_row_button.setIconSize(QtCore.QSize(30, 30))
         self.add_row_button.setObjectName("add_row_button")
         self.gridLayout_24.addWidget(self.add_row_button, 5, 0, 1, 1)
         self.save_matrix_button = QtWidgets.QPushButton(parent=self.matrix_frame)
-        self.save_matrix_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon27 = QtGui.QIcon()
-        icon27.addPixmap(QtGui.QPixmap("theme/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.save_matrix_button.setIcon(icon27)
+        self.save_matrix_button.setStyleSheet("")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.save_matrix_button.setIcon(icon4)
         self.save_matrix_button.setIconSize(QtCore.QSize(30, 30))
         self.save_matrix_button.setObjectName("save_matrix_button")
         self.gridLayout_24.addWidget(self.save_matrix_button, 6, 0, 1, 1)
@@ -1329,29 +388,21 @@ class Ui_MainWindow(object):
         self.horizontalLayout_10 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_10.setObjectName("horizontalLayout_10")
         self.logo_label = QtWidgets.QLabel(parent=self.settings_frame)
+        self.logo_label.setStyleSheet("")
         self.logo_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.logo_label.setObjectName("logo_label")
         self.horizontalLayout_10.addWidget(self.logo_label)
         self.import_logo_button = QtWidgets.QPushButton(parent=self.settings_frame)
-        self.import_logo_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon28 = QtGui.QIcon()
-        icon28.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-external-link.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.import_logo_button.setIcon(icon28)
+        self.import_logo_button.setStyleSheet("")
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-external-link.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.import_logo_button.setIcon(icon5)
         self.import_logo_button.setIconSize(QtCore.QSize(30, 30))
         self.import_logo_button.setObjectName("import_logo_button")
         self.horizontalLayout_10.addWidget(self.import_logo_button)
         self.gridLayout_29.addLayout(self.horizontalLayout_10, 6, 2, 1, 1)
         self.warranty_frame = QtWidgets.QFrame(parent=self.settings_frame)
+        self.warranty_frame.setStyleSheet("")
         self.warranty_frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.warranty_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.warranty_frame.setObjectName("warranty_frame")
@@ -1359,18 +410,13 @@ class Ui_MainWindow(object):
         self.gridLayout_25.setObjectName("gridLayout_25")
         self.warranty_miles_line = QtWidgets.QLineEdit(parent=self.warranty_frame)
         self.warranty_miles_line.setMinimumSize(QtCore.QSize(0, 30))
-        self.warranty_miles_line.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.warranty_miles_line.setStyleSheet("")
         self.warranty_miles_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.warranty_miles_line.setObjectName("warranty_miles_line")
         self.gridLayout_25.addWidget(self.warranty_miles_line, 1, 1, 1, 1)
         self.warranty_miles_checkbox = QtWidgets.QCheckBox(parent=self.warranty_frame)
         self.warranty_miles_checkbox.setMinimumSize(QtCore.QSize(0, 30))
-        self.warranty_miles_checkbox.setStyleSheet("QCheckBox {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #94C4C1;\n"
-"}")
+        self.warranty_miles_checkbox.setStyleSheet("")
         self.warranty_miles_checkbox.setObjectName("warranty_miles_checkbox")
         self.gridLayout_25.addWidget(self.warranty_miles_checkbox, 0, 0, 1, 2)
         self.distance_label = QtWidgets.QLabel(parent=self.warranty_frame)
@@ -1384,17 +430,14 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.distance_label.setFont(font)
         self.distance_label.setStyleSheet("")
         self.distance_label.setObjectName("distance_label")
         self.gridLayout_25.addWidget(self.distance_label, 1, 0, 1, 1)
         self.warranty_time_checkbox = QtWidgets.QCheckBox(parent=self.warranty_frame)
         self.warranty_time_checkbox.setMinimumSize(QtCore.QSize(0, 30))
-        self.warranty_time_checkbox.setStyleSheet("QCheckBox {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #94C4C1;\n"
-"}")
+        self.warranty_time_checkbox.setStyleSheet("")
         self.warranty_time_checkbox.setObjectName("warranty_time_checkbox")
         self.gridLayout_25.addWidget(self.warranty_time_checkbox, 0, 2, 1, 2)
         self.months_label = QtWidgets.QLabel(parent=self.warranty_frame)
@@ -1407,14 +450,14 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.months_label.setFont(font)
         self.months_label.setStyleSheet("")
         self.months_label.setObjectName("months_label")
         self.gridLayout_25.addWidget(self.months_label, 1, 2, 1, 1)
         self.warranty_time_line = QtWidgets.QLineEdit(parent=self.warranty_frame)
         self.warranty_time_line.setMinimumSize(QtCore.QSize(0, 30))
-        self.warranty_time_line.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.warranty_time_line.setStyleSheet("")
         self.warranty_time_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.warranty_time_line.setObjectName("warranty_time_line")
         self.gridLayout_25.addWidget(self.warranty_time_line, 1, 3, 1, 1)
@@ -1428,6 +471,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.shop_name_label.setFont(font)
         self.shop_name_label.setStyleSheet("")
         self.shop_name_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -1439,9 +483,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(False)
         self.shop_name_line.setFont(font)
-        self.shop_name_line.setStyleSheet("border-radius: 10px;\n"
-"background-color: #fefeff;")
+        self.shop_name_line.setStyleSheet("")
         self.shop_name_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.shop_name_line.setObjectName("shop_name_line")
         self.horizontalLayout_4.addWidget(self.shop_name_line)
@@ -1453,6 +497,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.facility_id_label.setFont(font)
         self.facility_id_label.setStyleSheet("")
         self.facility_id_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -1463,9 +508,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(False)
         self.facility_id_line.setFont(font)
-        self.facility_id_line.setStyleSheet("border-radius: 10px;\n"
-"background-color: #fefeff;")
+        self.facility_id_line.setStyleSheet("")
         self.facility_id_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.facility_id_line.setObjectName("facility_id_line")
         self.horizontalLayout_5.addWidget(self.facility_id_line)
@@ -1477,6 +522,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.address_label.setFont(font)
         self.address_label.setStyleSheet("")
         self.address_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -1487,9 +533,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(False)
         self.address_line.setFont(font)
-        self.address_line.setStyleSheet("border-radius: 10px;\n"
-"background-color: #fefeff;")
+        self.address_line.setStyleSheet("")
         self.address_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.address_line.setObjectName("address_line")
         self.horizontalLayout_6.addWidget(self.address_line)
@@ -1501,6 +547,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.city_label.setFont(font)
         self.city_label.setStyleSheet("")
         self.city_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -1511,9 +558,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(False)
         self.city_line.setFont(font)
-        self.city_line.setStyleSheet("border-radius: 10px;\n"
-"background-color: #fefeff;")
+        self.city_line.setStyleSheet("")
         self.city_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.city_line.setObjectName("city_line")
         self.horizontalLayout_7.addWidget(self.city_line)
@@ -1525,6 +572,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.state_label.setFont(font)
         self.state_label.setStyleSheet("")
         self.state_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -1535,9 +583,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(False)
         self.state_line.setFont(font)
-        self.state_line.setStyleSheet("border-radius: 10px;\n"
-"background-color: #fefeff;")
+        self.state_line.setStyleSheet("")
         self.state_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.state_line.setObjectName("state_line")
         self.horizontalLayout_8.addWidget(self.state_line)
@@ -1549,6 +597,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.zipcode_label.setFont(font)
         self.zipcode_label.setStyleSheet("")
         self.zipcode_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -1559,9 +608,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(False)
         self.zipcode_line.setFont(font)
-        self.zipcode_line.setStyleSheet("border-radius: 10px;\n"
-"background-color: #fefeff;")
+        self.zipcode_line.setStyleSheet("")
         self.zipcode_line.setText("")
         self.zipcode_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.zipcode_line.setObjectName("zipcode_line")
@@ -1581,6 +630,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.disclamer_label.setFont(font)
         self.disclamer_label.setStyleSheet("")
         self.disclamer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -1592,15 +642,16 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(False)
         self.disclamer_edit.setFont(font)
-        self.disclamer_edit.setStyleSheet("border-radius: 10px;\n"
-"background-color: #fefeff;")
+        self.disclamer_edit.setStyleSheet("")
         self.disclamer_edit.setObjectName("disclamer_edit")
         self.verticalLayout_3.addWidget(self.disclamer_edit)
         self.gridLayout_29.addLayout(self.verticalLayout_3, 1, 2, 2, 1)
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.gridLayout_29.addItem(spacerItem2, 0, 1, 1, 1)
         self.frame_2 = QtWidgets.QFrame(parent=self.settings_frame)
+        self.frame_2.setStyleSheet("")
         self.frame_2.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_2.setObjectName("frame_2")
@@ -1611,64 +662,36 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.label.setFont(font)
         self.label.setStyleSheet("")
         self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label.setObjectName("label")
         self.gridLayout_26.addWidget(self.label, 0, 0, 1, 2)
         self.labor_table = LaborTable(parent=self.frame_2)
+        self.labor_table.setStyleSheet("")
         self.labor_table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.labor_table.setObjectName("labor_table")
         self.labor_table.setColumnCount(0)
         self.labor_table.setRowCount(0)
         self.gridLayout_26.addWidget(self.labor_table, 1, 0, 1, 2)
         self.add_labor_row = QtWidgets.QPushButton(parent=self.frame_2)
-        self.add_labor_row.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        self.add_labor_row.setIcon(icon26)
+        self.add_labor_row.setStyleSheet("")
+        self.add_labor_row.setIcon(icon3)
         self.add_labor_row.setIconSize(QtCore.QSize(30, 30))
         self.add_labor_row.setObjectName("add_labor_row")
         self.gridLayout_26.addWidget(self.add_labor_row, 2, 0, 1, 1)
         self.remove_labor_row = QtWidgets.QPushButton(parent=self.frame_2)
-        self.remove_labor_row.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #A0153E;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #C49497;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        self.remove_labor_row.setIcon(icon25)
+        self.remove_labor_row.setStyleSheet("")
+        self.remove_labor_row.setIcon(icon2)
         self.remove_labor_row.setIconSize(QtCore.QSize(30, 30))
         self.remove_labor_row.setObjectName("remove_labor_row")
         self.gridLayout_26.addWidget(self.remove_labor_row, 2, 1, 1, 1)
         self.save_labor_button = QtWidgets.QPushButton(parent=self.frame_2)
-        self.save_labor_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon29 = QtGui.QIcon()
-        icon29.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.save_labor_button.setIcon(icon29)
+        self.save_labor_button.setStyleSheet("")
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.save_labor_button.setIcon(icon6)
         self.save_labor_button.setIconSize(QtCore.QSize(30, 30))
         self.save_labor_button.setObjectName("save_labor_button")
         self.gridLayout_26.addWidget(self.save_labor_button, 3, 0, 1, 1)
@@ -1691,6 +714,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.ro_placer_label.setFont(font)
         self.ro_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.ro_placer_label.setObjectName("ro_placer_label")
@@ -1711,6 +735,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.writer_placer_label.setFont(font)
         self.writer_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.writer_placer_label.setObjectName("writer_placer_label")
@@ -1718,29 +743,7 @@ class Ui_MainWindow(object):
         self.writer_box = QtWidgets.QComboBox(parent=self.ro_control_page)
         self.writer_box.setMinimumSize(QtCore.QSize(150, 30))
         self.writer_box.setSizeIncrement(QtCore.QSize(0, 0))
-        self.writer_box.setStyleSheet("QComboBox {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QComboBox:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QComboBox:drop-down {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QComboBox QAbstractItemView {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}")
+        self.writer_box.setStyleSheet("")
         self.writer_box.setObjectName("writer_box")
         self.horizontalLayout_23.addWidget(self.writer_box)
         self.verticalLayout_7.addLayout(self.horizontalLayout_23)
@@ -1758,29 +761,7 @@ class Ui_MainWindow(object):
         self.technician_box = QtWidgets.QComboBox(parent=self.ro_control_page)
         self.technician_box.setMinimumSize(QtCore.QSize(150, 30))
         self.technician_box.setSizeIncrement(QtCore.QSize(0, 30))
-        self.technician_box.setStyleSheet("QComboBox {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QComboBox:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QComboBox:drop-down {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QComboBox QAbstractItemView {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}")
+        self.technician_box.setStyleSheet("")
         self.technician_box.setObjectName("technician_box")
         self.horizontalLayout_22.addWidget(self.technician_box)
         self.verticalLayout_7.addLayout(self.horizontalLayout_22)
@@ -1793,6 +774,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.first_placer_label.setFont(font)
         self.first_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.first_placer_label.setObjectName("first_placer_label")
@@ -1805,8 +787,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setItalic(False)
         self.name_edit.setFont(font)
-        self.name_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.name_edit.setStyleSheet("")
         self.name_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.name_edit.setObjectName("name_edit")
         self.horizontalLayout_15.addWidget(self.name_edit)
@@ -1817,6 +798,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.phone_placer_label.setFont(font)
         self.phone_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.phone_placer_label.setObjectName("phone_placer_label")
@@ -1826,9 +808,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.number_edit.setFont(font)
-        self.number_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.number_edit.setStyleSheet("")
         self.number_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.number_edit.setObjectName("number_edit")
         self.horizontalLayout_16.addWidget(self.number_edit)
@@ -1839,6 +821,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.vehicle_label.setFont(font)
         self.vehicle_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.vehicle_label.setObjectName("vehicle_label")
@@ -1847,9 +830,9 @@ class Ui_MainWindow(object):
         self.vehcle_line.setMinimumSize(QtCore.QSize(0, 30))
         font = QtGui.QFont()
         font.setBold(True)
+        font.setItalic(False)
         self.vehcle_line.setFont(font)
-        self.vehcle_line.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.vehcle_line.setStyleSheet("")
         self.vehcle_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.vehcle_line.setObjectName("vehcle_line")
         self.horizontalLayout_2.addWidget(self.vehcle_line)
@@ -1858,20 +841,10 @@ class Ui_MainWindow(object):
         self.gridLayout_41.addLayout(self.horizontalLayout_24, 1, 0, 1, 1)
         self.mpi_button = QtWidgets.QPushButton(parent=self.ro_control_page)
         self.mpi_button.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.mpi_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon30 = QtGui.QIcon()
-        icon30.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-camera.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.mpi_button.setIcon(icon30)
+        self.mpi_button.setStyleSheet("")
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-camera.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.mpi_button.setIcon(icon7)
         self.mpi_button.setIconSize(QtCore.QSize(30, 30))
         self.mpi_button.setObjectName("mpi_button")
         self.gridLayout_41.addWidget(self.mpi_button, 9, 4, 1, 1)
@@ -1890,9 +863,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.notes_text_edit.setFont(font)
-        self.notes_text_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.notes_text_edit.setStyleSheet("")
         self.notes_text_edit.setLineWidth(3)
         self.notes_text_edit.setObjectName("notes_text_edit")
         self.verticalLayout_6.addWidget(self.notes_text_edit)
@@ -1916,21 +889,27 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(True)
         self.concern_button.setFont(font)
+        self.concern_button.setStyleSheet("")
         self.concern_button.setObjectName("concern_button")
         self.verticalLayout_4.addWidget(self.concern_button)
         self.cause_button = QtWidgets.QRadioButton(parent=self.groupBox)
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(True)
         self.cause_button.setFont(font)
+        self.cause_button.setStyleSheet("")
         self.cause_button.setObjectName("cause_button")
         self.verticalLayout_4.addWidget(self.cause_button)
         self.correction_button = QtWidgets.QRadioButton(parent=self.groupBox)
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(True)
         self.correction_button.setFont(font)
+        self.correction_button.setStyleSheet("")
         self.correction_button.setObjectName("correction_button")
         self.verticalLayout_4.addWidget(self.correction_button)
         self.horizontalLayout_11.addLayout(self.verticalLayout_4)
@@ -1944,9 +923,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(True)
         self.concern_edit.setFont(font)
-        self.concern_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.concern_edit.setStyleSheet("")
         self.concern_edit.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.concern_edit.setObjectName("concern_edit")
         self.gridLayout_36.addWidget(self.concern_edit, 0, 0, 1, 1)
@@ -1959,9 +938,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(True)
         self.correection_edit.setFont(font)
-        self.correection_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.correection_edit.setStyleSheet("")
         self.correection_edit.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.correection_edit.setObjectName("correection_edit")
         self.gridLayout_38.addWidget(self.correection_edit, 0, 0, 1, 1)
@@ -1974,6 +953,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(False)
         self.cause_edit.setFont(font)
         self.cause_edit.setStyleSheet("border-radius: 5px;\n"
 "background-color: #fefeff;")
@@ -1991,7 +971,7 @@ class Ui_MainWindow(object):
         self.price_scrollarea.setWidgetResizable(True)
         self.price_scrollarea.setObjectName("price_scrollarea")
         self.price_scroll = QtWidgets.QWidget()
-        self.price_scroll.setGeometry(QtCore.QRect(0, 0, 251, 296))
+        self.price_scroll.setGeometry(QtCore.QRect(0, 0, 251, 275))
         self.price_scroll.setObjectName("price_scroll")
         self.gridLayout_39 = QtWidgets.QGridLayout(self.price_scroll)
         self.gridLayout_39.setObjectName("gridLayout_39")
@@ -2001,6 +981,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.parts_placer_label.setFont(font)
         self.parts_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.parts_placer_label.setObjectName("parts_placer_label")
@@ -2021,6 +1002,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.labor_placer_label.setFont(font)
         self.labor_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.labor_placer_label.setObjectName("labor_placer_label")
@@ -2041,6 +1023,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.fees_placer_label.setFont(font)
         self.fees_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.fees_placer_label.setObjectName("fees_placer_label")
@@ -2061,6 +1044,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.tires_placer_label.setFont(font)
         self.tires_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.tires_placer_label.setObjectName("tires_placer_label")
@@ -2102,6 +1086,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.subtotal_placer_label.setFont(font)
         self.subtotal_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.subtotal_placer_label.setObjectName("subtotal_placer_label")
@@ -2122,6 +1107,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.shop_supplies_placer_label.setFont(font)
         self.shop_supplies_placer_label.setObjectName("shop_supplies_placer_label")
         self.horizontalLayout_32.addWidget(self.shop_supplies_placer_label)
@@ -2141,6 +1127,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.tax_placer_label.setFont(font)
         self.tax_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.tax_placer_label.setObjectName("tax_placer_label")
@@ -2161,6 +1148,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
+        font.setItalic(False)
         self.total_placer_label.setFont(font)
         self.total_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.total_placer_label.setObjectName("total_placer_label")
@@ -2188,20 +1176,10 @@ class Ui_MainWindow(object):
         self.gridLayout_41.addWidget(self.ro_status_label, 0, 1, 1, 1)
         self.ro_status_button = QtWidgets.QPushButton(parent=self.ro_control_page)
         self.ro_status_button.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.ro_status_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon31 = QtGui.QIcon()
-        icon31.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-transfer.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.ro_status_button.setIcon(icon31)
+        self.ro_status_button.setStyleSheet("")
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-transfer.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.ro_status_button.setIcon(icon8)
         self.ro_status_button.setIconSize(QtCore.QSize(30, 30))
         self.ro_status_button.setObjectName("ro_status_button")
         self.gridLayout_41.addWidget(self.ro_status_button, 9, 5, 1, 1)
@@ -2215,6 +1193,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.created_placer_label.setFont(font)
         self.created_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.created_placer_label.setObjectName("created_placer_label")
@@ -2223,6 +1202,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(False)
+        font.setItalic(False)
         self.ro_created_edit.setFont(font)
         self.ro_created_edit.setStyleSheet("")
         self.ro_created_edit.setObjectName("ro_created_edit")
@@ -2234,6 +1214,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.approved_placer_label.setFont(font)
         self.approved_placer_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.approved_placer_label.setObjectName("approved_placer_label")
@@ -2242,6 +1223,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(False)
+        font.setItalic(False)
         self.ro_approved_edit.setFont(font)
         self.ro_approved_edit.setStyleSheet("")
         self.ro_approved_edit.setObjectName("ro_approved_edit")
@@ -2256,6 +1238,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.miles_in_label.setFont(font)
         self.miles_in_label.setObjectName("miles_in_label")
         self.horizontalLayout_13.addWidget(self.miles_in_label)
@@ -2264,9 +1247,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(False)
         self.miles_in_edit.setFont(font)
-        self.miles_in_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.miles_in_edit.setStyleSheet("")
         self.miles_in_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.miles_in_edit.setObjectName("miles_in_edit")
         self.horizontalLayout_13.addWidget(self.miles_in_edit)
@@ -2277,6 +1260,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.miles_out_label.setFont(font)
         self.miles_out_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.miles_out_label.setObjectName("miles_out_label")
@@ -2286,9 +1270,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(False)
         self.milies_out_edit.setFont(font)
-        self.milies_out_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.milies_out_edit.setStyleSheet("")
         self.milies_out_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.milies_out_edit.setObjectName("milies_out_edit")
         self.horizontalLayout_12.addWidget(self.milies_out_edit)
@@ -2297,18 +1281,10 @@ class Ui_MainWindow(object):
         self.gridLayout_41.addLayout(self.horizontalLayout_30, 0, 0, 1, 1)
         self.ro_profit_button = QtWidgets.QPushButton(parent=self.ro_control_page)
         self.ro_profit_button.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.ro_profit_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        self.ro_profit_button.setIcon(icon21)
+        self.ro_profit_button.setStyleSheet("")
+        icon9 = QtGui.QIcon()
+        icon9.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-chart-line.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.ro_profit_button.setIcon(icon9)
         self.ro_profit_button.setIconSize(QtCore.QSize(30, 30))
         self.ro_profit_button.setObjectName("ro_profit_button")
         self.gridLayout_41.addWidget(self.ro_profit_button, 9, 3, 1, 1)
@@ -2323,6 +1299,7 @@ class Ui_MainWindow(object):
         self.ro_hub_tabs.setTabShape(QtWidgets.QTabWidget.TabShape.Rounded)
         self.ro_hub_tabs.setObjectName("ro_hub_tabs")
         self.jobs_tab = QtWidgets.QWidget()
+        self.jobs_tab.setStyleSheet("")
         self.jobs_tab.setObjectName("jobs_tab")
         self.gridLayout_43 = QtWidgets.QGridLayout(self.jobs_tab)
         self.gridLayout_43.setObjectName("gridLayout_43")
@@ -2334,18 +1311,8 @@ class Ui_MainWindow(object):
         self.remove_item_button.setSizePolicy(sizePolicy)
         self.remove_item_button.setMinimumSize(QtCore.QSize(200, 0))
         self.remove_item_button.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.remove_item_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #A0153E;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #C49497;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        self.remove_item_button.setIcon(icon25)
+        self.remove_item_button.setStyleSheet("")
+        self.remove_item_button.setIcon(icon2)
         self.remove_item_button.setIconSize(QtCore.QSize(30, 30))
         self.remove_item_button.setObjectName("remove_item_button")
         self.gridLayout_43.addWidget(self.remove_item_button, 2, 3, 1, 1)
@@ -2356,6 +1323,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.ro_items_table.sizePolicy().hasHeightForWidth())
         self.ro_items_table.setSizePolicy(sizePolicy)
         self.ro_items_table.setMinimumSize(QtCore.QSize(0, 0))
+        self.ro_items_table.setStyleSheet("")
         self.ro_items_table.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.ro_items_table.setObjectName("ro_items_table")
         self.ro_items_table.headerItem().setText(0, "1")
@@ -2368,18 +1336,8 @@ class Ui_MainWindow(object):
         self.new_job_button.setSizePolicy(sizePolicy)
         self.new_job_button.setMinimumSize(QtCore.QSize(0, 0))
         self.new_job_button.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.new_job_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        self.new_job_button.setIcon(icon26)
+        self.new_job_button.setStyleSheet("")
+        self.new_job_button.setIcon(icon3)
         self.new_job_button.setIconSize(QtCore.QSize(30, 30))
         self.new_job_button.setObjectName("new_job_button")
         self.gridLayout_43.addWidget(self.new_job_button, 2, 2, 1, 1)
@@ -2390,30 +1348,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
+        font.setItalic(False)
         self.type_box.setFont(font)
-        self.type_box.setStyleSheet("QComboBox {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QComboBox:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QComboBox:drop-down {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QComboBox QAbstractItemView {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 5px;\n"
-"}")
+        self.type_box.setStyleSheet("")
         self.type_box.setObjectName("type_box")
         self.type_box.addItem("")
         self.horizontalLayout_18.addWidget(self.type_box)
@@ -2422,9 +1359,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.sku_edit.setFont(font)
-        self.sku_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.sku_edit.setStyleSheet("")
         self.sku_edit.setText("")
         self.sku_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.sku_edit.setObjectName("sku_edit")
@@ -2434,9 +1371,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.description_edit.setFont(font)
-        self.description_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.description_edit.setStyleSheet("")
         self.description_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.description_edit.setObjectName("description_edit")
         self.horizontalLayout_18.addWidget(self.description_edit)
@@ -2445,9 +1382,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.cost_edit.setFont(font)
-        self.cost_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.cost_edit.setStyleSheet("")
         self.cost_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.cost_edit.setObjectName("cost_edit")
         self.horizontalLayout_18.addWidget(self.cost_edit)
@@ -2456,9 +1393,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.sell_edit.setFont(font)
-        self.sell_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.sell_edit.setStyleSheet("")
         self.sell_edit.setText("")
         self.sell_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.sell_edit.setObjectName("sell_edit")
@@ -2468,9 +1405,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.quantity_edit.setFont(font)
-        self.quantity_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.quantity_edit.setStyleSheet("")
         self.quantity_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.quantity_edit.setObjectName("quantity_edit")
         self.horizontalLayout_18.addWidget(self.quantity_edit)
@@ -2479,9 +1416,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
+        font.setItalic(False)
         self.tax_edit.setFont(font)
-        self.tax_edit.setStyleSheet("border-radius: 5px;\n"
-"background-color: #fefeff;")
+        self.tax_edit.setStyleSheet("")
         self.tax_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.tax_edit.setObjectName("tax_edit")
         self.horizontalLayout_18.addWidget(self.tax_edit)
@@ -2493,18 +1430,8 @@ class Ui_MainWindow(object):
         self.add_job_item_button.setSizePolicy(sizePolicy)
         self.add_job_item_button.setMinimumSize(QtCore.QSize(100, 0))
         self.add_job_item_button.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.add_job_item_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        self.add_job_item_button.setIcon(icon26)
+        self.add_job_item_button.setStyleSheet("")
+        self.add_job_item_button.setIcon(icon3)
         self.add_job_item_button.setIconSize(QtCore.QSize(30, 30))
         self.add_job_item_button.setObjectName("add_job_item_button")
         self.horizontalLayout_18.addWidget(self.add_job_item_button)
@@ -2518,40 +1445,21 @@ class Ui_MainWindow(object):
         self.place_order_button.setMaximumSize(QtCore.QSize(200, 16777215))
         font = QtGui.QFont()
         font.setBold(False)
+        font.setItalic(False)
         self.place_order_button.setFont(font)
-        self.place_order_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon32 = QtGui.QIcon()
-        icon32.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-check-circle.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.place_order_button.setIcon(icon32)
+        self.place_order_button.setStyleSheet("")
+        icon10 = QtGui.QIcon()
+        icon10.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-check-circle.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.place_order_button.setIcon(icon10)
         self.place_order_button.setIconSize(QtCore.QSize(30, 30))
         self.place_order_button.setObjectName("place_order_button")
         self.gridLayout_44.addWidget(self.place_order_button, 3, 2, 1, 1)
         self.delete_parts_button = QtWidgets.QPushButton(parent=self.parts_tab)
         self.delete_parts_button.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.delete_parts_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #A0153E;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #C49497;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        icon33 = QtGui.QIcon()
-        icon33.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-x-circle.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.delete_parts_button.setIcon(icon33)
+        self.delete_parts_button.setStyleSheet("")
+        icon11 = QtGui.QIcon()
+        icon11.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-x-circle.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.delete_parts_button.setIcon(icon11)
         self.delete_parts_button.setIconSize(QtCore.QSize(30, 30))
         self.delete_parts_button.setObjectName("delete_parts_button")
         self.gridLayout_44.addWidget(self.delete_parts_button, 3, 3, 1, 1)
@@ -2562,23 +1470,14 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.order_parts_button.sizePolicy().hasHeightForWidth())
         self.order_parts_button.setSizePolicy(sizePolicy)
         self.order_parts_button.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.order_parts_button.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: #fff;\n"
-"    background-color: #76ABAE;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #828786;\n"
-"    color: #fff;\n"
-"    border-radius: 10px;\n"
-"}")
-        self.order_parts_button.setIcon(icon26)
+        self.order_parts_button.setStyleSheet("")
+        self.order_parts_button.setIcon(icon3)
         self.order_parts_button.setIconSize(QtCore.QSize(30, 30))
         self.order_parts_button.setObjectName("order_parts_button")
         self.gridLayout_44.addWidget(self.order_parts_button, 3, 1, 1, 1)
         self.parts_tree = PartsTree(parent=self.parts_tab)
         self.parts_tree.setMinimumSize(QtCore.QSize(0, 0))
+        self.parts_tree.setStyleSheet("")
         self.parts_tree.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.parts_tree.setObjectName("parts_tree")
         self.parts_tree.headerItem().setText(0, "1")
@@ -2588,40 +1487,579 @@ class Ui_MainWindow(object):
         spacerItem4 = QtWidgets.QSpacerItem(20, 60, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Maximum)
         self.gridLayout_41.addItem(spacerItem4, 2, 0, 1, 1)
         self.hub_stacked_widget.addWidget(self.ro_control_page)
-        self.gridLayout_2.addWidget(self.hub_stacked_widget, 3, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.hub_stacked_widget, 3, 2, 1, 1)
+        self.top_buttons_stacked = QtWidgets.QStackedWidget(parent=self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.top_buttons_stacked.sizePolicy().hasHeightForWidth())
+        self.top_buttons_stacked.setSizePolicy(sizePolicy)
+        self.top_buttons_stacked.setMinimumSize(QtCore.QSize(50, 0))
+        self.top_buttons_stacked.setMaximumSize(QtCore.QSize(16777215, 50))
+        self.top_buttons_stacked.setStyleSheet("")
+        self.top_buttons_stacked.setObjectName("top_buttons_stacked")
+        self.ro_header_buttons = QtWidgets.QWidget()
+        self.ro_header_buttons.setStyleSheet("")
+        self.ro_header_buttons.setObjectName("ro_header_buttons")
+        self.gridLayout_15 = QtWidgets.QGridLayout(self.ro_header_buttons)
+        self.gridLayout_15.setObjectName("gridLayout_15")
+        self.ro_frame = QtWidgets.QFrame(parent=self.ro_header_buttons)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.ro_frame.sizePolicy().hasHeightForWidth())
+        self.ro_frame.setSizePolicy(sizePolicy)
+        self.ro_frame.setMinimumSize(QtCore.QSize(0, 50))
+        self.ro_frame.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ArrowCursor))
+        self.ro_frame.setStyleSheet("")
+        self.ro_frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.ro_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.ro_frame.setObjectName("ro_frame")
+        self.gridLayout_4 = QtWidgets.QGridLayout(self.ro_frame)
+        self.gridLayout_4.setObjectName("gridLayout_4")
+        self.working_ro_button = QtWidgets.QPushButton(parent=self.ro_frame)
+        self.working_ro_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.working_ro_button.setStyleSheet("")
+        icon12 = QtGui.QIcon()
+        icon12.addPixmap(QtGui.QPixmap(":/resources/Icons/document.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.working_ro_button.setIcon(icon12)
+        self.working_ro_button.setIconSize(QtCore.QSize(30, 30))
+        self.working_ro_button.setFlat(True)
+        self.working_ro_button.setObjectName("working_ro_button")
+        self.gridLayout_4.addWidget(self.working_ro_button, 0, 3, 1, 1)
+        self.checkout_button = QtWidgets.QPushButton(parent=self.ro_frame)
+        self.checkout_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.checkout_button.setStyleSheet("")
+        icon13 = QtGui.QIcon()
+        icon13.addPixmap(QtGui.QPixmap(":/resources/Icons/shopping-cart.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.checkout_button.setIcon(icon13)
+        self.checkout_button.setIconSize(QtCore.QSize(30, 30))
+        self.checkout_button.setFlat(True)
+        self.checkout_button.setObjectName("checkout_button")
+        self.gridLayout_4.addWidget(self.checkout_button, 0, 4, 1, 1)
+        self.estimates_button = QtWidgets.QPushButton(parent=self.ro_frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.estimates_button.sizePolicy().hasHeightForWidth())
+        self.estimates_button.setSizePolicy(sizePolicy)
+        self.estimates_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.estimates_button.setStyleSheet("")
+        icon14 = QtGui.QIcon()
+        icon14.addPixmap(QtGui.QPixmap(":/resources/Icons/ballot.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.estimates_button.setIcon(icon14)
+        self.estimates_button.setIconSize(QtCore.QSize(30, 30))
+        self.estimates_button.setFlat(True)
+        self.estimates_button.setObjectName("estimates_button")
+        self.gridLayout_4.addWidget(self.estimates_button, 0, 1, 1, 1)
+        self.show_all_ro_button = QtWidgets.QPushButton(parent=self.ro_frame)
+        self.show_all_ro_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.show_all_ro_button.setStyleSheet("")
+        icon15 = QtGui.QIcon()
+        icon15.addPixmap(QtGui.QPixmap(":/resources/Icons/apps.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.show_all_ro_button.setIcon(icon15)
+        self.show_all_ro_button.setIconSize(QtCore.QSize(30, 30))
+        self.show_all_ro_button.setFlat(True)
+        self.show_all_ro_button.setObjectName("show_all_ro_button")
+        self.gridLayout_4.addWidget(self.show_all_ro_button, 0, 5, 1, 1)
+        self.new_ro_button = QtWidgets.QPushButton(parent=self.ro_frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.new_ro_button.sizePolicy().hasHeightForWidth())
+        self.new_ro_button.setSizePolicy(sizePolicy)
+        self.new_ro_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.new_ro_button.setStyleSheet("")
+        icon16 = QtGui.QIcon()
+        icon16.addPixmap(QtGui.QPixmap(":/resources/Icons/add-document.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.new_ro_button.setIcon(icon16)
+        self.new_ro_button.setIconSize(QtCore.QSize(30, 30))
+        self.new_ro_button.setFlat(True)
+        self.new_ro_button.setObjectName("new_ro_button")
+        self.gridLayout_4.addWidget(self.new_ro_button, 0, 0, 1, 1)
+        self.approved_button = QtWidgets.QPushButton(parent=self.ro_frame)
+        self.approved_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.approved_button.setStyleSheet("")
+        icon17 = QtGui.QIcon()
+        icon17.addPixmap(QtGui.QPixmap(":/resources/Icons/list-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.approved_button.setIcon(icon17)
+        self.approved_button.setIconSize(QtCore.QSize(30, 30))
+        self.approved_button.setFlat(True)
+        self.approved_button.setObjectName("approved_button")
+        self.gridLayout_4.addWidget(self.approved_button, 0, 2, 1, 1)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.ro_search_edit = QtWidgets.QLineEdit(parent=self.ro_frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Maximum, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.ro_search_edit.sizePolicy().hasHeightForWidth())
+        self.ro_search_edit.setSizePolicy(sizePolicy)
+        self.ro_search_edit.setMinimumSize(QtCore.QSize(250, 0))
+        self.ro_search_edit.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
+        self.ro_search_edit.setStyleSheet("")
+        self.ro_search_edit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.ro_search_edit.setObjectName("ro_search_edit")
+        self.horizontalLayout.addWidget(self.ro_search_edit)
+        self.gridLayout_4.addLayout(self.horizontalLayout, 0, 6, 1, 1)
+        self.gridLayout_15.addWidget(self.ro_frame, 0, 1, 1, 1)
+        self.top_buttons_stacked.addWidget(self.ro_header_buttons)
+        self.vehicle_header_buttons = QtWidgets.QWidget()
+        self.vehicle_header_buttons.setStyleSheet("")
+        self.vehicle_header_buttons.setObjectName("vehicle_header_buttons")
+        self.gridLayout_16 = QtWidgets.QGridLayout(self.vehicle_header_buttons)
+        self.gridLayout_16.setObjectName("gridLayout_16")
+        self.vehicle_header_frame = QtWidgets.QFrame(parent=self.vehicle_header_buttons)
+        self.vehicle_header_frame.setMinimumSize(QtCore.QSize(0, 50))
+        self.vehicle_header_frame.setStyleSheet("")
+        self.vehicle_header_frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.vehicle_header_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.vehicle_header_frame.setObjectName("vehicle_header_frame")
+        self.gridLayout_17 = QtWidgets.QGridLayout(self.vehicle_header_frame)
+        self.gridLayout_17.setObjectName("gridLayout_17")
+        self.gridLayout_20 = QtWidgets.QGridLayout()
+        self.gridLayout_20.setObjectName("gridLayout_20")
+        self.vehicle_search_line = QtWidgets.QLineEdit(parent=self.vehicle_header_frame)
+        self.vehicle_search_line.setMinimumSize(QtCore.QSize(0, 30))
+        self.vehicle_search_line.setMaximumSize(QtCore.QSize(600, 16777215))
+        self.vehicle_search_line.setStyleSheet("")
+        self.vehicle_search_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.vehicle_search_line.setObjectName("vehicle_search_line")
+        self.gridLayout_20.addWidget(self.vehicle_search_line, 0, 1, 1, 1)
+        self.new_vehicle_button = QtWidgets.QPushButton(parent=self.vehicle_header_frame)
+        self.new_vehicle_button.setMinimumSize(QtCore.QSize(0, 0))
+        self.new_vehicle_button.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.new_vehicle_button.setStyleSheet("")
+        self.new_vehicle_button.setIcon(icon16)
+        self.new_vehicle_button.setIconSize(QtCore.QSize(30, 30))
+        self.new_vehicle_button.setFlat(True)
+        self.new_vehicle_button.setObjectName("new_vehicle_button")
+        self.gridLayout_20.addWidget(self.new_vehicle_button, 0, 0, 1, 1)
+        self.gridLayout_17.addLayout(self.gridLayout_20, 0, 1, 1, 1)
+        self.gridLayout_16.addWidget(self.vehicle_header_frame, 0, 0, 1, 1)
+        self.top_buttons_stacked.addWidget(self.vehicle_header_buttons)
+        self.ro_hub_buttons = QtWidgets.QWidget()
+        self.ro_hub_buttons.setMinimumSize(QtCore.QSize(0, 50))
+        self.ro_hub_buttons.setStyleSheet("")
+        self.ro_hub_buttons.setObjectName("ro_hub_buttons")
+        self.gridLayout_28 = QtWidgets.QGridLayout(self.ro_hub_buttons)
+        self.gridLayout_28.setObjectName("gridLayout_28")
+        self.frame_6 = QtWidgets.QFrame(parent=self.ro_hub_buttons)
+        self.frame_6.setMinimumSize(QtCore.QSize(0, 50))
+        self.frame_6.setStyleSheet("")
+        self.frame_6.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.frame_6.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_6.setObjectName("frame_6")
+        self.gridLayout_35 = QtWidgets.QGridLayout(self.frame_6)
+        self.gridLayout_35.setObjectName("gridLayout_35")
+        self.cancel_ro_button = QtWidgets.QPushButton(parent=self.frame_6)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.cancel_ro_button.sizePolicy().hasHeightForWidth())
+        self.cancel_ro_button.setSizePolicy(sizePolicy)
+        self.cancel_ro_button.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.cancel_ro_button.setStyleSheet("")
+        icon18 = QtGui.QIcon()
+        icon18.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.cancel_ro_button.setIcon(icon18)
+        self.cancel_ro_button.setIconSize(QtCore.QSize(30, 30))
+        self.cancel_ro_button.setObjectName("cancel_ro_button")
+        self.gridLayout_35.addWidget(self.cancel_ro_button, 0, 5, 1, 1)
+        self.save_ro_button = QtWidgets.QPushButton(parent=self.frame_6)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.save_ro_button.sizePolicy().hasHeightForWidth())
+        self.save_ro_button.setSizePolicy(sizePolicy)
+        self.save_ro_button.setMinimumSize(QtCore.QSize(0, 0))
+        self.save_ro_button.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.save_ro_button.setStyleSheet("")
+        icon19 = QtGui.QIcon()
+        icon19.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-save.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.save_ro_button.setIcon(icon19)
+        self.save_ro_button.setIconSize(QtCore.QSize(30, 30))
+        self.save_ro_button.setObjectName("save_ro_button")
+        self.gridLayout_35.addWidget(self.save_ro_button, 0, 2, 1, 1)
+        self.message_customer_button = QtWidgets.QPushButton(parent=self.frame_6)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.message_customer_button.sizePolicy().hasHeightForWidth())
+        self.message_customer_button.setSizePolicy(sizePolicy)
+        self.message_customer_button.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.message_customer_button.setStyleSheet("")
+        icon20 = QtGui.QIcon()
+        icon20.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-speech.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.message_customer_button.setIcon(icon20)
+        self.message_customer_button.setIconSize(QtCore.QSize(30, 30))
+        self.message_customer_button.setObjectName("message_customer_button")
+        self.gridLayout_35.addWidget(self.message_customer_button, 0, 4, 1, 1)
+        self.print_ro_button = QtWidgets.QPushButton(parent=self.frame_6)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.print_ro_button.sizePolicy().hasHeightForWidth())
+        self.print_ro_button.setSizePolicy(sizePolicy)
+        self.print_ro_button.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.print_ro_button.setStyleSheet("")
+        icon21 = QtGui.QIcon()
+        icon21.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-print.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.print_ro_button.setIcon(icon21)
+        self.print_ro_button.setIconSize(QtCore.QSize(30, 30))
+        self.print_ro_button.setObjectName("print_ro_button")
+        self.gridLayout_35.addWidget(self.print_ro_button, 0, 3, 1, 1)
+        self.gridLayout_28.addWidget(self.frame_6, 0, 0, 1, 1)
+        self.top_buttons_stacked.addWidget(self.ro_hub_buttons)
+        self.customer_header_buttons = QtWidgets.QWidget()
+        self.customer_header_buttons.setStyleSheet("")
+        self.customer_header_buttons.setObjectName("customer_header_buttons")
+        self.gridLayout_27 = QtWidgets.QGridLayout(self.customer_header_buttons)
+        self.gridLayout_27.setObjectName("gridLayout_27")
+        self.customer_frame = QtWidgets.QFrame(parent=self.customer_header_buttons)
+        self.customer_frame.setEnabled(True)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.customer_frame.sizePolicy().hasHeightForWidth())
+        self.customer_frame.setSizePolicy(sizePolicy)
+        self.customer_frame.setMinimumSize(QtCore.QSize(0, 50))
+        self.customer_frame.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
+        self.customer_frame.setStyleSheet("")
+        self.customer_frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.customer_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.customer_frame.setObjectName("customer_frame")
+        self.gridLayout_10 = QtWidgets.QGridLayout(self.customer_frame)
+        self.gridLayout_10.setObjectName("gridLayout_10")
+        self.new_customer_button = QtWidgets.QPushButton(parent=self.customer_frame)
+        self.new_customer_button.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.new_customer_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.new_customer_button.setStyleSheet("")
+        icon22 = QtGui.QIcon()
+        icon22.addPixmap(QtGui.QPixmap(":/resources/Icons/user-add.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.new_customer_button.setIcon(icon22)
+        self.new_customer_button.setIconSize(QtCore.QSize(30, 30))
+        self.new_customer_button.setFlat(True)
+        self.new_customer_button.setObjectName("new_customer_button")
+        self.gridLayout_10.addWidget(self.new_customer_button, 0, 1, 1, 1)
+        self.search_customer_line = QtWidgets.QLineEdit(parent=self.customer_frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.search_customer_line.sizePolicy().hasHeightForWidth())
+        self.search_customer_line.setSizePolicy(sizePolicy)
+        self.search_customer_line.setMinimumSize(QtCore.QSize(250, 36))
+        self.search_customer_line.setMaximumSize(QtCore.QSize(500, 16777215))
+        self.search_customer_line.setStyleSheet("")
+        self.search_customer_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.search_customer_line.setObjectName("search_customer_line")
+        self.gridLayout_10.addWidget(self.search_customer_line, 0, 3, 1, 1)
+        self.gridLayout_27.addWidget(self.customer_frame, 0, 0, 1, 1)
+        self.top_buttons_stacked.addWidget(self.customer_header_buttons)
+        self.calender_header_buttons = QtWidgets.QWidget()
+        self.calender_header_buttons.setObjectName("calender_header_buttons")
+        self.calender_frame = QtWidgets.QFrame(parent=self.calender_header_buttons)
+        self.calender_frame.setGeometry(QtCore.QRect(70, 10, 1132, 48))
+        self.calender_frame.setStyleSheet("")
+        self.calender_frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.calender_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.calender_frame.setObjectName("calender_frame")
+        self.gridLayout_12 = QtWidgets.QGridLayout(self.calender_frame)
+        self.gridLayout_12.setObjectName("gridLayout_12")
+        self.day_button = QtWidgets.QPushButton(parent=self.calender_frame)
+        self.day_button.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.day_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.day_button.setStyleSheet("")
+        icon23 = QtGui.QIcon()
+        icon23.addPixmap(QtGui.QPixmap(":/resources/Icons/calendar.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.day_button.setIcon(icon23)
+        self.day_button.setIconSize(QtCore.QSize(30, 30))
+        self.day_button.setFlat(True)
+        self.day_button.setObjectName("day_button")
+        self.gridLayout_12.addWidget(self.day_button, 0, 0, 1, 1)
+        self.month_button = QtWidgets.QPushButton(parent=self.calender_frame)
+        self.month_button.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.month_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.month_button.setStyleSheet("")
+        icon24 = QtGui.QIcon()
+        icon24.addPixmap(QtGui.QPixmap(":/resources/Icons/menu-burger.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.month_button.setIcon(icon24)
+        self.month_button.setIconSize(QtCore.QSize(30, 30))
+        self.month_button.setFlat(True)
+        self.month_button.setObjectName("month_button")
+        self.gridLayout_12.addWidget(self.month_button, 0, 2, 1, 1)
+        self.week_button = QtWidgets.QPushButton(parent=self.calender_frame)
+        self.week_button.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.week_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.week_button.setStyleSheet("")
+        self.week_button.setIcon(icon23)
+        self.week_button.setIconSize(QtCore.QSize(30, 30))
+        self.week_button.setFlat(True)
+        self.week_button.setObjectName("week_button")
+        self.gridLayout_12.addWidget(self.week_button, 0, 1, 1, 1)
+        self.top_buttons_stacked.addWidget(self.calender_header_buttons)
+        self.messenger_header_buttons = QtWidgets.QWidget()
+        self.messenger_header_buttons.setStyleSheet("")
+        self.messenger_header_buttons.setObjectName("messenger_header_buttons")
+        self.message_button_frame = QtWidgets.QFrame(parent=self.messenger_header_buttons)
+        self.message_button_frame.setGeometry(QtCore.QRect(1, 0, 1221, 48))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.message_button_frame.sizePolicy().hasHeightForWidth())
+        self.message_button_frame.setSizePolicy(sizePolicy)
+        self.message_button_frame.setStyleSheet("")
+        self.message_button_frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.message_button_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.message_button_frame.setObjectName("message_button_frame")
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.message_button_frame)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.message_cust_find_button = QtWidgets.QPushButton(parent=self.message_button_frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.message_cust_find_button.sizePolicy().hasHeightForWidth())
+        self.message_cust_find_button.setSizePolicy(sizePolicy)
+        self.message_cust_find_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.message_cust_find_button.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
+        self.message_cust_find_button.setStyleSheet("")
+        icon25 = QtGui.QIcon()
+        icon25.addPixmap(QtGui.QPixmap(":/resources/Icons/comment-alt.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.message_cust_find_button.setIcon(icon25)
+        self.message_cust_find_button.setIconSize(QtCore.QSize(30, 30))
+        self.message_cust_find_button.setFlat(True)
+        self.message_cust_find_button.setObjectName("message_cust_find_button")
+        self.horizontalLayout_3.addWidget(self.message_cust_find_button)
+        self.message_recepient_label = QtWidgets.QLabel(parent=self.message_button_frame)
+        self.message_recepient_label.setStyleSheet("")
+        self.message_recepient_label.setText("")
+        self.message_recepient_label.setObjectName("message_recepient_label")
+        self.horizontalLayout_3.addWidget(self.message_recepient_label)
+        self.top_buttons_stacked.addWidget(self.messenger_header_buttons)
+        self.settings_header_buttons = QtWidgets.QWidget()
+        self.settings_header_buttons.setStyleSheet("")
+        self.settings_header_buttons.setObjectName("settings_header_buttons")
+        self.gridLayout_22 = QtWidgets.QGridLayout(self.settings_header_buttons)
+        self.gridLayout_22.setObjectName("gridLayout_22")
+        self.frame = QtWidgets.QFrame(parent=self.settings_header_buttons)
+        self.frame.setMinimumSize(QtCore.QSize(50, 50))
+        self.frame.setStyleSheet("")
+        self.frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame.setObjectName("frame")
+        self.gridLayout_21 = QtWidgets.QGridLayout(self.frame)
+        self.gridLayout_21.setObjectName("gridLayout_21")
+        self.quickbooks_button = QtWidgets.QPushButton(parent=self.frame)
+        self.quickbooks_button.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.quickbooks_button.setStyleSheet("")
+        icon26 = QtGui.QIcon()
+        icon26.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-browser.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.quickbooks_button.setIcon(icon26)
+        self.quickbooks_button.setIconSize(QtCore.QSize(30, 30))
+        self.quickbooks_button.setObjectName("quickbooks_button")
+        self.gridLayout_21.addWidget(self.quickbooks_button, 1, 5, 1, 1)
+        self.appearance_button = QtWidgets.QPushButton(parent=self.frame)
+        self.appearance_button.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.appearance_button.setStyleSheet("")
+        self.appearance_button.setIcon(icon26)
+        self.appearance_button.setIconSize(QtCore.QSize(30, 30))
+        self.appearance_button.setObjectName("appearance_button")
+        self.gridLayout_21.addWidget(self.appearance_button, 1, 2, 1, 1)
+        self.parts_integrate_button = QtWidgets.QPushButton(parent=self.frame)
+        self.parts_integrate_button.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.parts_integrate_button.setStyleSheet("")
+        icon27 = QtGui.QIcon()
+        icon27.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-tag.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.parts_integrate_button.setIcon(icon27)
+        self.parts_integrate_button.setIconSize(QtCore.QSize(30, 30))
+        self.parts_integrate_button.setObjectName("parts_integrate_button")
+        self.gridLayout_21.addWidget(self.parts_integrate_button, 1, 4, 1, 1)
+        self.save_settings_button = QtWidgets.QPushButton(parent=self.frame)
+        self.save_settings_button.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.save_settings_button.setSizeIncrement(QtCore.QSize(0, 30))
+        self.save_settings_button.setStyleSheet("")
+        self.save_settings_button.setIcon(icon19)
+        self.save_settings_button.setIconSize(QtCore.QSize(30, 30))
+        self.save_settings_button.setObjectName("save_settings_button")
+        self.gridLayout_21.addWidget(self.save_settings_button, 1, 0, 1, 1)
+        self.users_button = QtWidgets.QPushButton(parent=self.frame)
+        self.users_button.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.users_button.setStyleSheet("")
+        icon28 = QtGui.QIcon()
+        icon28.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-user-follow.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.users_button.setIcon(icon28)
+        self.users_button.setIconSize(QtCore.QSize(30, 30))
+        self.users_button.setObjectName("users_button")
+        self.gridLayout_21.addWidget(self.users_button, 1, 3, 1, 1)
+        self.gridLayout_22.addWidget(self.frame, 0, 0, 1, 1)
+        self.top_buttons_stacked.addWidget(self.settings_header_buttons)
+        self.gridLayout_2.addWidget(self.top_buttons_stacked, 0, 1, 1, 2)
+        self.cmenu_frame = ControlMenu(parent=self.centralwidget)
+        self.cmenu_frame.setEnabled(True)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.cmenu_frame.sizePolicy().hasHeightForWidth())
+        self.cmenu_frame.setSizePolicy(sizePolicy)
+        self.cmenu_frame.setMinimumSize(QtCore.QSize(60, 0))
+        self.cmenu_frame.setMaximumSize(QtCore.QSize(1677215, 1677215))
+        self.cmenu_frame.setSizeIncrement(QtCore.QSize(0, 0))
+        self.cmenu_frame.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
+        self.cmenu_frame.setStyleSheet("")
+        self.cmenu_frame.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.cmenu_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.cmenu_frame.setLineWidth(1)
+        self.cmenu_frame.setObjectName("cmenu_frame")
+        self.gridLayout_42 = QtWidgets.QGridLayout(self.cmenu_frame)
+        self.gridLayout_42.setObjectName("gridLayout_42")
+        self.customers_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.customers_button.setFont(font)
+        self.customers_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.customers_button.setToolTip("")
+        self.customers_button.setToolTipDuration(-4)
+        self.customers_button.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
+        self.customers_button.setStyleSheet("")
+        icon29 = QtGui.QIcon()
+        icon29.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-people.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.customers_button.setIcon(icon29)
+        self.customers_button.setIconSize(QtCore.QSize(50, 50))
+        self.customers_button.setFlat(True)
+        self.customers_button.setObjectName("customers_button")
+        self.gridLayout_42.addWidget(self.customers_button, 1, 0, 1, 1)
+        self.analytics_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.analytics_button.setFont(font)
+        self.analytics_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.analytics_button.setToolTip("")
+        self.analytics_button.setToolTipDuration(-4)
+        self.analytics_button.setStyleSheet("")
+        self.analytics_button.setText("")
+        self.analytics_button.setIcon(icon9)
+        self.analytics_button.setIconSize(QtCore.QSize(50, 50))
+        self.analytics_button.setFlat(True)
+        self.analytics_button.setObjectName("analytics_button")
+        self.gridLayout_42.addWidget(self.analytics_button, 6, 0, 1, 1)
+        self.vehicles_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.vehicles_button.setFont(font)
+        self.vehicles_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.vehicles_button.setToolTip("")
+        self.vehicles_button.setToolTipDuration(-4)
+        self.vehicles_button.setStyleSheet("")
+        self.vehicles_button.setText("")
+        icon30 = QtGui.QIcon()
+        icon30.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/car.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.vehicles_button.setIcon(icon30)
+        self.vehicles_button.setIconSize(QtCore.QSize(50, 50))
+        self.vehicles_button.setFlat(True)
+        self.vehicles_button.setObjectName("vehicles_button")
+        self.gridLayout_42.addWidget(self.vehicles_button, 3, 0, 1, 1)
+        self.messaging_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.messaging_button.setFont(font)
+        self.messaging_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.messaging_button.setToolTip("")
+        self.messaging_button.setToolTipDuration(-4)
+        self.messaging_button.setStyleSheet("")
+        self.messaging_button.setText("")
+        self.messaging_button.setIcon(icon20)
+        self.messaging_button.setIconSize(QtCore.QSize(50, 50))
+        self.messaging_button.setFlat(True)
+        self.messaging_button.setObjectName("messaging_button")
+        self.gridLayout_42.addWidget(self.messaging_button, 4, 0, 1, 1)
+        self.settings_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.settings_button.setFont(font)
+        self.settings_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.settings_button.setToolTip("")
+        self.settings_button.setToolTipDuration(-4)
+        self.settings_button.setStyleSheet("")
+        self.settings_button.setText("")
+        icon31 = QtGui.QIcon()
+        icon31.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-settings.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.settings_button.setIcon(icon31)
+        self.settings_button.setIconSize(QtCore.QSize(50, 50))
+        self.settings_button.setDefault(False)
+        self.settings_button.setFlat(True)
+        self.settings_button.setObjectName("settings_button")
+        self.gridLayout_42.addWidget(self.settings_button, 7, 0, 1, 1)
+        self.scheduling_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.scheduling_button.setFont(font)
+        self.scheduling_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.scheduling_button.setMouseTracking(True)
+        self.scheduling_button.setToolTip("")
+        self.scheduling_button.setToolTipDuration(-4)
+        self.scheduling_button.setStyleSheet("")
+        self.scheduling_button.setText("")
+        icon32 = QtGui.QIcon()
+        icon32.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/calendar-865.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.scheduling_button.setIcon(icon32)
+        self.scheduling_button.setIconSize(QtCore.QSize(50, 50))
+        self.scheduling_button.setFlat(True)
+        self.scheduling_button.setObjectName("scheduling_button")
+        self.gridLayout_42.addWidget(self.scheduling_button, 5, 0, 1, 1)
+        self.quit_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.quit_button.setFont(font)
+        self.quit_button.setStyleSheet("")
+        self.quit_button.setText("")
+        icon33 = QtGui.QIcon()
+        icon33.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-power-standby.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.quit_button.setIcon(icon33)
+        self.quit_button.setIconSize(QtCore.QSize(50, 50))
+        self.quit_button.setFlat(True)
+        self.quit_button.setObjectName("quit_button")
+        self.gridLayout_42.addWidget(self.quit_button, 8, 0, 1, 1)
+        self.repair_orders_button = QtWidgets.QPushButton(parent=self.cmenu_frame)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.repair_orders_button.setFont(font)
+        self.repair_orders_button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
+        self.repair_orders_button.setToolTip("")
+        self.repair_orders_button.setToolTipDuration(-4)
+        self.repair_orders_button.setStyleSheet("")
+        self.repair_orders_button.setText("")
+        icon34 = QtGui.QIcon()
+        icon34.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-copy.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.repair_orders_button.setIcon(icon34)
+        self.repair_orders_button.setIconSize(QtCore.QSize(50, 50))
+        self.repair_orders_button.setFlat(True)
+        self.repair_orders_button.setObjectName("repair_orders_button")
+        self.gridLayout_42.addWidget(self.repair_orders_button, 0, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.cmenu_frame, 2, 0, 2, 1)
+        self.login_label = QtWidgets.QLabel(parent=self.centralwidget)
+        self.login_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.login_label.setObjectName("login_label")
+        self.gridLayout_2.addWidget(self.login_label, 4, 2, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.top_buttons_stacked.setCurrentIndex(0)
         self.hub_stacked_widget.setCurrentIndex(0)
         self.ro_tabs.setCurrentIndex(0)
         self.ro_hub_tabs.setCurrentIndex(0)
+        self.top_buttons_stacked.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "OpenAuto"))
-        self.working_ro_button.setText(_translate("MainWindow", "Working"))
-        self.checkout_button.setText(_translate("MainWindow", "Checkout"))
-        self.estimates_button.setText(_translate("MainWindow", "Estimates"))
-        self.show_all_ro_button.setText(_translate("MainWindow", "ShowAll"))
-        self.new_ro_button.setText(_translate("MainWindow", " Create New"))
-        self.approved_button.setText(_translate("MainWindow", "Approved"))
-        self.new_vehicle_button.setText(_translate("MainWindow", "New"))
-        self.cancel_ro_button.setText(_translate("MainWindow", "Cancel"))
-        self.save_ro_button.setText(_translate("MainWindow", "Save"))
-        self.message_customer_button.setText(_translate("MainWindow", "Message"))
-        self.print_ro_button.setText(_translate("MainWindow", "Print"))
-        self.new_customer_button.setText(_translate("MainWindow", "New"))
-        self.day_button.setText(_translate("MainWindow", "Day"))
-        self.month_button.setText(_translate("MainWindow", "Month"))
-        self.week_button.setText(_translate("MainWindow", "Week"))
-        self.message_cust_find_button.setText(_translate("MainWindow", "Send To:"))
-        self.quickbooks_button.setText(_translate("MainWindow", "Quickbooks "))
-        self.appearance_button.setText(_translate("MainWindow", "Appearance"))
-        self.parts_integrate_button.setText(_translate("MainWindow", "Parts Integration"))
-        self.save_settings_button.setText(_translate("MainWindow", "Save"))
-        self.users_button.setText(_translate("MainWindow", "Users"))
         self.send_message_button.setText(_translate("MainWindow", "Send"))
         self.matrix_label.setText(_translate("MainWindow", "Pricing Matrix"))
         self.remove_row_button.setText(_translate("MainWindow", "Remove Row"))
@@ -2698,12 +2136,33 @@ class Ui_MainWindow(object):
         self.delete_parts_button.setText(_translate("MainWindow", "Delete"))
         self.order_parts_button.setText(_translate("MainWindow", "Add Parts"))
         self.ro_hub_tabs.setTabText(self.ro_hub_tabs.indexOf(self.parts_tab), _translate("MainWindow", "Parts"))
+        self.working_ro_button.setText(_translate("MainWindow", "Working"))
+        self.checkout_button.setText(_translate("MainWindow", "Checkout"))
+        self.estimates_button.setText(_translate("MainWindow", "Estimates"))
+        self.show_all_ro_button.setText(_translate("MainWindow", "ShowAll"))
+        self.new_ro_button.setText(_translate("MainWindow", " Create New"))
+        self.approved_button.setText(_translate("MainWindow", "Approved"))
+        self.new_vehicle_button.setText(_translate("MainWindow", "New"))
+        self.cancel_ro_button.setText(_translate("MainWindow", "Cancel"))
+        self.save_ro_button.setText(_translate("MainWindow", "Save"))
+        self.message_customer_button.setText(_translate("MainWindow", "Message"))
+        self.print_ro_button.setText(_translate("MainWindow", "Print"))
+        self.new_customer_button.setText(_translate("MainWindow", "New"))
+        self.day_button.setText(_translate("MainWindow", "Day"))
+        self.month_button.setText(_translate("MainWindow", "Month"))
+        self.week_button.setText(_translate("MainWindow", "Week"))
+        self.message_cust_find_button.setText(_translate("MainWindow", "Send To:"))
+        self.quickbooks_button.setText(_translate("MainWindow", "Quickbooks "))
+        self.appearance_button.setText(_translate("MainWindow", "Appearance"))
+        self.parts_integrate_button.setText(_translate("MainWindow", "Parts Integration"))
+        self.save_settings_button.setText(_translate("MainWindow", "Save"))
+        self.users_button.setText(_translate("MainWindow", "Users"))
+        self.login_label.setText(_translate("MainWindow", "login_label"))
 from openauto.subclassed_widgets.apt_calendar import AptCalendar, HourlySchedule, WeeklySchedule
 from openauto.subclassed_widgets.control_menu import ControlMenu
 from openauto.subclassed_widgets.small_tables import LaborTable, MatrixTable
 from openauto.subclassed_widgets.workflow_tables import ApprovedTable, CheckoutTable, CustomerTable, EstimateTable, ROTable, VehicleTable, WorkingTable, PartsTree
 from openauto.theme import resources_rc
-
 
 if __name__ == "__main__":
     import sys

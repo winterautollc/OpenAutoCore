@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>ro_options_widget</class>
+ <widget class="QWidget" name="ro_options_widget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,25 +14,13 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">color: #333;
-background-color: #f8f8f2;
-background-image: none;</string>
+   <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QPushButton" name="open_button">
+    <widget class="QPushButton" name="open_status_button">
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Estimate</string>
@@ -50,19 +38,9 @@ QPushButton:hover {
     </widget>
    </item>
    <item row="0" column="4">
-    <widget class="QPushButton" name="cancel_button">
+    <widget class="QPushButton" name="cancel_status_button">
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #A0153E;
-}
-
-QPushButton:hover {
-	background-color: #C49497;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Cancel</string>
@@ -80,19 +58,9 @@ QPushButton:hover {
     </widget>
    </item>
    <item row="0" column="2">
-    <widget class="QPushButton" name="in_progress_button">
+    <widget class="QPushButton" name="in_progress_status_button">
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>In Progress</string>
@@ -110,19 +78,9 @@ QPushButton:hover {
     </widget>
    </item>
    <item row="0" column="3">
-    <widget class="QPushButton" name="completed_button">
+    <widget class="QPushButton" name="completed_status_button">
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Completed</string>
@@ -140,19 +98,9 @@ QPushButton:hover {
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QPushButton" name="approved_button">
+    <widget class="QPushButton" name="approved_status_button">
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Approved</string>

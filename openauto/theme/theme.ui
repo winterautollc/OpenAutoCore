@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>327</width>
+    <height>153</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QPushButton" name="save_button">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+	background-color: #75937c;
+	color: #fff;
+	border-radius: 2px;
+	font-size: 16px;
+}
+
+QPushButton::hover {
+	background-color: #759093;
+    color: #050608;
+    border-radius: 5px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Save</string>
+     </property>
+     <property name="icon">
+      <iconset resource="openauto_resources.qrc">
+       <normaloff>:/resources/icons3/24x24/cil-check-circle.png</normaloff>:/resources/icons3/24x24/cil-check-circle.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="cancel_button">
+     <property name="styleSheet">
+      <string notr="true"> QPushButton { 
+	background-color: #C96567;
+    color: #fff;
+    border-radius: 2px;
+	font-size: 16px;
+}
+
+QPushButton::hover {
+    background-color: #9E5A63;
+    color: #050608;
+    border-radius: 5px
+}</string>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+     <property name="icon">
+      <iconset resource="openauto_resources.qrc">
+       <normaloff>:/resources/icons3/24x24/cil-x.png</normaloff>:/resources/icons3/24x24/cil-x.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QRadioButton" name="light_radiobutton">
+       <property name="styleSheet">
+        <string notr="true">QRadioButton { 
+	background-color: #F5F7FA;
+	font-size: 16px;
+	color: #1E1E1E;
+}
+
+QRadioButton::indicator {
+                    width: 15px;
+                    height: 15px;
+          			  border-radius: 7px;
+                    border: 2px solid gray;
+                    background-color: white;
+}
+
+
+QRadioButton::indicator:checked {
+	background-color: red;
+   border: 2px solid darkred;
+}</string>
+       </property>
+       <property name="text">
+        <string>Light Theme</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>16</width>
+         <height>16</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="dark_radiobutton">
+       <property name="styleSheet">
+        <string notr="true">QRadioButton {
+	background-color: #1E1E1E;
+	color: #fff;
+	font-size: 16px;
+}
+
+QRadioButton::indicator {
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 7px; /* Makes it circular */
+                    border: 2px solid gray;
+                    background-color: white;
+}
+
+QRadioButton::indicator:checked {
+	background-color: red;
+   border: 2px solid darkred;
+}</string>
+       </property>
+       <property name="text">
+        <string>Dark Theme</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="openauto_resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

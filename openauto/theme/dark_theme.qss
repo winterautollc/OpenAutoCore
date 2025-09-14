@@ -1,191 +1,197 @@
-#centralwidget {
-    background-color: #97AABD;
+/* ========= OpenAuto Dark Theme =========
+Base
+  Bg            #1E1E1E
+  Surface       #2B2B2B
+  Text          #E0E0E0
+  Text/2        #B0B0B0
+  Accent        #4A90E2
+  Accent/Hover  #7BAFD4
+  Accent/Press  #2C5FA5
+  Divider       #3C3C3C
+  Selection     #4A90E2
+  Success       #66BB6A
+  Warning       #FFCA28
+  Error         #EF5350
+*/
+
+/* ---- Global ---- */
+* {
+  outline: 0;
+}
+
+QWidget {
+  background: #1E1E1E;
+  color: #E0E0E0;
+  font-size: 12pt;
+}
+
+#login_label {
+    font-weight: bold;
+    font-size: 18px;
 }
 
 #ro_frame QPushButton {
-    background-color: #314455;
-    color: #fff;
+    background-color: #4A90E2;
+    color: #FFFFFF;
     border-radius: 2px;
+    padding: 6px 8px;
+    font-size: 16px;
+}
+
+#calender_frame QPushButton::hover {
+    background-color: #7BAFD4;
+    border-radius: 5px;
+    padding: 6px 12px;
+}
+
+#calender_frame QPushButton {
+    background-color: #4A90E2;
+    color: #FFFFFF;
+    border-radius: 2px;
+    padding: 6px 8px;
+    font-size: 20px;
 }
 
 #ro_frame QPushButton::hover {
-    background-color: #808080;
-    color: #050608;
+    background-color: #7BAFD4;
     border-radius: 5px;
+    padding: 6px 12px;
 }
 
-#save_ro_button,
-#print_ro_button,
-#message_customer_button {
-    background-color: #314455;
-    color: #fff;
-    border-radius: 2px;
-}
-
-#save_ro_button::hover,
-#print_ro_button::hover,
-#message_customer_button::hover {
-    background-color: #808080;
-    color: #050608;
-    border-radius: 5px;
-}
-
+#new_customer_appt_button,
+#new_vehicle_appt_button,
 #new_customer_button,
 #new_vehicle_button {
-    background-color: #314455;
-    color: #fff;
+    background-color: #4A90E2;
+    color: #FFFFFF;
     border-radius: 2px;
+    font-size: 16px;
 }
 
+
+#new_customer_appt_button::hover,
+#new_vehicle_appt_button:hover,
 #new_customer_button::hover,
 #new_vehicle_button::hover {
-    background-color: #808080;
-    color: #050608;
+    background-color: #7BAFD4;
     border-radius:5px;
-}
-
-#add_job_item_button {
-    background-color: #75937c;
-    color: #fff;
-    border-radius: 2px;
-}
-
-#add_job_item_button::hover {
-    background-color: #759093;
-    color: #050608;
-    border-radius: 5px;
-}
-
-#new_job_button {
-    background-color: #759093;
-    color: #fff;
-    border-radius: 2px;
-}
-
-#new_job_button::hover {
-    background-color: #808080;
-    color: #050608;
-    border-radius:5px;
-}
-
-#order_parts_button {
-    background-color: #759093;
-    color: #fff;
-    border-radius: 2px;
-}
-
-#order_parts_button::hover {
-    background-color: #808080;
-    color: #050608;
-    border-radius:5px;
-}
-
-#place_order_button {
-    background-color: #75937c;
-    color: #fff;
-    border-radius: 2px;
-}
-
-#place_order_button::hover {
-    background-color: #759093;
-    color: #050608;
-    border-radius: 5px;
-}
-
-#cancel_ro_button {
-    background-color: #C96567;
-    color: #fff;
-    border-radius: 2px;
-}
-
-#cancel_ro_button::hover {
-    background-color: #9E5A63;
-    color: #050608;
-    border-radius: 5px
-}
-
-#remove_item_button {
-    background-color: #C96567;
-    color: #fff;
-    border-radius: 2px;
-}
-
-#remove_item_button::hover {
-    background-color: #9E5A63;
-    color: #050608;
-    border-radius: 5px;
 }
 
 #quickbooks_button {
     background-color: #2CA01C;
     color: #fff;
     border-radius: 2px;
+    padding: 6px 12px;
 }
 
 #quickbooks_button::hover {
     background-color: #7a9375;
     color: #050608;
     border-radius: 5px;
+    padding: 6px 12px;
 }
 
-#parts_integrate_button {
-    background-color: #D62C27;
-    color: #fff;
-    border-radius: 2px;
+#cmenu_frame {
+  background: #314455;
 }
 
-#parts_integrate_button::hover {
-    background-color: #F38021;
-    color: #050608;
-    border-radius: 5px;
+/* cmenu buttons */
+#repair_orders_button {
+  background-color: #314455;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 12px;
 }
 
-#delete_parts_button {
-    background-color: #C96567;
-    color: #fff;
-    border-radius: 2px;
+#customers_button {
+  background-color: #314455;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 12px;
 }
 
-#delete_parts_button::hover {
-    background-color: #9E5A63;
-    color: #050608;
-    border-radius: 5px
+#vehicles_button {
+  background-color: #314455;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 12px;
 }
 
-#ro_profit_button {
-    background-color: #7a9375;
-    color: #fff;
-    border-radius: 2px;
+#messaging_button {
+  background-color: #314455;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 12px;
 }
 
-#ro_profit_button::hover{
-    background-color: #759389;
-    color: #050608;
-    border-radius: 5px;
+#scheduling_button {
+  background-color: #314455;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 12px;
 }
 
-#mpi_button {
-    background-color: #93758e;
-    color: #fff;
-    border-radius: 2px;
+#analytics_button {
+  background-color: #314455;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 12px;
 }
 
-#mpi_button::hover {
-    background-color: #7f7593;
-    color: #050608;
-    border-radius: 5px;
+#settings_button {
+  background-color: #314455;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 12px;
 }
 
-#ro_status_button {
-    background-color: #6288aa;
-    color: #fff;
-    border-radius: 2px;
+#repair_orders_button::hover {
+    background-color: #4F6D7A;
 }
 
-#ro_status_button::hover {
-    background-color: #7baad4;
-    color: #050608;
-    border-radius: 5px;
+#customers_button::hover {
+    background-color: #4F6D7A;
+}
+
+#vehicles_button::hover {
+    background-color: #4F6D7A;
+}
+
+#messaging_button::hover {
+    background-color: #4F6D7A;
+}
+
+#scheduling_button::hover {
+    background-color: #4F6D7A;
+}
+
+#analytics_button::hover {
+    background-color: #4F6D7A;
+}
+
+#settings_button::hover {
+    background-color: #4F6D7A;
+}
+
+
+#quit_button {
+ 	border-radius: 5px;
+ 	color: #fff;
+ 	background-color: #C62828;
+}
+
+
+#quit_button::hover {
+ 	background-color: #a72222;
+ 	color: #fff;
+ 	border-radius: 10px;
 }
 
 #remove_row_button,
@@ -216,12 +222,14 @@
     border-radius:5px;
 }
 
+
 #save_matrix_button,
 #save_labor_button {
     background-color: #75937c;
     color: #fff;
     border-radius: 2px;
 }
+
 
 #save_matrix_button::hover,
 #save_labor_button::hover {
@@ -230,6 +238,134 @@
     border-radius: 5px;
 }
 
+#add_job_item_button {
+    background-color: #75937c;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#add_job_item_button::hover {
+    background-color: #759093;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#new_job_button {
+    background-color: #759093;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#new_job_button::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius:5px;
+}
+
+#vin_search_button,
+#order_parts_button {
+    background-color: #759093;
+    color: #fff;
+    border-radius: 2px;
+}
+
+
+#vin_search_button::hover,
+#order_parts_button::hover {
+    background-color: #808080;
+    color: #050608;
+    border-radius:5px;
+}
+
+#confirm_customer_search_button,
+#place_order_button {
+    background-color: #75937c;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#confirm_customer_search_button::hover,
+#place_order_button::hover {
+    background-color: #759093;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#cancel_ro_button {
+    background-color: #C96567;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#cancel_ro_button::hover {
+    background-color: #9E5A63;
+    color: #050608;
+    border-radius: 5px
+}
+
+#delete_parts_button {
+    background-color: #C96567;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#delete_parts_button::hover {
+    background-color: #9E5A63;
+    color: #050608;
+    border-radius: 5px
+}
+
+#remove_item_button {
+    background-color: #C96567;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#remove_item_button::hover {
+    background-color: #9E5A63;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#ro_profit_button {
+    background-color: #7a9375;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#ro_profit_button::hover{
+    background-color: #759389;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#mpi_button {
+    background-color: #93758e;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#mpi_button::hover {
+    background-color: #7f7593;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#ro_status_button {
+    background-color: #6288aa;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#ro_status_button::hover {
+    background-color: #7baad4;
+    color: #050608;
+    border-radius: 5px;
+}
 
 #import_logo_button {
     background-color: #6288aa;
@@ -243,97 +379,243 @@
     border-radius: 5px;
 }
 
-#calender_frame QPushButton {
-    background-color: #314455;
+#parts_integrate_button {
+    background-color: #D62C27;
     color: #fff;
     border-radius: 2px;
 }
 
-#calender_frame QPushButton::hover {
-    background-color: #808080;
+#parts_integrate_button::hover {
+    background-color: #F38021;
     color: #050608;
     border-radius: 5px;
 }
 
-QComboBox {
+#create_user_button {
+    background-color: #6288aa;
+    color: #fff;
+    border-radius: 2px;
+    padding: 6px 8px;
+    font-size: 20px;
+}
+
+#appearance_button {
+    border-radius: 2px;
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:0,
+        stop:0 #314455,   /* left color */
+        stop:0.5 #314455,
+        stop:0.5 #4A90E2, /* switch color at halfway */
+        stop:1 #4A90E2    /* right color */
+    );
+    color: #fff;
+    font-weight: bold;
+}
+
+#appearance_button::hover {
+    background-color: #7BAFD4;
+    border-radius: 5px;
+}
+
+#create_user_button::hover {
+    background-color: #7baad4;
+    color: #050608;
+    border-radius: 5px;
+}
+
+#login_tab_button {
+    background-color: #4A90E2;
+    color: #FFFFFF;
+    border-radius: 2px;
+    padding: 6px 8px;
+    font-size: 20px;
+}
+
+#login_tab_button::hover {
+    background-color: #7BAFD4;
+    border-radius: 5px;
+    padding: 6px 12px;
+}
+
+#login_button,
+#save_user_button {
+    background-color: #75937c;
+    color: #fff;
+    border-radius: 2px;
+}
+
+
+#login_button::hover,
+#save_user_button::hover {
     background-color: #759093;
     color: #050608;
+    border-radius: 5px;
+}
+
+#cancel_login_button,
+#cancel_create_button {
+    background-color: #C96567;
+    color: #fff;
     border-radius: 2px;
 }
 
+#cancel_login_button::hover,
+#cancel_create_button::hover {
+    background-color: #9E5A63;
+    color: #050608;
+    border-radius: 5px
+}
 
-QLineEdit {
-    background-color: #e2e5e9;
+#calender_frame QPushButton::hover {
+    background-color: #7BAFD4;
+    border-radius: 5px;
+    padding: 6px 12px;
+}
+
+
+#vehicle_save_button,
+#save_customer_button,
+#edit_customer_button,
+#save_settings_button,
+#users_button,
+#open_status_button,
+#approved_status_button,
+#completed_status_button,
+#in_progress_status_button {
+	border-radius: 2px;
+	color: #fff;
+	background-color: #76ABAE;
+	font-size: 16px;
+}
+
+#vehicle_save_button::hover,
+#save_customer_button::hover,
+#edit_customer_button::hover,
+#save_settings_button::hover,
+#users_button::hover,
+#open_status_button::hover,
+#approved_status_button::hover,
+#completed_status_button::hover,
+#in_progress_status_button::hover {
+	background-color: #828786;
+	color: #fff;
+	border-radius: 5px;
+}
+
+
+#confirm_edit_appt_button,
+#save_appt_button,
+#create_ro_button,
+#edit_appointment_button,
+#delete_appointment_button,
+#add_customer_button,
+#change_ro_status_button,
+#delete_ro_button,
+#duplicate_ro_button,
+#open_ro_button,
+#add_customer_vehicle_button,
+#create_ro_customer_button,
+#delete_customer_button,
+#edit_customer_button,
+#change_owner_vehicle_button,
+#create_ro_vehicle_button,
+#delete_vehicle_button {
+	border-radius: 2px;
+	color: #fff;
+	background-color: #76ABAE;
+	font-size: 16px;
+}
+
+
+#confirm_edit_appt_button::hover,
+#save_appt_button::hover,
+#create_ro_button::hover,
+#edit_appointment_button::hover,
+#delete_appointment_button::hover,
+#add_customer_button::hover,
+#change_ro_status_button::hover,
+#delete_ro_button::hover,
+#duplicate_ro_button::hover,
+#open_ro_button::hover,
+#add_customer_vehicle_button::hover,
+#create_ro_customer_button::hover,
+#delete_customer_button::hover,
+#edit_customer_button::hover,
+#change_owner_vehicle_button::hover,
+#create_ro_vehicle_button::hover,
+#delete_vehicle_button::hover {
+	background-color: #828786;
+	color: #fff;
+	border-radius: 5px;
+}
+
+#vehicle_cancel_button,
+#cancel_customer_button,
+#cancel_edit_appt_button,
+#cancel_appt_button,
+#cancel_appt_options_button,
+#cancel_customer_search_button,
+#cancel_ro_options_button,
+#cancel_customer_options_button,
+#cancel_vehicle_options_button,
+#cancel_status_button {
+	border-radius: 2px;
+	color: #fff;
+	background-color: #A0153E;
+	font-size: 16px;
+}
+
+#vehicle_cancel_button::hover,
+#cancel_customer_button::hover,
+#cancel_edit_appt_button::hover,
+#cancel_appt_button::hover,
+#cancel_appt_options_button::hover,
+#cancel_customer_search_button::hover,
+#cancel_ro_options_button::hover,
+#cancel_customer_options_button::hover,
+#cancel_vehicle_options_button::hover,
+#cancel_status_button::hover {
+	background-color: #C49497;
+	color: #fff;
+	border-radius: 5px;
+}
+
+#save_ro_button,
+#print_ro_button,
+#message_customer_button {
+    background-color: #76ABAE;
+    color: #fff;
     border-radius: 2px;
-    color: #1c2025;
-}
-
-QLineEdit::placeholder {
-    color: #0f1216;
-    font-style: italic;
-}
-
-QTextEdit {
-    background-color: #e2e5e9;
-    border-radius: 2px;
-    color: #1c2025;
-}
-QTableWidget {
-    background-color: #AAB3BD;
-    color: #333;
-    gridline-color: #ccc;
     font-size: 16px;
 }
 
-QHeaderView::section {
-    background-color: #644E5B;
-    color: #ECF4F4;
-    font-weight: bold;
-    padding: 4px;
-    border: 1px solid #bbb;
-}
-
-QTableWidget::item {
-    border-right: none;
-    border-bottom: 1px solid #b8c0c8
-}
-
-QTableWidget::item:selected {
-    background-color: #464f59;
-    color: #e2e5e9;
-}
-
-QCalendarWidget {
-    background-color: #2d2d30;
-    color: white;
-    border: 1px solid #444;
-}
-
-QCalendarWidget QWidget#qt_calendar_navigationbar {
-    background-color: #4A6260;
-    color: white;
-}
-
-QCalendarWidget QTableView {
-    selection-background-color: #42899B;
-    gridline-color: #555;
-}
-
-QCalendarWidget QAbstractItemView::item {
-    padding: 5px;
-}
-
-QCalendarWidget QHeaderView::section {
-    background-color: #4A6260;
-    color: white;
-}
-
-QCalendarWidget QAbstractItemView::item:hover {
+#save_ro_button::hover,
+#print_ro_button::hover,
+#message_customer_button::hover {
     background-color: #828786;
+    color: #050608;
+    border-radius: 5px;
 }
 
-QDateTimeEdit {
+QMenu {
+    background-color: #333;
+    border: 1px solid #555;
     color: white;
+}
+
+QMenu::item {
+    padding: 5px 15px;
+}
+
+QMenu::item:selected {
+    background-color: #555;
+}
+
+QMenu::separator {
+    height: 1px;
+    background-color: #777;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 QTabBar::tab {
@@ -358,3 +640,118 @@ QTabBar::tab:selected {
      border: 1px solid #bbb;
      border-radius: 2px;
 }
+
+/* Tooltips */
+QToolTip {
+  background: #2B2B2B;
+  color: #E0E0E0;
+  border: 1px solid #3C3C3C;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 12px;
+}
+
+
+#ro_options_widget {
+  background: #1E1E1E;
+  color: #E0E0E0;
+  font-size: 12pt;
+}
+
+/* ---- Tables / Views ---- */
+QTableView, QTreeView {
+  background: #1E1E1E;
+  alternate-background-color: #252525;
+  gridline-color: #2B2B2B;
+  border: 1px solid #2B2B2B;
+  selection-background-color: #4A90E2;
+  selection-color: #FFFFFF;
+}
+
+/* Headers */
+QHeaderView::section {
+  background: #2B2B2B;
+  color: #E0E0E0;
+  border: none;
+  border-bottom: 1px solid #3C3C3C;
+  padding: 6px 8px;
+  font-weight: 600;
+}
+QHeaderView::section:horizontal {
+  border-right: 1px solid #3C3C3C;
+}
+
+/* ---- Inputs ---- */
+QLineEdit, QPlainTextEdit, QTextEdit, QComboBox, QSpinBox, QDoubleSpinBox, QDateEdit, QTimeEdit, QDateTimeEdit {
+  background: #2B2B2B;
+  color: #E0E0E0;
+  border: 1px solid #3C3C3C;
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus, QComboBox:focus,
+QSpinBox:focus, QDoubleSpinBox:focus, QDateEdit:focus, QTimeEdit:focus, QDateTimeEdit:focus {
+  border: 1px solid #4A90E2;
+}
+
+/* ---- Scrollbars ---- */
+QScrollBar:vertical, QScrollBar:horizontal {
+  background: transparent;
+  margin: 4px;
+}
+QScrollBar::handle {
+  background: #3C3C3C;
+  border-radius: 6px;
+  min-width: 20px; min-height: 20px;
+}
+QScrollBar::handle:hover { background: #4A4A4A; }
+QScrollBar::add-line, QScrollBar::sub-line { background: transparent; height: 0; width: 0; }
+
+/* ---- Cards / Tiles ---- */
+QFrame#RoTile {
+  background-color: #F5F7FA;
+  color: #1E1E1E;,
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid #3C3C3C;
+}
+QLabel#title {
+  font-weight: 700;
+  font-size: 14pt;
+  color: #E0E0E0;
+}
+
+/* tile scroll area */
+QScrollArea#ro_tile_scroll {
+  border: none;
+  background: transparent;
+}
+QWidget#ro_tile_viewport {
+  background: transparent;
+}
+
+/* Role chips on tile */
+QWidget#chip_block {
+  background: #3C3C3C;
+  color: #E0E0E0;
+  border-radius: 8px;
+  padding: 3px 6px;
+}
+
+QCalendarWidget {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* ---- Status colors (dynamic properties) ---- */
+[status="approved"] { border-color: #66BB6A; }
+[status="working"]  { border-color: #FFCA28; }
+[status="checkout"] { border-color: #4A90E2; }
+[status="archived"] { border-color: #3C3C3C; opacity: 0.6; }
+
+
+
+
+
+
+

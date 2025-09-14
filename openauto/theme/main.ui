@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1335</width>
-    <height>880</height>
+    <width>1334</width>
+    <height>932</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -25,10 +25,18 @@
   <property name="windowTitle">
    <string>OpenAuto</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/resources/OpenAuto_Icons_48x48_dark_light/dark/logo_for_dark_theme.png</normaloff>:/resources/OpenAuto_Icons_48x48_dark_light/dark/logo_for_dark_theme.png</iconset>
+  </property>
   <property name="styleSheet">
-   <string notr="true">color: #ffffff;
-background-color: #647082;
-background-image: none;</string>
+   <string notr="true"/>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>16</width>
+    <height>16</height>
+   </size>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -38,1648 +46,38 @@ background-image: none;</string>
     </sizepolicy>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: #ffffff;
-background-color: #f8f8f2;
-background-image: none;</string>
+    <string notr="true"/>
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="1" column="0" colspan="2">
-     <widget class="QStackedWidget" name="top_buttons_stacked">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_3">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
-      <property name="minimumSize">
-       <size>
-        <width>50</width>
-        <height>0</height>
-       </size>
-      </property>
       <property name="maximumSize">
        <size>
-        <width>16777215</width>
+        <width>60</width>
         <height>50</height>
        </size>
       </property>
-      <property name="currentIndex">
-       <number>0</number>
+      <property name="text">
+       <string/>
       </property>
-      <widget class="QWidget" name="ro_header_buttons">
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_15">
-        <item row="0" column="0">
-         <widget class="QFrame" name="ro_frame">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="cursor">
-           <cursorShape>ArrowCursor</cursorShape>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color: #333;
-background-color: #f8f8f2;
-background-image: none;</string>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_4">
-           <item row="0" column="3">
-            <widget class="QPushButton" name="working_ro_button">
-             <property name="cursor">
-              <cursorShape>OpenHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Working</string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/Icons/document.png</normaloff>:/resources/Icons/document.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="4">
-            <widget class="QPushButton" name="checkout_button">
-             <property name="cursor">
-              <cursorShape>OpenHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Checkout</string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/Icons/shopping-cart.png</normaloff>:/resources/Icons/shopping-cart.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QPushButton" name="estimates_button">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="cursor">
-              <cursorShape>OpenHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Estimates</string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/Icons/ballot.png</normaloff>:/resources/Icons/ballot.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="5">
-            <widget class="QPushButton" name="show_all_ro_button">
-             <property name="cursor">
-              <cursorShape>OpenHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>ShowAll</string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/Icons/apps.png</normaloff>:/resources/Icons/apps.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QPushButton" name="new_ro_button">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="cursor">
-              <cursorShape>OpenHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string> Create New</string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/Icons/add-document.png</normaloff>:/resources/Icons/add-document.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QPushButton" name="approved_button">
-             <property name="cursor">
-              <cursorShape>OpenHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Approved</string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/Icons/list-check.png</normaloff>:/resources/Icons/list-check.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="6">
-            <layout class="QHBoxLayout" name="horizontalLayout">
-             <item>
-              <widget class="QLineEdit" name="ro_search_edit">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>250</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::LeftToRight</enum>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">border-radius: 5px;
-background-color: #fefeff;
-</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="vehicle_header_buttons">
-       <layout class="QGridLayout" name="gridLayout_16">
-        <item row="0" column="0">
-         <widget class="QFrame" name="vehicle_header_frame">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color: #333;
-background-color: #f8f8f2;
-background-image: none;</string>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_17">
-           <item row="0" column="1">
-            <layout class="QGridLayout" name="gridLayout_20">
-             <item row="0" column="1">
-              <widget class="QLineEdit" name="vehicle_search_line">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>600</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">border-radius: 5px;
-background-color: #fefeff;
-color: black;</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QPushButton" name="new_vehicle_button">
-               <property name="minimumSize">
-                <size>
-                 <width>200</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-               </property>
-               <property name="text">
-                <string>New</string>
-               </property>
-               <property name="icon">
-                <iconset resource="openauto_resources.qrc">
-                 <normaloff>:/resources/Icons/add-document.png</normaloff>:/resources/Icons/add-document.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>30</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="flat">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="ro_hub_buttons">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>50</height>
-        </size>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_28">
-        <item row="0" column="0">
-         <widget class="QFrame" name="frame_6">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_35">
-           <item row="0" column="5">
-            <widget class="QPushButton" name="cancel_ro_button">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #A0153E;
-}
-
-QPushButton:hover {
-	background-color: #C49497;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Cancel</string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/icons3/24x24/cil-x.png</normaloff>:/resources/icons3/24x24/cil-x.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QPushButton" name="save_ro_button">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Save</string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/icons3/24x24/cil-save.png</normaloff>:/resources/icons3/24x24/cil-save.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="4">
-            <widget class="QPushButton" name="message_customer_button">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Message</string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/icons3/24x24/cil-speech.png</normaloff>:/resources/icons3/24x24/cil-speech.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
-            <widget class="QPushButton" name="print_ro_button">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Print</string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/icons3/24x24/cil-print.png</normaloff>:/resources/icons3/24x24/cil-print.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="customer_header_buttons">
-       <layout class="QGridLayout" name="gridLayout_27">
-        <item row="0" column="0">
-         <widget class="QFrame" name="customer_frame">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color: #333;
-background-color: #f8f8f2;
-background-image: none;</string>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_10">
-           <item row="0" column="1">
-            <widget class="QPushButton" name="new_customer_button">
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>OpenHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>New</string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/Icons/user-add.png</normaloff>:/resources/Icons/user-add.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
-            <widget class="QLineEdit" name="search_customer_line">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>250</width>
-               <height>36</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>500</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="calender_header_buttons">
-       <widget class="QFrame" name="calender_frame">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>10</y>
-          <width>1132</width>
-          <height>48</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: #333;
-background-color: #f8f8f2;
-background-image: none;</string>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_12">
-         <item row="0" column="0">
-          <widget class="QPushButton" name="day_button">
-           <property name="cursor">
-            <cursorShape>OpenHandCursor</cursorShape>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-           </property>
-           <property name="text">
-            <string>Day</string>
-           </property>
-           <property name="icon">
-            <iconset resource="openauto_resources.qrc">
-             <normaloff>:/resources/Icons/calendar.png</normaloff>:/resources/Icons/calendar.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>30</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="flat">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QPushButton" name="month_button">
-           <property name="cursor">
-            <cursorShape>OpenHandCursor</cursorShape>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-           </property>
-           <property name="text">
-            <string>Month</string>
-           </property>
-           <property name="icon">
-            <iconset resource="openauto_resources.qrc">
-             <normaloff>:/resources/Icons/menu-burger.png</normaloff>:/resources/Icons/menu-burger.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>30</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="flat">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QPushButton" name="week_button">
-           <property name="cursor">
-            <cursorShape>OpenHandCursor</cursorShape>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-           </property>
-           <property name="text">
-            <string>Week</string>
-           </property>
-           <property name="icon">
-            <iconset resource="openauto_resources.qrc">
-             <normaloff>:/resources/Icons/calendar.png</normaloff>:/resources/Icons/calendar.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>30</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="flat">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="messenger_header_buttons">
-       <widget class="QFrame" name="message_button_frame">
-        <property name="geometry">
-         <rect>
-          <x>1</x>
-          <y>0</y>
-          <width>1221</width>
-          <height>48</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item>
-          <widget class="QPushButton" name="message_cust_find_button">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="cursor">
-            <cursorShape>OpenHandCursor</cursorShape>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-           </property>
-           <property name="text">
-            <string>Send To:</string>
-           </property>
-           <property name="icon">
-            <iconset resource="openauto_resources.qrc">
-             <normaloff>:/resources/Icons/comment-alt.png</normaloff>:/resources/Icons/comment-alt.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>30</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="flat">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="message_recepient_label">
-           <property name="styleSheet">
-            <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="settings_header_buttons">
-       <layout class="QGridLayout" name="gridLayout_22">
-        <item row="0" column="0">
-         <widget class="QFrame" name="frame">
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_21">
-           <item row="1" column="5">
-            <widget class="QPushButton" name="quickbooks_button">
-             <property name="maximumSize">
-              <size>
-               <width>150</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Quickbooks </string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/icons3/24x24/cil-browser.png</normaloff>:/resources/icons3/24x24/cil-browser.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QPushButton" name="appearance_button">
-             <property name="maximumSize">
-              <size>
-               <width>150</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Appearance</string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/icons3/24x24/cil-browser.png</normaloff>:/resources/icons3/24x24/cil-browser.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="4">
-            <widget class="QPushButton" name="parts_integrate_button">
-             <property name="maximumSize">
-              <size>
-               <width>150</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Parts Integration</string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/icons3/24x24/cil-tag.png</normaloff>:/resources/icons3/24x24/cil-tag.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QPushButton" name="save_settings_button">
-             <property name="maximumSize">
-              <size>
-               <width>150</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="sizeIncrement">
-              <size>
-               <width>0</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #CE6A6C;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Save</string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/icons3/24x24/cil-save.png</normaloff>:/resources/icons3/24x24/cil-save.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QPushButton" name="users_button">
-             <property name="maximumSize">
-              <size>
-               <width>150</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Users</string>
-             </property>
-             <property name="icon">
-              <iconset resource="openauto_resources.qrc">
-               <normaloff>:/resources/icons3/24x24/cil-user-follow.png</normaloff>:/resources/icons3/24x24/cil-user-follow.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>30</width>
-               <height>30</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-    </item>
-    <item row="2" column="0" rowspan="2">
-     <widget class="ControlMenu" name="cmenu_frame">
-      <property name="enabled">
+      <property name="pixmap">
+       <pixmap resource="openauto_resources.qrc">:/resources/OpenAuto_Icons_48x48_dark_light/mainwindow_icon/light_theme_logo.png</pixmap>
+      </property>
+      <property name="scaledContents">
        <bool>true</bool>
       </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
-      <property name="minimumSize">
-       <size>
-        <width>60</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>1677215</width>
-        <height>1677215</height>
-       </size>
-      </property>
-      <property name="sizeIncrement">
-       <size>
-        <width>0</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: #ffffff;
-background-color: #76ABAE;
-background-image: none;
-border-radius: 5px;</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <property name="lineWidth">
-       <number>1</number>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_42">
-       <item row="0" column="0">
-        <widget class="QPushButton" name="customers_button">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="cursor">
-          <cursorShape>OpenHandCursor</cursorShape>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="toolTipDuration">
-          <number>-4</number>
-         </property>
-         <property name="layoutDirection">
-          <enum>Qt::LeftToRight</enum>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QToolTip {
-    background-color: #828786;  
-    border-radius: 10px;       
-    font-size: 14px;      
-	padding: 5px;
-}</string>
-         </property>
-         <property name="icon">
-          <iconset resource="openauto_resources.qrc">
-           <normaloff>:/resources/icons3/24x24/cil-people.png</normaloff>:/resources/icons3/24x24/cil-people.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="flat">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="repair_orders_button">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="cursor">
-          <cursorShape>OpenHandCursor</cursorShape>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="toolTipDuration">
-          <number>-4</number>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	border-radius: 10px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QToolTip {
-    background-color: #828786;  
-    border-radius: 10px;       
-    font-size: 14px;      
-	padding: 5px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="openauto_resources.qrc">
-           <normaloff>:/resources/icons3/24x24/cil-copy.png</normaloff>:/resources/icons3/24x24/cil-copy.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="vehicles_button">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="cursor">
-          <cursorShape>OpenHandCursor</cursorShape>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="toolTipDuration">
-          <number>-4</number>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	border-radius: 10px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QToolTip {
-    background-color: #828786;  
-    border-radius: 10px;       
-    font-size: 14px;      
-	padding: 5px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="openauto_resources.qrc">
-           <normaloff>:/resources/icons3/24x24/car.png</normaloff>:/resources/icons3/24x24/car.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="flat">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QPushButton" name="messaging_button">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="cursor">
-          <cursorShape>OpenHandCursor</cursorShape>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="toolTipDuration">
-          <number>-4</number>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QToolTip {
-    background-color: #828786;  
-    border-radius: 10px;       
-    font-size: 14px;      
-	padding: 5px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="openauto_resources.qrc">
-           <normaloff>:/resources/icons3/24x24/cil-speech.png</normaloff>:/resources/icons3/24x24/cil-speech.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="flat">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QPushButton" name="scheduling_button">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="cursor">
-          <cursorShape>OpenHandCursor</cursorShape>
-         </property>
-         <property name="mouseTracking">
-          <bool>true</bool>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="toolTipDuration">
-          <number>-4</number>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QToolTip {
-    background-color: #828786;  
-    border-radius: 10px;       
-    font-size: 14px;      
-	padding: 5px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="openauto_resources.qrc">
-           <normaloff>:/resources/icons3/24x24/calendar-865.png</normaloff>:/resources/icons3/24x24/calendar-865.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="flat">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QPushButton" name="analytics_button">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="cursor">
-          <cursorShape>OpenHandCursor</cursorShape>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="toolTipDuration">
-          <number>-4</number>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}
-
-QToolTip {
-    background-color: #828786;  
-    border-radius: 5px;       
-    font-size: 14px;      
-	padding: 5px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="openauto_resources.qrc">
-           <normaloff>:/resources/icons3/24x24/cil-chart-line.png</normaloff>:/resources/icons3/24x24/cil-chart-line.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="flat">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <widget class="QPushButton" name="settings_button">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="cursor">
-          <cursorShape>OpenHandCursor</cursorShape>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="toolTipDuration">
-          <number>-4</number>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QToolTip {
-    background-color: #828786;  
-    border-radius: 10px;       
-    font-size: 14px;      
-	padding: 5px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="openauto_resources.qrc">
-           <normaloff>:/resources/icons3/24x24/cil-settings.png</normaloff>:/resources/icons3/24x24/cil-settings.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="default">
-          <bool>false</bool>
-         </property>
-         <property name="flat">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="0">
-        <widget class="QPushButton" name="quit_button">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-
-}
-
-QPushButton:hover {
-	background-color: #A0153E;
-	color: #fff;
-	border-radius: 5px;
-
-}
-
-QToolTip {
-    background-color: #CE6A6C;  
-    border-radius: 10px;       
-    font-size: 14px;      
-	padding: 5px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="openauto_resources.qrc">
-           <normaloff>:/resources/icons3/24x24/cil-power-standby.png</normaloff>:/resources/icons3/24x24/cil-power-standby.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-      </layout>
      </widget>
     </item>
-    <item row="3" column="1">
+    <item row="3" column="2">
      <widget class="QStackedWidget" name="hub_stacked_widget">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -1700,9 +98,7 @@ QToolTip {
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #333;
-background-color: #f8f8f2;
-background-image: none;</string>
+       <string notr="true"/>
       </property>
       <property name="currentIndex">
        <number>0</number>
@@ -1727,12 +123,15 @@ background-image: none;</string>
            </sizepolicy>
           </property>
           <property name="styleSheet">
-           <string notr="true">border: 0;</string>
+           <string notr="true"/>
           </property>
           <property name="currentIndex">
            <number>0</number>
           </property>
           <widget class="QWidget" name="ro_tabsPage1">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
            <layout class="QGridLayout" name="gridLayout_5">
             <item row="1" column="0">
              <widget class="EstimateTable" name="estimates_table">
@@ -1743,10 +142,7 @@ background-image: none;</string>
                </sizepolicy>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: #333;
-background-color: #f8f8f2;
-background-image: none;
-</string>
+               <string notr="true"/>
               </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
@@ -1763,10 +159,7 @@ background-image: none;
             <item row="0" column="0">
              <widget class="ApprovedTable" name="approved_table">
               <property name="styleSheet">
-               <string notr="true">color: #333;
-background-color: #f8f8f2;
-background-image: none;
-</string>
+               <string notr="true"/>
               </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
@@ -1776,14 +169,14 @@ background-image: none;
            </layout>
           </widget>
           <widget class="QWidget" name="ro_tabsPage3">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
            <layout class="QGridLayout" name="gridLayout_7">
             <item row="0" column="0">
              <widget class="WorkingTable" name="working_table">
               <property name="styleSheet">
-               <string notr="true">color: #333;
-background-color: #f8f8f2;
-background-image: none;
-</string>
+               <string notr="true"/>
               </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
@@ -1793,14 +186,14 @@ background-image: none;
            </layout>
           </widget>
           <widget class="QWidget" name="ro_tabsPage4">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
            <layout class="QGridLayout" name="gridLayout_8">
             <item row="0" column="0">
              <widget class="CheckoutTable" name="checkout_table">
               <property name="styleSheet">
-               <string notr="true">color: #333;
-background-color: #f8f8f2;
-background-image: none;
-</string>
+               <string notr="true"/>
               </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
@@ -1810,6 +203,9 @@ background-image: none;
            </layout>
           </widget>
           <widget class="QWidget" name="ro_tabsPage5">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
            <layout class="QGridLayout" name="gridLayout_9">
             <item row="0" column="0">
              <widget class="QTableWidget" name="show_all_table">
@@ -1820,10 +216,7 @@ background-image: none;
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: #333;
-background-color: #f8f8f2;
-background-image: none;
-</string>
+               <string notr="true"/>
               </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
@@ -1866,9 +259,7 @@ background-image: none;
             <item row="0" column="0">
              <widget class="CustomerTable" name="customer_table">
               <property name="styleSheet">
-               <string notr="true">color: #333;
-background-color: #f8f8f2;
-background-image: none;</string>
+               <string notr="true"/>
               </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
@@ -1885,6 +276,9 @@ background-image: none;</string>
        <layout class="QGridLayout" name="gridLayout_13">
         <item row="0" column="0">
          <widget class="QFrame" name="frame_4">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
           </property>
@@ -1910,12 +304,12 @@ background-image: none;</string>
       <widget class="QWidget" name="messaging_page">
        <layout class="QGridLayout" name="gridLayout_14">
         <item row="0" column="0" colspan="4">
-         <widget class="QTextBrowser" name="textBrowser">
+         <widget class="QTextBrowser" name="messaging_text_browser">
           <property name="cursor" stdset="0">
            <cursorShape>IBeamCursor</cursorShape>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: #9aa3b1;</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -1943,17 +337,7 @@ background-image: none;</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>Send</string>
@@ -1991,8 +375,7 @@ QPushButton:hover {
            <cursorShape>IBeamCursor</cursorShape>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: #d4d8de;
-</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -2021,6 +404,9 @@ QPushButton:hover {
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <layout class="QGridLayout" name="gridLayout_18">
         <item row="1" column="0">
          <widget class="QStackedWidget" name="vehicle_tabs">
@@ -2030,10 +416,20 @@ QPushButton:hover {
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
           <widget class="QWidget" name="vehicle_tabs_page">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
            <layout class="QGridLayout" name="gridLayout_19">
             <item row="0" column="0">
-             <widget class="VehicleTable" name="vehicle_table"/>
+             <widget class="VehicleTable" name="vehicle_table">
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -2063,6 +459,9 @@ QPushButton:hover {
              <layout class="QGridLayout" name="gridLayout_34">
               <item row="0" column="0">
                <widget class="HourlySchedule" name="hourly_schedule_table">
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::NoFrame</enum>
                 </property>
@@ -2077,9 +476,15 @@ QPushButton:hover {
        </layout>
       </widget>
       <widget class="QWidget" name="weekly_schedule_page">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <layout class="QGridLayout" name="gridLayout_31">
         <item row="0" column="0">
          <widget class="WeeklySchedule" name="weekly_schedule_table">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
           </property>
@@ -2088,13 +493,14 @@ QPushButton:hover {
        </layout>
       </widget>
       <widget class="QWidget" name="settings_page">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <layout class="QGridLayout" name="gridLayout_23">
         <item row="1" column="0">
          <widget class="QFrame" name="settings_frame">
           <property name="styleSheet">
-           <string notr="true">color: #333;
-background-color: #f8f8f2;
-background-image: none;</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -2127,6 +533,9 @@ background-image: none;</string>
                <height>0</height>
               </size>
              </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -2141,6 +550,9 @@ background-image: none;</string>
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
                 </property>
                 <property name="frameShape">
                  <enum>QFrame::NoFrame</enum>
@@ -2161,6 +573,7 @@ background-image: none;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -2178,17 +591,7 @@ background-image: none;</string>
               <item row="5" column="1">
                <widget class="QPushButton" name="remove_row_button">
                 <property name="styleSheet">
-                 <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #A0153E;
-}
-
-QPushButton:hover {
-	background-color: #C49497;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Remove Row</string>
@@ -2208,17 +611,7 @@ QPushButton:hover {
               <item row="5" column="0">
                <widget class="QPushButton" name="add_row_button">
                 <property name="styleSheet">
-                 <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Add Row</string>
@@ -2238,17 +631,7 @@ QPushButton:hover {
               <item row="6" column="0">
                <widget class="QPushButton" name="save_matrix_button">
                 <property name="styleSheet">
-                 <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Save Matrix</string>
@@ -2272,6 +655,9 @@ QPushButton:hover {
             <layout class="QHBoxLayout" name="horizontalLayout_10">
              <item>
               <widget class="QLabel" name="logo_label">
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
                <property name="text">
                 <string>Shop Logo</string>
                </property>
@@ -2283,17 +669,7 @@ QPushButton:hover {
              <item>
               <widget class="QPushButton" name="import_logo_button">
                <property name="styleSheet">
-                <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+                <string notr="true"/>
                </property>
                <property name="text">
                 <string>Import</string>
@@ -2314,6 +690,9 @@ QPushButton:hover {
            </item>
            <item row="5" column="0">
             <widget class="QFrame" name="warranty_frame">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -2330,8 +709,7 @@ QPushButton:hover {
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -2347,11 +725,7 @@ background-color: #fefeff;</string>
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QCheckBox {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #94C4C1;
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Warranty Duration</string>
@@ -2381,6 +755,7 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -2401,11 +776,7 @@ background-color: #fefeff;</string>
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QCheckBox {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #94C4C1;
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Warranty Time Length</string>
@@ -2429,6 +800,7 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -2449,8 +821,7 @@ background-color: #fefeff;</string>
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -2475,6 +846,7 @@ background-color: #fefeff;</string>
                  <property name="font">
                   <font>
                    <pointsize>13</pointsize>
+                   <italic>false</italic>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -2506,12 +878,12 @@ background-color: #fefeff;</string>
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
+                   <italic>false</italic>
                    <bold>true</bold>
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">border-radius: 10px;
-background-color: #fefeff;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -2533,6 +905,7 @@ background-color: #fefeff;</string>
                  <property name="font">
                   <font>
                    <pointsize>13</pointsize>
+                   <italic>false</italic>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -2558,12 +931,12 @@ background-color: #fefeff;</string>
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
+                   <italic>false</italic>
                    <bold>true</bold>
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">border-radius: 10px;
-background-color: #fefeff;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -2585,6 +958,7 @@ background-color: #fefeff;</string>
                  <property name="font">
                   <font>
                    <pointsize>13</pointsize>
+                   <italic>false</italic>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -2610,12 +984,12 @@ background-color: #fefeff;</string>
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
+                   <italic>false</italic>
                    <bold>true</bold>
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">border-radius: 10px;
-background-color: #fefeff;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -2637,6 +1011,7 @@ background-color: #fefeff;</string>
                  <property name="font">
                   <font>
                    <pointsize>13</pointsize>
+                   <italic>false</italic>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -2662,12 +1037,12 @@ background-color: #fefeff;</string>
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
+                   <italic>false</italic>
                    <bold>true</bold>
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">border-radius: 10px;
-background-color: #fefeff;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -2689,6 +1064,7 @@ background-color: #fefeff;</string>
                  <property name="font">
                   <font>
                    <pointsize>13</pointsize>
+                   <italic>false</italic>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -2714,12 +1090,12 @@ background-color: #fefeff;</string>
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
+                   <italic>false</italic>
                    <bold>true</bold>
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">border-radius: 10px;
-background-color: #fefeff;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -2741,6 +1117,7 @@ background-color: #fefeff;</string>
                  <property name="font">
                   <font>
                    <pointsize>13</pointsize>
+                   <italic>false</italic>
                    <bold>true</bold>
                   </font>
                  </property>
@@ -2766,12 +1143,12 @@ background-color: #fefeff;</string>
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
+                   <italic>false</italic>
                    <bold>true</bold>
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">border-radius: 10px;
-background-color: #fefeff;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string/>
@@ -2820,6 +1197,7 @@ background-color: #fefeff;</string>
                <property name="font">
                 <font>
                  <pointsize>13</pointsize>
+                 <italic>false</italic>
                  <bold>true</bold>
                 </font>
                </property>
@@ -2851,12 +1229,12 @@ background-color: #fefeff;</string>
                <property name="font">
                 <font>
                  <pointsize>12</pointsize>
+                 <italic>false</italic>
                  <bold>true</bold>
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">border-radius: 10px;
-background-color: #fefeff;</string>
+                <string notr="true"/>
                </property>
               </widget>
              </item>
@@ -2877,6 +1255,9 @@ background-color: #fefeff;</string>
            </item>
            <item row="2" column="0" rowspan="2">
             <widget class="QFrame" name="frame_2">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -2895,6 +1276,7 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -2911,6 +1293,9 @@ background-color: #fefeff;</string>
               </item>
               <item row="1" column="0" colspan="2">
                <widget class="LaborTable" name="labor_table">
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::NoFrame</enum>
                 </property>
@@ -2919,17 +1304,7 @@ background-color: #fefeff;</string>
               <item row="2" column="0">
                <widget class="QPushButton" name="add_labor_row">
                 <property name="styleSheet">
-                 <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Add Row</string>
@@ -2949,17 +1324,7 @@ QPushButton:hover {
               <item row="2" column="1">
                <widget class="QPushButton" name="remove_labor_row">
                 <property name="styleSheet">
-                 <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #A0153E;
-}
-
-QPushButton:hover {
-	background-color: #C49497;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Remove Row</string>
@@ -2979,17 +1344,7 @@ QPushButton:hover {
               <item row="3" column="0">
                <widget class="QPushButton" name="save_labor_button">
                 <property name="styleSheet">
-                 <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Save Labor</string>
@@ -3033,6 +1388,7 @@ QPushButton:hover {
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -3070,6 +1426,7 @@ QPushButton:hover {
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -3096,29 +1453,7 @@ QPushButton:hover {
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QComboBox {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QComboBox:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox:drop-down {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox QAbstractItemView {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}</string>
+                 <string notr="true"/>
                 </property>
                </widget>
               </item>
@@ -3158,29 +1493,7 @@ QComboBox QAbstractItemView {
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QComboBox {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QComboBox:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox:drop-down {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox QAbstractItemView {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}</string>
+                 <string notr="true"/>
                 </property>
                </widget>
               </item>
@@ -3197,6 +1510,7 @@ QComboBox QAbstractItemView {
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -3230,8 +1544,7 @@ QComboBox QAbstractItemView {
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -3247,6 +1560,7 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -3269,12 +1583,12 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -3290,6 +1604,7 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -3311,12 +1626,12 @@ background-color: #fefeff;</string>
                 </property>
                 <property name="font">
                  <font>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -3338,17 +1653,7 @@ background-color: #fefeff;</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>MPI</string>
@@ -3389,12 +1694,12 @@ QPushButton:hover {
             <property name="font">
              <font>
               <pointsize>13</pointsize>
+              <italic>false</italic>
               <bold>true</bold>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+             <string notr="true"/>
             </property>
             <property name="lineWidth">
              <number>3</number>
@@ -3434,8 +1739,12 @@ background-color: #fefeff;</string>
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
+                   <italic>true</italic>
                    <bold>true</bold>
                   </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Concern</string>
@@ -3447,8 +1756,12 @@ background-color: #fefeff;</string>
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
+                   <italic>true</italic>
                    <bold>true</bold>
                   </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Cause</string>
@@ -3460,8 +1773,12 @@ background-color: #fefeff;</string>
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
+                   <italic>true</italic>
                    <bold>true</bold>
                   </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Correction</string>
@@ -3479,12 +1796,12 @@ background-color: #fefeff;</string>
                    <property name="font">
                     <font>
                      <pointsize>12</pointsize>
+                     <italic>true</italic>
                      <bold>true</bold>
                     </font>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+                    <string notr="true"/>
                    </property>
                    <property name="frameShape">
                     <enum>QFrame::NoFrame</enum>
@@ -3500,12 +1817,12 @@ background-color: #fefeff;</string>
                    <property name="font">
                     <font>
                      <pointsize>12</pointsize>
+                     <italic>true</italic>
                      <bold>true</bold>
                     </font>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+                    <string notr="true"/>
                    </property>
                    <property name="frameShape">
                     <enum>QFrame::NoFrame</enum>
@@ -3521,6 +1838,7 @@ background-color: #fefeff;</string>
                    <property name="font">
                     <font>
                      <pointsize>12</pointsize>
+                     <italic>false</italic>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -3569,7 +1887,7 @@ background-color: #fefeff;</string>
              <x>0</x>
              <y>0</y>
              <width>251</width>
-             <height>296</height>
+             <height>275</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_39">
@@ -3580,6 +1898,7 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -3617,6 +1936,7 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -3654,6 +1974,7 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -3691,6 +2012,7 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -3766,6 +2088,7 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -3803,6 +2126,7 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -3837,6 +2161,7 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -3874,6 +2199,7 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -3934,17 +2260,7 @@ background-color: #fefeff;</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>Status</string>
@@ -3972,6 +2288,7 @@ QPushButton:hover {
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -3988,6 +2305,7 @@ QPushButton:hover {
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>false</bold>
                  </font>
                 </property>
@@ -4005,6 +2323,7 @@ QPushButton:hover {
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -4021,6 +2340,7 @@ QPushButton:hover {
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>false</bold>
                  </font>
                 </property>
@@ -4042,6 +2362,7 @@ QPushButton:hover {
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -4061,12 +2382,12 @@ QPushButton:hover {
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -4082,6 +2403,7 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -4104,12 +2426,12 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -4131,17 +2453,7 @@ background-color: #fefeff;</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>Profit</string>
@@ -4182,6 +2494,9 @@ QPushButton:hover {
            <number>0</number>
           </property>
           <widget class="QWidget" name="jobs_tab">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
            <attribute name="title">
             <string>Jobs</string>
            </attribute>
@@ -4207,17 +2522,7 @@ QPushButton:hover {
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #A0153E;
-}
-
-QPushButton:hover {
-	background-color: #C49497;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Remove </string>
@@ -4247,6 +2552,9 @@ QPushButton:hover {
                 <width>0</width>
                 <height>0</height>
                </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
               </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
@@ -4279,17 +2587,7 @@ QPushButton:hover {
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>New Job</string>
@@ -4319,33 +2617,12 @@ QPushButton:hover {
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QComboBox {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QComboBox:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox:drop-down {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QComboBox QAbstractItemView {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 5px;
-}</string>
+                 <string notr="true"/>
                 </property>
                 <item>
                  <property name="text">
@@ -4365,12 +2642,12 @@ QComboBox QAbstractItemView {
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string/>
@@ -4394,12 +2671,12 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -4420,12 +2697,12 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -4446,12 +2723,12 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string/>
@@ -4475,12 +2752,12 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -4501,12 +2778,12 @@ background-color: #fefeff;</string>
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
+                  <italic>false</italic>
                   <bold>true</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">border-radius: 5px;
-background-color: #fefeff;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -4537,17 +2814,7 @@ background-color: #fefeff;</string>
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Add Item </string>
@@ -4583,21 +2850,12 @@ QPushButton:hover {
               </property>
               <property name="font">
                <font>
+                <italic>false</italic>
                 <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Place Order</string>
@@ -4623,17 +2881,7 @@ QPushButton:hover {
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #A0153E;
-}
-
-QPushButton:hover {
-	background-color: #C49497;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Delete</string>
@@ -4665,17 +2913,7 @@ QPushButton:hover {
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Add Parts</string>
@@ -4699,6 +2937,9 @@ QPushButton:hover {
                 <width>0</width>
                 <height>0</height>
                </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
               </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
@@ -4732,6 +2973,1344 @@ QPushButton:hover {
         </item>
        </layout>
       </widget>
+     </widget>
+    </item>
+    <item row="0" column="1" colspan="2">
+     <widget class="QStackedWidget" name="top_buttons_stacked">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>50</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="ro_header_buttons">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_15">
+        <item row="0" column="1">
+         <widget class="QFrame" name="ro_frame">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="3">
+            <widget class="QPushButton" name="working_ro_button">
+             <property name="cursor">
+              <cursorShape>OpenHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Working</string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/Icons/document.png</normaloff>:/resources/Icons/document.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QPushButton" name="checkout_button">
+             <property name="cursor">
+              <cursorShape>OpenHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Checkout</string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/Icons/shopping-cart.png</normaloff>:/resources/Icons/shopping-cart.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="estimates_button">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="cursor">
+              <cursorShape>OpenHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Estimates</string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/Icons/ballot.png</normaloff>:/resources/Icons/ballot.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="5">
+            <widget class="QPushButton" name="show_all_ro_button">
+             <property name="cursor">
+              <cursorShape>OpenHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>ShowAll</string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/Icons/apps.png</normaloff>:/resources/Icons/apps.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="new_ro_button">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="cursor">
+              <cursorShape>OpenHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string> Create New</string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/Icons/add-document.png</normaloff>:/resources/Icons/add-document.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="approved_button">
+             <property name="cursor">
+              <cursorShape>OpenHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Approved</string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/Icons/list-check.png</normaloff>:/resources/Icons/list-check.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="6">
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QLineEdit" name="ro_search_edit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>250</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="vehicle_header_buttons">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_16">
+        <item row="0" column="0">
+         <widget class="QFrame" name="vehicle_header_frame">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_17">
+           <item row="0" column="1">
+            <layout class="QGridLayout" name="gridLayout_20">
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="vehicle_search_line">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>600</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QPushButton" name="new_vehicle_button">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>200</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>New</string>
+               </property>
+               <property name="icon">
+                <iconset resource="openauto_resources.qrc">
+                 <normaloff>:/resources/Icons/add-document.png</normaloff>:/resources/Icons/add-document.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="ro_hub_buttons">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_28">
+        <item row="0" column="0">
+         <widget class="QFrame" name="frame_6">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_35">
+           <item row="0" column="5">
+            <widget class="QPushButton" name="cancel_ro_button">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Cancel</string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-x.png</normaloff>:/resources/icons3/24x24/cil-x.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="save_ro_button">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Save</string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-save.png</normaloff>:/resources/icons3/24x24/cil-save.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QPushButton" name="message_customer_button">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Message</string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-speech.png</normaloff>:/resources/icons3/24x24/cil-speech.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QPushButton" name="print_ro_button">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Print</string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-print.png</normaloff>:/resources/icons3/24x24/cil-print.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="customer_header_buttons">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_27">
+        <item row="0" column="0">
+         <widget class="QFrame" name="customer_frame">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_10">
+           <item row="0" column="1">
+            <widget class="QPushButton" name="new_customer_button">
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="cursor">
+              <cursorShape>OpenHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>New</string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/Icons/user-add.png</normaloff>:/resources/Icons/user-add.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLineEdit" name="search_customer_line">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>250</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="calender_header_buttons">
+       <widget class="QFrame" name="calender_frame">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>10</y>
+          <width>1132</width>
+          <height>48</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_12">
+         <item row="0" column="0">
+          <widget class="QPushButton" name="day_button">
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>OpenHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>Day</string>
+           </property>
+           <property name="icon">
+            <iconset resource="openauto_resources.qrc">
+             <normaloff>:/resources/Icons/calendar.png</normaloff>:/resources/Icons/calendar.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QPushButton" name="month_button">
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>OpenHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>Month</string>
+           </property>
+           <property name="icon">
+            <iconset resource="openauto_resources.qrc">
+             <normaloff>:/resources/Icons/menu-burger.png</normaloff>:/resources/Icons/menu-burger.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QPushButton" name="week_button">
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>OpenHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>Week</string>
+           </property>
+           <property name="icon">
+            <iconset resource="openauto_resources.qrc">
+             <normaloff>:/resources/Icons/calendar.png</normaloff>:/resources/Icons/calendar.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="messenger_header_buttons">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <widget class="QFrame" name="message_button_frame">
+        <property name="geometry">
+         <rect>
+          <x>1</x>
+          <y>0</y>
+          <width>1221</width>
+          <height>48</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QPushButton" name="message_cust_find_button">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="cursor">
+            <cursorShape>OpenHandCursor</cursorShape>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>Send To:</string>
+           </property>
+           <property name="icon">
+            <iconset resource="openauto_resources.qrc">
+             <normaloff>:/resources/Icons/comment-alt.png</normaloff>:/resources/Icons/comment-alt.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="message_recepient_label">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="settings_header_buttons">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_22">
+        <item row="0" column="0">
+         <widget class="QFrame" name="frame">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_21">
+           <item row="1" column="5">
+            <widget class="QPushButton" name="quickbooks_button">
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Quickbooks </string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-browser.png</normaloff>:/resources/icons3/24x24/cil-browser.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="appearance_button">
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Appearance</string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-browser.png</normaloff>:/resources/icons3/24x24/cil-browser.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QPushButton" name="parts_integrate_button">
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Parts Integration</string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-tag.png</normaloff>:/resources/icons3/24x24/cil-tag.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="save_settings_button">
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="sizeIncrement">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Save</string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-save.png</normaloff>:/resources/icons3/24x24/cil-save.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QPushButton" name="users_button">
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Users</string>
+             </property>
+             <property name="icon">
+              <iconset resource="openauto_resources.qrc">
+               <normaloff>:/resources/icons3/24x24/cil-user-follow.png</normaloff>:/resources/icons3/24x24/cil-user-follow.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="2" column="0" rowspan="2">
+     <widget class="ControlMenu" name="cmenu_frame">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>60</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>1677215</width>
+        <height>1677215</height>
+       </size>
+      </property>
+      <property name="sizeIncrement">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_42">
+       <item row="1" column="0">
+        <widget class="QPushButton" name="customers_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="toolTipDuration">
+          <number>-4</number>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="icon">
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-people.png</normaloff>:/resources/icons3/24x24/cil-people.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QPushButton" name="analytics_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="toolTipDuration">
+          <number>-4</number>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-chart-line.png</normaloff>:/resources/icons3/24x24/cil-chart-line.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="vehicles_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="toolTipDuration">
+          <number>-4</number>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/car.png</normaloff>:/resources/icons3/24x24/car.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QPushButton" name="messaging_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="toolTipDuration">
+          <number>-4</number>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-speech.png</normaloff>:/resources/icons3/24x24/cil-speech.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QPushButton" name="settings_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="toolTipDuration">
+          <number>-4</number>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-settings.png</normaloff>:/resources/icons3/24x24/cil-settings.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="default">
+          <bool>false</bool>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QPushButton" name="scheduling_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="mouseTracking">
+          <bool>true</bool>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="toolTipDuration">
+          <number>-4</number>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/calendar-865.png</normaloff>:/resources/icons3/24x24/calendar-865.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QPushButton" name="quit_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-power-standby.png</normaloff>:/resources/icons3/24x24/cil-power-standby.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="repair_orders_button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="toolTipDuration">
+          <number>-4</number>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="openauto_resources.qrc">
+           <normaloff>:/resources/icons3/24x24/cil-copy.png</normaloff>:/resources/icons3/24x24/cil-copy.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QLabel" name="login_label">
+      <property name="text">
+       <string>login_label</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
      </widget>
     </item>
    </layout>

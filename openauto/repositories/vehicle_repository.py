@@ -6,6 +6,18 @@ from openauto.repositories import db_handlers
 class VehicleRepository:
     @staticmethod
     def insert_vehicle(vehicle_data):
+        # vehicle_data = [vin, year, make, model, engine_size, trim, customer_id]
+        vin = (vehicle_data[0] or "").strip().upper()
+        vehicle_data = [
+            (vin if vin else None),  # normalize '' -> None
+            vehicle_data[1],
+            vehicle_data[2],
+            vehicle_data[3],
+            vehicle_data[4],
+            vehicle_data[5],
+            vehicle_data[6],
+        ]
+
         conn = db_handlers.connect_db()
         cursor = conn.cursor()
         query = """INSERT INTO vehicles (vin, year, make, model, engine_size, trim, customer_id)
@@ -47,7 +59,7 @@ class VehicleRepository:
     def get_all_vehicles():
         conn = db_handlers.connect_db()
         cursor = conn.cursor()
-        query = """Select year, make, model, customer_id, vin FROM vehicles"""
+        query = """Select year, make, model, customer_id, vin, id FROM vehicles"""
         cursor.execute(query)
         result = cursor.fetchall()
         cursor.close()
@@ -114,3 +126,28 @@ class VehicleRepository:
         cursor.close()
         conn.close()
         return result
+
+    @staticmethod
+    def find_by_vin(vin: str):
+        conn = db_handlers.connect_db()
+        try:
+            cur = conn.cursor()
+            cur.execute("SELECT id, customer_id FROM vehicles WHERE vin=%s LIMIT 1", (vin,))
+            row = cur.fetchone()
+            if row:
+                return {"id": int(row[0]), "customer_id": int(row[1])}
+            return None
+        finally:
+            cur.close()
+            conn.close()
+
+    @staticmethod
+    def transfer_vehicle_to_customer(vehicle_id: int, new_customer_id: int):
+        conn = db_handlers.connect_db()
+        try:
+            cur = conn.cursor()
+            cur.execute("UPDATE vehicles SET customer_id=%s WHERE id=%s", (new_customer_id, vehicle_id))
+            conn.commit()
+        finally:
+            cur.close()
+            conn.close()

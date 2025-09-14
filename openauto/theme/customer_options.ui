@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>customer_options_form</class>
+ <widget class="QWidget" name="customer_options_form">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,64 +14,16 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">color: #333;
-background-color: #f8f8f2;
-background-image: none;</string>
+   <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="3">
-    <widget class="QPushButton" name="delete_button">
-     <property name="cursor">
-      <cursorShape>OpenHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-     </property>
-     <property name="text">
-      <string>Delete</string>
-     </property>
-     <property name="icon">
-      <iconset resource="openauto_resources.qrc">
-       <normaloff>:/resources/Icons/trash.png</normaloff>:/resources/Icons/trash.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>30</width>
-       <height>30</height>
-      </size>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="2">
-    <widget class="QPushButton" name="add_customer_vehicle">
+    <widget class="QPushButton" name="add_customer_vehicle_button">
      <property name="cursor">
       <cursorShape>OpenHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Add Vehicle</string>
@@ -91,23 +43,39 @@ QPushButton:hover {
      </property>
     </widget>
    </item>
-   <item row="0" column="0">
-    <widget class="QPushButton" name="create_ro_button">
+   <item row="0" column="3">
+    <widget class="QPushButton" name="delete_customer_button">
      <property name="cursor">
       <cursorShape>OpenHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Delete</string>
+     </property>
+     <property name="icon">
+      <iconset resource="openauto_resources.qrc">
+       <normaloff>:/resources/Icons/trash.png</normaloff>:/resources/Icons/trash.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QPushButton" name="create_ro_customer_button">
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Create RO</string>
@@ -127,20 +95,33 @@ QPushButton:hover {
      </property>
     </widget>
    </item>
-   <item row="0" column="4">
-    <widget class="QPushButton" name="cancel_button">
+   <item row="0" column="1">
+    <widget class="QPushButton" name="edit_customer_button">
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #A0153E;
-}
-
-QPushButton:hover {
-	background-color: #C49497;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Edit Customer</string>
+     </property>
+     <property name="icon">
+      <iconset resource="openauto_resources.qrc">
+       <normaloff>:/resources/Icons/user.png</normaloff>:/resources/Icons/user.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="QPushButton" name="cancel_customer_options_button">
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Cancel</string>
@@ -155,35 +136,8 @@ QPushButton:hover {
        <height>30</height>
       </size>
      </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QPushButton" name="edit_customer_button">
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
-     </property>
-     <property name="text">
-      <string>Edit Customer</string>
-     </property>
-     <property name="icon">
-      <iconset resource="openauto_resources.qrc">
-       <normaloff>:/resources/Icons/user.png</normaloff>:/resources/Icons/user.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>30</width>
-       <height>30</height>
-      </size>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>vehcile_options_form</class>
+ <widget class="QWidget" name="vehcile_options_form">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,24 +13,17 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QPushButton" name="create_ro_button">
+    <widget class="QPushButton" name="create_ro_vehicle_button">
      <property name="cursor">
       <cursorShape>OpenHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Create RO</string>
@@ -51,19 +44,9 @@ QPushButton:hover {
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QPushButton" name="change_owner_button">
+    <widget class="QPushButton" name="change_owner_vehicle_button">
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Change Owner</string>
@@ -78,25 +61,18 @@ QPushButton:hover {
        <height>30</height>
       </size>
      </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item row="0" column="2">
-    <widget class="QPushButton" name="delete_button">
+    <widget class="QPushButton" name="delete_vehicle_button">
      <property name="cursor">
       <cursorShape>OpenHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Delete</string>
@@ -117,19 +93,9 @@ QPushButton:hover {
     </widget>
    </item>
    <item row="0" column="3">
-    <widget class="QPushButton" name="cancel_button">
+    <widget class="QPushButton" name="cancel_vehicle_options_button">
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #A0153E;
-}
-
-QPushButton:hover {
-	background-color: #C49497;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Cancel</string>
@@ -143,6 +109,9 @@ QPushButton:hover {
        <width>30</width>
        <height>30</height>
       </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

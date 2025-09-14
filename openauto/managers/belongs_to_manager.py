@@ -23,7 +23,7 @@ class BelongsToManager:
             return
 
         self.ui.belongs_to_window, self.ui.belongs_to_window_ui = self.ui.widget_manager.create_or_restore(
-            "belongs_to", QtWidgets.QWidget, customer_search_form.Ui_Form
+            "belongs_to", QtWidgets.QWidget, customer_search_form.Ui_customer_search_form
         )
 
         self.ui.belongs_to_window.setParent(self.ui, QtCore.Qt.WindowType.Dialog)
@@ -35,7 +35,7 @@ class BelongsToManager:
 
         self.ui.belongs_to_window.setFixedSize(636, 256)
 
-        self.ui.belongs_to_window_ui.cancel_button.clicked.connect(
+        self.ui.belongs_to_window_ui.cancel_customer_search_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("belongs_to"))
 
         self.ui.belongs_to_window_ui.customer_search_edit.setPlaceholderText("Search ...")
@@ -47,7 +47,7 @@ class BelongsToManager:
         self.name_box_items()
         self.ui.belongs_to_window.show()
 
-        self.ui.belongs_to_window_ui.confirm_button.clicked.connect(self.new_vehicle_customer)
+        self.ui.belongs_to_window_ui.confirm_customer_search_button.clicked.connect(self.new_vehicle_customer)
         self.ui.belongs_to_window_ui.add_customer_button.clicked.connect(self.join_vehicle_customer)
 
 
@@ -59,8 +59,11 @@ class BelongsToManager:
             return
 
         form = self.ui.vehicle_window_ui
+        vin_raw = (form.vin_line.text() or "").strip().upper()
+        vin = vin_raw if vin_raw else None
+
         vehicle_data = [
-            form.vin_line.text(),
+            vin,
             form.year_line.text(),
             form.make_line.text(),
             form.model_line.text(),
@@ -68,7 +71,6 @@ class BelongsToManager:
             form.trim_line.text(),
             customer_id
         ]
-
         VehicleRepository.insert_vehicle(vehicle_data)
         self._show_message("Vehicle Added")
         self._close_windows(["vehicle_window", "belongs_to"])
@@ -128,8 +130,11 @@ class BelongsToManager:
             return
 
         form = self.ui.vehicle_window_ui
+        vin_raw = (form.vin_line.text() or "").strip().upper()
+        vin = vin_raw if vin_raw else None
+
         vehicle_data = [
-            form.vin_line.text(),
+            vin,
             form.year_line.text(),
             form.make_line.text(),
             form.model_line.text(),
@@ -137,7 +142,6 @@ class BelongsToManager:
             form.trim_line.text(),
             customer_id
         ]
-
         VehicleRepository.insert_vehicle(vehicle_data)
         self._show_message("New Vehicle and Customer Added")
         self._close_windows(["vehicle_window", "belongs_to", "new_customer"])
@@ -166,7 +170,7 @@ class BelongsToManager:
 ### CHANGES VEHICLE OWNER TO A DIFFERENT EXISTING CUSTOMER ###
     def belongs_to_cust_change(self):
         self.ui.belongs_to_window, self.ui.belongs_to_window_ui = self.ui.widget_manager.create_or_restore(
-            "belongs_to", QtWidgets.QWidget, customer_search_form.Ui_Form
+            "belongs_to", QtWidgets.QWidget, customer_search_form.Ui_customer_search_form
         )
 
         self.ui.belongs_to_window.setParent(self.ui, QtCore.Qt.WindowType.Dialog)
@@ -178,14 +182,14 @@ class BelongsToManager:
 
         self.ui.belongs_to_window.setFixedSize(636, 256)
 
-        self.ui.belongs_to_window_ui.cancel_button.clicked.connect(
+        self.ui.belongs_to_window_ui.cancel_customer_search_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("belongs_to"))
 
         self.ui.belongs_to_window_ui.customer_search_edit.setPlaceholderText("Search ...")
         self.ui.belongs_to_window_ui.customer_search_edit.textChanged.connect(self.customer_combo_filter)
 
         self.name_box_items()
-        self.ui.belongs_to_window_ui.confirm_button.clicked.connect(self.change_vehicle_owner)
+        self.ui.belongs_to_window_ui.confirm_customer_search_button.clicked.connect(self.change_vehicle_owner)
         self.ui.belongs_to_window_ui.add_customer_button.clicked.connect(self.new_vehicle_owner)
         self.ui.belongs_to_window.show()
 
@@ -242,10 +246,10 @@ class BelongsToManager:
 
         self.ui.show_new_customer_page.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
-        self.ui.show_new_customer_page_ui.abort_button.clicked.connect(
+        self.ui.show_new_customer_page_ui.cancel_customer_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("new_customer"))
 
-        self.ui.show_new_customer_page_ui.edit_button.hide()
+        self.ui.show_new_customer_page_ui.edit_customer_button.hide()
         self.ui.show_new_customer_page.setWindowTitle("New Customer")
         self.ui.show_new_customer_page_ui.first_name_line.setFocus()
         self.ui.show_new_customer_page.setFixedSize(606, 693)
@@ -254,7 +258,7 @@ class BelongsToManager:
 
         self.ui.belongs_to_window.hide()
         self.ui.show_new_customer_page.show()
-        self.ui.show_new_customer_page_ui.save_button.clicked.connect(self.new_cust_old_vehc)
+        self.ui.show_new_customer_page_ui.save_customer_button.clicked.connect(self.new_cust_old_vehc)
 
 
     def new_cust_old_vehc(self):

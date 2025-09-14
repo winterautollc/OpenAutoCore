@@ -38,17 +38,29 @@ class AppointmentRepository:
         conn = connect_db()
         cursor = conn.cursor(dictionary=True)
         query = """
-            SELECT a.id, a.customer_id, a.vehicle_id, a.appointment_date, a.appointment_time, a.dropoff_type,
-                   a.notes, a.vin, c.first_name, c.last_name
+            SELECT
+                a.id,
+                a.customer_id,
+                a.vehicle_id,
+                a.appointment_date,
+                a.appointment_time,
+                a.dropoff_type,
+                a.notes,
+                a.vin,
+                c.first_name,
+                c.last_name
             FROM appointments a
-            JOIN customers c ON a.customer_id = c.customer_id
+            LEFT JOIN customers c ON a.customer_id = c.customer_id   -- <- use your actual PK
             WHERE a.appointment_date BETWEEN %s AND %s
+            ORDER BY a.appointment_date, a.appointment_time
         """
         cursor.execute(query, (start_str, end_str))
-        results = cursor.fetchall()
+        rows = cursor.fetchall()
         cursor.close()
         conn.close()
-        return results if results else []
+        return rows if rows else []
+
+
 
     @staticmethod
     def update_appointment(appointment_id, customer_id, vehicle_id, vin, date, time, notes: str = "", dropoff_type=None):
@@ -100,14 +112,31 @@ class AppointmentRepository:
     def get_appointment_details_by_id(appointment_id: int):
         conn = connect_db()
         cursor = conn.cursor(dictionary=True)
-        query = """SELECT a.id, a.customer_id, a.vehicle_id, a.appointment_date, a.appointment_time, a.dropoff_type,
-                   a.appointment_date, a.notes, a.vin, c.first_name, c.last_name, c.phone, v.year, v.make, v.model
+        query = """
+            SELECT
+                a.id,
+                a.customer_id,
+                a.vehicle_id,
+                a.appointment_date,
+                a.appointment_time,
+                a.dropoff_type,
+                a.notes,
+                a.vin,
+                c.first_name,
+                c.last_name,
+                c.phone,
+                v.year,
+                v.make,
+                v.model
             FROM appointments a
-            JOIN customers c ON a.customer_id = c.customer_id
-            JOIN vehicles v ON a.vehicle_id = v.customer_id
-            WHERE a.id = %s"""
+            LEFT JOIN customers c ON a.customer_id = c.customer_id   -- <- use your actual PK
+            LEFT JOIN vehicles  v ON v.id = a.vehicle_id             -- <- vehicles joins on v.id
+            WHERE a.id = %s
+            LIMIT 1
+        """
         cursor.execute(query, (appointment_id,))
-        result = cursor.fetchone()
+        row = cursor.fetchone()
         cursor.close()
         conn.close()
-        return result
+        return row
+

@@ -18,17 +18,17 @@ class CustomerManager:
             QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.Dialog
         )
         self.ui.show_new_customer_page.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
-        self.ui.show_new_customer_page_ui.abort_button.clicked.connect(
+        self.ui.show_new_customer_page_ui.cancel_customer_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("new_customer"))
 
-        self.ui.show_new_customer_page_ui.edit_button.hide()
+        self.ui.show_new_customer_page_ui.edit_customer_button.hide()
         self.ui.show_new_customer_page_ui.first_name_line.setFocus()
         self.ui.show_new_customer_page.setFixedSize(606, 693)
         self.ui.show_new_customer_page.setWindowTitle("New Customer")
         self.ui.show_new_customer_page_ui.phone_line.setInputMask('(000) 000-0000;_')
         self.ui.show_new_customer_page.show()
 
-        self.ui.show_new_customer_page_ui.save_button.clicked.connect(self.save_customer)
+        self.ui.show_new_customer_page_ui.save_customer_button.clicked.connect(self.save_customer)
 
 ### SAVES NEW CUSTOMER TO DB ###
     def save_customer(self):

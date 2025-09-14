@@ -19,11 +19,11 @@ class VehicleManager:
 
         self._open_vehicle_form()
         self.ui.vehicle_window_ui.vin_search_button.clicked.connect(self.search_vehicle)
-        self.ui.vehicle_window_ui.save_create_button.clicked.connect(self.load_customer_id)
+        self.ui.vehicle_window_ui.vehicle_save_button.clicked.connect(self.load_customer_id)
 
     def _open_vehicle_form(self):
         self.ui.vehicle_window, self.ui.vehicle_window_ui = self.ui.widget_manager.create_or_restore(
-            "vehicle_window", QtWidgets.QWidget, vehicle_search_form.Ui_Form
+            "vehicle_window", QtWidgets.QWidget, vehicle_search_form.Ui_vehicle_search_form
         )
 
         self.ui.vehicle_window.setParent(self.ui, QtCore.Qt.WindowType.Dialog)
@@ -33,7 +33,7 @@ class VehicleManager:
 
         self.ui.vehicle_window.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
-        self.ui.vehicle_window_ui.abort_button.clicked.connect(
+        self.ui.vehicle_window_ui.vehicle_cancel_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("vehicle_window"))
 
         self.ui.vehicle_window_ui.vin_line.textChanged.connect(self._enforce_uppercase_vin)
@@ -99,9 +99,9 @@ class VehicleManager:
 
     def add_new_vehicle(self):
         self._open_vehicle_form()
-        self.ui.vehicle_window_ui.save_create_button.setText("Next")
+        self.ui.vehicle_window_ui.vehicle_save_button.setText("Next")
         self.ui.vehicle_window_ui.vin_search_button.clicked.connect(self.search_vehicle)
-        self.ui.vehicle_window_ui.save_create_button.clicked.connect(self.belongs_to_manager.belongs_to)
+        self.ui.vehicle_window_ui.vehicle_save_button.clicked.connect(self.belongs_to_manager.belongs_to)
 
     def _show_message(self, text):
         self.ui.message.setParent(self.ui.vehicle_window)

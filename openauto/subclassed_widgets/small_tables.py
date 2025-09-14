@@ -31,8 +31,6 @@ class CustomerTableSmall(QtWidgets.QTableWidget):
         self.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         self.verticalHeader().setVisible(False)
         # self.setAlternatingRowColors(True)
-        theme = "theme/dark_theme.qss"
-        apply_stylesheet(self, theme)
         self.load_customer_data()
 
 
@@ -63,18 +61,17 @@ class CustomerTableSmall(QtWidgets.QTableWidget):
 class VehicleTableSmall(QTableWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        vehicle_columns = ("YEAR", "MAKE", "MODEL", "ID", "VIN")
-        self.setColumnCount(5)
+        vehicle_columns = ("YEAR", "MAKE", "MODEL","OWNER ID", "VIN", "VEHICLE ID")
+        self.setColumnCount(6)
         self.setColumnHidden(3, True)
         self.setColumnHidden(4, True)
+        self.setColumnHidden(5, True)
         self.setHorizontalHeaderLabels(vehicle_columns)
         self.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
         self.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         self.verticalHeader().setVisible(False)
         # self.setAlternatingRowColors(True)
-        theme = "theme/dark_theme.qss"
-        apply_stylesheet(self, theme)
         self.load_vehicle_data()
 
     def load_vehicle_data(self):
@@ -82,7 +79,7 @@ class VehicleTableSmall(QTableWidget):
         result = vehicle_repository.VehicleRepository.get_all_vehicles() or []
         table_row = 0
         for row in result:
-            for col in range(5):
+            for col in range(6):
                 item = QtWidgets.QTableWidgetItem(str(row[col]))
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.setItem(table_row, col, item)
@@ -92,7 +89,7 @@ class VehicleTableSmall(QTableWidget):
         self.setRowCount(db_handlers.vehicle_rows())
         table_row = 0
         for row in vehicle_small_data:
-            for col in range(5):
+            for col in range(6):
                 item = QtWidgets.QTableWidgetItem(str(row[col]))
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.setItem(table_row, col, item)

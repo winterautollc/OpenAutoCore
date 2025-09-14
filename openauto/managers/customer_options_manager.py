@@ -16,7 +16,7 @@ class CustomerOptionsManager:
         self.animations_manager = animations_manager.AnimationsManager
 
         self.customer_options, self.customer_options_ui = self.widget_manager.create_or_restore(
-            "customer_options", QtWidgets.QWidget, customer_options.Ui_Form
+            "customer_options", QtWidgets.QWidget, customer_options.Ui_customer_options_form
         )
 
         self._setup_ui()
@@ -31,14 +31,14 @@ class CustomerOptionsManager:
 
         self.customer_options.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
-        self.customer_options_ui.cancel_button.clicked.connect(
+        self.customer_options_ui.cancel_customer_options_button.clicked.connect(
             lambda: self.widget_manager.close_and_delete("customer_options")
         )
-        self.customer_options_ui.delete_button.clicked.connect(self.confirm_delete)
+        self.customer_options_ui.delete_customer_button.clicked.connect(self.confirm_delete)
         self.customer_options_ui.edit_customer_button.clicked.connect(self.open_edit_window)
-        self.customer_options_ui.add_customer_vehicle.clicked.connect(self.add_vehicle)
-        self.customer_options_ui.create_ro_button.hide()
-        self.customer_options_ui.create_ro_button.clicked.connect(self.create_ro)
+        self.customer_options_ui.add_customer_vehicle_button.clicked.connect(self.add_vehicle)
+        self.customer_options_ui.create_ro_customer_button.hide()
+        self.customer_options_ui.create_ro_customer_button.clicked.connect(self.create_ro)
 
         self.customer_options.show()
 

@@ -1,7 +1,7 @@
 from PyQt6 import QtWidgets, QtCore
 from openauto.subclassed_widgets.event_handlers import WidgetManager
 from openauto.ui import estimate_options
-from openauto.repositories import estimates_repository
+from openauto.repositories import repair_orders_repository
 from openauto.managers import ro_status_manager
 
 
@@ -13,7 +13,7 @@ class EstimateOptionsManager:
         self.widget_manager = WidgetManager()
 
         self.estimate_options, self.estimate_options_ui = self.widget_manager.create_or_restore(
-            "estimate_options", QtWidgets.QWidget, estimate_options.Ui_Form
+            "estimate_options", QtWidgets.QWidget, estimate_options.Ui_estimate_options_form
         )
 
         self._setup_ui()
@@ -27,12 +27,12 @@ class EstimateOptionsManager:
         )
 
         self.estimate_options.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
-        self.estimate_options_ui.cancel_button.clicked.connect(
+        self.estimate_options_ui.cancel_ro_options_button.clicked.connect(
             lambda: self.widget_manager.close_and_delete("estimate_options")
         )
         self.estimate_options_ui.delete_ro_button.clicked.connect(self.confirm_delete)
         self.estimate_options_ui.open_ro_button.clicked.connect(self._open_ro_page)
-        self.estimate_options_ui.change_status_button.clicked.connect(self.open_ro_status)
+        self.estimate_options_ui.change_ro_status_button.clicked.connect(self.open_ro_status)
         self.estimate_options.show()
 
     def confirm_delete(self):
@@ -48,20 +48,21 @@ class EstimateOptionsManager:
         response = message_box.exec()
         message_confirm = QtWidgets.QMessageBox(self.estimate_options)
         message_confirm.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
-        message_confirm.setStyleSheet("QLabel { color: black; }")
+        # message_confirm.setStyleSheet("QLabel { color: black; }")
         message_confirm.setIcon(QtWidgets.QMessageBox.Icon.Warning)
         message_confirm.setText("Estimate Deleted!! This Cannot Be Undone")
 
         if response == QtWidgets.QMessageBox.StandardButton.Yes:
             estimate_id = self.estimate_id
-            estimates_repository.EstimateRepository.delete_estimate(estimate_id)
+            repair_orders_repository.RepairOrdersRepository.delete_repair_order(estimate_id)
             message_confirm.exec()
             self.widget_manager.close_and_delete("estimate_options")
 
 
     def _open_ro_page(self):
         selected_estimate_row = self.ui.estimates_table.currentRow()
-        ro_id = self.ui.estimates_table.item(selected_estimate_row, 0).text().strip()
+        ro_id = self.estimate_id
+        print(ro_id)
         self.ui.ro_hub_manager.load_ro_into_hub(ro_id)
         self.widget_manager.close_and_delete("estimate_options")
         self.ui.animations_manager.ro_hub_page_show()

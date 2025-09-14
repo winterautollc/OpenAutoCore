@@ -1,14 +1,21 @@
 from PyQt6 import QtCore, QtWidgets, QtGui
 from PyQt6.QtGui import QDoubleValidator
-from openauto.subclassed_widgets import small_tables, workflow_tables, apt_calendar, event_handlers, control_menu
-from openauto.ui import main_no_stylesheets as main_form
+from openauto.subclassed_widgets import small_tables, workflow_tables, apt_calendar, event_handlers, control_menu, ro_tiles
+from openauto.ui import main_form
 from openauto.managers import (
     customer_manager, vehicle_manager, settings_manager,
     animations_manager, new_ro_manager, belongs_to_manager, appointments_manager, appointment_options_manager,
-    ro_hub_manager
+    ro_hub_manager, repair_orders_manager, theme_manager
 )
+from openauto.theme import resources_rc
 from pyvin import VIN
 import os
+
+
+THEME_FILES = {
+    "light": "theme/light_theme.qss",
+    "dark":  "theme/dark_theme.qss",
+}
 
 
 def apply_stylesheet(widget, relative_path):
@@ -28,8 +35,9 @@ def load_icon(rel_path: str) -> QtGui.QIcon:
     return icon
 
 class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
-    def __init__(self):
+    def __init__(self, current_user=None):
         super().__init__()
+        self.current_user = current_user
         self.setupUi(self)
         # self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.sql_monitor = event_handlers.SQLMonitor()
@@ -40,18 +48,9 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self._init_state()
         self._connect_signals()
         self._setup_animations()
+        self._set_all_buttons_flat(False)
         self._setup_menu_label_opacity()
-        self.toggle_theme()
-        self.toggle_theme()
-        self._repolish_subtree(self.hub_stacked_widget)
-
-
-    def _repolish_subtree(self, root: QtWidgets.QWidget):
-        st = root.style()
-        st.unpolish(root);st.polish(root)
-        for w in root.findChildren(QtWidgets.QWidget):
-            st.unpolish(w);st.polish(w)
-            w.update()
+        self.switch_theme("light", persist=False)
 
 
 
@@ -62,13 +61,12 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.vehicle_manager = vehicle_manager.VehicleManager(self)
         self.settings_manager = settings_manager.SettingsManager(self)
         self.animations_manager = animations_manager.AnimationsManager(self)
-        self.new_ro_manager = new_ro_manager.NewROManager(self)
+        self.new_ro_manager = new_ro_manager.NewROManager(self, self.sql_monitor)
         self.belongs_to_manager = belongs_to_manager.BelongsToManager(self)
         self.appointments_manager = appointments_manager.AppointmentsManager(self, self.sql_monitor)
         self.ro_hub_manager = ro_hub_manager.ROHubManager(self)
 
-
-### VALIDATORS TO ONLY ALLOW CERTAIN CHARACTERS ENTERED ###
+    ### VALIDATORS TO ONLY ALLOW CERTAIN CHARACTERS ENTERED ###
     def _init_validators(self):
         self.float_validator = QDoubleValidator()
         self.float_validator.setNotation(QDoubleValidator.Notation.StandardNotation)
@@ -83,19 +81,24 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.vehicle_table = workflow_tables.VehicleTable(parent=self)
         self.matrix_table = small_tables.MatrixTable(parent=self)
         self.labor_table = small_tables.LaborTable(parent=self)
-        self.estimates_table = workflow_tables.EstimateTable(parent=self)
-        self.working_table = workflow_tables.WorkingTable(parent=self)
-        self.approved_table = workflow_tables.ApprovedTable(parent=self)
-        self.checkout_table = workflow_tables.CheckoutTable(parent=self)
-        self.show_all_table = workflow_tables.ShowAll(parent=self)
+        self.estimate_tiles = ro_tiles.ROTileContainer(parent=self)
+        self.working_tiles = ro_tiles.ROTileContainer(parent=self)
+        # self.working_table = workflow_tables.WorkingTable(parent=self)
+        # self.approved_table = workflow_tables.ApprovedTable(parent=self)
+        self.approved_tiles = ro_tiles.ROTileContainer(parent=self)
+        # self.checkout_table = workflow_tables.CheckoutTable(parent=self)
+        self.checkout_tiles = ro_tiles.ROTileContainer(parent=self)
+        # self.show_all_table = workflow_tables.ShowAll(parent=self)
         self.schedule_calendar = apt_calendar.AptCalendar(parent=self)
         self.hourly_schedule_table = apt_calendar.HourlySchedule(parent=self)
         self.weekly_schedule_table = apt_calendar.WeeklySchedule(parent=self)
+        self.repair_orders_manager = repair_orders_manager.RepairOrdersManager(self)
+
 
 ### ADD MAIN BUTTONS TO CMENU ###
         self.verticalLayout = QtWidgets.QVBoxLayout(self.cmenu_frame)
-        self.verticalLayout.addWidget(self.customers_button)
         self.verticalLayout.addWidget(self.repair_orders_button)
+        self.verticalLayout.addWidget(self.customers_button)
         self.verticalLayout.addWidget(self.vehicles_button)
         self.verticalLayout.addWidget(self.messaging_button)
         self.verticalLayout.addWidget(self.scheduling_button)
@@ -111,22 +114,15 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.gridLayout_19.addWidget(self.vehicle_table, 0, 0, 1, 1)
         self.gridLayout_24.addWidget(self.matrix_table, 1, 0, 1, 2)
         self.gridLayout_26.addWidget(self.labor_table, 1, 0, 1, 2)
-        self.gridLayout_5.addWidget(self.estimates_table, 1, 0, 1, 1)
-        self.gridLayout_7.addWidget(self.working_table, 0, 0, 1, 1)
-        self.gridLayout_6.addWidget(self.approved_table, 0, 0, 1, 1)
-        self.gridLayout_8.addWidget(self.checkout_table, 0, 0, 1, 1)
-        self.gridLayout_9.addWidget(self.show_all_table, 0, 0, 1, 1)
+        self.gridLayout_5.addWidget(self.estimate_tiles, 1, 0, 1, 1)
+        self.gridLayout_7.addWidget(self.working_tiles, 0, 0, 1, 1)
+        self.gridLayout_6.addWidget(self.approved_tiles, 0, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.checkout_tiles, 0, 0, 1, 1)
+        # self.gridLayout_9.addWidget(self.show_all_table, 0, 0, 1, 1)
         self.gridLayout_33.addWidget(self.schedule_calendar, 0, 0, 1, 1)
         self.gridLayout_31.addWidget(self.weekly_schedule_table, 0, 0, 1, 1)
         self.gridLayout_34.addWidget(self.hourly_schedule_table, 0, 0, 1, 1)
 
-    def debug_selector(self, widget):
-        w = widget
-        chain = []
-        while w:
-            chain.append(f"{w.metaObject().className()}#{w.objectName()}")
-            w = w.parent()
-        print(" -> ".join(chain))
 
     def _init_state(self):
         self.message = QtWidgets.QMessageBox()
@@ -158,11 +154,11 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
 ### HIDE LABELS IN CMENU ###
     def _setup_menu_label_opacity(self):
         texts = [
-            "Customers", "Repair Orders", "Vehicles", "Messages",
-            "Schedule", "Analytics", "Settings", "Quit"
+            "  RO's", "  Customers", "  Vehicles", "  Messages",
+            "  Schedule", "  Analytics", "  Settings", "  Quit"
         ]
         buttons = [
-            self.customers_button, self.repair_orders_button, self.vehicles_button,
+            self.repair_orders_button, self.customers_button, self.vehicles_button,
             self.messaging_button, self.scheduling_button, self.analytics_button,
             self.settings_button, self.quit_button
         ]
@@ -179,47 +175,15 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.settings_button.setIconSize(button_icon_size)
         self.quit_button.setIconSize(button_icon_size)
 
-        stylesheet = """QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #314455;
-}
-
-QPushButton:hover {
-	background-color: #644E5B;
-	color: #fff;
-	border-radius: 5px;
-}
-
-QToolTip {
-    background-color: #828786;  
-    border-radius: 10px;       
-    font-size: 14px;      
-	padding: 5px;
-}"""
-
-        quit_style_sheet = """QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #C96567;
-}
-
-QPushButton:hover {
-	background-color: #9E5A63;
-	color: #fff;
-	border-radius: 10px;
-}"""
-        self.customers_button.setStyleSheet(stylesheet)
-        self.vehicles_button.setStyleSheet(stylesheet)
-        self.repair_orders_button.setStyleSheet(stylesheet)
-        self.messaging_button.setStyleSheet(stylesheet)
-        self.scheduling_button.setStyleSheet(stylesheet)
-        self.analytics_button.setStyleSheet(stylesheet)
-        self.settings_button.setStyleSheet(stylesheet)
-        self.quit_button.setStyleSheet(quit_style_sheet)
 
 ### SIGNALS/SLOTS FOR PUSHBUTTONS ETC.. ###
     def _connect_signals(self):
+        self.show_all_ro_button.hide()
+        self.estimates_button.setMaximumWidth(400)
+        self.approved_button.setMaximumWidth(400)
+        self.working_ro_button.setMaximumWidth(400)
+        self.checkout_button.setMaximumWidth(400)
+        self.new_ro_button.setMaximumWidth(400)
         self.search_customer_line.setPlaceholderText("Search ...")
         self.vehicle_search_line.setPlaceholderText("Search ...")
         self.ro_search_edit.setPlaceholderText("Search ...")
@@ -243,6 +207,7 @@ QPushButton:hover {
         self.month_button.setMaximumWidth(200)
         self.day_button.setMaximumWidth(200)
         self.week_button.setMaximumWidth(200)
+        self.import_logo_button.setMaximumWidth(200)
         self.new_vehicle_button.clicked.connect(self.vehicle_manager.add_new_vehicle)
         self.settings_button.clicked.connect(self.animations_manager.settings_page_show)
         self.appearance_button.clicked.connect(self.show_appearance)
@@ -268,7 +233,7 @@ QPushButton:hover {
         self.weekly_schedule_table.add_appointment.connect(self.appointments_manager.open_new_appointment)
         self.weekly_schedule_table.appointment_options.connect(self._open_appointment_options)
         self.sql_monitor.customer_updates.connect(self.customer_table.update_customers)
-        self.sql_monitor.estimate_updates.connect(self.estimates_table.update_estimates)
+        self.sql_monitor.ro_updates.connect(lambda _data: self.repair_orders_manager.refresh_all())
         self.sql_monitor.vehicle_update.connect(self.vehicle_table.update_vehicles)
         self.sql_monitor.appointment_data.connect(lambda: self.weekly_schedule_table.load_appointments(self.schedule_calendar.selectedDate()))
         self.sql_monitor.appointment_data.connect(lambda: self.hourly_schedule_table.load_schedule_for_day(self.schedule_calendar.selectedDate()))
@@ -295,19 +260,39 @@ QPushButton:hover {
         self.animate_day = anim(self.hourly_schedule_table, 300)
 
     def _set_all_buttons_flat(self, flat: bool):
-        """Helper to setFlat() on every QPushButton in the window."""
         for btn in self.findChildren(QtWidgets.QPushButton):
             btn.setFlat(flat)
 
 
-    def toggle_theme(self):
-        theme = "theme/dark_theme.qss"
-        apply_stylesheet(self, theme)
 
+    def switch_theme(self, theme_name: str, persist: bool = True):
+        path = THEME_FILES.get(theme_name, theme_name)
+        apply_stylesheet(self, path)
+        self.current_theme = theme_name
+
+        if getattr(self, "current_user", None):
+            full_name = f"{self.current_user['first_name']} {self.current_user['last_name']}"
+            role = self.current_user['user_type'].capitalize()
+            self.login_label.setText(f"<b>{full_name}</b>: {role}")
+
+        if persist and getattr(self, "current_user", None):
+            from openauto.repositories.users_repository import UsersRepository
+            UsersRepository.set_theme(self.current_user["id"], self.current_theme)
+
+        self._setup_logo()
+
+    def _setup_logo(self):
+        if self.current_theme == 'light':
+            pixmap = QtGui.QPixmap(":/resources/OpenAuto_Icons_48x48_dark_light/mainwindow_icon/light_theme_logo.png")
+        elif self.current_theme == 'dark':
+            pixmap = QtGui.QPixmap(":/resources/OpenAuto_Icons_48x48_dark_light/mainwindow_icon/dark_theme_logo.png")
+        else:
+            return
+
+        self.label_3.setPixmap(pixmap)
 
     def show_appearance(self):
-        self.message.setText("I Know It's Ugly But Appearance Customization Isn't Ready Yet... Sorry")
-        self.message.show()
+        self.theme = theme_manager.ThemeManager(self)
 
     def ask_quit(self):
         reply = QtWidgets.QMessageBox.question(

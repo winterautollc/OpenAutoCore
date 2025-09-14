@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>vehicle_search_form</class>
+ <widget class="QWidget" name="vehicle_search_form">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -18,10 +18,7 @@
     <normaloff>../../OpenAutoLite/ui_files/Images/Icons/car.png</normaloff>../../OpenAutoLite/ui_files/Images/Icons/car.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">color: black;
-background-color: #ebebe6;
-background-image: none;
-border-radius: 10px;</string>
+   <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" colspan="2">
@@ -36,6 +33,9 @@ border-radius: 10px;</string>
       <font>
        <pointsize>14</pointsize>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Search By VIN</string>
@@ -70,9 +70,7 @@ border-radius: 10px;</string>
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">border-radius: 5px;
-background-color: #fefeff;
-color: black;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -107,9 +105,7 @@ color: black;</string>
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">border-radius: 5px;
-background-color: #fefeff;
-color: black;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -144,9 +140,7 @@ color: black;</string>
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">border-radius: 5px;
-background-color: #fefeff;
-color: black;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -181,9 +175,7 @@ color: black;</string>
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">border-radius: 5px;
-background-color: #fefeff;
-color: black;</string>
+          <string notr="true"/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -218,9 +210,7 @@ color: black;</string>
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">border-radius: 5px;
-background-color: #fefeff;
-color: black;</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string/>
@@ -238,7 +228,7 @@ color: black;</string>
     </layout>
    </item>
    <item row="4" column="1">
-    <widget class="QPushButton" name="save_create_button">
+    <widget class="QPushButton" name="vehicle_save_button">
      <property name="maximumSize">
       <size>
        <width>200</width>
@@ -246,17 +236,7 @@ color: black;</string>
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Next</string>
@@ -281,17 +261,7 @@ QPushButton:hover {
      <item>
       <widget class="QPushButton" name="vin_search_button">
        <property name="styleSheet">
-        <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>VIN Search</string>
@@ -332,9 +302,7 @@ QPushButton:hover {
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius: 5px;
-background-color: #fefeff;
-color: black;</string>
+        <string notr="true"/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -347,7 +315,7 @@ color: black;</string>
     </layout>
    </item>
    <item row="4" column="0">
-    <widget class="QPushButton" name="abort_button">
+    <widget class="QPushButton" name="vehicle_cancel_button">
      <property name="maximumSize">
       <size>
        <width>200</width>
@@ -355,17 +323,7 @@ color: black;</string>
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #A0153E;
-}
-
-QPushButton:hover {
-	background-color: #C49497;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Cancel</string>

@@ -19,9 +19,7 @@
     <normalon>../../OpenAutoLite/ui_files/designer_files/Images/winter_auto.png</normalon>../../OpenAutoLite/ui_files/designer_files/Images/winter_auto.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">color: #ffffff;
-background-color: #f2f2f8;
-background-image: none;</string>
+   <string notr="true"/>
   </property>
   <layout class="QFormLayout" name="formLayout">
    <item row="0" column="0" colspan="2">
@@ -56,10 +54,7 @@ background-image: none;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;
-</string>
+        <string notr="true"/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -84,10 +79,7 @@ color: black;
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;
-</string>
+        <string notr="true"/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -112,10 +104,7 @@ color: black;
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;
-</string>
+        <string notr="true"/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -146,10 +135,7 @@ color: black;
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;
-</string>
+        <string notr="true"/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -174,10 +160,7 @@ color: black;
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;
-</string>
+        <string notr="true"/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -202,10 +185,7 @@ color: black;
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;
-</string>
+        <string notr="true"/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -230,10 +210,7 @@ color: black;
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;
-</string>
+        <string notr="true"/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -258,9 +235,7 @@ color: black;
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;</string>
+        <string notr="true"/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -285,10 +260,7 @@ color: black;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius: 10px;
-background-color: #fefeff;
-color: black;
-</string>
+        <string notr="true"/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -342,19 +314,9 @@ color: black;
    <item row="6" column="0" colspan="2">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="abort_button">
+      <widget class="QPushButton" name="cancel_customer_button">
        <property name="styleSheet">
-        <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #A0153E;
-}
-
-QPushButton:hover {
-	background-color: #C49497;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Cancel</string>
@@ -375,7 +337,7 @@ QPushButton:hover {
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="edit_button">
+      <widget class="QPushButton" name="edit_customer_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -383,17 +345,7 @@ QPushButton:hover {
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Edit</string>
@@ -411,19 +363,9 @@ QPushButton:hover {
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="save_button">
+      <widget class="QPushButton" name="save_customer_button">
        <property name="styleSheet">
-        <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: #fff;
-	background-color: #76ABAE;
-}
-
-QPushButton:hover {
-	background-color: #828786;
-	color: #fff;
-	border-radius: 10px;
-}</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Save</string>

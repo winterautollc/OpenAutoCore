@@ -32,3 +32,21 @@ class SettingsRepository:
 
         return result if result else None
 
+
+    @staticmethod
+    def get_theme(conn, default="dark"):
+        cur = conn.cursor()
+        cur.execute("SELECT setting_value FROM app_settings WHERE setting_key='theme';")
+        row = cur.fetchone()
+        return row[0] if row else default
+
+
+    @staticmethod
+    def set_theme(conn, theme: str):
+        cur = conn.cursor()
+        cur.execute("""
+            INSERT INTO app_settings (setting_key, setting_value)
+            VALUES ('theme', %s)
+            ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value);
+        """, (theme,))
+        conn.commit()
