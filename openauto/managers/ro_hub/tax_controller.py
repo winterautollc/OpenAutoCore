@@ -5,6 +5,9 @@ class TaxConfigController:
         self.ui = ui
 
     def connect_tax_rate(self):
-        tax, *rest = SettingsRepository.get_tax_and_labor()
-        self.ui.tax_rate = tax
-        self.ui.tax_edit.setText(f" {str(tax)}%")
+        try:
+            tax, *rest = SettingsRepository.get_tax_and_labor()
+            self.ui.tax_rate = tax
+            self.ui.tax_edit.setText(f" {str(tax)}%")
+        except:
+            pass
