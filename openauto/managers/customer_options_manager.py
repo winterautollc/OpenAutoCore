@@ -78,11 +78,11 @@ class CustomerOptionsManager:
 
         self.edit_customer_page.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
-        self.edit_customer_page_ui.abort_button.clicked.connect(
+        self.edit_customer_page_ui.cancel_customer_button.clicked.connect(
             lambda: self.widget_manager.close_and_delete("edit_customer_page")
         )
 
-        self.edit_customer_page_ui.save_button.hide()
+        self.edit_customer_page_ui.save_customer_button.hide()
         self.edit_customer_page.setWindowTitle("Edit Customer")
         self.edit_customer_page.show()
         self.widget_manager.close_and_delete("customer_options")
@@ -114,7 +114,7 @@ class CustomerOptionsManager:
         self.edit_customer_page_ui.alt_line.textChanged.connect(lambda: self.track_changes("alt_phone", self.edit_customer_page_ui.alt_line.text()))
         self.edit_customer_page_ui.email_line.textChanged.connect(lambda: self.track_changes("email", self.edit_customer_page_ui.email_line.text()))
 
-        self.edit_customer_page_ui.edit_button.clicked.connect(self.make_customer_changes)
+        self.edit_customer_page_ui.edit_customer_button.clicked.connect(self.make_customer_changes)
 
 ### TRACKS EDIT TO CUSTOMER ###
     def track_changes(self, column, value):
@@ -131,7 +131,7 @@ class CustomerOptionsManager:
         except Exception as e:
             QtWidgets.QMessageBox.critical(self.edit_customer_page, "Database Error", str(e))
 
-        self.edit_customer_page_ui.edit_button.clicked.disconnect()
+        self.edit_customer_page_ui.edit_customer_button.clicked.disconnect()
         self.widget_manager.close_and_delete("edit_customer_page")
         self.widget_manager.close_and_delete("customer_options")
         message_box = QtWidgets.QMessageBox(self.edit_customer_page)

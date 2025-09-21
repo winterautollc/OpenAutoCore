@@ -22,7 +22,8 @@ class RepairOrdersManager:
     def update_tiles(self, container, status):
         container.clear()
         rows = RepairOrdersRepository.load_repair_orders(status=status, limit=200, offset=0)
-        for (ro_id, ro_number, created_at, customer_name, year, make, model, tech, total) in rows:
+
+        for (ro_id, ro_number, created_at, customer_name, year, make, model, tech, writer, total) in rows:
             vehicle = f"{year} {make} {model}".strip()
             tile = ro_tiles.ROTile(
                 ro_id=ro_id,
@@ -30,13 +31,14 @@ class RepairOrdersManager:
                 customer_name=customer_name or "Unknown",
                 vehicle=vehicle or "Unknown",
                 tech=tech or "Unassigned",
-                writer="",
+                writer=writer or "Unassigned",
                 concern="No concern entered",
                 status=status
             )
             tile.clicked.connect(partial(self._open_estimate_options, ro_id))
             tile.statusChangeRequested.connect(self._on_status_change_requested)
             container.add_tile(tile)
+
 
     def _open_estimate_options(self, ro_id: int):
         self.estimate_options_manager = EstimateOptionsManager(

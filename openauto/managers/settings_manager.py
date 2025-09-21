@@ -37,12 +37,13 @@ class SettingsManager:
             int(warranty_time),
             self.ui.warranty_time_line.text(),
             self.ui.warranty_miles_line.text(),
+            float(self.ui.sales_tax_line.text()),
             image_bytes
         ]
 
         query = '''INSERT INTO shop_info (shop_name, facility_id, address, city, state, zip, disclaimer,
-                  warranty_duration, warranty_time, months, miles, shop_logo)
-                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
+                  warranty_duration, warranty_time, months, miles, sales_tax_rate, shop_logo)
+                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
         cursor.execute(query, settings)
         db.commit()
         cursor.close()
@@ -117,6 +118,7 @@ class SettingsManager:
         self.ui.disclamer_edit.setText(info[6])
         self.ui.warranty_time_line.setText(info[9])
         self.ui.warranty_miles_line.setText(info[10])
+        self.ui.sales_tax_line.setText(str(info[13]))
 
         buffer = QBuffer()
         buffer.setData(info[11])

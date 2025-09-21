@@ -107,28 +107,30 @@ class EstimateTable(QTableWidget):
         self.cellDoubleClicked.connect(self._estimate_options_load)
 
     def _show_estimates(self):
-        self.setRowCount(db_handlers.estimate_rows())
-        result = repair_orders_repository.RepairOrdersRepository.load_repair_orders() or []
-        table_row = 0
-        for row in result:
-            for col in range(9):
-                item = QtWidgets.QTableWidgetItem(str(row[col]))
-                item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                self.setItem(table_row, col, item)
+        pass
+        # self.setRowCount(db_handlers.estimate_rows())
+        # result = repair_orders_repository.RepairOrdersRepository.load_repair_orders() or []
+        # table_row = 0
+        # for row in result:
+        #     for col in range(9):
+        #         item = QtWidgets.QTableWidgetItem(str(row[col]))
+        #         item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        #         self.setItem(table_row, col, item)
                 # self.setStyleSheet("background-color: #97aabd")
 
-            table_row += 1
+            # table_row += 1
     def update_estimates(self, estimate_data):
-        table_row = 0
-        self.setRowCount(db_handlers.estimate_rows())
-        for row in estimate_data:
-            for col in range(9):
-                item = QtWidgets.QTableWidgetItem(str(row[col]))
-                item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                self.setItem(table_row, col, item)
-                # self.setStyleSheet("background-color: #97aabd")
-
-            table_row += 1
+        pass
+        # table_row = 0
+        # self.setRowCount(db_handlers.estimate_rows())
+        # for row in estimate_data:
+        #     for col in range(9):
+        #         item = QtWidgets.QTableWidgetItem(str(row[col]))
+        #         item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        #         self.setItem(table_row, col, item)
+        #         # self.setStyleSheet("background-color: #97aabd")
+        #
+        #     table_row += 1
 
 
 
@@ -210,7 +212,8 @@ class VehicleTable(QtWidgets.QTableWidget):
         self.setColumnHidden(8, True)
         self.clearSelection()
         self.setRowCount(db_handlers.vehicle_rows())
-        # self.setGridStyle(QtCore.Qt.PenStyle.DashDotLine)
+        self.setGridStyle(QtCore.Qt.PenStyle.DashDotLine)
+        self.setAlternatingRowColors(True)
         self.setShowGrid(False)
         self.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
         self.setHorizontalHeaderLabels(vehicle_table_names)
@@ -308,9 +311,7 @@ class ROTable(QtWidgets.QTreeWidget):
         self.header().setStretchLastSection(True)
         self.setAlternatingRowColors(True)
         self.header().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
-        self.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.DoubleClicked |
-                             QtWidgets.QAbstractItemView.EditTrigger.EditKeyPressed |
-                             QtWidgets.QAbstractItemView.EditTrigger.SelectedClicked)
+        self.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.DoubleClicked)
 
         # Only connect once
         self.itemChanged.connect(self._onItemChanged)

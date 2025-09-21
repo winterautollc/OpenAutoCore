@@ -234,11 +234,11 @@ class NewROManager:
 
         form = self.ui.vehicle_window_ui
         vin_raw = form.vin_line.text().strip().upper()
-        vin = vin_raw if vin_raw else ""  # <- NOT NULL column: use empty string, not None
+        vin = vin_raw if vin_raw else ""  # NOT NULL column: use empty string, not None
 
         # Only check duplicates/transfers if VIN looks real
         existing = None
-        if len(vin_raw) >= 11:  # or == 17 if you want full VINs only
+        if len(vin_raw) >= 11:  # or == 17 if for full VINs only
             existing = VehicleRepository.find_by_vin(vin_raw)
 
         if existing:
@@ -355,7 +355,33 @@ class NewROManager:
             self.ui.message.show()
             return
 
-        RepairOrdersRepository.create_repair_order(customer_id, vehicle_id)
+        current_user_id = getattr(self.ui, "current_user_id", None)
+        assigned_writer_id = getattr(self.ui, "assigned_writer_id", None)
+        if current_user_id is None:
+            cu = getattr(self.ui, "current_user", None)
+            if isinstance(cu, dict):
+                current_user_id = cu.get("id")
+            else:
+                current_user_id = getattr(cu, "id", None)
+
+        if assigned_writer_id is None:
+            aw = getattr(self.ui, "current_user", None)
+            if isinstance(aw, dict ):
+                assigned_writer_id = aw.get("id")
+            else:
+                assigned_writer_id = getattr(aw, "id", None)
+
+
+
+        RepairOrdersRepository.create_repair_order(
+            customer_id=customer_id,
+            vehicle_id=vehicle_id,
+            appointment_id=None,
+            ro_number=None,
+            created_by=current_user_id,
+            assigned_writer_id=assigned_writer_id,
+        )
+
         self.ui.widget_manager.close_and_delete("new_repair_order")
 
 

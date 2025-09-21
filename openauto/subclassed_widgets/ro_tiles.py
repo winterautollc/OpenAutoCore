@@ -35,7 +35,7 @@ class ROTile(QtWidgets.QFrame):
                      QFrame {
                          background-color: #d2d7db;
                          border-radius: 12px;
-                         padding: 12px;
+                         padding: 2px;
                      }
                      QLabel {
                          font-size: 12pt;

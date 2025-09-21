@@ -1,13 +1,12 @@
 from PyQt6 import QtCore
-from PyQt6.QtCore import QEvent, QObject, pyqtSignal, QThread, QDate
-from PyQt6.QtGui import QMouseEvent
-from PyQt6.QtCore import (QPropertyAnimation, QEasingCurve, QRect, QSequentialAnimationGroup,
-                          QPauseAnimation, QParallelAnimationGroup)
-from PyQt6.QtWidgets import QGraphicsOpacityEffect
-from PyQt6 import QtWidgets
+from PyQt6.QtCore import QObject, pyqtSignal, QThread, QTimer
+
 from openauto.repositories import (customer_repository, vehicle_repository,
                                    appointment_repository, repair_orders_repository)
 import time
+from PyQt6.QtCore import QPoint, QRect, QEasingCurve, QPropertyAnimation, QSequentialAnimationGroup, QParallelAnimationGroup, QPauseAnimation, QEvent
+from PyQt6 import QtWidgets
+from PyQt6.QtWidgets import QGraphicsOpacityEffect
 
 
 ### EVENT FILTER TO ANIMATE MENU COLLAPSE WHEN MOUSE ISIN'T HOVERED OVER IT AND EXPAND ON MOUSE HOVER  ###
@@ -15,87 +14,209 @@ class CMenuHandler(QObject):
     def __init__(self, target_widget):
         super().__init__()
         self.target = target_widget
-        self.texts = [
-            "RO's", "Customers", "Vehicles", "Messages",
-            "Schedule", "Analytics", "Settings", "Quit"
-        ]
-        # Width animations: use minimumWidth so grid honors it
-        self.animate_menu_open  = QPropertyAnimation(self.target, b"minimumWidth")
-        self.animate_menu_close = QPropertyAnimation(self.target, b"minimumWidth")
-        for a in (self.animate_menu_open, self.animate_menu_close):
-            a.setDuration(350)
-            a.setEasingCurve(QEasingCurve.Type.InOutQuart)
+        self.texts = ["RO's","Customers","Vehicles","Messages","Schedule","Analytics","Settings","Quit"]
 
-        # sane padding for width calc
+        # overlay state
+        self._detached = False
+        self._grid_pos = None      # (row, col, rowSpan, colSpan)
+        self._placeholder = None
+        self._parent_filter_installed = False
+
+        # visuals and animations
         self.icon_area = 40
         self.side_pad  = 24
         self.labels = self.target.findChildren(QtWidgets.QWidget)
-
-        # Ensure each label has a persistent opacity effect (start invisible)
         self.effects = []
         for lab in self.labels:
             eff = lab.graphicsEffect()
             if not isinstance(eff, QGraphicsOpacityEffect):
-                eff = QGraphicsOpacityEffect(lab)
-                eff.setOpacity(0.0)
-                lab.setGraphicsEffect(eff)
+                eff = QGraphicsOpacityEffect(lab); eff.setOpacity(0.0); lab.setGraphicsEffect(eff)
             self.effects.append(eff)
 
-        # 4) Build persistent fade groups (no per-hover allocations)
         self.fade_in  = QParallelAnimationGroup(self.target)
         self.fade_out = QParallelAnimationGroup(self.target)
         for eff in self.effects:
-            ain = QPropertyAnimation(eff, b"opacity")
-            ain.setDuration(180)
-            ain.setStartValue(0.0)
-            ain.setEndValue(1.0)
-            ain.setEasingCurve(QEasingCurve.Type.InOutQuad)
-            self.fade_in.addAnimation(ain)
+            a = QPropertyAnimation(eff, b"opacity"); a.setDuration(180); a.setStartValue(0.0); a.setEndValue(1.0); a.setEasingCurve(QEasingCurve.Type.InOutQuad)
+            self.fade_in.addAnimation(a)
+            b = QPropertyAnimation(eff, b"opacity"); b.setDuration(120); b.setStartValue(1.0); b.setEndValue(0.0); b.setEasingCurve(QEasingCurve.Type.InOutQuad)
+            self.fade_out.addAnimation(b)
 
-            aout = QPropertyAnimation(eff, b"opacity")
-            aout.setDuration(120)
-            aout.setStartValue(1.0)
-            aout.setEndValue(0.0)
-            aout.setEasingCurve(QEasingCurve.Type.InOutQuad)
-            self.fade_out.addAnimation(aout)
-
-        # 5) Sequences: OPEN = width -> pause -> fade-in; CLOSE = fade-out -> width
         self.open_seq  = QSequentialAnimationGroup(self.target)
         self.close_seq = QSequentialAnimationGroup(self.target)
         self.pause = QPauseAnimation(60)
-        self.open_seq.addAnimation(self.animate_menu_open)
         self.open_seq.addAnimation(self.pause)
         self.open_seq.addAnimation(self.fade_in)
-
         self.close_seq.addAnimation(self.fade_out)
-        self.close_seq.addAnimation(self.animate_menu_close)
 
+        self._geom_anim = None
+        self._squelch_hover = False
+        self._in_anim = False
+
+    # helpers to find width of menu bar, detach from mainwindow when expanding and reclaim when contracting.
     def _expanded_width(self) -> int:
         fm = self.target.fontMetrics()
-        # use the canonical texts instead of empty labels
         text_w = max(fm.horizontalAdvance(t) for t in self.texts) if self.texts else 0
         collapsed = max(self.target.minimumWidth(), 60)
         return max(collapsed + 1, self.icon_area + self.side_pad + text_w) + 20
 
+
+# finds coordinates on gridLayout_2
+    def _find_grid_coords(self):
+        win = self.target.window()
+        grid = getattr(win, "gridLayout_2", None)
+        if not grid: return None
+        for i in range(grid.count()):
+            it = grid.itemAt(i)
+            if it and it.widget() is self.target:
+                r,c,rs,cs = grid.getItemPosition(i)
+                return grid, r, c, rs, cs
+        return None
+
+    def _ensure_placeholder(self, grid, r, c, rs, cs):
+        if self._placeholder is None:
+            ph = QtWidgets.QWidget(grid.parentWidget())
+            ph.setFixedWidth(max(60, self.target.minimumWidth()))
+            ph.setSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Expanding)
+            self._placeholder = ph
+        grid.addWidget(self._placeholder, r, c, rs, cs)
+
+#detaches from main_window while expanding so all widgets don't resize
+    def _detach_to_overlay(self):
+        if self._detached:
+            return
+        found = self._find_grid_coords()
+        if not found:
+            return
+        grid, r, c, rs, cs = found
+        self._grid_pos = (r, c, rs, cs)
+        self._ensure_placeholder(grid, r, c, rs, cs)
+        self._placeholder.show()
+
+        # Prevent hover churn while we move the widget
+        self._squelch_hover = True
+        QTimer.singleShot(140, lambda: setattr(self, "_squelch_hover", False))
+
+        grid.removeWidget(self.target)
+        host = grid.parentWidget()
+
+        self.target.setParent(host)
+        self.target.show()
+        self.target.raise_()
+
+        tl = self._placeholder.mapTo(host, QPoint(0, 0))
+        h  = self._placeholder.height()
+        w0 = max(60, self.target.width())
+        self.target.setGeometry(QRect(tl.x(), tl.y(), w0, h))
+
+        self._detached = True
+        host.installEventFilter(self)
+
+#reattach to gridLayout_2 after contracting
+    def _reattach_to_grid(self):
+        if not self._detached:
+            return
+        host = self.target.parent()
+        host.removeEventFilter(self)
+
+        # Squelch synthetic Enter/Leave on reattach
+        self._squelch_hover = True
+        QTimer.singleShot(140, lambda: setattr(self, "_squelch_hover", False))
+
+        grid = getattr(self.target.window(), "gridLayout_2", None)
+        if grid and self._grid_pos:
+            r, c, rs, cs = self._grid_pos
+            grid.addWidget(self.target, r, c, rs, cs)
+        if self._placeholder:
+            self._placeholder.hide()
+        self._detached = False
+
+    def _menu_buttons(self):
+        win = self.target.window()
+        names = [
+            "repair_orders_button", "customers_button", "vehicles_button",
+            "messaging_button", "scheduling_button", "analytics_button",
+            "settings_button", "quit_button"
+        ]
+        btns = []
+        for n in names:
+            b = getattr(win, n, None)
+            if b is not None:
+                btns.append(b)
+        return btns
+
+   #main event filter
     def eventFilter(self, obj, event):
-        buttons = obj.findChildren(QtWidgets.QPushButton)
+        if obj is self.target and self._squelch_hover:
+            return True
+
         if obj is self.target:
             if event.type() == QEvent.Type.Enter:
+                self._detach_to_overlay()
+                if self._geom_anim:
+                    self._geom_anim.stop()
                 self.close_seq.stop(); self.open_seq.stop()
-                self.animate_menu_open.setStartValue(self.target.width())
-                self.animate_menu_open.setEndValue(self._expanded_width())
-                self.open_seq.start()
-                for button, text in zip(buttons, self.texts):
-                    QtWidgets.QPushButton.setText(button, text)
+
+                host = self.target.parent()
+                tl = self._placeholder.mapTo(host, QPoint(0, 0))
+                h = self._placeholder.height()
+                start = QRect(tl.x(), tl.y(), max(60, self.target.width()), h)
+                end = QRect(tl.x(), tl.y(), self._expanded_width(), h)
+
+                self._geom_anim = QPropertyAnimation(self.target, b"geometry")
+                self._geom_anim.setDuration(250)
+                self._geom_anim.setEasingCurve(QEasingCurve.Type.OutCubic)
+                self._geom_anim.setStartValue(start)
+                self._geom_anim.setEndValue(end)
+
+                for btn, text in zip(self._menu_buttons(), self.texts):
+                    btn.setText(text)
+
+                self._in_anim = True
+                self._geom_anim.finished.connect(lambda: setattr(self, "_in_anim", False))
+                self.fade_in.start()
+                self._geom_anim.start()
 
             elif event.type() == QEvent.Type.Leave:
-                self.open_seq.stop(); self.close_seq.stop()
-                self.animate_menu_close.setStartValue(self.target.width())
-                self.animate_menu_close.setEndValue(60)
-                self.close_seq.start()
-                for button, text in zip(buttons, self.texts):
-                    QtWidgets.QPushButton.setText(button, "")
+                if not self._detached:
+                    return super().eventFilter(obj, event)
+                if self._in_anim:
+                    # Defer collapse until the open animation ends
+                    self._geom_anim.finished.connect(lambda: self.eventFilter(obj, event))
+                    return True
+
+                if self._geom_anim:
+                    self._geom_anim.stop()
+                self.fade_out.stop()
+
+                host = self.target.parent()
+                tl = self._placeholder.mapTo(host, QPoint(0, 0))
+                h = self._placeholder.height()
+                start = self.target.geometry()
+                end = QRect(tl.x(), tl.y(), 60, h)
+
+                self._geom_anim = QPropertyAnimation(self.target, b"geometry")
+                self._geom_anim.setDuration(200)
+                self._geom_anim.setEasingCurve(QEasingCurve.Type.InCubic)
+                self._geom_anim.setStartValue(start)
+                self._geom_anim.setEndValue(end)
+
+                def _after():
+                    for btn in self._menu_buttons():
+                        btn.setText("")
+                    self._reattach_to_grid()
+
+                self._geom_anim.finished.connect(_after)
+                self.fade_out.start()
+                self._geom_anim.start()
+
+        if self._detached and event.type() == QEvent.Type.Resize and obj is self.target.parent():
+            tl = self._placeholder.mapTo(obj, QPoint(0, 0))
+            g = self.target.geometry()
+            self.target.setGeometry(g.x(), tl.y(), g.width(), self._placeholder.height())
+
         return super().eventFilter(obj, event)
+
+
     
 ### QTHREAD TO MONITOR CHANGES IN DATABASE. USING ONE QTHREAD FOR ALL TABLES AS IT SHOULD BE MORE EFFICIENT###
 ### MAY CHANGE TO QEVENT LATER ###

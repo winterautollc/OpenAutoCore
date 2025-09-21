@@ -1,4 +1,5 @@
 from openauto.repositories import db_handlers
+from openauto.repositories.db_handlers import connect_db
 
 
 class SettingsRepository:
@@ -50,3 +51,14 @@ class SettingsRepository:
             ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value);
         """, (theme,))
         conn.commit()
+
+    @staticmethod
+    def get_tax_and_labor():
+        conn = connect_db()
+        cursor = conn.cursor()
+        query = """SELECT sales_tax_rate FROM shop_info"""
+        cursor.execute(query)
+        result = cursor.fetchone()
+        return result if result else None
+
+

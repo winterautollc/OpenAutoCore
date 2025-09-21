@@ -99,7 +99,7 @@ class UsersRepository:
 
     @classmethod
     def create_persistent_session(cls, user_id: int, days: int = 30) -> str:
-        token = secrets.token_hex(32)  # 64 chars
+        token = secrets.token_hex(32)
         conn = connect_db()
         try:
             with conn.cursor() as cur:
@@ -140,3 +140,28 @@ class UsersRepository:
             conn.commit()
         finally:
             conn.close()
+
+
+
+    @staticmethod
+    def list_writers_and_managers():
+        query = """
+            SELECT id, first_name, last_name, user_type
+            FROM users
+            WHERE user_type IN ('writer','manager')
+            ORDER BY user_type, first_name, last_name
+        """
+        conn = connect_db()
+        with conn.cursor(dictionary=True) as cur:
+            cur.execute(query)
+            return list(cur.fetchall() or [])
+
+
+### RETURNS ID, FIRST_NAME: 'JANE', LAST_NAME: 'DOE' ####
+    @staticmethod
+    def list_by_role(role: str):
+        query = "SELECT id, first_name, last_name FROM users WHERE user_type = %s ORDER BY first_name, last_name"
+        conn = connect_db()
+        with conn.cursor(dictionary=True) as cur:
+            cur.execute(query, (role,))
+            return list(cur.fetchall() or [])

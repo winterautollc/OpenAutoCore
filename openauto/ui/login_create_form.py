@@ -240,7 +240,7 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "OpenAuto Login"))
         self.create_user_button.setText(_translate("Form", "Create"))
         self.login_tab_button.setText(_translate("Form", "Login"))
         self.password_label.setText(_translate("Form", "Password"))

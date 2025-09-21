@@ -597,6 +597,35 @@ QWidget {
     border-radius: 5px;
 }
 
+#add_row_button::disabled,
+#remove_row_button::disabled,
+#save_matrix_button::disabled,
+#labor_table::disabled,
+#add_labor_row::disabled,
+#remove_labor_row::disabled,
+#save_labor_button::disabled,
+#warranty_miles_checkbox::disabled,
+#warranty_miles_line::disabled,
+#warranty_time_checkbox::disabled,
+#warranty_time_line::disabled,
+#shop_name_line::disabled,
+#facility_id_line::disabled,
+#address_line::disabled,
+#city_line::disabled,
+#state_line::disabled,
+#zipcode_line::disabled,
+#disclamer_edit::disabled,
+#import_logo_button::disabled,
+#save_settings_button::disabled,
+#users_button::disabled,
+#parts_integrate_button::disabled,
+#quickbooks_button::disabled,
+#analytics_button::disabled,
+#matrix_table::disabled {
+    background-color: #636363;
+    color: #141414;
+}
+
 QMenu {
     background-color: #333;
     border: 1px solid #555;
@@ -658,6 +687,12 @@ QToolTip {
   font-size: 12pt;
 }
 
+QTreeWidget {
+    font-size: 20px;
+    border-radius: 2px;
+}
+
+
 /* ---- Tables / Views ---- */
 QTableView, QTreeView {
   background: #1E1E1E;
@@ -681,13 +716,15 @@ QHeaderView::section:horizontal {
   border-right: 1px solid #3C3C3C;
 }
 
+
+
 /* ---- Inputs ---- */
 QLineEdit, QPlainTextEdit, QTextEdit, QComboBox, QSpinBox, QDoubleSpinBox, QDateEdit, QTimeEdit, QDateTimeEdit {
   background: #2B2B2B;
   color: #E0E0E0;
   border: 1px solid #3C3C3C;
-  border-radius: 6px;
-  padding: 6px 8px;
+  border-radius: 2px;
+  padding: 2px 4px;
 }
 QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus, QComboBox:focus,
 QSpinBox:focus, QDoubleSpinBox:focus, QDateEdit:focus, QTimeEdit:focus, QDateTimeEdit:focus {
@@ -699,11 +736,15 @@ QScrollBar:vertical, QScrollBar:horizontal {
   background: transparent;
   margin: 4px;
 }
+
+
 QScrollBar::handle {
   background: #3C3C3C;
   border-radius: 6px;
   min-width: 20px; min-height: 20px;
 }
+
+
 QScrollBar::handle:hover { background: #4A4A4A; }
 QScrollBar::add-line, QScrollBar::sub-line { background: transparent; height: 0; width: 0; }
 
@@ -748,10 +789,5 @@ QCalendarWidget {
 [status="working"]  { border-color: #FFCA28; }
 [status="checkout"] { border-color: #4A90E2; }
 [status="archived"] { border-color: #3C3C3C; opacity: 0.6; }
-
-
-
-
-
 
 

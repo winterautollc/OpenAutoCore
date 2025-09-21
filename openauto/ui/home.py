@@ -2,12 +2,11 @@ from PyQt6 import QtCore, QtWidgets, QtGui
 from PyQt6.QtGui import QDoubleValidator
 from openauto.subclassed_widgets import small_tables, workflow_tables, apt_calendar, event_handlers, control_menu, ro_tiles
 from openauto.ui import main_form
+from openauto.managers.ro_hub import ro_hub_manager
 from openauto.managers import (
     customer_manager, vehicle_manager, settings_manager,
     animations_manager, new_ro_manager, belongs_to_manager, appointments_manager, appointment_options_manager,
-    ro_hub_manager, repair_orders_manager, theme_manager
-)
-from openauto.theme import resources_rc
+    repair_orders_manager, theme_manager, permissions_manager)
 from pyvin import VIN
 import os
 
@@ -47,9 +46,10 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self._init_tables()
         self._init_state()
         self._connect_signals()
+        self._set_privileges()
         self._setup_animations()
         self._set_all_buttons_flat(False)
-        self._setup_menu_label_opacity()
+        self._set_line_sizes()
         self.switch_theme("light", persist=False)
 
 
@@ -65,6 +65,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.belongs_to_manager = belongs_to_manager.BelongsToManager(self)
         self.appointments_manager = appointments_manager.AppointmentsManager(self, self.sql_monitor)
         self.ro_hub_manager = ro_hub_manager.ROHubManager(self)
+        self.permissions_manager = permissions_manager.PermissionsManager(self)
 
     ### VALIDATORS TO ONLY ALLOW CERTAIN CHARACTERS ENTERED ###
     def _init_validators(self):
@@ -76,39 +77,22 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
 
 ### DECLARE SUBCLASSED TABLE WIDGETS ###
     def _init_tables(self):
-        self.cmenu_frame = control_menu.ControlMenu(parent=self)
         self.customer_table = workflow_tables.CustomerTable(parent=self)
         self.vehicle_table = workflow_tables.VehicleTable(parent=self)
         self.matrix_table = small_tables.MatrixTable(parent=self)
         self.labor_table = small_tables.LaborTable(parent=self)
         self.estimate_tiles = ro_tiles.ROTileContainer(parent=self)
         self.working_tiles = ro_tiles.ROTileContainer(parent=self)
-        # self.working_table = workflow_tables.WorkingTable(parent=self)
-        # self.approved_table = workflow_tables.ApprovedTable(parent=self)
         self.approved_tiles = ro_tiles.ROTileContainer(parent=self)
-        # self.checkout_table = workflow_tables.CheckoutTable(parent=self)
         self.checkout_tiles = ro_tiles.ROTileContainer(parent=self)
-        # self.show_all_table = workflow_tables.ShowAll(parent=self)
         self.schedule_calendar = apt_calendar.AptCalendar(parent=self)
         self.hourly_schedule_table = apt_calendar.HourlySchedule(parent=self)
         self.weekly_schedule_table = apt_calendar.WeeklySchedule(parent=self)
         self.repair_orders_manager = repair_orders_manager.RepairOrdersManager(self)
 
 
-### ADD MAIN BUTTONS TO CMENU ###
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.cmenu_frame)
-        self.verticalLayout.addWidget(self.repair_orders_button)
-        self.verticalLayout.addWidget(self.customers_button)
-        self.verticalLayout.addWidget(self.vehicles_button)
-        self.verticalLayout.addWidget(self.messaging_button)
-        self.verticalLayout.addWidget(self.scheduling_button)
-        self.verticalLayout.addWidget(self.analytics_button)
-        self.verticalLayout.addWidget(self.settings_button)
-        self.verticalLayout.addWidget(self.quit_button)
-
-
 ### ADD ALL SUBCLASSED WIDGETS TO LAYOUT ###
-        self.gridLayout_2.addWidget(self.cmenu_frame, 2, 0, 2, 1)
+
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_11.addWidget(self.customer_table, 0, 0, 1, 1)
         self.gridLayout_19.addWidget(self.vehicle_table, 0, 0, 1, 1)
@@ -118,10 +102,10 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.gridLayout_7.addWidget(self.working_tiles, 0, 0, 1, 1)
         self.gridLayout_6.addWidget(self.approved_tiles, 0, 0, 1, 1)
         self.gridLayout_8.addWidget(self.checkout_tiles, 0, 0, 1, 1)
-        # self.gridLayout_9.addWidget(self.show_all_table, 0, 0, 1, 1)
         self.gridLayout_33.addWidget(self.schedule_calendar, 0, 0, 1, 1)
         self.gridLayout_31.addWidget(self.weekly_schedule_table, 0, 0, 1, 1)
         self.gridLayout_34.addWidget(self.hourly_schedule_table, 0, 0, 1, 1)
+
 
 
     def _init_state(self):
@@ -151,34 +135,12 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.settings_manager.load_shop_info()
 
 
-### HIDE LABELS IN CMENU ###
-    def _setup_menu_label_opacity(self):
-        texts = [
-            "  RO's", "  Customers", "  Vehicles", "  Messages",
-            "  Schedule", "  Analytics", "  Settings", "  Quit"
-        ]
-        buttons = [
-            self.repair_orders_button, self.customers_button, self.vehicles_button,
-            self.messaging_button, self.scheduling_button, self.analytics_button,
-            self.settings_button, self.quit_button
-        ]
-        for button, text in zip(buttons, texts):
-            QtWidgets.QPushButton.setText(button, "")
-
-        button_icon_size = QtCore.QSize(50, 50)
-        self.customers_button.setIconSize(button_icon_size)
-        self.repair_orders_button.setIconSize(button_icon_size)
-        self.vehicles_button.setIconSize(button_icon_size)
-        self.messaging_button.setIconSize(button_icon_size)
-        self.scheduling_button.setIconSize(button_icon_size)
-        self.analytics_button.setIconSize(button_icon_size)
-        self.settings_button.setIconSize(button_icon_size)
-        self.quit_button.setIconSize(button_icon_size)
-
 
 ### SIGNALS/SLOTS FOR PUSHBUTTONS ETC.. ###
     def _connect_signals(self):
         self.show_all_ro_button.hide()
+        self.sku_edit.sizePolicy().setRetainSizeWhenHidden(True)
+        self.cost_edit.sizePolicy().setRetainSizeWhenHidden(True)
         self.estimates_button.setMaximumWidth(400)
         self.approved_button.setMaximumWidth(400)
         self.working_ro_button.setMaximumWidth(400)
@@ -241,6 +203,11 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.hourly_schedule_table.edit_appointment.connect(self._open_appointment_options)
         self.hourly_schedule_table.add_appointment.connect(self.appointments_manager.open_new_appointment)
 
+    def _set_privileges(self):
+        cu = getattr(self, "current_user", None)
+        user_type = cu.get("user_type") if isinstance(cu, dict) else getattr(cu, "user_type", None)
+        self.permissions_manager.apply(user_type)
+
 ### DECLARES ANIMATIONS FOR SWITCHING PAGES ###
     def _setup_animations(self):
         def anim(target, duration=300):
@@ -264,6 +231,11 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
             btn.setFlat(flat)
 
 
+    def _set_line_sizes(self):
+        for w in (self.sku_edit, self.cost_edit):
+            pol = w.sizePolicy()
+            pol.setRetainSizeWhenHidden(True)
+            w.setSizePolicy(pol)
 
     def switch_theme(self, theme_name: str, persist: bool = True):
         path = THEME_FILES.get(theme_name, theme_name)

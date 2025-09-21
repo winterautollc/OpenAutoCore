@@ -604,6 +604,37 @@ QWidget {
 	border-radius: 5px;
 }
 
+
+#add_row_button::disabled,
+#remove_row_button::disabled,
+#save_matrix_button::disabled,
+#labor_table::disabled,
+#add_labor_row::disabled,
+#remove_labor_row::disabled,
+#save_labor_button::disabled,
+#warranty_miles_checkbox::disabled,
+#warranty_miles_line::disabled,
+#warranty_time_checkbox::disabled,
+#warranty_time_line::disabled,
+#shop_name_line::disabled,
+#facility_id_line::disabled,
+#address_line::disabled,
+#city_line::disabled,
+#state_line::disabled,
+#zipcode_line::disabled,
+#disclamer_edit::disabled,
+#import_logo_button::disabled,
+#save_settings_button::disabled,
+#users_button::disabled,
+#parts_integrate_button::disabled,
+#quickbooks_button::disabled,
+#analytics_button::disabled,
+#matrix_table::disabled {
+    background-color: #636363;
+    color: #141414;
+}
+
+
 /* Tooltips */
 QToolTip {
   background: #FFFFFF;
@@ -621,7 +652,6 @@ QTableView, QTreeView {
   background: #FFFFFF;
   alternate-background-color: #F9FAFB;
   gridline-color: #E6EBF1;
-  border: 1px solid #E6EBF1;
   selection-background-color: #4F6D7A;
   selection-color: #FFFFFF;
 }
@@ -639,13 +669,18 @@ QHeaderView::section:horizontal {
   border-right: 1px solid #C7CDD3;
 }
 
+QTreeWidget {
+    font-size: 20px;
+    border-radius: 2px;
+}
+
 /* ---- Inputs ---- */
 QLineEdit, QPlainTextEdit, QTextEdit, QComboBox, QSpinBox, QDoubleSpinBox, QDateEdit, QTimeEdit, QDateTimeEdit {
   background: #FFFFFF;
   color: #1E1E1E;
   border: 1px solid #C7CDD3;
-  border-radius: 6px;
-  padding: 6px 8px;
+  border-radius: 2px;
+  padding: 2px 4px;
   font-weight: bold;
 }
 QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus, QComboBox:focus,
