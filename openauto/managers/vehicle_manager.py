@@ -32,7 +32,7 @@ class VehicleManager:
         )
 
         self.ui.vehicle_window.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
-
+        self.ui.vehicle_window.setFocus()
         self.ui.vehicle_window_ui.vehicle_cancel_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("vehicle_window"))
 

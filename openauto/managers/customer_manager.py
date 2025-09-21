@@ -22,7 +22,7 @@ class CustomerManager:
             lambda: self.ui.widget_manager.close_and_delete("new_customer"))
 
         self.ui.show_new_customer_page_ui.edit_customer_button.hide()
-        self.ui.show_new_customer_page_ui.first_name_line.setFocus()
+        self.ui.show_new_customer_page.setFocus()
         self.ui.show_new_customer_page.setFixedSize(606, 693)
         self.ui.show_new_customer_page.setWindowTitle("New Customer")
         self.ui.show_new_customer_page_ui.phone_line.setInputMask('(000) 000-0000;_')

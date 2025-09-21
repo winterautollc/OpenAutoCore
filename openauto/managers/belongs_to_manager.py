@@ -89,10 +89,10 @@ class BelongsToManager:
 
         self.ui.show_new_customer_page.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
 
-        self.ui.show_new_customer_page_ui.abort_button.clicked.connect(
+        self.ui.show_new_customer_page_ui.cancel_customer_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("new_customer"))
 
-        self.ui.show_new_customer_page_ui.edit_button.hide()
+        self.ui.show_new_customer_page_ui.edit_customer_button.hide()
         self.ui.show_new_customer_page.setWindowTitle("New Customer")
         self.ui.show_new_customer_page_ui.first_name_line.setFocus()
         self.ui.show_new_customer_page.setFixedSize(606, 693)
@@ -101,7 +101,7 @@ class BelongsToManager:
 
         self.ui.belongs_to_window.hide()
         self.ui.show_new_customer_page.show()
-        self.ui.show_new_customer_page_ui.save_button.clicked.connect(self.save_cust_vehc_join)
+        self.ui.show_new_customer_page_ui.save_customer_button.clicked.connect(self.save_cust_vehc_join)
 
 ### CREATES NEW CUSTOMER AND ADDS NEW VEHICLE ASSOCIATED WITH THEM ###
     def save_cust_vehc_join(self):
