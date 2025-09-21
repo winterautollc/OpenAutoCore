@@ -11,37 +11,29 @@ Completed features are marked with ✅, partially completed with ⏳, and not st
 - ⏳ Repair Orders (ROs)
 - ✅ Appointments & Scheduling
 - ⬜ Payments Integration
-- UI/UX Polish (in progress)
+- ✅ UI/UX Polish
+- Analytics Dashboard (pyqtgraph)
 
 ---
 
 ## Phase 2 — Shop Efficiency Tools
-- Analytics Dashboard (pyqtgraph)
 - Bookkeeping Integrations (QuickBooks, CSV Export)
-- Parts/Service Integrations (PartsTech, Plate2VIN, etc.)
-- Purchase Orders
+- Service Integrations (Plate2VIN, SMS, MMS Labor Times, Service Data, Repair Info etc.)
+- Optional Cloud Storage For More Security
 
 ---
 
-## Phase 3 — Shop Growth Features
+## Phase 2 — (continued)
 - Reminders & Notifications (service + appointment)
 - Multi-Shop Support (multi-schema or tenant model)
-- Cloud Sync Options (optional hosted MySQL backend)
+- Simplified Technician View For RO's, Jobs, and Notes
 
 ---
 
-## Phase 4 — Extended Ecosystem
+## Phase 3
 - Mobile Companion App (Flutter/Kivy)
 - Technician Workstations (tablet-friendly RO interface)
 - OBD-II/Diagnostic Add-ons (long-term R&D)
-
----
-
-## Phase 5 — Community & Sustainability
-- GitHub Sponsors / Funding Tiers
-- Documentation & Contributor Guide
-- Donation/Support Integration (Ko-fi, PayPal, etc.)
-- Installers & Packaging (PyInstaller + Inno Setup, Flatpak, Snap, Docker)
 
 ---
 
