@@ -141,7 +141,7 @@ class Ui_new_appointment_form(object):
         self.wait_appt_button.setText(_translate("new_appointment_form", "Wait"))
         self.cancel_appt_button.setText(_translate("new_appointment_form", "Cancel"))
         self.save_appt_button.setText(_translate("new_appointment_form", "Save"))
-from openauto.subclassed_widgets.small_tables import CustomerTableSmall, VehicleTableSmall
+from openauto.subclassed_widgets.views.small_tables import CustomerTableSmall, VehicleTableSmall
 from openauto.theme import resources_rc
 
 

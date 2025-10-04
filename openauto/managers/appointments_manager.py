@@ -1,6 +1,6 @@
 from PyQt6 import QtCore, QtWidgets
 from openauto.ui import new_appointment
-from openauto.subclassed_widgets import small_tables
+from openauto.subclassed_widgets.views import small_tables
 from openauto.utils.validator import Validator
 from openauto.repositories.customer_repository import CustomerRepository
 from openauto.repositories.vehicle_repository import VehicleRepository

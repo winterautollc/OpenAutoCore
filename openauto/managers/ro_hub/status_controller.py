@@ -2,7 +2,7 @@ from PyQt6 import QtWidgets, QtCore, QtGui
 from typing import Callable, Optional
 from openauto.repositories.repair_orders_repository import RepairOrdersRepository
 from openauto.repositories.estimate_jobs_repository import EstimateJobsRepository
-from openauto.subclassed_widgets.ro_tree.roles import APPROVED_ROLE, DECLINED_ROLE
+from openauto.subclassed_widgets.roles.tree_roles import APPROVED_ROLE, DECLINED_ROLE
 
 
 class StatusDialogController:

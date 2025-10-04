@@ -3,7 +3,7 @@ from decimal import Decimal, ROUND_HALF_UP
 from PyQt6 import QtCore, QtGui
 from openauto.repositories.settings_repository import SettingsRepository
 
-from openauto.subclassed_widgets.ro_tree.roles import (
+from openauto.subclassed_widgets.roles.tree_roles import (
     COL_TYPE, COL_SKU, COL_DESC, COL_QTY, COL_UNIT_COST, COL_SELL, COL_HOURS, COL_RATE, COL_TAX, COL_TOTAL,
     NUM_COLUMNS,
     JOB_ID_ROLE, JOB_NAME_ROLE, ITEM_ID_ROLE, LINE_ORDER_ROLE, ROW_KIND_ROLE, APPROVED_ROLE,

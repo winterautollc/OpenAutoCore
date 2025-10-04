@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import QAbstractItemView
 from openauto.utils.validator import Validator
 from openauto.ui import new_appointment, new_customer_form, vehicle_search_form
 from openauto.managers import vehicle_manager
-from openauto.subclassed_widgets import small_tables
+from openauto.subclassed_widgets.views import small_tables
 from openauto.repositories.repair_orders_repository import RepairOrdersRepository
 from openauto.repositories.customer_repository import CustomerRepository
 from openauto.repositories.vehicle_repository import VehicleRepository

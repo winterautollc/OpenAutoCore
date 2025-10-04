@@ -1,5 +1,5 @@
 from PyQt6 import QtWidgets, QtCore
-from openauto.subclassed_widgets import ro_tiles
+from openauto.subclassed_widgets.views import ro_tiles
 from openauto.repositories.repair_orders_repository import RepairOrdersRepository
 from openauto.managers.estimate_options_manager import EstimateOptionsManager
 from mysql.connector import Error as MySQLError

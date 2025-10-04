@@ -1,6 +1,6 @@
 from PyQt6 import QtCore
 from decimal import Decimal
-from openauto.subclassed_widgets.ro_tree.roles import (
+from openauto.subclassed_widgets.roles.tree_roles import (
     ROW_KIND_ROLE, COL_QTY, COL_SELL, COL_HOURS, COL_RATE, COL_TAX, COL_TOTAL, DECLINED_ROLE
 )
 

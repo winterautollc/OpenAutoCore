@@ -1,5 +1,5 @@
 from PyQt6 import QtWidgets, QtCore
-from openauto.subclassed_widgets.ro_tree.roles import COL_DESC
+from openauto.subclassed_widgets.roles.tree_roles import COL_DESC
 from openauto.repositories.settings_repository import SettingsRepository
 
 def _skip_during_drop(table) -> bool:

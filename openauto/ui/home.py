@@ -1,6 +1,8 @@
 from PyQt6 import QtCore, QtWidgets, QtGui
 from PyQt6.QtGui import QDoubleValidator
-from openauto.subclassed_widgets import small_tables, workflow_tables, apt_calendar, event_handlers, control_menu, ro_tiles
+from openauto.subclassed_widgets.views import small_tables, workflow_tables, apt_calendar, ro_tiles
+from openauto.subclassed_widgets.menu import control_menu
+from openauto.subclassed_widgets import event_handlers
 from openauto.subclassed_widgets.models.ro_tree_model import ROTreeModel
 from openauto.ui import main_form
 from openauto.managers.ro_hub import ro_hub_manager

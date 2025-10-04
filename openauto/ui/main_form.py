@@ -1,9 +1,9 @@
-from openauto.subclassed_widgets.apt_calendar import AptCalendar, HourlySchedule, WeeklySchedule
-from openauto.subclassed_widgets.control_menu import ControlMenu
-from openauto.subclassed_widgets.parts_tree import PartsTree
+from openauto.subclassed_widgets.views.apt_calendar import AptCalendar, HourlySchedule, WeeklySchedule
+from openauto.subclassed_widgets.menu.control_menu import ControlMenu
+from openauto.subclassed_widgets.views.parts_tree import PartsTree
 from openauto.subclassed_widgets.views.ro_tree_view import ROTreeView
-from openauto.subclassed_widgets.workflow_tables import ApprovedTable, CheckoutTable, CustomerTable, EstimateTable, VehicleTable, WorkingTable
-from openauto.subclassed_widgets.small_tables import LaborTable, MatrixTable, TaxTable
+from openauto.subclassed_widgets.views.workflow_tables import ApprovedTable, CheckoutTable, CustomerTable, EstimateTable, VehicleTable, WorkingTable
+from openauto.subclassed_widgets.views.small_tables import LaborTable, MatrixTable, TaxTable
 from openauto.theme import resources_rc
 
 

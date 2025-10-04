@@ -1,5 +1,5 @@
 from PyQt6 import QtWidgets, QtCore, QtGui
-from openauto.subclassed_widgets.ro_tree.roles import (
+from openauto.subclassed_widgets.roles.tree_roles import (
     COL_DESC, COL_SKU, COL_TOTAL, ROW_KIND_ROLE, HEADER_TITLES,
     COL_TYPE, COL_QTY, COL_UNIT_COST, COL_SELL, COL_HOURS, COL_RATE, COL_TAX,
     JOB_ID_ROLE, JOB_NAME_ROLE, ITEM_ID_ROLE, LINE_ORDER_ROLE, APPROVED_ROLE, DECLINED_ROLE

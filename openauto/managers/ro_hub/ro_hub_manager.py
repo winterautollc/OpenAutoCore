@@ -16,9 +16,9 @@ from openauto.managers.ro_hub.totals_controller import TotalsController
 from openauto.managers.ro_hub.c3_controller import C3Controller
 from collections import defaultdict
 import datetime
-from openauto.subclassed_widgets.ro_tree.roles import COL_DESC, COL_TYPE, JOB_ID_ROLE, APPROVED_ROLE, DECLINED_ROLE
+from openauto.subclassed_widgets.roles.tree_roles import COL_DESC, COL_TYPE, JOB_ID_ROLE, APPROVED_ROLE, DECLINED_ROLE
 
-from openauto.subclassed_widgets.ro_tree.roles import (
+from openauto.subclassed_widgets.roles.tree_roles import (
     JOB_ID_ROLE, JOB_NAME_ROLE, ITEM_ID_ROLE, LINE_ORDER_ROLE, ROW_KIND_ROLE
 )
 

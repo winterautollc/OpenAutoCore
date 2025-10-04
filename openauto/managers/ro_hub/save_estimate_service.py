@@ -7,8 +7,8 @@ from openauto.repositories.estimate_jobs_repository import EstimateJobsRepositor
 from openauto.repositories.ro_c3_repository import ROC3Repository
 import re
 from decimal import Decimal, ROUND_HALF_UP
-from openauto.subclassed_widgets.ro_tree.roles import ITEM_ID_ROLE, LINE_ORDER_ROLE
-from openauto.subclassed_widgets.ro_tree.roles import (
+from openauto.subclassed_widgets.roles.tree_roles import ITEM_ID_ROLE, LINE_ORDER_ROLE
+from openauto.subclassed_widgets.roles.tree_roles import (
     JOB_ID_ROLE, JOB_NAME_ROLE, ITEM_ID_ROLE, LINE_ORDER_ROLE, ROW_KIND_ROLE
 )
 
