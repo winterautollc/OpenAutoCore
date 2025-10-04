@@ -187,13 +187,41 @@ class LaborTable(QTableWidget):
         self.setHorizontalHeaderLabels(labor_items)
         self.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.verticalHeader().setVisible(False)
-        # self.setAlternatingRowColors(True)
         self.setItemDelegateForColumn(0, FloatDelegate(self))
         self.load_labor_rates()
 
 
     def load_labor_rates(self):
         result = settings_repository.SettingsRepository.load_labor_table() or []
+
+        for row_index, row_data in enumerate(result):
+            self.insertRow(row_index)
+            for col_index, value in enumerate(row_data):
+                if isinstance(value, decimal.Decimal):
+                    item = QTableWidgetItem(f"{value:.2f}")
+                else:
+                    item = QTableWidgetItem(str(value))
+
+                item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                self.setItem(row_index, col_index, item)
+
+
+
+class TaxTable(QTableWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        tax_items = ("Tax Rate", "Tax Type")
+        self.setColumnCount(2)
+        self.setGridStyle(QtCore.Qt.PenStyle.DashDotLine)
+        self.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
+        self.setHorizontalHeaderLabels(tax_items)
+        self.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
+        self.verticalHeader().setVisible(False)
+        self.load_tax_rates()
+
+
+    def load_tax_rates(self):
+        result = settings_repository.SettingsRepository.get_tax_info() or []
 
         for row_index, row_data in enumerate(result):
             self.insertRow(row_index)

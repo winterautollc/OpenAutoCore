@@ -1,3 +1,7 @@
+from PyQt6.QtWidgets import QAbstractItemView
+from PyQt6 import QtCore
+
+
 MANAGER_ONLY = [
     "analytics_button",
     "matrix_frame", "matrix_table",
@@ -14,11 +18,29 @@ MANAGER_ONLY = [
 class PermissionsManager:
     def __init__(self, ui):
         self.ui = ui
+        self.user_type = None
 
     def apply(self, user_type: str | None):
-        is_manager = (user_type == "manager")
+        self.user_type = user_type
+        is_manager = (self.user_type == "manager")
+        if self.user_type == "technician":
+            tech_permissions = ["customers_button", "vehicles_button", "messaging_button"]
+            self.ui.hourly_schedule_table.cellClicked.disconnect()
+            self.ui.weekly_schedule_table.cellClicked.disconnect()
+            self.ui.hourly_schedule_table.setSelectionMode(QAbstractItemView.SelectionMode.NoSelection)
+            self.ui.weekly_schedule_table.setSelectionMode(QAbstractItemView.SelectionMode.NoSelection)
+            self.ui.hourly_schedule_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+            self.ui.weekly_schedule_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+            self.ui.hourly_schedule_table.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
+            self.ui.weekly_schedule_table.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
+            MANAGER_ONLY.extend(tech_permissions)
+
         self._set_group_enabled(MANAGER_ONLY, is_manager)
         self._set_group_tooltip(MANAGER_ONLY, "Managers only" if not is_manager else None)
+
+
+
+
 
     # --- helpers ---
     def _set_group_enabled(self, names: list[str], enabled: bool):

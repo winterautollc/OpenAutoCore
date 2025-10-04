@@ -1,6 +1,7 @@
 from PyQt6 import QtCore, QtWidgets, QtGui
 from PyQt6.QtGui import QDoubleValidator
 from openauto.subclassed_widgets import small_tables, workflow_tables, apt_calendar, event_handlers, control_menu, ro_tiles
+from openauto.subclassed_widgets.models.ro_tree_model import ROTreeModel
 from openauto.ui import main_form
 from openauto.managers.ro_hub import ro_hub_manager
 from openauto.managers import (
@@ -89,7 +90,8 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.hourly_schedule_table = apt_calendar.HourlySchedule(parent=self)
         self.weekly_schedule_table = apt_calendar.WeeklySchedule(parent=self)
         self.repair_orders_manager = repair_orders_manager.RepairOrdersManager(self)
-
+        self.ro_items_table.setModel(ROTreeModel(self.ro_items_table))
+        self.tax_table = small_tables.TaxTable(parent=self)
 
 ### ADD ALL SUBCLASSED WIDGETS TO LAYOUT ###
 
@@ -105,6 +107,8 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.gridLayout_33.addWidget(self.schedule_calendar, 0, 0, 1, 1)
         self.gridLayout_31.addWidget(self.weekly_schedule_table, 0, 0, 1, 1)
         self.gridLayout_34.addWidget(self.hourly_schedule_table, 0, 0, 1, 1)
+        self.gridLayout_47.addWidget(self.tax_table, 1, 0, 1, 2)
+
 
 
 
@@ -169,17 +173,24 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.month_button.setMaximumWidth(200)
         self.day_button.setMaximumWidth(200)
         self.week_button.setMaximumWidth(200)
-        self.import_logo_button.setMaximumWidth(200)
+        self.import_logo_button.setMaximumWidth(300)
+        self.add_tax_row_button.setMaximumWidth(300)
+        self.remove_tax_row_button.setMaximumWidth(300)
+        self.label_4.setMaximumHeight(self.matrix_label.height())
+        self.tax_frame.setMaximumWidth(self.matrix_frame.width())
         self.new_vehicle_button.clicked.connect(self.vehicle_manager.add_new_vehicle)
         self.settings_button.clicked.connect(self.animations_manager.settings_page_show)
         self.appearance_button.clicked.connect(self.show_appearance)
         self.add_row_button.clicked.connect(self.settings_manager.add_matrix_row)
         self.add_labor_row.clicked.connect(self.settings_manager.add_labor_rates)
+        self.add_tax_row_button.clicked.connect(self.settings_manager.add_tax_rates)
         self.remove_labor_row.clicked.connect(self.settings_manager.remove_labor_rate)
         self.remove_row_button.clicked.connect(self.settings_manager.remove_matrix_row)
+        self.remove_tax_row_button.clicked.connect(self.settings_manager.remove_tax_rate)
         self.save_matrix_button.clicked.connect(self.settings_manager.save_pricing_matrix)
         self.save_settings_button.clicked.connect(self.settings_manager.save_shop_settings)
         self.save_labor_button.clicked.connect(self.settings_manager.save_labor_rates)
+        self.save_tax_rows_button.clicked.connect(self.settings_manager.save_tax_rates)
         self.warranty_time_checkbox.toggled.connect(self.settings_manager.set_warranty_time)
         self.warranty_miles_checkbox.toggled.connect(self.settings_manager.set_warranty_duration)
         self.import_logo_button.clicked.connect(self.settings_manager.load_shop_logo)
@@ -232,7 +243,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
 
 
     def _set_line_sizes(self):
-        for w in (self.sku_edit, self.cost_edit):
+        for w in (self.sku_edit, self.cost_edit, self.sell_edit, self.quantity_edit, self.tax_box, self.labor_rate_box):
             pol = w.sizePolicy()
             pol.setRetainSizeWhenHidden(True)
             w.setSizePolicy(pol)

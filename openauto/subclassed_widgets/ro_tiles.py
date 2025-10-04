@@ -100,7 +100,7 @@ class ROTile(QtWidgets.QFrame):
         menu = QtWidgets.QMenu(self)
 
         actions = [
-            ("Move to Approved", "approved"),
+            ("Approve All Jobs", "approved"),
             ("Move to Working", "working"),
             ("Move to Checkout", "checkout"),
             ("Revert to Estimate", "open"),

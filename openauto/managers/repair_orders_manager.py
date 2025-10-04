@@ -43,7 +43,8 @@ class RepairOrdersManager:
     def _open_estimate_options(self, ro_id: int):
         self.estimate_options_manager = EstimateOptionsManager(
             parent=self.ui,
-            estimate_id=ro_id)
+            estimate_id=ro_id,
+            )
 
 
     def _on_status_change_requested(self, ro_id: int, new_status: str):

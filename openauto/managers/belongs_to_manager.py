@@ -279,8 +279,6 @@ class BelongsToManager:
         CustomerRepository.insert_customer(customer_data)
         customer_id = CustomerRepository.get_customer_id_by_details(customer_data)
         vehicle_repository.VehicleRepository.change_vehicle_owner(self.vehicle_id, customer_id)
-        print(self.vehicle_id)
-        print(customer_id)
         message_box = QtWidgets.QMessageBox()
         message_box.setText("Vehicle Owner Changed Successfully")
         message_box.setWindowTitle("Success")

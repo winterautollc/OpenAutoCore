@@ -17,7 +17,7 @@ class ROStatusManager:
     def __init__(self, ui):
         self.ui = ui
         self.widget_manager = WidgetManager()
-
+        # self.status = status
         self.ro_status_options, self.ro_status_options_ui = self.widget_manager.create_or_restore(
             "ro_options", QtWidgets.QWidget, ro_status_options.Ui_ro_options_widget
         )
@@ -36,4 +36,7 @@ class ROStatusManager:
        self.ro_status_options_ui.cancel_status_button.clicked.connect(
            lambda: self.widget_manager.close_and_delete("ro_options")
        )
+
+       # self.ro_status_options_ui.open_status_button.clicked.connect(lambda: )
+
        self.ro_status_options.show()

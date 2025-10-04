@@ -1,5 +1,6 @@
 from PyQt6 import QtWidgets, QtCore
 from openauto.subclassed_widgets.event_handlers import WidgetManager
+from openauto.subclassed_widgets.models.ro_tree_model import ROTreeModel
 from openauto.ui import estimate_options
 from openauto.repositories import repair_orders_repository
 from openauto.managers import ro_status_manager
@@ -32,6 +33,7 @@ class EstimateOptionsManager:
         )
         self.estimate_options_ui.delete_ro_button.clicked.connect(self.confirm_delete)
         self.estimate_options_ui.open_ro_button.clicked.connect(self._open_ro_page)
+        self.estimate_options_ui.change_ro_status_button.hide()
         self.estimate_options_ui.change_ro_status_button.clicked.connect(self.open_ro_status)
         self.estimate_options.show()
 
@@ -61,8 +63,9 @@ class EstimateOptionsManager:
 
     def _open_ro_page(self):
         selected_estimate_row = self.ui.estimates_table.currentRow()
+        model: ROTreeModel = self.ui.ro_items_table.model()
+        model.clear()
         ro_id = self.estimate_id
-        print(ro_id)
         self.ui.ro_hub_manager.load_ro_into_hub(ro_id)
         self.widget_manager.close_and_delete("estimate_options")
         self.ui.animations_manager.ro_hub_page_show()

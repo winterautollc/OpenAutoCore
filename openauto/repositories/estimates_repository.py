@@ -24,6 +24,7 @@ class EstimatesRepository:
         conn = connect_db()
         with conn.cursor() as cur:
             # try with ro_id + snapshots
+            new_id = None
             try:
                 cur.execute("""
                     INSERT INTO estimates (ro_id, customer_id, first_name, last_name,
@@ -31,6 +32,7 @@ class EstimatesRepository:
                     VALUES (%s, %s, %s, %s, CURRENT_DATE(), 0.00, %s, %s, 0)
                 """, (ro["id"], ro["customer_id"], ro.get("first_name",""), ro.get("last_name",""),
                       writer_name or "", tech_name or ""))
+                new_id = cur.lastrowid
             except Exception:
                 # fallback: no ro_id column in estimates
                 cur.execute("""
@@ -39,8 +41,18 @@ class EstimatesRepository:
                     VALUES (%s, %s, %s, CURRENT_DATE(), 0.00, %s, %s, 0)
                 """, (ro["customer_id"], ro.get("first_name",""), ro.get("last_name",""),
                       writer_name or "", tech_name or ""))
+                new_id = cur.lastrowid
+
+            # --- NEW: link back to RO so future UI edits can resolve estimate_id ---
+            try:
+                cur.execute("UPDATE repair_orders SET estimate_id=%s WHERE id=%s", (new_id, ro["id"]))
+            except Exception:
+                # If the column doesn't exist yet, silently ignore
+                pass
+
             conn.commit()
-            return cur.lastrowid
+            conn.close()
+            return new_id
 
     @staticmethod
     def update_total(estimate_id: int, total: float):
@@ -49,3 +61,24 @@ class EstimatesRepository:
             cur.execute("UPDATE estimates SET total_amount=%s WHERE id=%s", (total, estimate_id))
             conn.commit()
 
+    @staticmethod
+    def get_internal_memo(estimate_id: int) -> str | None:
+        conn = connect_db()
+        try:
+            with conn.cursor(dictionary=True) as cur:
+                cur.execute("SELECT internal_memo FROM estimates WHERE id=%s", (estimate_id, ))
+                row = cur.fetchone()
+                return row["internal_memo"] if row and "internal_memo" in row else None
+        finally:
+            conn.close()
+
+
+    @staticmethod
+    def set_internal_memo(estimate_id: int, memo: str | None) -> None:
+        conn = connect_db()
+        try:
+            with conn.cursor() as cur:
+                cur.execute("UPDATE estimates SET internal_memo=%s WHERE id=%s", (memo, estimate_id))
+                conn.commit()
+        finally:
+            conn.close()

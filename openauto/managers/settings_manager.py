@@ -118,7 +118,6 @@ class SettingsManager:
         self.ui.disclamer_edit.setText(info[6])
         self.ui.warranty_time_line.setText(info[9])
         self.ui.warranty_miles_line.setText(info[10])
-        self.ui.sales_tax_line.setText(str(info[13]))
 
         buffer = QBuffer()
         buffer.setData(info[11])
@@ -177,8 +176,29 @@ class SettingsManager:
         db_conn.close()
         self._show_message("Your Labor Rates Have Been Saved")
 
+    def save_tax_rates(self):
+        db_conn = db_handlers.connect_db()
+        cursor = db_conn.cursor()
+        cursor.execute("TRUNCATE tax_rates")
+
+        for row in range(self.ui.tax_table.rowCount()):
+            try:
+                tax_rate = float(self.ui.tax_table.item(row, 0).text())
+                tax_type = self.ui.tax_table.item(row, 1).text()
+            except Exception:
+                continue
+            cursor.execute("INSERT INTO tax_rates (tax_rate, tax_type) VALUES (%s, %s)", (tax_rate, tax_type))
+        db_conn.commit()
+        cursor.close()
+        db_conn.close()
+        self._show_message("Your Tax Rates Have Been Saved")
+
+
     def add_labor_rates(self):
         self._add_empty_row(self.ui.labor_table)
+
+    def add_tax_rates(self):
+        self._add_empty_row(self.ui.tax_table)
 
     def add_matrix_row(self):
         row_count = self.ui.matrix_table.rowCount()
@@ -209,6 +229,9 @@ class SettingsManager:
 
     def remove_labor_rate(self):
         self._remove_current_row(self.ui.labor_table)
+
+    def remove_tax_rate(self):
+        self._remove_current_row(self.ui.tax_table)
 
     def _remove_current_row(self, table):
         current_row = table.currentRow()

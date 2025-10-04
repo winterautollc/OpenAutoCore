@@ -53,12 +53,12 @@ class SettingsRepository:
         conn.commit()
 
     @staticmethod
-    def get_tax_and_labor():
+    def get_tax_info():
         conn = connect_db()
         cursor = conn.cursor()
-        query = """SELECT sales_tax_rate FROM shop_info"""
+        query = """SELECT tax_rate, tax_type FROM tax_rates"""
         cursor.execute(query)
-        result = cursor.fetchone()
+        result = cursor.fetchall()
         return result if result else None
 
 

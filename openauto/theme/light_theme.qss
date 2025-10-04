@@ -259,6 +259,7 @@ QWidget {
     border-radius: 5px;
 }
 
+#remove_tax_row_button,
 #remove_row_button,
 #remove_labor_row {
     background-color: #C96567;
@@ -267,6 +268,8 @@ QWidget {
     font-size: 16px;
 }
 
+
+#remove_tax_row_button::hover,
 #remove_row_button::hover,
 #remove_labor_row::hover {
     background-color: #9E5A63;
@@ -274,6 +277,8 @@ QWidget {
     border-radius: 5px
 }
 
+
+#add_tax_row_button,
 #vin_search_button,
 #new_customer_appt_button,
 #new_vehicle_appt_button,
@@ -285,6 +290,8 @@ QWidget {
     font-size: 16px;
 }
 
+
+#add_tax_row_button::hover,
 #vin_search_button::hover,
 #new_customer_appt_button::hover,
 #new_vehicle_appt_button::hover,
@@ -295,6 +302,9 @@ QWidget {
     border-radius:5px;
 }
 
+
+#save_tax_rows_button,
+#approved_label,
 #vehicle_save_button,
 #save_customer_button,
 #edit_customer_button,
@@ -306,6 +316,8 @@ QWidget {
     font-size: 16px;
 }
 
+
+#save_tax_rows_button::hover,
 #vehicle_save_button::hover,
 #save_customer_button::hover,
 #edit_customer_button::hover,
@@ -510,6 +522,7 @@ QWidget {
     border-radius: 5px
 }
 
+#open_label,
 #save_settings_button,
 #users_button,
 #open_status_button,
@@ -574,6 +587,7 @@ QWidget {
 	border-radius: 5px;
 }
 
+#declined_role,
 #vehicle_cancel_button,
 #cancel_customer_button,
 #cancel_edit_appt_button,
@@ -605,6 +619,11 @@ QWidget {
 }
 
 
+#month_button::disabled,
+#schedule_calendar::disabled,
+#customers_button::disabled,
+#vehicles_button::disabled,
+#messaging_button::disabled,
 #add_row_button::disabled,
 #remove_row_button::disabled,
 #save_matrix_button::disabled,
@@ -632,6 +651,13 @@ QWidget {
 #matrix_table::disabled {
     background-color: #636363;
     color: #141414;
+}
+
+#partial_label {
+    background-color: #F39C12;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
 }
 
 
@@ -669,10 +695,16 @@ QHeaderView::section:horizontal {
   border-right: 1px solid #C7CDD3;
 }
 
-QTreeWidget {
-    font-size: 20px;
-    border-radius: 2px;
+QTreeView {
+    font-size: 18px;
+    border-radius: 5px;
 }
+
+QTreeView::item {
+    padding: 2px 0;
+}
+
+
 
 /* ---- Inputs ---- */
 QLineEdit, QPlainTextEdit, QTextEdit, QComboBox, QSpinBox, QDoubleSpinBox, QDateEdit, QTimeEdit, QDateTimeEdit {
@@ -740,12 +772,28 @@ QTabBar::tab {
      background-color: #4A6260;
      color: #ECF4F4;
      border-radius: 1px;
-     min-width: 600px;
+     min-width: 200px;
      min-height: 20px;
 }
 
 QTabWidget::tab-bar {
      alignment: left;
+}
+
+QTabWidget::pane {
+    border: 0;
+}
+
+QMenu {
+    border: 1px solid #555;
+}
+
+QMenu::item {
+    padding: 5px 15px;
+}
+
+QMenu::item:selected {
+    background-color: #d2d7db;
 }
 
 QTabBar::tab:selected {
@@ -757,6 +805,7 @@ QTabBar::tab:selected {
      border: 1px solid #bbb;
      border-radius: 2px;
 }
+
 
 /* ---- Status colors (opt-in via dynamic properties) ---- */
 [status="approved"] { border-color: #2E7D32; }

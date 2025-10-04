@@ -222,7 +222,7 @@ QWidget {
     border-radius:5px;
 }
 
-
+#approved_label,
 #save_matrix_button,
 #save_labor_button {
     background-color: #75937c;
@@ -472,7 +472,7 @@ QWidget {
     padding: 6px 12px;
 }
 
-
+#open_label,
 #vehicle_save_button,
 #save_customer_button,
 #edit_customer_button,
@@ -626,6 +626,14 @@ QWidget {
     color: #141414;
 }
 
+
+#partial_label {
+    background-color: #F39C12;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
 QMenu {
     background-color: #333;
     border: 1px solid #555;
@@ -660,6 +668,10 @@ QTabWidget::tab-bar {
      alignment: left;
 }
 
+QTabWidget::pane {
+    border: 0;
+}
+
 QTabBar::tab:selected {
      font-weight: 600;
      background-color: #42899B;
@@ -687,11 +699,14 @@ QToolTip {
   font-size: 12pt;
 }
 
-QTreeWidget {
-    font-size: 20px;
-    border-radius: 2px;
+QTreeView {
+    font-size: 18px;
+    border-radius: 5px;
 }
 
+QTreeView::item {
+    padding: 5px 0;
+}
 
 /* ---- Tables / Views ---- */
 QTableView, QTreeView {
@@ -783,6 +798,7 @@ QCalendarWidget {
     font-weight: bold;
     font-size: 20px;
 }
+
 
 /* ---- Status colors (dynamic properties) ---- */
 [status="approved"] { border-color: #66BB6A; }

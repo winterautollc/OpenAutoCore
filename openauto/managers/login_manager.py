@@ -43,13 +43,16 @@ class LoginCreate(QDialog, Ui_Form):
         self.login_tab_button.clicked.connect(self.show_login_page)
         self.cancel_login_button.clicked.connect(self.reject)
         self.cancel_create_button.clicked.connect(self.reject)
+        # self.login_button.setDefault(True)
         self.login_button.clicked.connect(self._on_login_clicked)
+        # self.save_user_button.setDefault(True)
         self.save_user_button.clicked.connect(self._on_create_clicked)
         self.animate_users_create = QtCore.QPropertyAnimation(self.stackedWidget, b'geometry')
         self.animate_users_create.setDuration(300)
         self.stacked_height = self.stackedWidget.height()
         self.password_line.setEchoMode(QLineEdit.EchoMode.Password)
         self.password_line_2.setEchoMode(QLineEdit.EchoMode.Password)
+        self.login_enter()
 
         ### LOAD USER AND PASS FOR STARTUP IF CHECKED "REMEMBER ME" ###
         settings = QSettings(APP_ORG, APP_NAME)
@@ -176,3 +179,13 @@ class LoginCreate(QDialog, Ui_Form):
         self.accountCreated.emit(user_id, user)
         QtWidgets.QMessageBox.information(self, "Success", "Account created. You can now log in.")
         self.show_login_page()
+
+
+    def login_enter(self):
+        if self.stackedWidget.currentIndex() == 0:
+            self.login_button.setDefault(True)
+
+        elif self.stackedWidget.currentIndex() == 1:
+            self.login_button.setDefault(True)
+
+

@@ -24,7 +24,7 @@ CREATE TABLE `appointments` (
   KEY `fk_appointments_vehicle` (`vehicle_id`),
   CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE CASCADE,
   CONSTRAINT `fk_appointments_vehicle` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -50,22 +50,56 @@ CREATE TABLE `estimate_items` (
   `estimate_id` int NOT NULL,
   `ro_id` int DEFAULT NULL,
   `item_description` varchar(255) NOT NULL,
-  `qty` decimal(10,2) NOT NULL,
-  `unit_price` decimal(10,2) NOT NULL,
-  `total_price` decimal(10,2) NOT NULL,
+  `qty` decimal(9,3) NOT NULL DEFAULT '1.000',
+  `unit_price` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `total_price` decimal(12,2) GENERATED ALWAYS AS ((`qty` * `unit_price`)) STORED,
   `type` varchar(15) DEFAULT NULL,
   `archived` tinyint(1) DEFAULT (0),
-  `part_number` varchar(64) DEFAULT NULL,
-  `unit_cost` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `sku_number` varchar(255) DEFAULT NULL,
+  `unit_cost` decimal(12,2) NOT NULL DEFAULT '0.00',
   `taxable` tinyint(1) NOT NULL DEFAULT '1',
+  `tax_pct` decimal(6,2) unsigned NOT NULL DEFAULT '0.00',
   `vendor` varchar(100) DEFAULT NULL,
   `source` varchar(32) NOT NULL DEFAULT 'manual',
   `metadata` json DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `job_name` varchar(100) NOT NULL DEFAULT 'General',
+  `job_order` int DEFAULT NULL,
+  `line_order` int DEFAULT NULL,
+  `job_id` int DEFAULT NULL,
+  `status` enum('proposed','approved','declined','revised') NOT NULL DEFAULT 'proposed',
+  `approved_at` datetime DEFAULT NULL,
+  `declined_at` datetime DEFAULT NULL,
+  `approved_by_id` int DEFAULT NULL,
+  `line_total` decimal(12,2) GENERATED ALWAYS AS (round((coalesce(`qty`,1) * coalesce(`unit_price`,0)),2)) STORED,
+  `line_cost_total` decimal(12,2) GENERATED ALWAYS AS (round((coalesce(`qty`,1) * coalesce(`unit_cost`,0)),2)) STORED,
   PRIMARY KEY (`id`),
   KEY `estimate_id` (`estimate_id`),
-  CONSTRAINT `estimate_items_ibfk_1` FOREIGN KEY (`estimate_id`) REFERENCES `estimates` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `idx_estimate_items_ro_id` (`ro_id`),
+  KEY `ix_items_job_status` (`job_id`,`status`),
+  CONSTRAINT `estimate_items_ibfk_1` FOREIGN KEY (`estimate_id`) REFERENCES `estimates` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_items_job` FOREIGN KEY (`job_id`) REFERENCES `estimate_jobs` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=975 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `estimate_jobs` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `estimate_id` int NOT NULL,
+  `name` varchar(120) NOT NULL,
+  `status` enum('proposed','approved','declined','revised') NOT NULL DEFAULT 'proposed',
+  `approved_at` datetime DEFAULT NULL,
+  `declined_at` datetime DEFAULT NULL,
+  `approved_by_id` int DEFAULT NULL,
+  `total` decimal(10,2) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_jobs_est_name` (`estimate_id`,`name`),
+  UNIQUE KEY `uq_estimate_jobs_name` (`estimate_id`,`name`),
+  KEY `ix_jobs_estimate_status` (`estimate_id`,`status`),
+  CONSTRAINT `fk_jobs_estimate` FOREIGN KEY (`estimate_id`) REFERENCES `estimates` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -81,15 +115,19 @@ CREATE TABLE `estimates` (
   `archived` tinyint(1) DEFAULT (0),
   `assigned_writer_id` int DEFAULT NULL,
   `assigned_tech_id` int DEFAULT NULL,
+  `ro_id` int DEFAULT NULL,
+  `internal_memo` text,
   PRIMARY KEY (`id`),
   KEY `customer_id` (`customer_id`),
   KEY `idx_est_writer` (`assigned_writer_id`),
   KEY `idx_est_tech` (`assigned_tech_id`),
   KEY `idx_est_archived` (`archived`),
+  KEY `idx_estimates_ro_id` (`ro_id`),
   CONSTRAINT `estimates_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE CASCADE,
   CONSTRAINT `fk_est_tech` FOREIGN KEY (`assigned_tech_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `fk_est_writer` FOREIGN KEY (`assigned_writer_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_est_writer` FOREIGN KEY (`assigned_writer_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_estimates_ro` FOREIGN KEY (`ro_id`) REFERENCES `repair_orders` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -134,6 +172,7 @@ CREATE TABLE `repair_orders` (
   `ro_number` varchar(10) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `approved_at` datetime DEFAULT NULL,
   `locked_by` varchar(255) DEFAULT NULL,
   `locked_at` timestamp NULL DEFAULT NULL,
   `miles_in` int DEFAULT NULL,
@@ -141,6 +180,11 @@ CREATE TABLE `repair_orders` (
   `created_by` int DEFAULT NULL,
   `assigned_writer_id` int DEFAULT NULL,
   `assigned_tech_id` int DEFAULT NULL,
+  `approved_by_id` int DEFAULT NULL,
+  `approved_total` decimal(10,2) DEFAULT NULL,
+  `approval_method` enum('verbal','signature','digital','other') DEFAULT NULL,
+  `approval_source` enum('in_person','phone','sms','portal','email','other') DEFAULT NULL,
+  `estimate_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ro_number` (`ro_number`),
   KEY `customer_id` (`customer_id`),
@@ -149,13 +193,16 @@ CREATE TABLE `repair_orders` (
   KEY `idx_ro_created_by` (`created_by`),
   KEY `fk_ro_writer` (`assigned_writer_id`),
   KEY `fk_ro_tech` (`assigned_tech_id`),
+  KEY `ix_ro_estimate` (`estimate_id`),
+  KEY `ix_ro_status` (`status`,`approved_at`),
   CONSTRAINT `fk_ro_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_ro_estimate` FOREIGN KEY (`estimate_id`) REFERENCES `estimates` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_ro_tech` FOREIGN KEY (`assigned_tech_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_ro_vehicle` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `fk_ro_writer` FOREIGN KEY (`assigned_writer_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `repair_orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
   CONSTRAINT `repair_orders_ibfk_3` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -177,7 +224,7 @@ CREATE TABLE `ro_c3_lines` (
   CONSTRAINT `fk_c3_author` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_c3_item` FOREIGN KEY (`estimate_item_id`) REFERENCES `estimate_items` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_c3_ro` FOREIGN KEY (`ro_id`) REFERENCES `repair_orders` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -199,6 +246,13 @@ CREATE TABLE `shop_info` (
   `labor_rate` decimal(3,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tax_rates` (
+  `tax_rate` float(10,2) DEFAULT NULL,
+  `tax_type` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -239,7 +293,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -257,7 +311,7 @@ CREATE TABLE `vehicles` (
   UNIQUE KEY `uq_vehicles_vin` (`vin`),
   KEY `idx_vehicles_customer` (`customer_id`),
   CONSTRAINT `fk_vehicles_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
