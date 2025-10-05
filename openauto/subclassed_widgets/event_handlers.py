@@ -1,4 +1,4 @@
-from PyQt6 import QtCore
+from PyQt6 import QtCore, QtGui
 from PyQt6.QtCore import QObject, pyqtSignal, QThread, QTimer
 
 from openauto.repositories import (customer_repository, vehicle_repository,
@@ -43,7 +43,7 @@ class CMenuHandler(QObject):
 
         self.open_seq  = QSequentialAnimationGroup(self.target)
         self.close_seq = QSequentialAnimationGroup(self.target)
-        self.pause = QPauseAnimation(60)
+        self.pause = QPauseAnimation(40)
         self.open_seq.addAnimation(self.pause)
         self.open_seq.addAnimation(self.fade_in)
         self.close_seq.addAnimation(self.fade_out)
@@ -51,6 +51,95 @@ class CMenuHandler(QObject):
         self._geom_anim = None
         self._squelch_hover = False
         self._in_anim = False
+        self._collapsing = False
+
+        # watcher that tracks mouse pointer when menu expanded
+        self._watch_timer = QTimer(self)
+        self._watch_timer.setInterval(200)
+        self._watch_timer.timeout.connect(self._poll_for_collapse)
+        self._hover_margin = 12
+
+    def _cursor_inside_expanded(self) -> bool:
+        gp = QtGui.QCursor.pos()
+        host = self.target.parent() or self.target.window() or self.target
+
+        if self._detached:
+            rect = self.target.geometry()
+
+        else:
+            rect = self.target.rect()
+
+        r = rect.adjusted(-self._hover_margin, 0, self._hover_margin, 0)
+        local = (gp if self._detached else self.target.mapToGlobal(QtCore.QPoint(0, 0)))
+
+        if self._detached:
+            pos_in = gp
+        
+        else:
+            pos_in = self.target.mapFromGlobal(gp)
+
+        return r.contains(pos_in)
+    
+    def _poll_for_collapse(self):
+        if not self._detached or self._in_anim:
+            return
+        if not self._cursor_inside_expanded():
+            self._collapse_now()
+
+
+    def _collapse_now(self):
+        if self._collapsing:
+            return
+        self._collapsing = True
+
+        self._watch_timer.stop()
+        try:
+            self._enter_timer.stop()
+        except Exception:
+            pass
+
+        if not self._detached:
+            self._collapsing = False
+            return
+
+        if self._geom_anim:
+            self._geom_anim.stop()
+        self.fade_out.stop()
+
+        host = self.target.parent()
+        tl = self._placeholder.mapTo(host, QtCore.QPoint(0, 0))
+        h = self._placeholder.height()
+        start = self.target.geometry()
+        end = QtCore.QRect(tl.x(), tl.y(), 60, h)
+
+        self._geom_anim = QPropertyAnimation(self.target, b"geometry")
+        self._geom_anim.setDuration(200)
+        self._geom_anim.setEasingCurve(QEasingCurve.Type.InCubic)
+        self._geom_anim.setStartValue(start)
+        self._geom_anim.setEndValue(end)
+
+        def _clear_texts():
+            for btn in self._menu_buttons():
+                btn.setText("")
+
+        def _after_geom():
+            self._reattach_to_grid()
+            self._collapsing = False
+
+        try:
+            self.fade_out.finished.disconnect(_clear_texts)
+        except Exception:
+            pass
+        try:
+            self._geom_anim.finished.connect(_after_geom)
+        except Exception:
+            pass
+
+        self.fade_out.finished.connect(_clear_texts)
+        self._geom_anim.finished.connect(_after_geom)
+        self.fade_out.start()
+        self._geom_anim.start()
+
 
     # helpers to find width of menu bar, detach from mainwindow when expanding and reclaim when contracting.
     def _expanded_width(self) -> int:
@@ -154,16 +243,17 @@ class CMenuHandler(QObject):
                 self._detach_to_overlay()
                 if self._geom_anim:
                     self._geom_anim.stop()
-                self.close_seq.stop(); self.open_seq.stop()
-
+                self.close_seq.stop()
+                self.open_seq.stop()
+                #build the expand geometry animation
                 host = self.target.parent()
                 tl = self._placeholder.mapTo(host, QPoint(0, 0))
                 h = self._placeholder.height()
-                start = QRect(tl.x(), tl.y(), max(60, self.target.width()), h)
+                start = QRect(tl.x(), tl.y(), 60, h)
                 end = QRect(tl.x(), tl.y(), self._expanded_width(), h)
 
                 self._geom_anim = QPropertyAnimation(self.target, b"geometry")
-                self._geom_anim.setDuration(250)
+                self._geom_anim.setDuration(200)
                 self._geom_anim.setEasingCurve(QEasingCurve.Type.OutCubic)
                 self._geom_anim.setStartValue(start)
                 self._geom_anim.setEndValue(end)
@@ -175,44 +265,25 @@ class CMenuHandler(QObject):
                 self._geom_anim.finished.connect(lambda: setattr(self, "_in_anim", False))
                 self.fade_in.start()
                 self._geom_anim.start()
+                self._watch_timer.start()
+
+
 
             elif event.type() == QEvent.Type.Leave:
                 if not self._detached:
                     return super().eventFilter(obj, event)
                 if self._in_anim:
-                    # Defer collapse until the open animation ends
                     self._geom_anim.finished.connect(lambda: self.eventFilter(obj, event))
                     return True
-
-                if self._geom_anim:
-                    self._geom_anim.stop()
-                self.fade_out.stop()
-
-                host = self.target.parent()
-                tl = self._placeholder.mapTo(host, QPoint(0, 0))
-                h = self._placeholder.height()
-                start = self.target.geometry()
-                end = QRect(tl.x(), tl.y(), 60, h)
-
-                self._geom_anim = QPropertyAnimation(self.target, b"geometry")
-                self._geom_anim.setDuration(200)
-                self._geom_anim.setEasingCurve(QEasingCurve.Type.InCubic)
-                self._geom_anim.setStartValue(start)
-                self._geom_anim.setEndValue(end)
-
-                def _after():
-                    for btn in self._menu_buttons():
-                        btn.setText("")
-                    self._reattach_to_grid()
-
-                self._geom_anim.finished.connect(_after)
-                self.fade_out.start()
-                self._geom_anim.start()
+                self._collapse_now()
 
         if self._detached and event.type() == QEvent.Type.Resize and obj is self.target.parent():
             tl = self._placeholder.mapTo(obj, QPoint(0, 0))
             g = self.target.geometry()
             self.target.setGeometry(g.x(), tl.y(), g.width(), self._placeholder.height())
+
+        if event.type() == QEvent.Type.WindowDeactivate and self._detached:
+            self._collapse_now()
 
         return super().eventFilter(obj, event)
 
