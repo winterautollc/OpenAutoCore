@@ -5,6 +5,8 @@ from openauto.utils.validator import Validator
 from openauto.repositories.customer_repository import CustomerRepository
 from openauto.repositories.vehicle_repository import VehicleRepository
 from openauto.repositories.appointment_repository import AppointmentRepository
+from openauto.repositories.repair_orders_repository import RepairOrdersRepository
+from openauto.repositories.ro_c3_repository import ROC3Repository
 from PyQt6.QtCore import QTime
 
 from pyvin import VIN
@@ -37,7 +39,7 @@ class AppointmentsManager:
         self._load_small_tables()
         self._connect_signals()
         self.ui.new_appointment_ui.new_customer_appt_button.clicked.connect(self._create_new_customer)
-
+        self.ui.new_appointment_ui.notes_appt_label.setText("Customer Concern")
         self.ui.new_appointment_ui.new_vehicle_appt_button.clicked.connect(
             lambda: self.add_vehicle(getattr(self.ui, "customer_id_small", None)))
 
@@ -333,7 +335,7 @@ class AppointmentsManager:
             return
 
         # Insert: vehicle_id may be None (DB now allows it)
-        AppointmentRepository.insert_appointment(
+        appt_id = AppointmentRepository.insert_appointment(
             customer_id=customer_id,
             vehicle_id=vehicle_id,
             vin=vin,
@@ -343,8 +345,35 @@ class AppointmentsManager:
             dropoff_type=dropoff_type
         )
 
+        try:
+            current_user_id = getattr(self.ui, "current_user_id", None)
+            if current_user_id is None:
+                cu = getattr(self.ui, "current_user", None)
+                current_user_id = cu.get("id") if isinstance(cu, dict) else getattr(cu, "id", None)
+
+            assigned_writer_id = getattr(self.ui, "assigned_writer_id", None)
+            if assigned_writer_id is None:
+                aw = getattr(self.ui, "current_user", None)
+                assigned_writer_id = aw.get("id") if isinstance(aw, dict) else getattr(aw, "id", None)
+
+            if vehicle_id:
+                ro_id = RepairOrdersRepository.create_repair_order(
+                    customer_id=customer_id,
+                    vehicle_id=vehicle_id,
+                    appointment_id=appt_id,
+                    ro_number=None,
+                    created_by=current_user_id,
+                    assigned_writer_id=assigned_writer_id,
+                )
+
+                if notes:
+                    ROC3Repository.set_or_create_concern(ro_id, notes.strip(), created_by=current_user_id)
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+
         self.ui.widget_manager.close_and_delete("new_appointment")
-        self.ui.message.setText("Appointment saved successfully.")
+        self.ui.message.setText("Appointment Saved Successfully" + (" + RO created." if vehicle_id else "."))
         self.ui.message.show()
 
 

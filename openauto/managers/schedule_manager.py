@@ -1,7 +1,7 @@
 from PyQt6 import QtWidgets, QtCore
 from openauto.repositories import appointment_repository
 from openauto.ui import new_ro
-from openauto.subclassed_widgets import small_tables
+from openauto.subclassed_widgets.views import small_tables
 
 
 class ScheduleManager:

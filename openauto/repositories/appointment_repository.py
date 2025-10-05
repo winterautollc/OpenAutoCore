@@ -27,8 +27,10 @@ class AppointmentRepository:
 
         cursor.execute(query, values)
         conn.commit()
+        appt_id = cursor.lastrowid
         cursor.close()
         conn.close()
+        return appt_id
 
     @staticmethod
     def get_appointments_for_week(start_date: QDate, end_date: QDate):

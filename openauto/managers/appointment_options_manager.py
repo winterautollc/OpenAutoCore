@@ -2,6 +2,9 @@ from PyQt6 import QtWidgets, QtCore
 from openauto.ui import appointment_options, edit_appointment
 from openauto.subclassed_widgets.event_handlers import WidgetManager
 from openauto.repositories import appointment_repository, vehicle_repository
+from openauto.repositories.appointment_repository import AppointmentRepository
+from openauto.repositories.repair_orders_repository import RepairOrdersRepository
+from openauto.repositories.ro_c3_repository import ROC3Repository
 from PyQt6.QtCore import QDate, QTime
 import datetime
 
@@ -36,6 +39,7 @@ class AppointmentOptionsManager:
         self.ui.cancel_appt_options_button.clicked.connect(lambda: self.widget_manager.close_and_delete("appointment_options"))
         self.ui.delete_appointment_button.clicked.connect(self._delete_appointment)
         self.ui.edit_appointment_button.clicked.connect(self._edit_calls)
+        self.ui.create_ro_button.hide()
         self.window.show()
 
 
@@ -110,8 +114,16 @@ class AppointmentOptionsManager:
         last = appt.get('last_name') or ""
         phone = appt.get('phone') or ""
         self.edit_ui.name_edit_line.setText(f"{first} {last},  {phone}")
+        self.edit_ui.notes_label.setText("Customer Concern")
+        concern_text = None
+        try:
+            ro_id = RepairOrdersRepository.ro_id_by_appointment(self.appointment_id)
+            if ro_id:
+                concern_text = ROC3Repository.get_primary_concern(ro_id)
+        except Exception:
+            concern_text = None
 
-        self.edit_ui.notes_appt_edit.setText(str(appt.get("notes") or ""))
+        self.edit_ui.notes_appt_edit.setText(str((concern_text if concern_text is not None else appt.get("notes")) or ""))
 
         py_date = appt.get("appointment_date")
         qdate = QDate.currentDate()
@@ -202,6 +214,20 @@ class AppointmentOptionsManager:
             notes=self.edit_ui.notes_appt_edit.toPlainText(),
             dropoff_type=dropoff_type
         )
+
+        try:
+            ro_id = RepairOrdersRepository.ro_id_by_appointment(self.appointment_id)
+            if ro_id:
+                cu = getattr(self.parent, "current_user", None)
+                current_user_id = cu.get("id") if isinstance(cu, dict) else getattr(cu, "id", None)
+                ROC3Repository.set_or_create_concern(
+                    ro_id,
+                    self.edit_ui.notes_appt_edit.toPlainText().strip(),
+                    created_by=current_user_id
+                )
+        except Exception:
+            pass
+
         self.message.setWindowTitle("Alter Appointment")
         self.message.setText("Appointment Changed")
         self.widget_manager.close_and_delete("edit_appointment")

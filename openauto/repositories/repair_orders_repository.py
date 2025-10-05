@@ -403,3 +403,17 @@ class RepairOrdersRepository:
             c.execute("SELECT approved_at FROM repair_orders WHERE id=%s", (ro_id,))
             row = c.fetchone()
             return row[0] if row else None
+
+    @staticmethod
+    def ro_id_by_appointment(appointment_id: int) -> Optional[int]:
+        conn = connect_db()
+        with conn, conn.cursor() as c:
+            c.execute("""
+                SELECT id
+                FROM repair_orders
+                WHERE appointment_id=%s
+                ORDER BY id DESC
+                LIMIT 1
+                """, (appointment_id, ))
+            row = c.fetchone()
+            return int(row[0]) if row else None

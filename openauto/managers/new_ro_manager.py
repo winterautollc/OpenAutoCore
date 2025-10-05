@@ -8,6 +8,7 @@ from openauto.subclassed_widgets.views import small_tables
 from openauto.repositories.repair_orders_repository import RepairOrdersRepository
 from openauto.repositories.customer_repository import CustomerRepository
 from openauto.repositories.vehicle_repository import VehicleRepository
+from openauto.repositories.ro_c3_repository import ROC3Repository
 from pyvin import VIN
 
 
@@ -373,7 +374,7 @@ class NewROManager:
 
 
 
-        RepairOrdersRepository.create_repair_order(
+        ro_id = RepairOrdersRepository.create_repair_order(
             customer_id=customer_id,
             vehicle_id=vehicle_id,
             appointment_id=None,
@@ -381,6 +382,13 @@ class NewROManager:
             created_by=current_user_id,
             assigned_writer_id=assigned_writer_id,
         )
+
+        try:
+            concern = self.ui.new_ro_page_ui.notes_appt_edit.toPlainText().strip()
+            if concern:
+                ROC3Repository.set_or_create_concern(ro_id, concern, created_by=current_user_id)
+        except Exception:
+            pass
 
         self.ui.widget_manager.close_and_delete("new_repair_order")
 

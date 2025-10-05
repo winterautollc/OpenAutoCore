@@ -1,9 +1,21 @@
+import sys
+import logging
 from PyQt6.QtWidgets import QApplication, QDialog
 from PyQt6 import QtCore, QtGui
 import os, platform
 
+from openauto.utils.error_reporter import (
+    init_error_reporter, ErrorReporterConfig, install_global_excepthook
+)
+
+init_error_reporter(ErrorReporterConfig(
+    app_name="OpenAuto",
+    app_version="dev",
+    github_issues_url="https://github.com/winterautollc/OpenAutoCore/issues/new",
+    log_level=logging.INFO,
+))
 from openauto.ui.home import MainWindow
-from openauto.managers.login_manager import LoginCreate  # ← your dialog
+from openauto.managers.login_manager import LoginCreate
 
 # FORCE XWAYLAND / X11 FOR LINUX #
 if platform.system() == "Linux" and os.environ.get("XDG_SESSION_TYPE", "").lower() == "wayland":
@@ -16,7 +28,8 @@ try:
     fmt.setSwapInterval(1)
     QtGui.QSurfaceFormat.setDefaultFormat(fmt)
 except Exception as e:
-    print("OpenGL setup failed, falling back:", e)
+    import traceback
+    traceback.print_exc()
 
 ### LOAD USERS THEME ###
 def _load_user_theme(user_id: int):
@@ -39,7 +52,7 @@ def _load_user_theme(user_id: int):
 
 if __name__ == "__main__":
     app = QApplication([])
-
+    install_global_excepthook(parent_getter=lambda: QApplication.activeWindow())
     login = LoginCreate()
     _user_ctx = {}
 
