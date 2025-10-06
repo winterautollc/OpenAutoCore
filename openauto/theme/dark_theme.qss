@@ -688,8 +688,8 @@ QToolTip {
   color: #E0E0E0;
   border: 1px solid #3C3C3C;
   border-radius: 6px;
-  padding: 6px 8px;
-  font-size: 12px;
+  padding: 2px 4px;
+  font-size: 16px;
 }
 
 
@@ -764,17 +764,27 @@ QScrollBar::handle:hover { background: #4A4A4A; }
 QScrollBar::add-line, QScrollBar::sub-line { background: transparent; height: 0; width: 0; }
 
 /* ---- Cards / Tiles ---- */
-QFrame#RoTile {
-  background-color: #F5F7FA;
-  color: #1E1E1E;,
-  border-radius: 12px;
-  padding: 12px;
-  border: 1px solid #3C3C3C;
+#ro_tile {
+    background-color: #d2d7db;
+    padding: 12px;
+    border: 1px solid #E6EBF1;
+    border-radius: 12px;
 }
-QLabel#title {
-  font-weight: 700;
-  font-size: 14pt;
-  color: #E0E0E0;
+#ro_tile QLabel {
+    font-size: 16pt;
+    color: #1E1E1E;
+    background-color: #d2d7db;
+}
+
+#ro_tile QLabel#title {
+    font-weight: 600;
+    font-size: 16pt;
+}
+
+#chip_block {
+    color: #050608;
+    font-weight: bold;
+    background-color: #d2d7db;
 }
 
 /* tile scroll area */

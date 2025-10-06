@@ -67,8 +67,10 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.new_ro_manager = new_ro_manager.NewROManager(self, self.sql_monitor)
         self.belongs_to_manager = belongs_to_manager.BelongsToManager(self)
         self.appointments_manager = appointments_manager.AppointmentsManager(self, self.sql_monitor)
+        # self.repair_orders_manager = repair_orders_manager.RepairOrdersManager(self)
         self.ro_hub_manager = ro_hub_manager.ROHubManager(self)
         self.permissions_manager = permissions_manager.PermissionsManager(self)
+
 
     ### VALIDATORS TO ONLY ALLOW CERTAIN CHARACTERS ENTERED ###
     def _init_validators(self):
@@ -91,7 +93,6 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.schedule_calendar = apt_calendar.AptCalendar(parent=self)
         self.hourly_schedule_table = apt_calendar.HourlySchedule(parent=self)
         self.weekly_schedule_table = apt_calendar.WeeklySchedule(parent=self)
-        self.repair_orders_manager = repair_orders_manager.RepairOrdersManager(self)
         self.ro_items_table.setModel(ROTreeModel(self.ro_items_table))
         self.tax_table = small_tables.TaxTable(parent=self)
 

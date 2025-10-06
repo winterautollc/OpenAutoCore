@@ -31,6 +31,8 @@ JOB_STATUS_COLOR = {
     "approved": "#2E7D32",
     "declined": "#B71C1C",
     "partial": "#F39C12",
+    "working": "#f33e12",
+    "checkout": "#f312a1"
 }
 
 

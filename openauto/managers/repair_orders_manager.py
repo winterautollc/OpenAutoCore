@@ -9,9 +9,9 @@ from functools import partial
 
 
 class RepairOrdersManager:
-    def __init__(self, main_window):
-        self.ui = main_window
-        self.refresh_all()
+    def __init__(self, ui):
+        self.ui = ui
+        # self.refresh_all()
 
     def refresh_all(self):
         self.update_tiles(self.ui.estimate_tiles, "open")
@@ -33,7 +33,8 @@ class RepairOrdersManager:
                 tech=tech or "Unassigned",
                 writer=writer or "Unassigned",
                 concern="No concern entered",
-                status=status
+                status=status,
+                page_context="estimates",
             )
             tile.clicked.connect(partial(self._open_estimate_options, ro_id))
             tile.statusChangeRequested.connect(self._on_status_change_requested)

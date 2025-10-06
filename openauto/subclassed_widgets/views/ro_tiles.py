@@ -1,6 +1,36 @@
 from PyQt6 import QtWidgets, QtGui, QtCore
+from openauto.repositories.ro_c3_repository import ROC3Repository
+from openauto.repositories.repair_orders_repository import RepairOrdersRepository
+from openauto.repositories.estimate_jobs_repository import EstimateJobsRepository
 import os
 
+MAX_TILE_W = 380
+
+def _iter_all_tiles():
+    # Walk all widgets and yield any ROTile instances, even if they’re on hidden pages.
+    for w in QtWidgets.QApplication.allWidgets():
+        try:
+            if isinstance(w, ROTile):
+                yield w
+        except Exception:
+            pass
+
+
+# Update any live ROTile for moving tiles to working, checkout etc..
+def update_all_tiles(ro_id: int, **fields):
+    for tile in _iter_all_tiles():
+        if getattr(tile, "ro_id", None) == ro_id:
+            # quick pathways for common fields
+            if "status" in fields:
+                tile.set_status(fields["status"])
+            if "total" in fields and fields["total"] is not None:
+                try:
+                    tile.total_label.setText(f"Estimate Total:  ${float(fields['total']):,.2f}")
+                except Exception:
+                    pass
+            if fields:
+                tile.update_from_record(fields)
+            tile.update()
 
 def _maybe_icon(path: str, fallback_text: str) -> QtWidgets.QLabel:
     lbl = QtWidgets.QLabel()
@@ -17,39 +47,110 @@ def _maybe_icon(path: str, fallback_text: str) -> QtWidgets.QLabel:
     lbl.setProperty("kind", "text")
     return lbl
 
+class ElideLabel(QtWidgets.QLabel):
+    def __init__(self, text="", parent=None):
+        super().__init__("", parent)
+
+        self._full_text = ""
+        self.setWordWrap(False)
+        self.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
+                           QtWidgets.QSizePolicy.Policy.Fixed)
+        if text:
+            self.setText(text)
+
+    def setText(self, text: str) -> None:
+        self._full_text = text or ""
+        self.setToolTip(self._full_text if self._full_text else "")
+        self._update_elided()
+
+    def resizeEvent(self, e: QtGui.QResizeEvent) -> None:
+        super().resizeEvent(e)
+        self._update_elided()
+
+    def _update_elided(self):
+        fm = self.fontMetrics()
+        w = max(0, self.width() - 10)
+        elided = fm.elidedText(self._full_text, QtCore.Qt.TextElideMode.ElideRight, w)
+        super().setText(elided)
+
+
+class MultiLineElideLabel(QtWidgets.QLabel):
+    def __init__(self, text="", parent=None, max_lines=2):
+        super().__init__("", parent)
+        self._full_text = ""
+        self._max_lines = max_lines
+        self.setWordWrap(False)
+        self.setSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred,
+                           QtWidgets.QSizePolicy.Policy.Fixed)
+        if text:
+            self.setText(text)
+
+    def setText(self, text: str) -> None:
+        self._full_text = text or ""
+        self.setToolTip(self._full_text if self._full_text else "")
+        self._update_elided()
+
+    def resizeEvent(self, e: QtGui.QResizeEvent) -> None:
+        super().resizeEvent(e)
+        self._update_elided()
+
+    def _update_elided(self):
+        fm = self.fontMetrics()
+        width = max(0, self.width() - 2)
+        text = self._full_text
+        if not text or width <= 0:
+            super().setText(text or "")
+            return
+
+        layout = QtGui.QTextLayout(text, self.font())
+        layout.beginLayout()
+        lines, consumed = [], 0
+        while True:
+            line = layout.createLine()
+            if not line.isValid():
+                break
+            line.setLineWidth(width)
+            start = line.textStart()
+            length = line.textLength()
+            seg = text[start:start+length]
+            lines.append(seg)
+            consumed += len(seg)
+            if len(lines) >= self._max_lines:
+                break
+        layout.endLayout()
+
+        if not lines:
+            super().setText("")
+            return
+
+        overflow = consumed < len(text)
+        if overflow:
+            lines[-1] = fm.elidedText(lines[-1] + " …", QtCore.Qt.TextElideMode.ElideRight, width)
+
+        super().setText("\n".join(lines))
+        self.setMaximumHeight(fm.lineSpacing() * self._max_lines)
+
 class ROTile(QtWidgets.QFrame):
     clicked = QtCore.pyqtSignal()
+    statusRequested = QtCore.pyqtSignal()
     statusChangeRequested = QtCore.pyqtSignal(int, str)
 
     def __init__(self, ro_id, ro_number, customer_name, vehicle, tech, writer, concern, status,
-                 parent=None, icon_dir: str = "theme/icons"):
+                 parent=None, icon_dir: str = "theme/icons", page_context: str = "ro_hub"):
         super().__init__(parent)
         self.ro_id = ro_id
         self.status = status
+        self.page_context = (page_context or "ro_hub").strip().lower()
+        self.setMaximumWidth(MAX_TILE_W)
         layout = QtWidgets.QVBoxLayout(self)
+        layout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetMinAndMaxSize)
         self.setSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
         self.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.OpenHandCursor))
         self.setObjectName("ro_tile")
-
-        self.setStyleSheet("""
-                     QFrame {
-                         background-color: #d2d7db;
-                         border-radius: 12px;
-                         padding: 2px;
-                     }
-                     QLabel {
-                         font-size: 12pt;
-                         color: #1E1E1E,
-                     }
-                     QLabel.title {
-                         font-weight: bold;
-                         font-size: 14pt;
-                     }
-                 """)
         self.ro_label = QtWidgets.QLabel(f"RO #{ro_number}")
         self.ro_label.setObjectName("title")
-        self.customer_label = QtWidgets.QLabel(f"Customer: {customer_name}")
-        self.vehicle_label = QtWidgets.QLabel(f"Vehicle: {vehicle}")
+        self.customer_label = ElideLabel(customer_name)
+        self.vehicle_label = ElideLabel(vehicle)
 
         roles = QtWidgets.QHBoxLayout(); roles.setSpacing(8)
 
@@ -58,10 +159,9 @@ class ROTile(QtWidgets.QFrame):
         tech_lbl  = QtWidgets.QLabel(tech or "Unassigned")
         tech_lbl.setObjectName("ro_tech")
         tech_lbl.setProperty("role", "chip")
-        tech_box = QtWidgets.QWidget()
-        tech_box.setObjectName("chip_block")
-        tech_box.setStyleSheet("background-color: #d2d7db; color: #050608")
-        tech_box.setLayout(tech_wrap)
+        self.tech_box = QtWidgets.QWidget()
+        self.tech_box.setObjectName("chip_block")
+        self.tech_box.setLayout(tech_wrap)
         tech_wrap.addWidget(tech_icon)
         tech_wrap.addWidget(tech_lbl)
 
@@ -70,18 +170,19 @@ class ROTile(QtWidgets.QFrame):
         writer_lbl  = QtWidgets.QLabel(writer or "Unassigned")
         writer_lbl.setObjectName("ro_writer")
         writer_lbl.setProperty("role", "chip")
-        writer_box = QtWidgets.QWidget()
-        writer_box.setObjectName("chip_block")
-        writer_box.setStyleSheet("background-color: #d2d7db; color: #050608")
-        writer_box.setLayout(writer_wrap)
+        self.writer_box = QtWidgets.QWidget()
+        self.writer_box.setObjectName("chip_block")
+        self.writer_box.setLayout(writer_wrap)
         writer_wrap.addWidget(writer_icon)
         writer_wrap.addWidget(writer_lbl)
 
-        roles.addWidget(tech_box)
-        roles.addWidget(writer_box)
+        roles.addWidget(self.tech_box)
+        roles.addWidget(self.writer_box)
         roles.addStretch(1)
 
-        self.concern_label = QtWidgets.QLabel(f"Concern: {concern}")
+        self.concern_label = ElideLabel(concern)
+        self.total_label = QtWidgets.QLabel("Estimate Total: -")
+        self.created_label = QtWidgets.QLabel("Created: -")
 
         # assemble
         layout.addWidget(self.ro_label)
@@ -89,33 +190,66 @@ class ROTile(QtWidgets.QFrame):
         layout.addWidget(self.vehicle_label)
         layout.addLayout(roles)
         layout.addWidget(self.concern_label)
+        layout.addWidget(self.created_label)
+        layout.addWidget(self.total_label)
         layout.addStretch()
 
+        self.refresh_meta()
+
+    ### Stub for now.
+    # Maybe implement color changes to tiles in the future or any other UI imporvements.
+    def set_status(self, status: str):
+        self.status = (status or "open").strip().lower()
+
+    ### Also stub
+        # see above function set_status()
+    def update_from_record(self, rec: dict):
+        if "status" in rec: self.set_status(rec["status"])
+        if "customer" in rec: self.customer_label.setText(rec["customer"] or "")
+        if "vehicle" in rec: self.vehicle_label.setText(rec["vehicle"] or "")
+        if "concern" in rec:
+            self.concern_label.setText(f"Concern:  {rec['concern'] or 'No concern Entered'}")
+        if "total" in rec and rec["total"] is not None:
+            self.total_label.setText(f"Estimate Total:  ${rec['total']:,.2f}")
+        if "created_at" in rec and rec["created_at"]:
+            self.created_label.setText(f"Created:  {rec['created_at']:%m/%d/%Y %I:%M%p}")
+
+    def refresh_meta(self):
+        concern = None
+        try:
+            concern = ROC3Repository.get_primary_concern(self.ro_id)
+        except Exception:
+            concern = None
+
+        concern_text = concern or "No concern Entered"
+        fm = self.concern_label.fontMetrics()
+        self.concern_label.setText(f"Concern:  {concern_text}")
+        self.concern_label.setMaximumHeight(fm.lineSpacing() * 2)
+
+        try:
+            meta = RepairOrdersRepository.get_create_altered_date(self.ro_id) or {}
+            created = meta.get("created_at")
+            if created:
+                self.created_label.setText(f"Created:  {created:%m/%d/%Y %I:%M%p}")
+            else:
+                self.created_label.setText("Created: -")
+        except Exception:
+            self.created_label.setText("Created -")
+
+        try:
+            total = RepairOrdersRepository.estimate_total_for_ro(self.ro_id)
+            self.total_label.setText(f"Estimate Total:  ${total:,.2f}" if total is not None else "Estimate Total: —")
+        except Exception:
+            self.total_label.setText("Estimate Total: -")
+
+
     def mousePressEvent(self, event):
+        if event.button() == QtCore.Qt.MouseButton.RightButton:
+            self.clicked.emit()
+
         if event.button() == QtCore.Qt.MouseButton.LeftButton:
             self.clicked.emit()
         super().mousePressEvent(event)
-
-    def contextMenuEvent(self, event: QtGui.QContextMenuEvent):
-        menu = QtWidgets.QMenu(self)
-
-        actions = [
-            ("Approve All Jobs", "approved"),
-            ("Move to Working", "working"),
-            ("Move to Checkout", "checkout"),
-            ("Revert to Estimate", "open"),
-            ("Archive", "archived"),
-        ]
-
-        for label, target_status in actions:
-            # Skip any action that would set the *current* status
-            if target_status == self.status:
-                continue
-            act = menu.addAction(label)
-            # capture target_status correctly for each action
-            act.triggered.connect(lambda _, s=target_status: self.statusChangeRequested.emit(self.ro_id, s))
-
-        menu.exec(event.globalPos())
 
 
     ### SCROLL AREA FOR RO TILES ###
@@ -163,14 +297,7 @@ class ROTileContainer(QtWidgets.QScrollArea):
         else:
             r, c = row, col
         self._grid.addWidget(tile, r, c)
-        # effect = QtWidgets.QGraphicsOpacityEffect(tile)
-        # tile.setGraphicsEffect(effect)
-        # effect.setOpacity(0.0)
-        # anim = QtCore.QPropertyAnimation(effect, b"opacity", tile)
-        # anim.setDuration(300)
-        # anim.setStartValue(0.0)
-        # anim.setEndValue(1.0)
-        # anim.start(QtCore.QAbstractAnimation.DeletionPolicy.DeleteWhenStopped)
+
 
 
     def set_columns(self, n: int):
@@ -201,3 +328,17 @@ class ROTileContainer(QtWidgets.QScrollArea):
             r = i // self._columns
             c = i % self._columns
             self._grid.addWidget(wdg, r, c)
+
+    def _take_out(self, tile: ROTile):
+        # remove a specific tile from our grid
+        idx = None
+        for i in range(self._grid.count()):
+            it = self._grid.itemAt(i)
+            if it and it.widget() is tile:
+                idx = i
+                break
+        if idx is not None:
+            it = self._grid.takeAt(idx)
+            w = it.widget()
+            if w:
+                w.setParent(None)

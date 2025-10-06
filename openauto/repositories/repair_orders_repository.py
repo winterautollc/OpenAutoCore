@@ -1,6 +1,7 @@
 from openauto.repositories.db_handlers import connect_db
 import datetime
 from openauto.repositories import db_handlers
+from openauto.repositories.estimate_jobs_repository import EstimateJobsRepository
 from typing import Optional
 
 
@@ -158,6 +159,15 @@ class RepairOrdersRepository:
             conn.commit()
 
     @staticmethod
+    def set_status_and_cascade(ro_id: int, status: str):
+        status = (status or "open").strip().lower()
+        RepairOrdersRepository.update_status(ro_id, status)
+        if status == "open":
+            est_id = RepairOrdersRepository.estimate_id_for_ro(ro_id)
+            if est_id:
+                EstimateJobsRepository.set_all_status_for_estimate(est_id, "proposed")
+
+    @staticmethod
     def assign_staff(ro_id: int, writer_id: int | None = None, tech_id: int | None = None):
         sets, vals = [], []
         if writer_id is not None:
@@ -175,6 +185,14 @@ class RepairOrdersRepository:
         with cnx.cursor() as cur:
             cur.execute(q, tuple(vals))
             cnx.commit()
+
+    @staticmethod
+    def get_status(ro_id: int) -> str | None:
+        conn = db_handlers.connect_db()
+        cursor = conn.cursor()
+        cursor.execute("""SELECT status FROM repair_orders WHERE id=%s""", (ro_id, ))
+        result = cursor.fetchone()
+        return result[0] if result else None
 
 
     @staticmethod
@@ -417,3 +435,24 @@ class RepairOrdersRepository:
                 """, (appointment_id, ))
             row = c.fetchone()
             return int(row[0]) if row else None
+
+    @staticmethod
+    def estimate_total_for_ro(ro_id: int) -> Optional[float]:
+        est_id = RepairOrdersRepository.estimate_id_for_ro(ro_id)
+        if not est_id:
+            return None
+        conn = db_handlers.connect_db()
+        with conn, conn.cursor() as cur:
+            cur.execute("""
+                SELECT COALESCE(SUM(total), 0) AS t
+                FROM estimate_jobs
+                WHERE estimate_id=%s
+                """, (est_id, ))
+            row = cur.fetchone()
+            if not row:
+                return 0.0
+            val = row[0] if not isinstance(row, dict) else row.get("t")
+            try:
+                return float(val or 0.0)
+            except Exception:
+                return 0.0

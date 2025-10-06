@@ -660,6 +660,19 @@ QWidget {
     font-size: 16px;
 }
 
+#working_label {
+    background-color: #f33e12;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#checkout_label {
+    background-color: #f312a1;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
 
 /* Tooltips */
 QToolTip {
@@ -667,8 +680,8 @@ QToolTip {
   color: #1E1E1E;
   border: 1px solid #C7CDD3;
   border-radius: 6px;
-  padding: 6px 8px;
-  font-size: 12px;
+  padding: 2px 4px;
+  font-size: 16px;
 }
 
 
@@ -734,16 +747,27 @@ QScrollBar::handle:hover { background: #B6BCC3; }
 QScrollBar::add-line, QScrollBar::sub-line { background: transparent; height: 0; width: 0; }
 
 /* ---- Cards / Tiles ---- */
-QFrame#ro_tile {
-  background: #FFFFFF;
-  border-radius: 12px;
-  padding: 12px;
-  border: 1px solid #E6EBF1;
+#ro_tile {
+    background-color: #d2d7db;
+    padding: 12px;
+    border: 1px solid #E6EBF1;
+    border-radius: 12px;
 }
-QLabel#title {
-  font-weight: 700;
-  font-size: 14pt;
-  color: #1E1E1E;
+#ro_tile QLabel {
+    font-size: 12pt;
+    color: #1E1E1E;
+    background-color: #d2d7db;
+}
+
+#ro_tile QLabel#title {
+    font-weight: 600;
+    font-size: 14pt;
+}
+
+#chip_block {
+    color: #050608;
+    font-weight: bold;
+    background-color: #d2d7db;
 }
 
 /* tile scroll area */
@@ -751,16 +775,9 @@ QScrollArea#ro_tile_scroll {
   border: none;
   background: transparent;
 }
-QWidget#ro_tile_viewport {
-  background: transparent;
-}
 
-/* Role chips on tile */
-QWidget#chip_block {
-  background: #E6EBF1;
-  color: #1E1E1E;
-  border-radius: 8px;
-  padding: 3px 6px;
+#ro_tile_viewport {
+  background: transparent;
 }
 
 QCalendarWidget {

@@ -1,4 +1,4 @@
-from PyQt6 import QtCore
+from PyQt6 import QtCore,QtWidgets
 from openauto.repositories.repair_orders_repository import RepairOrdersRepository
 from openauto.repositories.customer_repository import CustomerRepository
 from openauto.repositories.vehicle_repository import VehicleRepository
@@ -14,10 +14,9 @@ from openauto.managers.ro_hub.tax_controller import TaxConfigController
 from openauto.managers.ro_hub.save_estimate_service import SaveEstimateService
 from openauto.managers.ro_hub.totals_controller import TotalsController
 from openauto.managers.ro_hub.c3_controller import C3Controller
-from collections import defaultdict
+from openauto.managers.repair_orders_manager import RepairOrdersManager
 import datetime
 from openauto.subclassed_widgets.roles.tree_roles import COL_DESC, COL_TYPE, JOB_ID_ROLE, APPROVED_ROLE, DECLINED_ROLE
-
 from openauto.subclassed_widgets.roles.tree_roles import (
     JOB_ID_ROLE, JOB_NAME_ROLE, ITEM_ID_ROLE, LINE_ORDER_ROLE, ROW_KIND_ROLE
 )
@@ -63,6 +62,8 @@ class ROHubManager:
         self.ui = ui
         self.staff  = StaffAssignmentController(ui)
         self.items  = ItemEntryController(ui)
+        self.ui.repair_orders_manager = RepairOrdersManager(self.ui)
+        QtCore.QTimer.singleShot(0, self.ui.repair_orders_manager.refresh_all)
 
         self.status = StatusDialogController(
             ui=self.ui,
@@ -71,7 +72,7 @@ class ROHubManager:
             persist=lambda ro_id, code: ROStatusService.persist(
                 ro_id, code, user_id=getattr(self.ui, "current_user_id", None)
             ),)
-
+        self.status.statusChanged.connect(self._on_status_changed)
         self.tax    = TaxConfigController(ui)
         self.saver  = SaveEstimateService(ui)
         self.totals = TotalsController(ui)
@@ -84,6 +85,7 @@ class ROHubManager:
         self.tax.connect_tax_rate()
         self.items.adjust_item_lines()
         self.totals.attach(self.ui.ro_items_table)
+
 
 
     def _load_pricing_inputs(self):
@@ -127,6 +129,7 @@ class ROHubManager:
         self.ui.concern_button.setChecked(True)
         self.ui.approved_placer_label.setText("Updated")
         self.status.attach(self.ui.ro_status_button)
+        self.status.refresh_button()
         self.ui.cancel_ro_button.clicked.connect(self.status.cancel_ro_changes)
 
         self.ui.ro_items_table.approvalChanged.connect(
@@ -155,6 +158,10 @@ class ROHubManager:
         if checked:
             self.ui.three_c_stacked.setCurrentIndex(index)
 
+
+    # Defensive action to reinforce moving tiles around between open, working, checkout
+    def _on_status_changed(self):
+        QtCore.QTimer.singleShot(0, self.ui.repair_orders_manager.refresh_all)
 
 
     # span multiple controllers
@@ -202,6 +209,7 @@ class ROHubManager:
         self.staff.sync_selects_from_ro(ro_data)
         self._load_estimate_items(ro_id)
         self._update_ro_status_label(ro_id)
+        self.status.refresh_button()
 
     def _load_estimate_items(self, ro_id: int):
         tree  = self.ui.ro_items_table
@@ -445,6 +453,7 @@ class ROHubManager:
 
         RepairOrdersRepository.recompute_ro_approval(ro_id)
         self._update_ro_status_label(ro_id)
+        self.status.refresh_button()
 
 
     def _update_ro_status_label(self, ro_id: int):
@@ -457,7 +466,6 @@ class ROHubManager:
 
         dates_miles = RepairOrdersRepository.get_create_altered_date(ro_id)
         status = (dates_miles.get("status") or "open").strip().lower()
-
         approved_at = RepairOrdersRepository.get_approved_at(ro_id)
         total, approved, _declined = RepairOrdersRepository.jobs_counts_for_ro(ro_id)
 
@@ -471,6 +479,8 @@ class ROHubManager:
             stamp = updated_qdt.toString("MM/dd/yyyy h:mmAP") if updated_qdt.isValid() else ""
             label.setText(f"PARTIALLY APPROVED {approved}/{total} JOBS: " + (f"   {stamp}" if stamp else ""))
             label.setObjectName("partial_label")
+
+
         else:
             # Fall back to the RO's own lifecycle status
             mapping = {
@@ -482,6 +492,18 @@ class ROHubManager:
             text, objname = mapping.get(status, ("OPEN", "open_label"))
             label.setText(text)
             label.setObjectName(objname)
+
+        if  status == "working":
+            updated_qdt = _to_qdatetime(dates_miles.get("updated_at"))
+            stamp = updated_qdt.toString("MM/dd/yyyy h:mmAP") if updated_qdt.isValid() else ""
+            label.setText(f"WORK STARTED: {stamp}" if stamp else "")
+            label.setObjectName("working_label")
+
+        elif status == "checkout":
+            updated_qdt = _to_qdatetime(dates_miles.get("updated_at"))
+            stamp = updated_qdt.toString("MM/dd/yyyy h:mmAP") if updated_qdt.isValid() else ""
+            label.setText(f"READY FOR CHECKOUT: {stamp}" if stamp else "")
+            label.setObjectName("checkout_label")
 
         style.unpolish(label)
         style.polish(label)

@@ -181,7 +181,7 @@ class ItemEntryController:
             if not desc:
                 QtWidgets.QToolTip.showText(
                     self.ui.add_job_item_button.mapToGlobal(self.ui.add_job_item_button.rect().center()),
-                    "Fill Description."
+                    "Fill Description"
                 )
                 return
 

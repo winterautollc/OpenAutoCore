@@ -1,6 +1,6 @@
-from PyQt6 import QtCore, QtWidgets
+from PyQt6 import QtCore
 from PyQt6.QtCore import QRect, QEasingCurve
-from openauto.subclassed_widgets import event_handlers
+
 
 class AnimationsManager:
     def __init__(self, main_window):
@@ -45,6 +45,7 @@ class AnimationsManager:
         self.ui.animate_rtable.start()
         self.show_page(hub_index=0, tab_index=0, table_widget=self.ui.estimates_table, top_bar_index=0)
 
+
     def show_working(self):
         r_table_w = self.ui.ro_tabs.width()
         r_table_h = self.ui.ro_tabs.height()
@@ -53,6 +54,7 @@ class AnimationsManager:
         self.ui.animate_rtable.setEasingCurve(QEasingCurve.Type.InOutQuart)
         self.ui.animate_rtable.start()
         self.show_page(hub_index=0, tab_index=2, table_widget=self.ui.working_table, top_bar_index=0)
+
 
     def show_approved(self):
         r_table_w = self.ui.ro_tabs.width()
@@ -63,6 +65,7 @@ class AnimationsManager:
         self.ui.animate_rtable.start()
         self.show_page(hub_index=0, tab_index=1, table_widget=self.ui.approved_table, top_bar_index=0)
 
+
     def show_checkout(self):
         r_table_w = self.ui.ro_tabs.width()
         r_table_h = self.ui.ro_tabs.height()
@@ -71,6 +74,7 @@ class AnimationsManager:
         self.ui.animate_rtable.setEasingCurve(QEasingCurve.Type.InOutQuart)
         self.ui.animate_rtable.start()
         self.show_page(hub_index=0, tab_index=3, table_widget=self.ui.checkout_table, top_bar_index=0)
+
 
     def show_all_ros(self):
         r_table_w = self.ui.ro_tabs.width()
@@ -148,6 +152,7 @@ class AnimationsManager:
         self.ui.hub_stacked_widget.setCurrentIndex(0)
         self.ui.top_buttons_stacked.setCurrentIndex(0)
         self.ui.estimates_table.show()
+
 
     def show_schedule(self):
         w, h = self.ui.ro_tabs.width(), self.ui.ro_tabs.height()

@@ -7,10 +7,11 @@ from openauto.repositories.estimate_jobs_repository import EstimateJobsRepositor
 from openauto.repositories.ro_c3_repository import ROC3Repository
 import re
 from decimal import Decimal, ROUND_HALF_UP
-from openauto.subclassed_widgets.roles.tree_roles import ITEM_ID_ROLE, LINE_ORDER_ROLE
 from openauto.subclassed_widgets.roles.tree_roles import (
     JOB_ID_ROLE, JOB_NAME_ROLE, ITEM_ID_ROLE, LINE_ORDER_ROLE, ROW_KIND_ROLE
 )
+from openauto.subclassed_widgets.views.ro_tiles import update_all_tiles
+
 
 
 
@@ -377,5 +378,9 @@ class SaveEstimateService:
 
         EstimatesRepository.update_total(estimate_id, float(total))
         EstimateJobsRepository.recompute_totals_for_estimate(estimate_id)
-
+        QtCore.QTimer.singleShot(0, lambda: update_all_tiles(ro_id, total=float(total)))
+        try:
+            update_all_tiles(ro_id, total=float(total))
+        except Exception:
+            pass
         QMessageBox.information(self.ui, "Save RO", f"Estimate #{estimate_id} saved with {len(items)} items.")

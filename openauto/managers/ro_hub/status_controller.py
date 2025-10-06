@@ -4,11 +4,19 @@ from openauto.repositories.repair_orders_repository import RepairOrdersRepositor
 from openauto.repositories.estimate_jobs_repository import EstimateJobsRepository
 from openauto.subclassed_widgets.roles.tree_roles import APPROVED_ROLE, DECLINED_ROLE
 
+TRANSITIONS = {
+    "open": {"working"},
+    "approved": {"working"},
+    "working": {"checkout", "open"},
+    "checkout": {"open", "archived"},
+    "archived": {"open"},
+}
 
-class StatusDialogController:
+class StatusDialogController(QtCore.QObject):
+    statusChanged = QtCore.pyqtSignal(int, str)  # (ro_id, status_code)
+
     ACTIONS = [
-        ("Approve All Jobs", "approved"),
-        ("Move to Working",  "working"),
+       ("Move to Working",  "working"),
         ("Move to Checkout", "checkout"),
         ("Revert to Estimate","open"),
         ("Archive",          "archived"),
@@ -27,18 +35,83 @@ class StatusDialogController:
         get_current_ro_id: Callable[[], Optional[int]] = lambda: None,
         persist: Optional[Callable[[int, str], None]] = None,):
 
-
+        super().__init__(ui)
         self.ui = ui
         self._get_status = get_current_status
         self._get_ro_id = get_current_ro_id
         self._persist = persist
 
     def attach(self, button: QtWidgets.QPushButton):
+        self._button = button
         button.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.CustomContextMenu)
-        button.clicked.connect(lambda: self._show_menu(button))  # left-click
-        button.customContextMenuRequested.connect(  # right-click
-            lambda p: self._show_menu(button, p)
-        )
+        try:
+            button.clicked.disconnect()
+        except Exception:
+            pass
+        button.clicked.connect(lambda: self._maybe_show_menu(button))
+        try:
+            button.customContextMenuRequested.disconnect()
+        except Exception:
+            pass
+        button.customContextMenuRequested.connect(lambda p: self._maybe_show_menu(button, p))
+        self.refresh_button()
+
+    def _any_jobs_approved(self, ro_id: Optional[int]) -> bool:
+        if not ro_id:
+            return False
+        try:
+            _total, approved, _declined = RepairOrdersRepository.jobs_counts_for_ro(ro_id)
+            return bool(approved)
+        except Exception:
+            return False
+
+    def refresh_button(self):
+        btn = getattr(self, "_button", None)
+        if not btn:
+            return
+        try:
+            ro_id = self._get_ro_id()
+        except Exception:
+            ro_id = getattr(self, "ro_id", None)
+        has_approved = self._any_jobs_approved(ro_id)
+        if not has_approved:
+            btn.setProperty("inactive", True)
+            btn.setAutoDefault(False)
+            btn.setDefault(False)
+        else:
+            btn.setProperty("inactive", False)
+            btn.setToolTip("")
+
+        s = self.ui.style()
+        s.unpolish(btn)
+        s.polish(btn)
+
+    def _maybe_show_menu(self, anchor: QtWidgets.QWidget, local_pos: QtCore.QPoint | None = None):
+        try:
+            ro_id = self._get_ro_id()
+        except Exception:
+            ro_id = getattr(self, "ro_id", None)
+
+        if not self._any_jobs_approved(ro_id):
+            try:
+                font = QtGui.QFont()
+                font.setPointSize(14)
+                QtWidgets.QToolTip.setFont(font)
+                global_pt = (
+                    anchor.mapToGlobal(local_pos) if isinstance(local_pos, QtCore.QPoint) else QtGui.QCursor.pos()
+                )
+
+                QtWidgets.QToolTip.showText(
+                    global_pt,
+                    "Mark Jobs Approved First",
+                    anchor,
+                    anchor.rect(),
+                    3500 #msec
+                )
+            except  Exception:
+                pass
+            return
+        self._show_menu(anchor, local_pos)
 
     def apply_status(self, status_code: str):
         status_code = (status_code or "open").strip().lower()
@@ -103,49 +176,54 @@ class StatusDialogController:
                                  f"Database error while saving status:\n{e}")
             return
 
+        try:
+            ro_id = self._get_ro_id()
+        except Exception:
+            ro_id = getattr(self, "ro_id", None)
+
 
         self.ui.ro_hub_manager._update_ro_status_label(ro_id)
+        self.statusChanged.emit(ro_id, status_code)
 
-
+    def _resolve_current_status(self) -> str:
+        try:
+            ro_id = self._get_ro_id() or 0
+            if ro_id:
+                db = RepairOrdersRepository.get_status(int(ro_id))
+                s = self._normalize_status(db)
+                if s:
+                    return s.strip().lower()
+        except Exception:
+            pass
+        try:
+            return self._normalize_status(self._get_status())
+        except Exception:
+            return "open"
 
     def _show_menu(self, anchor: QtWidgets.QWidget, local_pos: QtCore.QPoint | None = None):
-        cur = self._normalize_status(self._get_status())
+        cur = self._resolve_current_status()
+        allowed = TRANSITIONS.get(cur, set())
         menu = QtWidgets.QMenu(anchor)
 
         for label, code in self.ACTIONS:
-            if code == cur:
-                continue  # mirror ROTile behavior: omit current status
+            if code == cur:  # hide the current status (your main ask)
+                continue
+            if code not in allowed:  # hide invalid transitions
+                continue
             act = menu.addAction(label)
             act.triggered.connect(lambda _=False, s=code: self.apply_status(s))
 
-        global_pt = (anchor.mapToGlobal(local_pos)
-                     if isinstance(local_pos, QtCore.QPoint)
-                     else anchor.mapToGlobal(anchor.rect().center()))
-        menu.exec(global_pt)
+        pt = anchor.mapToGlobal(local_pos) if isinstance(local_pos, QtCore.QPoint) \
+            else anchor.mapToGlobal(anchor.rect().center())
+        menu.exec(pt)
 
     @staticmethod
-    def _normalize_status(text: str) -> str:
-        t = (text or "").strip().lower()
+    def _normalize_status(value) -> str:
+        t = str(value or "").strip().lower()
         for code in ("open", "approved", "working", "checkout", "archived"):
-            if code in t:
+            if t == code or code in t:
                 return code
         return "open"
-
-    def open_ro_status(self, event: QtGui.QContextMenuEvent):
-        menu = QtWidgets.QMenu(self.ui)
-
-        actions = [
-            ("Move to Approved", "approved"),
-            ("Move to Working", "working"),
-            ("Move to Checkout", "checkout"),
-            ("Revert to Estimate", "open"),
-            ("Archive", "archived"),
-        ]
-
-        for label, target_status in actions:
-            menu.addAction(label)
-
-        menu.exec(event.globalPos())
 
     def cancel_ro_changes(self):
         message_box = QtWidgets.QMessageBox(self.ui)

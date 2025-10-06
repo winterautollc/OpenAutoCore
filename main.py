@@ -1,12 +1,20 @@
-import sys
 import logging
 from PyQt6.QtWidgets import QApplication, QDialog
 from PyQt6 import QtCore, QtGui
 import os, platform
+from openauto.utils.theme_tooltips import upsert_qtooltip_block, apply_tooltip_for_theme, elevate_stylesheet_to_app
 
 from openauto.utils.error_reporter import (
     init_error_reporter, ErrorReporterConfig, install_global_excepthook
 )
+
+LIGHT_TT = """
+QToolTip { color:#333; background-color:#F9F9F9; border:1px solid #AAA; border-radius:6px; padding:2px 4px; font-size:16px; }
+""".strip()
+
+DARK_TT = """
+QToolTip { color:#ECECEC; background-color:#2A2A2A; border:1px solid #505050; border-radius:6px; padding:2px 4px; font-size:16px; }
+""".strip()
 
 init_error_reporter(ErrorReporterConfig(
     app_name="OpenAuto",
@@ -78,6 +86,25 @@ if __name__ == "__main__":
             window.switch_theme(theme_name)
     except Exception as e:
         print("Theme load/apply failed:", e)
+
+    elevate_stylesheet_to_app(app, window)
+
+    apply_tooltip_for_theme(app, theme_name, LIGHT_TT, DARK_TT)
+
+    if hasattr(window, "switch_theme"):
+        _orig_switch = window.switch_theme
+
+
+        def _switch_theme_and_sync(name, persist=True, *args, **kwargs):
+            rv = _orig_switch(name, persist=persist)
+            # In case switch_theme applied QSS on the window, lift it to the app
+            elevate_stylesheet_to_app(app, window)
+            # Now update QToolTip styling for this theme
+            apply_tooltip_for_theme(app, name, LIGHT_TT, DARK_TT)
+            return rv
+
+
+        window.switch_theme = _switch_theme_and_sync
 
     # Show and maximize (preserving your timing)
     window.show()
