@@ -373,7 +373,10 @@ class AppointmentsManager:
             traceback.print_exc()
 
         self.ui.widget_manager.close_and_delete("new_appointment")
-        self.ui.message.setText("Appointment Saved Successfully" + (" + RO created." if vehicle_id else "."))
-        self.ui.message.show()
+        msg = QtWidgets.QMessageBox(self.ui)
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+        msg.setWindowTitle("Saved")
+        msg.setText("Appointment Saved Successfully" + (" + RO created." if vehicle_id else "."))
+        msg.exec()
 
 

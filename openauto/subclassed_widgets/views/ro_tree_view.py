@@ -238,17 +238,17 @@ class ROTreeView(QtWidgets.QTreeView):
         idx = self.model().add_line(j, 'labor', description=description, hours=hours, rate=rate, sku_number=(sku or ""), **kwargs)
         return _LineItemProxy(self, idx)
 
-    def addFee(self, job_item, description, qty, unit_price, sku, **kwargs):
+    def addFee(self, job_item, sku: str = "", description: str = "Fee", qty=1.0, unit_price=0.0, row_type="FEE", **kwargs):
         j = self._normalize_job_idx(job_item)
         idx = self.model().add_line(j, 'fee', description=description, qty=qty, unit_price=unit_price, sku_number=(sku or ""),  **kwargs)
         return _LineItemProxy(self, idx)
 
-    def addTire(self, job_item, description, qty, unit_price, sku, **kwargs):
+    def addTire(self, job_item, sku: str = "", description: str = "Tire", qty=1.0, unit_price=0.0, row_type="FEE", **kwargs):
         j = self._normalize_job_idx(job_item)
         idx = self.model().add_line(j, 'tire', description=description, qty=qty, unit_price=unit_price, sku_number=(sku or ""), **kwargs)
         return _LineItemProxy(self, idx)
 
-    def addSublet(self, job_item, description, qty, unit_price, sku, **kwargs):
+    def addSublet(self, job_item, sku: str = "", description: str = "Sublet", qty=1.0, unit_price=0.0, row_type="FEE", **kwargs):
         j = self._normalize_job_idx(job_item)
         idx = self.model().add_line(j, 'sublet', description=description, qty=qty, unit_price=unit_price, sku_number=(sku or ""), **kwargs)
         return _LineItemProxy(self, idx)
@@ -462,15 +462,15 @@ class ROTreeView(QtWidgets.QTreeView):
         def add(kind):
             j = job_idx if job_idx.isValid() else self.model().index(0, 0, QtCore.QModelIndex())
             if kind == "labor":
-                self.addLabor(j, "Labor", hours=1.0, rate=0.0, row_type="LABOR")
+                self.addLabor(j, description="",  hours=1.0, rate=0.0, row_type="LABOR")
             elif kind == "fee":
-                self.addFee(j, "Fee", qty=1.0, unit_price=0.0, row_type="FEE")
+                self.addFee(j, description="", qty=1.0, unit_price=0.0, row_type="FEE")
             elif kind == "sublet":
-                self.addSublet(j, "Sublet", qty=1.0, unit_price=0.0, row_type="SUBLET")
+                self.addSublet(j, description="", qty=1.0, unit_price=0.0, row_type="SUBLET")
             elif kind == "tire":
-                self.addTire(j, "Tire", qty=1.0, unit_price=0.0, row_type="TIRE")
+                self.addTire(j, description="", qty=1.0, unit_price=0.0, row_type="TIRE")
             else:
-                self.addPart(j, "Part", qty=1.0, unit_price=0.0, row_type="PART")
+                self.addPart(j, description="", qty=1.0, unit_price=0.0, row_type="PART")
 
         for text, kind in [
             ("Add Part", "part"), ("Add Labor", "labor"),
