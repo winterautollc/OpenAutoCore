@@ -261,4 +261,14 @@
     <file>icons3/24x24/cil-zoom-out.png</file>
     <file>icons3/24x24/schedule.jpg</file>
   </qresource>
+  <qresource prefix="fonts">
+    <file>resources/fonts/Ubuntu-Bold.ttf</file>
+    <file>resources/fonts/Ubuntu-BoldItalic.ttf</file>
+    <file>resources/fonts/Ubuntu-Italic.ttf</file>
+    <file>resources/fonts/Ubuntu-Light.ttf</file>
+    <file>resources/fonts/Ubuntu-LightItalic.ttf</file>
+    <file>resources/fonts/Ubuntu-Medium.ttf</file>
+    <file>resources/fonts/Ubuntu-MediumItalic.ttf</file>
+    <file>resources/fonts/Ubuntu-Regular.ttf</file>
+  </qresource>
 </RCC>

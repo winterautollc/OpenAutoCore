@@ -59,7 +59,35 @@ def _load_user_theme(user_id: int):
             pass
 
 if __name__ == "__main__":
+    def _load_ubuntu_fonts():
+        # returns True if at least one face added
+        paths = [
+            ":openauto/theme/resources/fonts/Ubuntu-Regular.ttf",
+            ":openauto/theme/resources/fonts/Ubuntu-Italic.ttf",
+            ":openauto/theme/resources/fonts/Ubuntu-Medium.ttf",
+            ":openauto/theme/resources/fonts/Ubuntu-Bold.ttf",
+            ":openauto/theme/resources/fonts/UbuntuMono-Regular.ttf",
+            ":openauto/theme/resources/fonts/UbuntuMono-Bold.ttf",
+        ]
+        ok = False
+        for p in paths:
+            fid = QtGui.QFontDatabase.addApplicationFont(p)
+            ok = ok or (fid != -1)
+        return ok
+
+
     app = QApplication([])
+    _load_ubuntu_fonts()
+    ui_font = QtGui.QFont()
+    ui_font.setFamilies(["Ubuntu", "Segoe UI", "Noto Sans", "Sans Serif"])
+    ui_font.setPointSize(10)
+    ui_font.setHintingPreference(QtGui.QFont.HintingPreference.PreferFullHinting)
+
+    QApplication.setFont(ui_font)
+
+    mono = QtGui.QFont()
+    mono.setFamilies(["Ubuntu Mono", "Consolas", "DejaVu Sans Mono", "Monospace"])
+    mono.setPointSize(10)
     install_global_excepthook(parent_getter=lambda: QApplication.activeWindow())
     login = LoginCreate()
     _user_ctx = {}
