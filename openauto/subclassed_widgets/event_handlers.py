@@ -237,6 +237,9 @@ class CMenuHandler(QObject):
     def eventFilter(self, obj, event):
         if obj is self.target and self._squelch_hover:
             return True
+        
+        if event.type() == QEvent.Type.Enter and (self._collapsing or self._in_anim):
+            return True
 
         if obj is self.target:
             if event.type() == QEvent.Type.Enter:
