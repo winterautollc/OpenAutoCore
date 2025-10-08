@@ -57,13 +57,13 @@ def load_ubuntu_sans():
 
 def apply_app_font():
     ui = QFont()
-    ui.setFamilies(["Ubuntu Sans", "Segoe UI", "Noto Sans", "Sans Serif"])
+    ui.setFamilies(["Ubuntu", "Segoe UI", "Noto Sans", "Sans Serif"])
     ui.setPointSize(10)
     ui.setHintingPreference(QFont.HintingPreference.PreferFullHinting)
-    QFont.insertSubstitution("Segoe UI", "Ubuntu Sans")
-    QFont.insertSubstitution("Microsoft Sans Serif", "Ubuntu Sans")
-    QFont.insertSubstitution("Sans Serif", "Ubuntu Sans")
-    QFont.insertSubstitution("System", "Ubuntu Sans")
+    QFont.insertSubstitution("Segoe UI", "Ubuntu")
+    QFont.insertSubstitution("Microsoft Sans Serif", "Ubuntu")
+    QFont.insertSubstitution("Sans Serif", "Ubuntu")
+    QFont.insertSubstitution("System", "Ubuntu")
     QApplication.setFont(ui)
 
 init_error_reporter(ErrorReporterConfig(
@@ -111,6 +111,7 @@ def _load_user_theme(user_id: int):
 
 if __name__ == "__main__":
     app = QApplication([])
+    app.setStyle("Fusion")
     from openauto.theme.resources.fonts import fonts_rc
 
     load_ubuntu_sans()

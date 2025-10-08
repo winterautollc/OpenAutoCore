@@ -634,6 +634,13 @@ QWidget {
     font-size: 16px;
 }
 
+#writer_box::down-arrow,
+#technician_box::down-arrow {
+    background-color: #808080;
+    width: 26px;
+    height: 18px;
+}
+
 QMenu {
     background-color: #333;
     border: 1px solid #555;

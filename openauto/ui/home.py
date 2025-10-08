@@ -41,7 +41,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         super().__init__()
         self.current_user = current_user
         self.setupUi(self)
-        # self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
+        self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.sql_monitor = event_handlers.SQLMonitor()
         self.sql_monitor.start()
         self._init_managers()
@@ -145,6 +145,8 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
 
 ### SIGNALS/SLOTS FOR PUSHBUTTONS ETC.. ###
     def _connect_signals(self):
+        self.ro_approved_edit.setButtonSymbols(QtWidgets.QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.ro_created_edit.setButtonSymbols(QtWidgets.QAbstractSpinBox.ButtonSymbols.NoButtons)
         self.show_all_ro_button.hide()
         self.sku_edit.sizePolicy().setRetainSizeWhenHidden(True)
         self.cost_edit.sizePolicy().setRetainSizeWhenHidden(True)
