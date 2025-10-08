@@ -1,5 +1,5 @@
 import logging
-
+from PyQt6.QtGui import QFont
 from PyQt6.QtGui import QFontDatabase
 from PyQt6.QtWidgets import QApplication, QDialog
 from PyQt6 import QtCore, QtGui
@@ -10,16 +10,23 @@ from openauto.utils.error_reporter import (
     init_error_reporter, ErrorReporterConfig, install_global_excepthook
 )
 
-FONT_PATHS = [
-    ":/fonts/resources/fonts/UbuntuSans-Bold.ttf",
-    ":/fonts/resources/fonts/UbuntuSans-BoldItalic.ttf",
-    ":/fonts/resources/fonts/UbuntuSans_Condensed-Bold.ttf",
-    ":/fonts/resources/fonts/UbuntuSans_Condensed-BoldItalic.ttf",
-    ":/fonts/resources/fonts/UbuntuSans-Regular.ttf",
-    ":/fonts/resources/fonts/UbuntuSans-SemiBold.ttf",
-    ":/fonts/resources/fonts/UbuntuSans-Medium.ttf",
-
-]
+OA_FONTS_PREFIX = ":/oa_fonts"
+CORE_NAMES = {
+    "Ubuntu-B.ttf",
+    "Ubuntu-BI.ttf",
+    "Ubuntu-C.ttf",
+    "Ubuntu-L.ttf",
+    "Ubuntu-LI.ttf",
+    "Ubuntu-M.ttf",
+    "Ubuntu-MI.ttf",
+    "Ubuntu-R.ttf",
+    "Ubuntu-RI.ttf",
+    "Ubuntu-Th.ttf",
+    "UbuntuMono-B.ttf",
+    "UbuntuMono-BI.ttf",
+    "UbuntuMono-R.ttf",
+    "UbuntuMono-RI.ttf"
+}
 
 LIGHT_TT = """
 QToolTip { color:#333; background-color:#F9F9F9; border:1px solid #AAA; border-radius:6px; padding:2px 4px; font-size:16px; }
@@ -29,32 +36,35 @@ DARK_TT = """
 QToolTip { color:#ECECEC; background-color:#2A2A2A; border:1px solid #505050; border-radius:6px; padding:2px 4px; font-size:16px; }
 """.strip()
 
-def load_ubuntu_fonts():
-    loaded = False
-    for p in FONT_PATHS:
-        if not QtCore.QFile.exists(p):
-            print(f"[fonts] missing in qrc: {p}")
+def load_ubuntu_sans():
+    ok = False
+    for name in CORE_NAMES:
+        path = f"{OA_FONTS_PREFIX}/{name}"
+        res = QtCore.QResource(path)
+        if not res.isValid():
+            print("[fonts] missing in qrc:", path)
             continue
-        fid = QFontDatabase.addApplicationFont(p)
-        if fid != -1:
-            fams = QFontDatabase.applicationFontFamilies(fid)
-            print(f"[fonts] loaded: {p} -> {list(fams)}")
-            loaded = True
+        ba = res.data()  # QByteArray (works even when QFile.open is weird)
+        fid = QFontDatabase.addApplicationFontFromData(ba)
+        if fid == -1:
+            print("[fonts] addApplicationFontFromData FAILED:", path)
         else:
-            print(f"[fonts] failed: {p}")
-    return loaded
+            fams = QFontDatabase.applicationFontFamilies(fid)
+            print(f"[fonts] loaded: {path} -> {list(fams)}")
+            ok = True
+    print("[fonts] Ubuntu Sans present?", "Ubuntu Sans" in QFontDatabase.families())
+    return ok
 
 def apply_app_font():
-    ui_font = QtGui.QFont()
-    ui_font.setFamilies(["Ubuntu Sans", "Segoe UI", "Noto Sans", "Sans Serif"])
-    ui_font.setPointSize(10)
-    ui_font.setHintingPreference(QtGui.QFont.HintingPreference.PreferFullHinting)
-    QtGui.QFont.insertSubstitution("Segoe UI", "Ubuntu Sans")
-    QtGui.QFont.insertSubstitution("Sans Serif", "Ubuntu Sans")
-    QtGui.QFont.insertSubstitution("Microsoft Sans Serif", "Ubuntu")
-    QtGui.QFont.insertSubstitution("System", "Ubuntu")
-    QtGui.QFont.insertSubstitution("Default", "Ubuntu")
-    QApplication.setFont(ui_font)
+    ui = QFont()
+    ui.setFamilies(["Ubuntu Sans", "Segoe UI", "Noto Sans", "Sans Serif"])
+    ui.setPointSize(10)
+    ui.setHintingPreference(QFont.HintingPreference.PreferFullHinting)
+    QFont.insertSubstitution("Segoe UI", "Ubuntu Sans")
+    QFont.insertSubstitution("Microsoft Sans Serif", "Ubuntu Sans")
+    QFont.insertSubstitution("Sans Serif", "Ubuntu Sans")
+    QFont.insertSubstitution("System", "Ubuntu Sans")
+    QApplication.setFont(ui)
 
 init_error_reporter(ErrorReporterConfig(
     app_name="OpenAuto",
@@ -101,7 +111,9 @@ def _load_user_theme(user_id: int):
 
 if __name__ == "__main__":
     app = QApplication([])
-    load_ubuntu_fonts()
+    from openauto.theme.resources.fonts import fonts_rc
+
+    load_ubuntu_sans()
     apply_app_font()
     print("App font is now:", QtGui.QFontInfo(QApplication.font()).family())
     install_global_excepthook(parent_getter=lambda: QApplication.activeWindow())

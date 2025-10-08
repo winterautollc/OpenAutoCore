@@ -1,0 +1,18 @@
+<RCC>
+  <qresource prefix="/oa_fonts">
+    <file alias="Ubuntu-B.ttf">Ubuntu-B.ttf</file>
+    <file alias="Ubuntu-BI.ttf">Ubuntu-BI.ttf</file>
+    <file alias="Ubuntu-C.ttf">Ubuntu-C.ttf</file>
+    <file alias="Ubuntu-L.ttf">Ubuntu-L.ttf</file>
+    <file alias="Ubuntu-LI.ttf">Ubuntu-LI.ttf</file>
+    <file alias="Ubuntu-M.ttf">Ubuntu-M.ttf</file>
+    <file alias="Ubuntu-MI.ttf">Ubuntu-MI.ttf</file>
+        <file alias="Ubuntu-R.ttf">Ubuntu-R.ttf</file>
+    <file alias="Ubuntu-RI.ttf">Ubuntu-RI.ttf</file>
+    <file alias="Ubuntu-Th.ttf">Ubuntu-Th.ttf</file>
+    <file alias="UbuntuMono-B">UbuntuMono-B.ttf</file>
+    <file alias="UbuntuMono-BI.ttf">UbuntuMono-BI.ttf</file>
+    <file alias="UbuntuMono-R.ttf">UbuntuMono-R.ttf</file>
+    <file alias="UbuntuMono-RI.ttf">UbuntuMono-RI.ttf</file>
+  </qresource>
+</RCC>
