@@ -1,12 +1,25 @@
 import logging
+
+from PyQt6.QtGui import QFontDatabase
 from PyQt6.QtWidgets import QApplication, QDialog
 from PyQt6 import QtCore, QtGui
 import os, platform
 from openauto.utils.theme_tooltips import upsert_qtooltip_block, apply_tooltip_for_theme, elevate_stylesheet_to_app
-
+from openauto.theme import resources_rc
 from openauto.utils.error_reporter import (
     init_error_reporter, ErrorReporterConfig, install_global_excepthook
 )
+
+FONT_PATHS = [
+    ":/fonts/resources/fonts/UbuntuSans-Bold.ttf",
+    ":/fonts/resources/fonts/UbuntuSans-BoldItalic.ttf",
+    ":/fonts/resources/fonts/UbuntuSans_Condensed-Bold.ttf",
+    ":/fonts/resources/fonts/UbuntuSans_Condensed-BoldItalic.ttf",
+    ":/fonts/resources/fonts/UbuntuSans-Regular.ttf",
+    ":/fonts/resources/fonts/UbuntuSans-SemiBold.ttf",
+    ":/fonts/resources/fonts/UbuntuSans-Medium.ttf",
+
+]
 
 LIGHT_TT = """
 QToolTip { color:#333; background-color:#F9F9F9; border:1px solid #AAA; border-radius:6px; padding:2px 4px; font-size:16px; }
@@ -15,6 +28,33 @@ QToolTip { color:#333; background-color:#F9F9F9; border:1px solid #AAA; border-r
 DARK_TT = """
 QToolTip { color:#ECECEC; background-color:#2A2A2A; border:1px solid #505050; border-radius:6px; padding:2px 4px; font-size:16px; }
 """.strip()
+
+def load_ubuntu_fonts():
+    loaded = False
+    for p in FONT_PATHS:
+        if not QtCore.QFile.exists(p):
+            print(f"[fonts] missing in qrc: {p}")
+            continue
+        fid = QFontDatabase.addApplicationFont(p)
+        if fid != -1:
+            fams = QFontDatabase.applicationFontFamilies(fid)
+            print(f"[fonts] loaded: {p} -> {list(fams)}")
+            loaded = True
+        else:
+            print(f"[fonts] failed: {p}")
+    return loaded
+
+def apply_app_font():
+    ui_font = QtGui.QFont()
+    ui_font.setFamilies(["Ubuntu Sans", "Segoe UI", "Noto Sans", "Sans Serif"])
+    ui_font.setPointSize(10)
+    ui_font.setHintingPreference(QtGui.QFont.HintingPreference.PreferFullHinting)
+    QtGui.QFont.insertSubstitution("Segoe UI", "Ubuntu Sans")
+    QtGui.QFont.insertSubstitution("Sans Serif", "Ubuntu Sans")
+    QtGui.QFont.insertSubstitution("Microsoft Sans Serif", "Ubuntu")
+    QtGui.QFont.insertSubstitution("System", "Ubuntu")
+    QtGui.QFont.insertSubstitution("Default", "Ubuntu")
+    QApplication.setFont(ui_font)
 
 init_error_reporter(ErrorReporterConfig(
     app_name="OpenAuto",
@@ -58,36 +98,12 @@ def _load_user_theme(user_id: int):
         except Exception:
             pass
 
+
 if __name__ == "__main__":
-    def _load_ubuntu_fonts():
-        # returns True if at least one face added
-        paths = [
-            ":openauto/theme/resources/fonts/Ubuntu-Regular.ttf",
-            ":openauto/theme/resources/fonts/Ubuntu-Italic.ttf",
-            ":openauto/theme/resources/fonts/Ubuntu-Medium.ttf",
-            ":openauto/theme/resources/fonts/Ubuntu-Bold.ttf",
-            ":openauto/theme/resources/fonts/UbuntuMono-Regular.ttf",
-            ":openauto/theme/resources/fonts/UbuntuMono-Bold.ttf",
-        ]
-        ok = False
-        for p in paths:
-            fid = QtGui.QFontDatabase.addApplicationFont(p)
-            ok = ok or (fid != -1)
-        return ok
-
-
     app = QApplication([])
-    _load_ubuntu_fonts()
-    ui_font = QtGui.QFont()
-    ui_font.setFamilies(["Ubuntu", "Segoe UI", "Noto Sans", "Sans Serif"])
-    ui_font.setPointSize(10)
-    ui_font.setHintingPreference(QtGui.QFont.HintingPreference.PreferFullHinting)
-
-    QApplication.setFont(ui_font)
-
-    mono = QtGui.QFont()
-    mono.setFamilies(["Ubuntu Mono", "Consolas", "DejaVu Sans Mono", "Monospace"])
-    mono.setPointSize(10)
+    load_ubuntu_fonts()
+    apply_app_font()
+    print("App font is now:", QtGui.QFontInfo(QApplication.font()).family())
     install_global_excepthook(parent_getter=lambda: QApplication.activeWindow())
     login = LoginCreate()
     _user_ctx = {}

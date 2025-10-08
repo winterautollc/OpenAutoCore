@@ -261,14 +261,56 @@
     <file>icons3/24x24/cil-zoom-out.png</file>
     <file>icons3/24x24/schedule.jpg</file>
   </qresource>
-  <qresource prefix="fonts">
-    <file>resources/fonts/Ubuntu-Bold.ttf</file>
-    <file>resources/fonts/Ubuntu-BoldItalic.ttf</file>
-    <file>resources/fonts/Ubuntu-Italic.ttf</file>
-    <file>resources/fonts/Ubuntu-Light.ttf</file>
-    <file>resources/fonts/Ubuntu-LightItalic.ttf</file>
-    <file>resources/fonts/Ubuntu-Medium.ttf</file>
-    <file>resources/fonts/Ubuntu-MediumItalic.ttf</file>
-    <file>resources/fonts/Ubuntu-Regular.ttf</file>
+    <qresource prefix="/fonts">
+     <file>resources/fonts/UbuntuSans-Bold.ttf</file>
+    <file>resources/fonts/UbuntuSans-BoldItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-Bold.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-BoldItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-ExtraBold.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-ExtraBoldItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-ExtraLight.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-ExtraLightItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-Italic.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-Light.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-LightItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-Medium.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-MediumItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-Regular.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-SemiBold.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-SemiBoldItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-Thin.ttf</file>
+    <file>resources/fonts/UbuntuSans_Condensed-ThinItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans-ExtraBold.ttf</file>
+    <file>resources/fonts/UbuntuSans-ExtraBoldItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans-ExtraLight.ttf</file>
+    <file>resources/fonts/UbuntuSans-ExtraLightItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans-Italic.ttf</file>
+    <file>resources/fonts/UbuntuSans-Italic-VariableFont_wdth,wght.ttf</file>
+    <file>resources/fonts/UbuntuSans-Light.ttf</file>
+    <file>resources/fonts/UbuntuSans-LightItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans-Medium.ttf</file>
+    <file>resources/fonts/UbuntuSans-MediumItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans-Regular.ttf</file>
+    <file>resources/fonts/UbuntuSans-SemiBold.ttf</file>
+    <file>resources/fonts/UbuntuSans-SemiBoldItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-Bold.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-BoldItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-ExtraBold.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-ExtraBoldItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-ExtraLight.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-ExtraLightItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-Italic.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-Light.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-LightItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-Medium.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-MediumItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-Regular.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-SemiBold.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-SemiBoldItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-Thin.ttf</file>
+    <file>resources/fonts/UbuntuSans_SemiCondensed-ThinItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans-Thin.ttf</file>
+    <file>resources/fonts/UbuntuSans-ThinItalic.ttf</file>
+    <file>resources/fonts/UbuntuSans-VariableFont_wdth,wght.ttf</file>
   </qresource>
 </RCC>

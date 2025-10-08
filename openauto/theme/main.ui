@@ -512,7 +512,7 @@
            <item row="0" column="0" rowspan="2" colspan="2">
             <widget class="QTabWidget" name="settings_tab">
              <property name="currentIndex">
-              <number>0</number>
+              <number>1</number>
              </property>
              <widget class="QWidget" name="shop_info_tab">
               <attribute name="title">
@@ -2585,6 +2585,7 @@ background-color: #fefeff;</string>
                <widget class="QLabel" name="miles_out_label">
                 <property name="font">
                  <font>
+                  <family>Ubuntu Sans</family>
                   <pointsize>13</pointsize>
                   <italic>false</italic>
                   <bold>true</bold>
