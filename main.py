@@ -52,7 +52,7 @@ def load_ubuntu_sans():
             fams = QFontDatabase.applicationFontFamilies(fid)
             print(f"[fonts] loaded: {path} -> {list(fams)}")
             ok = True
-    print("[fonts] Ubuntu Sans present?", "Ubuntu Sans" in QFontDatabase.families())
+    print("[fonts] Ubuntu present?", "Ubuntu" in QFontDatabase.families())
     return ok
 
 def apply_app_font():

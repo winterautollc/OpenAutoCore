@@ -634,8 +634,21 @@ QWidget {
     font-size: 16px;
 }
 
-#writer_box::down-arrow,
-#technician_box::down-arrow {
+#working_label {
+    background-color: #f33e12;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+#checkout_label {
+    background-color: #f312a1;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+QComboBox::down-arrow {
     background-color: #808080;
     width: 26px;
     height: 18px;
@@ -666,7 +679,7 @@ QTabBar::tab {
      background-color: #4A6260;
      color: #ECF4F4;
      border-radius: 1px;
-     min-width: 600px;
+     min-width: 200px;
      min-height: 20px;
 }
 
@@ -778,14 +791,14 @@ QScrollBar::add-line, QScrollBar::sub-line { background: transparent; height: 0;
     border-radius: 12px;
 }
 #ro_tile QLabel {
-    font-size: 16pt;
+    font-size: 12pt;
     color: #1E1E1E;
     background-color: #d2d7db;
 }
 
 #ro_tile QLabel#title {
     font-weight: 600;
-    font-size: 16pt;
+    font-size: 14pt;
 }
 
 #chip_block {
@@ -797,15 +810,15 @@ QScrollBar::add-line, QScrollBar::sub-line { background: transparent; height: 0;
 /* tile scroll area */
 QScrollArea#ro_tile_scroll {
   border: none;
-  background: transparent;
+  background: #d2d7db;
 }
 QWidget#ro_tile_viewport {
-  background: transparent;
+  background: #d2d7db;
 }
 
 /* Role chips on tile */
 QWidget#chip_block {
-  background: #3C3C3C;
+  background: #d2d7db;
   color: #E0E0E0;
   border-radius: 8px;
   padding: 3px 6px;

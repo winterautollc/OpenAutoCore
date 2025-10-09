@@ -4,7 +4,7 @@ from openauto.repositories.repair_orders_repository import RepairOrdersRepositor
 from openauto.repositories.estimate_jobs_repository import EstimateJobsRepository
 import os
 
-MAX_TILE_W = 380
+MAX_TILE_W = 200
 
 def _iter_all_tiles():
     # Walk all widgets and yield any ROTile instances, even if they’re on hidden pages.
@@ -69,7 +69,7 @@ class ElideLabel(QtWidgets.QLabel):
 
     def _update_elided(self):
         fm = self.fontMetrics()
-        w = max(0, self.width() - 10)
+        w = max(0, self.width() - 40)
         elided = fm.elidedText(self._full_text, QtCore.Qt.TextElideMode.ElideRight, w)
         super().setText(elided)
 
@@ -96,7 +96,7 @@ class MultiLineElideLabel(QtWidgets.QLabel):
 
     def _update_elided(self):
         fm = self.fontMetrics()
-        width = max(0, self.width() - 2)
+        width = max(0, self.width() - 40)
         text = self._full_text
         if not text or width <= 0:
             super().setText(text or "")
@@ -286,8 +286,8 @@ class ROTileContainer(QtWidgets.QScrollArea):
 
     def add_tile(self, tile: ROTile, row: int = None, col: int = None):
         tile.setSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Maximum)
-        if not tile.sizeHint().isValid() or tile.sizeHint().width() < 260:
-            tile.setFixedWidth(320)  # tweak to taste
+        if not tile.sizeHint().isValid() or tile.sizeHint().width() < 150:
+            tile.setFixedWidth(200)
 
         count = self._grid.count()
         # allow manual row/col (for backward compat), else auto-place
@@ -309,7 +309,7 @@ class ROTileContainer(QtWidgets.QScrollArea):
     def resizeEvent(self, e: QtGui.QResizeEvent):
         # infer card width from first child if present; otherwise use 320
         vw = self.viewport().width()
-        card_w = 260
+        card_w = 200
         if self._grid.count():
             w0 = self._grid.itemAt(0).widget()
             if w0:
