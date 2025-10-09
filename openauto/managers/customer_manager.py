@@ -50,8 +50,9 @@ class CustomerManager:
             Validator.show_validation_error(self.ui.message, "Please provide at least a name and phone number.")
             return
         CustomerRepository.insert_customer(customer_data)
-        self._show_message("Customer Added")
         self.ui.widget_manager.close_and_delete("new_customer")
+        QtCore.QTimer.singleShot(0, lambda: QtWidgets.QMessageBox.information(self.ui, "Customer Added",
+                        "Customer has been added."))
 
     def customer_search_filter(self, text):
         for row in range(self.ui.customer_table.rowCount()):

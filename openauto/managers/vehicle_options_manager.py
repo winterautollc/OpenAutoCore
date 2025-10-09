@@ -32,7 +32,7 @@ class VehicleOptionsManager:
             lambda: self.widget_manager.close_and_delete("vehicle_options")
         )
         self.vehicle_options_ui.change_owner_vehicle_button.clicked.connect(self.change_owner)
-        self.vehicle_options_ui.create_ro_vehicle_button.clicked.connect(self.create_ro)
+        self.vehicle_options_ui.create_ro_vehicle_button.hide()
         self.vehicle_options_ui.delete_vehicle_button.clicked.connect(self.delete_vehicle)
 
         self.vehicle_options.show()

@@ -41,7 +41,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         super().__init__()
         self.current_user = current_user
         self.setupUi(self)
-        self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
+        # self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.sql_monitor = event_handlers.SQLMonitor()
         self.sql_monitor.start()
         self._init_managers()
@@ -158,6 +158,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.search_customer_line.setPlaceholderText("Search ...")
         self.vehicle_search_line.setPlaceholderText("Search ...")
         self.ro_search_edit.setPlaceholderText("Search ...")
+        self.ro_search_edit.textChanged.connect(self._filter_all_ro_tiles)
         self.search_customer_line.textChanged.connect(self.customer_manager.customer_search_filter)
         self.vehicle_search_line.textChanged.connect(self.vehicle_manager.vehicle_search_filter)
         self.customer_table.vehicle_signal_request.connect(self.vehicle_manager.add_vehicle)
@@ -307,6 +308,11 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.message.setWindowTitle("SMS To Customers")
         self.message.setText("SMS To Customers, Plate2VIN And Parts Ordering Will Require A Monthly Subscription")
         self.message.exec()
+
+    def _filter_all_ro_tiles(self, text: str):
+        for lane in (self.estimate_tiles, self.working_tiles, self.approved_tiles, self.checkout_tiles):
+            if hasattr(lane, "filter_tiles"):
+                lane.filter_tiles(text)
 
 if __name__ == "__main__":
     import sys

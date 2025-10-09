@@ -252,6 +252,30 @@ class ROTile(QtWidgets.QFrame):
         super().mousePressEvent(event)
 
 
+### Returns lowercase string for searched text.
+    def _search_blob(self) -> str:
+        parts = []
+        # examples – replace with your real fields:
+        for attr in (
+            "customer_label", "vehicle_label", "ro_label"
+        ):
+
+            w = getattr(self, attr, None)
+            if w is not None and hasattr(w, "text"):
+                try:
+                    parts.append(w.text())
+                except Exception:
+                    pass
+        return " ".join(parts).lower()
+
+    def matches(self, query: str) -> bool:
+        q = (query or "").strip().lower()
+        if not q:
+            return True
+        blob = self._search_blob()
+        return all(tok in blob for tok in q.split())
+
+
     ### SCROLL AREA FOR RO TILES ###
 class ROTileContainer(QtWidgets.QScrollArea):
     def __init__(self, parent=None, columns=4, hgap=12, vgap=12):
@@ -342,3 +366,15 @@ class ROTileContainer(QtWidgets.QScrollArea):
             w = it.widget()
             if w:
                 w.setParent(None)
+
+
+    def filter_tiles(self, query: str):
+        grid = getattr(self, "_grid", None)
+        if not grid:
+            return
+        for i in range(grid.count()):
+            w = grid.itemAt(i).widget()
+            if hasattr(w, "matches"):
+                w.setVisible(w.matches(query))
+        # optional: relayout after visibility changes
+        self._relayout() if hasattr(self, "_relayout") else None

@@ -342,6 +342,8 @@ class SaveEstimateService:
 
         # Insert new rows; capture new ids if you want to push back to the UI later
         for it in to_insert:
+            if it["description"] == "" or None:
+                it["description"] = "EMPTY"
             new_id = EstimateItemsRepository.insert_item(it)
             it["id"] = new_id  
 

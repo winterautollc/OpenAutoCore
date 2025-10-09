@@ -86,8 +86,9 @@ class VehicleManager:
             return
 
         VehicleRepository.insert_vehicle(vehicle_data)
-        self._show_message("Vehicle Added")
         self.ui.widget_manager.close_and_delete("vehicle_window")
+        QtCore.QTimer.singleShot(0, lambda: QtWidgets.QMessageBox.information(self.ui, "Vehicle Added",
+                        "Vehicle has been added."))
 
     def vehicle_search_filter(self, text):
         for row in range(self.ui.vehicle_table.rowCount()):
