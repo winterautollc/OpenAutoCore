@@ -1,7 +1,6 @@
 from PyQt6 import QtCore, QtWidgets, QtGui
 from PyQt6.QtGui import QDoubleValidator
 from openauto.subclassed_widgets.views import small_tables, workflow_tables, apt_calendar, ro_tiles
-from openauto.subclassed_widgets.menu import control_menu
 from openauto.subclassed_widgets import event_handlers
 from openauto.subclassed_widgets.models.ro_tree_model import ROTreeModel
 from openauto.ui import main_form
@@ -9,7 +8,7 @@ from openauto.managers.ro_hub import ro_hub_manager
 from openauto.managers import (
     customer_manager, vehicle_manager, settings_manager,
     animations_manager, new_ro_manager, belongs_to_manager, appointments_manager, appointment_options_manager,
-    repair_orders_manager, theme_manager, permissions_manager)
+    theme_manager, permissions_manager)
 from pyvin import VIN
 import os
 
@@ -212,7 +211,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.weekly_schedule_table.add_appointment.connect(self.appointments_manager.open_new_appointment)
         self.weekly_schedule_table.appointment_options.connect(self._open_appointment_options)
         self.sql_monitor.customer_updates.connect(self.customer_table.update_customers)
-        self.sql_monitor.ro_updates.connect(lambda _data: self.repair_orders_manager.refresh_all())
+        self.sql_monitor.ro_updates.connect(self.ro_hub_manager._on_status_changed)
         self.sql_monitor.vehicle_update.connect(self.vehicle_table.update_vehicles)
         self.sql_monitor.appointment_data.connect(lambda: self.weekly_schedule_table.load_appointments(self.schedule_calendar.selectedDate()))
         self.sql_monitor.appointment_data.connect(lambda: self.hourly_schedule_table.load_schedule_for_day(self.schedule_calendar.selectedDate()))

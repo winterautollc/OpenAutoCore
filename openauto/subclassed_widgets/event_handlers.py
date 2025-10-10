@@ -322,7 +322,7 @@ class SQLMonitor(QThread):
     def run(self):
             while True:
                 try:
-                    ro_data = repair_orders_repository.RepairOrdersRepository.load_repair_orders() or []
+                    ro_data = repair_orders_repository.RepairOrdersRepository.heartbeat() or []
                     customer_data = customer_repository.CustomerRepository.get_all_customer_info() or []
                     vehicle_data = vehicle_repository.VehicleRepository.get_all_vehicle_info() or []
                     # belongs_to_data = customer_repository.CustomerRepository.get_all_customer_names()
@@ -332,7 +332,7 @@ class SQLMonitor(QThread):
 
                     if ro_data != self.last_ro_data:
                         self.last_ro_data = ro_data
-                        self.ro_updates.emit(ro_data)
+                        self.ro_updates.emit(list(ro_data))
 
                     if customer_data != self.last_customer_data:
                         self.last_customer_data = customer_data

@@ -456,3 +456,20 @@ class RepairOrdersRepository:
                 return float(val or 0.0)
             except Exception:
                 return 0.0
+
+    @staticmethod
+    def heartbeat():
+        conn = connect_db()
+        with conn, conn.cursor() as c:
+            c.execute("""
+                SELECT
+                  UNIX_TIMESTAMP(COALESCE(MAX(updated_at), '1970-01-01')) AS maxu,
+                  COUNT(*)                                  AS total,
+                  SUM(status='open')                        AS open_cnt,
+                  SUM(status='approved')                    AS appr_cnt,
+                  SUM(status='working')                     AS work_cnt,
+                  SUM(status='checkout')                    AS chk_cnt
+                FROM repair_orders
+            """)
+            row = c.fetchone() or (0, 0, 0, 0, 0, 0)
+            return tuple(int(x or 0) for x in row)
