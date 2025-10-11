@@ -40,6 +40,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         super().__init__()
         self.current_user = current_user
         self.setupUi(self)
+        self._fix_ro_input_row_for_dpi()
         # self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.sql_monitor = event_handlers.SQLMonitor()
         self.sql_monitor.start()
@@ -291,14 +292,6 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         if reply == QtWidgets.QMessageBox.StandardButton.Yes:
             QtWidgets.QApplication.quit()
 
-
-    def ro_hub_items(self):
-        self.vin_ro_box.addItem(self.vehicle_window_ui.vin_line.text())
-        self.year_ro_label.setText(self.vehicle_window_ui.year_line.text())
-        self.make_ro_label.setText(self.vehicle_window_ui.make_line.text())
-        self.model_ro_label.setText(self.vehicle_window_ui.model_line.text())
-        self.engine_size_ro_label.setText(self.vehicle_window_ui.engine_line.text())
-
     def _open_appointment_options(self, appt_id):
         self.appointment_options_window = appointment_options_manager.AppointmentOptionsManager(self, appt_id)
 
@@ -312,6 +305,45 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         for lane in (self.estimate_tiles, self.working_tiles, self.approved_tiles, self.checkout_tiles):
             if hasattr(lane, "filter_tiles"):
                 lane.filter_tiles(text)
+
+    def _fix_ro_input_row_for_dpi(self):
+        widgets = [
+            self.type_box, self.sku_edit, self.description_edit,
+            self.cost_edit, self.sell_edit, self.labor_rate_box,
+            self.quantity_edit, self.tax_box, self.add_job_item_button
+        ]
+        for w in widgets:
+            w.setMinimumSize(0, 0)
+            w.setMaximumWidth(16777215)
+            pol = w.sizePolicy()
+            pol.setHeightForWidth(False)
+
+            if isinstance(w, QtWidgets.QLineEdit):
+                pol.setHorizontalStretch(1)
+            w.setSizePolicy(pol)
+
+        L = self.horizontalLayout_18
+        L.setStretch(L.indexOf(self.type_box), 0)
+        L.setStretch(L.indexOf(self.sku_edit), 1)
+        L.setStretch(L.indexOf(self.description_edit), 4)
+        L.setStretch(L.indexOf(self.cost_edit), 1)
+        L.setStretch(L.indexOf(self.sell_edit), 1)
+        L.setStretch(L.indexOf(self.labor_rate_box), 1)
+        L.setStretch(L.indexOf(self.quantity_edit), 1)
+        L.setStretch(L.indexOf(self.tax_box), 1)
+        L.setStretch(L.indexOf(self.add_job_item_button), 0)
+
+        for w in (self.sku_edit, self.description_edit, self.cost_edit,
+                  self.sell_edit, self.quantity_edit, self.tax_box, self.labor_rate_box):
+            pol = w.sizePolicy()
+            pol.setRetainSizeWhenHidden(True)
+            w.setSizePolicy(pol)
+
+        fm = self.fontMetrics()
+        target_h = int(fm.height() * 2.0)
+        for w in (self.sku_edit, self.description_edit, self.cost_edit,
+                  self.sell_edit, self.quantity_edit):
+            w.setMinimumHeight(target_h)
 
 if __name__ == "__main__":
     import sys
