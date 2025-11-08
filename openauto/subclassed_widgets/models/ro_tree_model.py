@@ -1,15 +1,16 @@
 from __future__ import annotations
 from decimal import Decimal, ROUND_HALF_UP
-from PyQt6 import QtCore, QtGui
+from PyQt6 import QtCore
 from openauto.repositories.settings_repository import SettingsRepository
 
 from openauto.subclassed_widgets.roles.tree_roles import (
     COL_TYPE, COL_SKU, COL_DESC, COL_QTY, COL_UNIT_COST, COL_SELL, COL_HOURS, COL_RATE, COL_TAX, COL_TOTAL,
-    NUM_COLUMNS,
     JOB_ID_ROLE, JOB_NAME_ROLE, ITEM_ID_ROLE, LINE_ORDER_ROLE, ROW_KIND_ROLE, APPROVED_ROLE,
     HEADER_TITLES, DECLINED_ROLE, PARTIALLY_APPROVED_ROLE, JOB_STATUS_COLOR,
      _BOLD, TYPE_COLOR, _qcolor
 )
+
+RO_NUM_COLUMNS = COL_TOTAL + 1
 
 import re
 _STRIP_STATUS_RE = re.compile(r"\s*[–—-]\s*(Approved|Declined)\s*$", re.IGNORECASE)
@@ -70,7 +71,7 @@ class ROTreeModel(QtCore.QAbstractItemModel):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self._root = ItemNode('root', [None]*NUM_COLUMNS, None)
+        self._root = ItemNode('root', [None] * RO_NUM_COLUMNS, None)
         self._pricing_matrix = self._load_pricing_matrix()
 
 
@@ -99,14 +100,16 @@ class ROTreeModel(QtCore.QAbstractItemModel):
     # Public API (called by controllers/managers)
     def clear(self):
         self.beginResetModel()
-        self._root = ItemNode('root', [None]*NUM_COLUMNS, None)
+        self._root = ItemNode('root', [None] * RO_NUM_COLUMNS, None)
         self.endResetModel()
 
     def add_job(self, name: str, job_id: int | None = None) -> QtCore.QModelIndex:
         name = _strip_status_suffix(name or "New Job")
         self.beginInsertRows(QtCore.QModelIndex(), self._root_child_count(), self._root_child_count())
         # job name lives in TYPE column (idx 0)
-        job = ItemNode('job', [name, "", None, None, None, None, None, None, None, None], self._root)
+        cols = [None] * RO_NUM_COLUMNS
+        cols[COL_TYPE] = _strip_status_suffix(name or "New Job")
+        job = ItemNode('job', cols, self._root)
         if job_id is not None:
             job.data_roles[JOB_ID_ROLE] = job_id
         job.data_roles[JOB_NAME_ROLE] = name
@@ -136,7 +139,17 @@ class ROTreeModel(QtCore.QAbstractItemModel):
             canonical = mapping.get(rt, canonical)
 
         visible_type = (row_type or canonical.upper())
-        row = [visible_type, sku_number or "", description, qty, unit_cost, unit_price, hours, rate, tax_pct, None]
+        row = [None] * RO_NUM_COLUMNS
+        row[COL_TYPE]       = visible_type
+        row[COL_SKU]        = sku_number or ""
+        row[COL_DESC]       = description
+        row[COL_QTY]        = qty
+        row[COL_UNIT_COST]  = unit_cost
+        row[COL_SELL]       = unit_price
+        row[COL_HOURS]      = hours
+        row[COL_RATE]       = rate
+        row[COL_TAX]        = tax_pct
+        row[COL_TOTAL]      = None
 
         self.beginInsertRows(job_index, insert_row, insert_row)
 
@@ -226,7 +239,7 @@ class ROTreeModel(QtCore.QAbstractItemModel):
         return len(node.children) if node else 0
 
     def columnCount(self, parent: QtCore.QModelIndex = QtCore.QModelIndex()) -> int:
-        return NUM_COLUMNS
+        return RO_NUM_COLUMNS
 
     def index(self, row: int, column: int, parent: QtCore.QModelIndex = QtCore.QModelIndex()) -> QtCore.QModelIndex:
         parent_node = self._node(parent)
@@ -261,6 +274,7 @@ class ROTreeModel(QtCore.QAbstractItemModel):
                     return f"{base} - Declined"
                 return base
             return node.get(index.column())
+
 
         if role == QtCore.Qt.ItemDataRole.ForegroundRole and index.column() == COL_TYPE:
             if node.is_job():
@@ -528,7 +542,7 @@ class ROTreeModel(QtCore.QAbstractItemModel):
         subs = [i for i, ch in enumerate(job.children) if ch.is_subtotal()]
         if not subs:
             # none → append one
-            cols = [None] * NUM_COLUMNS
+            cols = [None] * RO_NUM_COLUMNS
             cols[COL_TYPE] = "SUBTOTAL"
             cols[COL_TOTAL] = 0.0
             subtotal = ItemNode('subtotal', cols, job)
@@ -545,7 +559,7 @@ class ROTreeModel(QtCore.QAbstractItemModel):
             sub = job.children.pop(keep)
             job.children.append(sub)
 
-    # -------------------- Helpers & totals --------------------
+    # Helpers & totals
     def _root_child_count(self) -> int:
         return len(self._root.children)
 
@@ -565,7 +579,7 @@ class ROTreeModel(QtCore.QAbstractItemModel):
     def _ensure_job_subtotal(self, job: ItemNode):
         if job.children and job.children[-1].is_subtotal():
             return
-        cols = [None] * NUM_COLUMNS
+        cols = [None] * RO_NUM_COLUMNS
         cols[COL_TYPE] = "SUBTOTAL"
         cols[COL_TOTAL] = 0.0
         subtotal = ItemNode('subtotal', cols, job)

@@ -1,14 +1,17 @@
 from PyQt6 import QtCore, QtWidgets, QtGui
 from PyQt6.QtGui import QDoubleValidator
+from openauto.ui.log_console import LogConsole
 from openauto.subclassed_widgets.views import small_tables, workflow_tables, apt_calendar, ro_tiles
 from openauto.subclassed_widgets import event_handlers
 from openauto.subclassed_widgets.models.ro_tree_model import ROTreeModel
 from openauto.ui import main_form
 from openauto.managers.ro_hub import ro_hub_manager
+from openauto.managers.parts_tree import parts_hub_manager
 from openauto.managers import (
     customer_manager, vehicle_manager, settings_manager,
     animations_manager, new_ro_manager, belongs_to_manager, appointments_manager, appointment_options_manager,
     theme_manager, permissions_manager)
+from openauto.managers.parts_tree.go_sidecar_manager import UvicornManager
 from pyvin import VIN
 import os
 
@@ -40,10 +43,10 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         super().__init__()
         self.current_user = current_user
         self.setupUi(self)
-        self._fix_ro_input_row_for_dpi()
         # self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.sql_monitor = event_handlers.SQLMonitor()
         self.sql_monitor.start()
+        self._init_quote_page()
         self._init_managers()
         self._init_validators()
         self._init_tables()
@@ -54,6 +57,8 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self._set_all_buttons_flat(False)
         self._set_line_sizes()
         self.switch_theme("light", persist=False)
+        # self._fix_ro_input_row_for_dpi()
+
 
 
 
@@ -70,6 +75,10 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         # self.repair_orders_manager = repair_orders_manager.RepairOrdersManager(self)
         self.ro_hub_manager = ro_hub_manager.ROHubManager(self)
         self.permissions_manager = permissions_manager.PermissionsManager(self)
+        self.uvicorn_manager = UvicornManager(self)
+        self.log_console = LogConsole(self)
+        self.parts_hub_manager = parts_hub_manager.PartsHubManager(self)
+
 
 
     ### VALIDATORS TO ONLY ALLOW CERTAIN CHARACTERS ENTERED ###
@@ -94,11 +103,14 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.hourly_schedule_table = apt_calendar.HourlySchedule(parent=self)
         self.weekly_schedule_table = apt_calendar.WeeklySchedule(parent=self)
         self.ro_items_table.setModel(ROTreeModel(self.ro_items_table))
-        self.tax_table = small_tables.TaxTable(parent=self)
+
+
+
 
 ### ADD ALL SUBCLASSED WIDGETS TO LAYOUT ###
 
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_2.addWidget(self.log_console, 4, 1, 1, 2)
         self.gridLayout_11.addWidget(self.customer_table, 0, 0, 1, 1)
         self.gridLayout_19.addWidget(self.vehicle_table, 0, 0, 1, 1)
         self.gridLayout_24.addWidget(self.matrix_table, 1, 0, 1, 2)
@@ -112,7 +124,30 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.gridLayout_34.addWidget(self.hourly_schedule_table, 0, 0, 1, 1)
         self.gridLayout_47.addWidget(self.tax_table, 1, 0, 1, 2)
 
+### Add page to hub_stacked_widget for the internet browser and declare it early. URL's are changed on demand.
+    def _init_quote_page(self):
+        sw = self.hub_stacked_widget
 
+        self.quote_page = QtWidgets.QWidget(parent=self.ro_control_page)
+        self.quote_page.setObjectName("quote_browser_page")
+        self.quote_page.setAttribute(QtCore.Qt.WidgetAttribute.WA_StyledBackground, True)
+        self.quote_page.hide()
+        self.quote_page.setGeometry(self.ro_control_page.rect())
+
+        lay = QtWidgets.QGridLayout(self.quote_page)
+        lay.setContentsMargins(0, 0, 0, 0)
+        lay.setSpacing(0)
+        lay.setRowStretch(0, 1)
+        lay.setColumnStretch(0, 1)
+
+        from openauto.managers.parts_tree.quote_browser import QuoteBrowser
+        self.quote_browser = QuoteBrowser("about:blank", "https://127.0.0.1:8000/done",
+                                          parent=self.quote_page)
+
+        lay.addWidget(self.quote_browser, 0, 0, 1, 1)
+
+        self.quote_layout = lay
+        self.quote_page_index = sw.addWidget(self.quote_page)
 
 
     def _init_state(self):
@@ -145,6 +180,12 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
 
 ### SIGNALS/SLOTS FOR PUSHBUTTONS ETC.. ###
     def _connect_signals(self):
+        self.uvicorn_manager.start(
+            host="127.0.0.1",
+            port=8000,
+            module="openauto.managers.parts_tree.api_pt_callbacks:app",
+            python=None
+        )
         self.ro_approved_edit.setButtonSymbols(QtWidgets.QAbstractSpinBox.ButtonSymbols.NoButtons)
         self.ro_created_edit.setButtonSymbols(QtWidgets.QAbstractSpinBox.ButtonSymbols.NoButtons)
         self.show_all_ro_button.hide()
@@ -172,7 +213,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.checkout_button.clicked.connect(self.animations_manager.show_checkout)
         self.customers_button.clicked.connect(self.animations_manager.customer_page_show)
         self.repair_orders_button.clicked.connect(self.animations_manager.show_repair_orders)
-        self.repair_orders_button.clicked.connect(self.animations_manager.ro_page_show)
+        # self.repair_orders_button.clicked.connect(self.animations_manager.ro_page_show)
         self.new_customer_button.clicked.connect(self.customer_manager.open_new_customer)
         self.vehicles_button.clicked.connect(self.animations_manager.vehicle_page_show)
         self.new_vehicle_button.setMaximumWidth(200)
@@ -219,6 +260,10 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.messaging_button.clicked.connect(self.texting_not_ready)
         self.hourly_schedule_table.edit_appointment.connect(self._open_appointment_options)
         self.hourly_schedule_table.add_appointment.connect(self.appointments_manager.open_new_appointment)
+        self.uvicorn_manager.debugText.connect(self.log_console.append_line)
+        self.log_console.setVisible(False)
+        QtGui.QShortcut(QtGui.QKeySequence("F12"), self,
+                        activated=lambda: self.log_console.setVisible(not self.log_console.isVisible()))
 
     def _set_privileges(self):
         cu = getattr(self, "current_user", None)
@@ -262,6 +307,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         if getattr(self, "current_user", None):
             full_name = f"{self.current_user['first_name']} {self.current_user['last_name']}"
             role = self.current_user['user_type'].capitalize()
+            self.login_label.setSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Preferred)
             self.login_label.setText(f"<b>{full_name}</b>: {role}")
 
         if persist and getattr(self, "current_user", None):
@@ -344,6 +390,15 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         for w in (self.sku_edit, self.description_edit, self.cost_edit,
                   self.sell_edit, self.quantity_edit):
             w.setMinimumHeight(target_h)
+
+    def closeEvent(self, ev):
+        try:
+            # ask the manager to stop its threads/timers cleanly
+            if hasattr(self.parts_hub_manager, "teardown"):
+                self.parts_hub_manager.teardown()
+        except Exception:
+            pass
+        super().closeEvent(ev)
 
 if __name__ == "__main__":
     import sys

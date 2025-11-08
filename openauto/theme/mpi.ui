@@ -1,0 +1,2524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1171</width>
+    <height>658</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_9">
+   <item row="2" column="2">
+    <widget class="QPushButton" name="mpi_save_button">
+     <property name="maximumSize">
+      <size>
+       <width>150</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Save</string>
+     </property>
+     <property name="icon">
+      <iconset resource="openauto_resources.qrc">
+       <normaloff>:/resources/icons3/24x24/cil-check.png</normaloff>:/resources/icons3/24x24/cil-check.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1137</width>
+        <height>887</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_10">
+       <item row="5" column="0">
+        <widget class="QFrame" name="interior_exterior_frame">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <widget class="QLabel" name="interior_exterior_label">
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+              <bold>true</bold>
+              <underline>true</underline>
+             </font>
+            </property>
+            <property name="text">
+             <string>   Interior / Exterior   </string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_32">
+            <item>
+             <widget class="QLabel" name="horn_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Horn:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="horn_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_29</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="horn_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_29</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="horn_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_29</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_33">
+            <item>
+             <widget class="QLabel" name="head_lights_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Head Lights:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="head_lights_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_30</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="head_lights_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_30</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="head_lights_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_30</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_34">
+            <item>
+             <widget class="QLabel" name="tail_lights_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Tail Lights:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="tail_lights_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_31</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="tail_lights_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_31</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="tail_lights_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_31</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="4" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_35">
+            <item>
+             <widget class="QLabel" name="cabin_filter_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Cabin Filter:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cabin_filter_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_32</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cabin_filter_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_32</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cabin_filter_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_32</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="5" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_36">
+            <item>
+             <widget class="QLabel" name="trunk_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Hatch / Trunk:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="hatch_trunk_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_33</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="hatch_trunk_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_33</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="hatch_trunk_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_33</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="4" column="1" rowspan="2">
+        <widget class="QFrame" name="fluid_and_levels_frame">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="QLabel" name="fluids_label">
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+              <bold>true</bold>
+              <underline>true</underline>
+             </font>
+            </property>
+            <property name="text">
+             <string>   Fluids And Levels   </string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_15">
+            <item>
+             <widget class="QLabel" name="engine_oil_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Engine Oil:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="engine_oil_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_12</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="engine_oil_filled">
+              <property name="text">
+               <string>Filled</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_12</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="engine_oil_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_12</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_16">
+            <item>
+             <widget class="QLabel" name="brake_fluid_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Brake Fluid:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="brake_fluid_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_13</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="brake_fluid_filled">
+              <property name="text">
+               <string>Filled</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_13</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="brake_fluid_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_13</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_17">
+            <item>
+             <widget class="QLabel" name="transmission_fluid_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Transmission:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="transmission_fluid_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_14</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="transmission_fluid_filled">
+              <property name="text">
+               <string>Filled</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_14</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="transmission_fluid_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_14</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="4" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_18">
+            <item>
+             <widget class="QLabel" name="engine_coolant_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Engine Coolant:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="engine_coolant_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_15</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="engine_coolant_filled">
+              <property name="text">
+               <string>Filled</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_15</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="engine_coolant_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_15</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="5" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_19">
+            <item>
+             <widget class="QLabel" name="power_steering_fluid_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Power Steering:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="steering_fluid_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_16</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="steering_fluid_filled">
+              <property name="text">
+               <string>Filled</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_16</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="steering_fluid_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_16</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="6" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_20">
+            <item>
+             <widget class="QLabel" name="windshield_washer_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Washer Fluid:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="washer_fluid_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_17</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="washer_fluid_filled">
+              <property name="text">
+               <string>Filled</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_17</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="washer_fluid_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_17</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QFrame" name="cust_info_frame">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="3" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QLabel" name="ro_mpi_label">
+              <property name="font">
+               <font>
+                <pointsize>13</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>RO #:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="ro_mpi_line">
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="vehc_mpi_label">
+              <property name="font">
+               <font>
+                <pointsize>13</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Vehicle:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="vehc_mpi_line">
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="vin_mpi_label">
+              <property name="font">
+               <font>
+                <pointsize>13</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>VIN:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="vin_mpi_line">
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="plate_mpi_label">
+              <property name="font">
+               <font>
+                <pointsize>13</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Plate:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="plate_mpi_line">
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="miles_mpi_label">
+              <property name="font">
+               <font>
+                <pointsize>13</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Mileage:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="miles_mpi_line">
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="cust_mpi_label">
+              <property name="font">
+               <font>
+                <pointsize>13</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Customer:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="cust_mpi_line">
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="phone_mpi_label">
+              <property name="font">
+               <font>
+                <pointsize>13</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Phone:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="phone_mpi_line">
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="email_mpi_label">
+              <property name="font">
+               <font>
+                <pointsize>13</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Email:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="email_mpi_line">
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="date_mpi_label">
+              <property name="font">
+               <font>
+                <pointsize>13</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Date:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="date_mpi_line">
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="print_mpi_button">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Print</string>
+            </property>
+            <property name="icon">
+             <iconset resource="openauto_resources.qrc">
+              <normaloff>:/resources/icons3/24x24/cil-print.png</normaloff>:/resources/icons3/24x24/cil-print.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>30</width>
+              <height>30</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QFrame" name="tires_frame">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="tires_label">
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+              <bold>true</bold>
+              <underline>true</underline>
+             </font>
+            </property>
+            <property name="text">
+             <string>    Tires    </string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QLabel" name="rf_tire_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>RF:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rf_tire_ok">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rf_tire_attention">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>6-4/32&quot;</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rf_tire_fail">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="rf_tire_line">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Tread /32&quot;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QLabel" name="lf_tire_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>LF:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="lf_tire_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_2</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="lf_tire_attention">
+              <property name="text">
+               <string>6-4/32&quot;</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_2</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="lf_tire_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_2</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lf_tire_line">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Tread /32&quot;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <item>
+             <widget class="QLabel" name="lr_tire_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>LR:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="lr_tire_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_3</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="lr_tire_attention">
+              <property name="text">
+               <string>6-4/32&quot;</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_3</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="lr_tire_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_3</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lr_tire_line">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Tread /32&quot;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="4" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QLabel" name="rr_tire_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>RR:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rr_tire_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_4</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rr_tire_attention">
+              <property name="text">
+               <string>6-4/32&quot;</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_4</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rr_tire_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_4</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="rr_tire_line">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Tread /32&quot;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0" rowspan="3">
+        <widget class="QFrame" name="under_hood_frame">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <widget class="QLabel" name="under_hood_label">
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+              <bold>true</bold>
+              <underline>true</underline>
+             </font>
+            </property>
+            <property name="text">
+             <string>   Under Hood / Vehicle   </string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_21">
+            <item>
+             <widget class="QLabel" name="engine_filter_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Engine Air Filter:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="engine_filter_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_18</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="engine_filter_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_18</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="engine_filter_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_18</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_22">
+            <item>
+             <widget class="QLabel" name="cooling_hoses_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Cooling Hoses:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cooling_hose_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_19</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cooling_hose_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_19</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cooling_hose_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_19</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_23">
+            <item>
+             <widget class="QLabel" name="drive_belts_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Drive Belts:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="drive_belts_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_20</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="drive_belts_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_20</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="drive_belts_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_20</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="4" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_24">
+            <item>
+             <widget class="QLabel" name="ac_system_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>AC System:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="ac_system_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_21</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="ac_system_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_21</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="ac_system_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_21</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="5" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_25">
+            <item>
+             <widget class="QLabel" name="rear_shocks_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Rear Shocks:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rear_shocks_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_22</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rear_shocks_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_22</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rear_shocks_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_22</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="6" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_26">
+            <item>
+             <widget class="QLabel" name="front_shocks_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Front Shocks:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="front_shocks_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_23</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="front_shocks_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_23</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="front_shocks_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_23</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="7" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_27">
+            <item>
+             <widget class="QLabel" name="tie_rods_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Tie Rods:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="tie_rods_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_24</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="tie_rods_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_24</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="tie_rods_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_24</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="8" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_28">
+            <item>
+             <widget class="QLabel" name="differentials_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Differential(s):</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="differentials_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_25</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="differentials_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_25</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="differentials_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_25</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="9" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_29">
+            <item>
+             <widget class="QLabel" name="drive_shafts_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Drive Shaft(s):</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="drive_shafts_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_26</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="drive_shafts_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_26</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="drive_shafts_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_26</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="10" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_30">
+            <item>
+             <widget class="QLabel" name="cv_axles_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>CV Axles:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cv_axles_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_27</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cv_axles_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_27</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cv_axles_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_27</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="11" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_31">
+            <item>
+             <widget class="QLabel" name="exhaust_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Exhaust:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="exhaust_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_28</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="exhaust_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_28</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="exhaust_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_28</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QFrame" name="brakes_frame">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QLabel" name="brakes_label">
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+              <bold>true</bold>
+              <underline>true</underline>
+             </font>
+            </property>
+            <property name="text">
+             <string>   Brakes   </string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_11">
+            <item>
+             <widget class="QLabel" name="rf_brake_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>RF:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rf_brake_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_8</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rf_brake_attention">
+              <property name="text">
+               <string>5-4mm</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_8</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rf_brake_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_8</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="rf_brake_line">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Pads mm</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_12">
+            <item>
+             <widget class="QLabel" name="lf_brake_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>LF:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="lf_brake_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_9</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="lf_brake_attention">
+              <property name="text">
+               <string>5-4mm</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_9</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="lf_brake_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_9</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lf_brake_line">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Pads mm</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_13">
+            <item>
+             <widget class="QLabel" name="lr_brake_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>LR:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="lr_brake_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_10</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="lr_brake_attention">
+              <property name="text">
+               <string>5-4mm</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_10</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="lr_brake_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_10</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lr_brake_line">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Pads mm</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="4" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_14">
+            <item>
+             <widget class="QLabel" name="rr_brake_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>RR:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rr_brake_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_11</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rr_brake_attention">
+              <property name="text">
+               <string>5-4mm</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_11</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rr_brake_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_11</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="rr_brake_line">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Pads mm</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QFrame" name="wipers_frame">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="wipers_label">
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+              <bold>true</bold>
+              <underline>true</underline>
+             </font>
+            </property>
+            <property name="text">
+             <string>   Wipers   </string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QLabel" name="rf_wiper_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>RF:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rf_wiper_ok">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_5</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rf_wiper_att">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_5</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rf_wiper_fail">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_5</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QLabel" name="lf_wiper_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>LF:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="lf_wiper_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_6</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="lf_wiper_att">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_6</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="lf_wiper_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_6</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QLabel" name="rear_wiper_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Rear:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rear_wiper_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_7</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rear_wiper_att">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_7</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="rear_wiper_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_7</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QFrame" name="batter_frame">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="0">
+           <widget class="QLabel" name="battery_label">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+              <bold>true</bold>
+              <underline>true</underline>
+             </font>
+            </property>
+            <property name="text">
+             <string>   Battery Condition   </string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_37">
+            <item>
+             <widget class="QLabel" name="batter_capacity_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Capacity:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="battery_capacity_ok">
+              <property name="text">
+               <string>Pass</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_34</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="battery_capacity_attention">
+              <property name="text">
+               <string>Recharge / Test</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_34</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="battery_capacity_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_34</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_38">
+            <item>
+             <widget class="QLabel" name="battery_leaks_label">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Leaks:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="battery_leaks_ok">
+              <property name="text">
+               <string>OK</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_35</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="battery_leaks_attention">
+              <property name="text">
+               <string>Attention</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_35</string>
+              </attribute>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="battery_leaks_fail">
+              <property name="text">
+               <string>Fail</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroup_35</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="mpi_cancel_button">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>150</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+     <property name="icon">
+      <iconset resource="openauto_resources.qrc">
+       <normaloff>:/resources/icons3/24x24/cil-x-circle.png</normaloff>:/resources/icons3/24x24/cil-x-circle.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="openauto_resources.qrc"/>
+ </resources>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup_14"/>
+  <buttongroup name="buttonGroup_11"/>
+  <buttongroup name="buttonGroup_13"/>
+  <buttongroup name="buttonGroup_31"/>
+  <buttongroup name="buttonGroup_34"/>
+  <buttongroup name="buttonGroup_4"/>
+  <buttongroup name="buttonGroup_35"/>
+  <buttongroup name="buttonGroup_32"/>
+  <buttongroup name="buttonGroup_17"/>
+  <buttongroup name="buttonGroup_26"/>
+  <buttongroup name="buttonGroup_24"/>
+  <buttongroup name="buttonGroup_12"/>
+  <buttongroup name="buttonGroup_19"/>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_22"/>
+  <buttongroup name="buttonGroup_28"/>
+  <buttongroup name="buttonGroup_25"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup_16"/>
+  <buttongroup name="buttonGroup_9"/>
+  <buttongroup name="buttonGroup_30"/>
+  <buttongroup name="buttonGroup_6"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup_23"/>
+  <buttongroup name="buttonGroup_18"/>
+  <buttongroup name="buttonGroup_7"/>
+  <buttongroup name="buttonGroup_29"/>
+  <buttongroup name="buttonGroup_33"/>
+  <buttongroup name="buttonGroup_10"/>
+  <buttongroup name="buttonGroup_8"/>
+  <buttongroup name="buttonGroup_15"/>
+  <buttongroup name="buttonGroup_5"/>
+  <buttongroup name="buttonGroup_27"/>
+  <buttongroup name="buttonGroup_20"/>
+  <buttongroup name="buttonGroup_21"/>
+ </buttongroups>
+</ui>

@@ -1,12 +1,14 @@
+from __future__ import annotations
 from PyQt6 import QtCore, QtGui
 from PyQt6.QtCore import QObject, pyqtSignal, QThread, QTimer
 
 from openauto.repositories import (customer_repository, vehicle_repository,
-                                   appointment_repository, repair_orders_repository)
-import time
+                                   appointment_repository, repair_orders_repository, parts_tree_repository)
+
 from PyQt6.QtCore import QPoint, QRect, QEasingCurve, QPropertyAnimation, QSequentialAnimationGroup, QParallelAnimationGroup, QPauseAnimation, QEvent
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QGraphicsOpacityEffect
+from queue import Queue, Empty
 
 
 ### EVENT FILTER TO ANIMATE MENU COLLAPSE WHEN MOUSE ISIN'T HOVERED OVER IT AND EXPAND ON MOUSE HOVER  ###
@@ -304,6 +306,7 @@ class SQLMonitor(QThread):
     small_vehicles_update = pyqtSignal(list)
     appointment_data = pyqtSignal(list)
     hourly_schedule_update = pyqtSignal()
+    parts_tree_updates = pyqtSignal(int)
 
 
     def __init__(self):
@@ -319,6 +322,7 @@ class SQLMonitor(QThread):
         self.last_appointment_data = None
         self.last_hourly_data = None
 
+
     def run(self):
             while True:
                 try:
@@ -329,6 +333,7 @@ class SQLMonitor(QThread):
                     customer_small_data = customer_repository.CustomerRepository.get_all_customer_names() or []
                     vehicle_small_data = vehicle_repository.VehicleRepository.get_all_vehicles() or []
                     appointment_data = appointment_repository.AppointmentRepository.get_appointment_ids_and_timestamps() or []
+
 
                     if ro_data != self.last_ro_data:
                         self.last_ro_data = ro_data
@@ -358,10 +363,13 @@ class SQLMonitor(QThread):
                         self.last_appointment_data = appointment_data
                         self.appointment_data.emit(appointment_data)
 
+
+
+
                 except Exception as e:
                     print(f"[SQLMonitor] Error during polling: {e}")
 
-                time.sleep(1)
+                QThread.msleep(1000)
 
 
 
@@ -398,3 +406,4 @@ class WidgetManager:
             self.widgets[key].close()
             self.widgets[key].deleteLater()
             self.widgets[key] = None
+

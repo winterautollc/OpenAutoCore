@@ -93,6 +93,11 @@ QWidget {
 
 #cmenu_frame {
   background: #314455;
+  border-radius: 3px;
+}
+
+#cmenu_frame::hover {
+    border-radius: 8px;
 }
 
 /* cmenu buttons */
@@ -437,6 +442,7 @@ QWidget {
     padding: 6px 12px;
 }
 
+#mpi_save_button,
 #login_button,
 #save_user_button {
     background-color: #75937c;
@@ -444,7 +450,7 @@ QWidget {
     border-radius: 2px;
 }
 
-
+#mpi_save_button::hover,
 #login_button::hover,
 #save_user_button::hover {
     background-color: #759093;
@@ -452,6 +458,7 @@ QWidget {
     border-radius: 5px;
 }
 
+#mpi_cancel_button,
 #cancel_login_button,
 #cancel_create_button {
     background-color: #C96567;
@@ -459,6 +466,7 @@ QWidget {
     border-radius: 2px;
 }
 
+#mpi_cancel_button::hover,
 #cancel_login_button::hover,
 #cancel_create_button::hover {
     background-color: #9E5A63;
@@ -582,6 +590,7 @@ QWidget {
 
 #save_ro_button,
 #print_ro_button,
+#print_mpi_button,
 #message_customer_button {
     background-color: #76ABAE;
     color: #fff;
@@ -589,6 +598,7 @@ QWidget {
     font-size: 16px;
 }
 
+#print_mpi_button::hover,
 #save_ro_button::hover,
 #print_ro_button::hover,
 #message_customer_button::hover {
@@ -647,6 +657,133 @@ QWidget {
     border-radius: 2px;
     font-size: 16px;
 }
+
+
+#engine_oil_filled::indicator,
+#brake_fluid_filled::indicator,
+#transmission_fluid_filled::indicator,
+#engine_coolant_filled::indicator,
+#steering_fluid_filled::indicator,
+#washer_fluid_filled::indicator,
+#drive_belts_ok::indicator,
+#ac_system_ok::indicator,
+#rear_shocks_ok::indicator,
+#front_shocks_ok::indicator,
+#tie_rods_ok::indicator,
+#differentials_ok::indicator,
+#drive_shafts_ok::indicator,
+#cv_axles_ok::indicator,
+#exhaust_ok::indicator,
+#horn_ok::indicator,
+#head_lights_ok::indicator,
+#tail_lights_ok::indicator,
+#cabin_filter_ok::indicator,
+#hatch_trunk_ok::indicator,
+#rf_tire_ok::indicator,
+#lf_tire_ok::indicator,
+#lr_tire_ok::indicator,
+#rr_tire_ok::indicator,
+#rf_brake_ok::indicator,
+#lf_brake_ok::indicator,
+#lr_brake_ok::indicator,
+#rr_brake_ok::indicator,
+#engine_oil_ok::indicator,
+#brake_fluid_ok::indicator,
+#transmission_fluid_ok::indicator,
+#engine_coolant_ok::indicator,
+#steering_fluid_ok::indicator,
+#washer_fluid_ok::indicator,
+#battery_capacity_ok::indicator,
+#battery_leaks_ok::indicator,
+#rf_wiper_ok::indicator,
+#lf_wiper_ok::indicator,
+#rear_wiper_ok::indicator,
+#engine_filter_ok::indicator,
+#cooling_hose_ok::indicator {
+    width: 30px;
+    height: 30px;
+    background-color: "#47C880";
+    border: 1px solid gray;
+
+}
+
+#drive_belts_attention::indicator,
+#ac_system_attention::indicator,
+#rear_shocks_attention::indicator,
+#front_shocks_attention::indicator,
+#tie_rods_attention::indicator,
+#differentials_attention::indicator,
+#drive_shafts_attention::indicator,
+#cv_axles_attention::indicator,
+#exhaust_attention::indicator,
+#horn_attention::indicator,
+#head_lights_attention::indicator,
+#tail_lights_attention::indicator,
+#cabin_filter_attention::indicator,
+#hatch_trunk_attention::indicator,
+#rf_tire_attention::indicator,
+#lf_tire_attention::indicator,
+#lr_tire_attention::indicator,
+#rr_tire_attention::indicator,
+#rf_brake_attention::indicator,
+#lf_brake_attention::indicator,
+#lr_brake_attention::indicator,
+#rr_brake_attention::indicator,
+#engine_oil_attention::indicator,
+#brake_fluid_attention::indicator,
+#transmission_fluid_attention::indicator,
+#engine_coolant_attention::indicator,
+#steering_fluid_attention::indicator,
+#washer_fluid_attention::indicator,
+#battery_capacity_attention::indicator,
+#battery_leaks_attention::indicator,
+#rf_wiper_att::indicator,
+#lf_wiper_att::indicator,
+#rear_wiper_att::indicator,
+#engine_filter_attention::indicator,
+#cooling_hose_attention::indicator {
+    background-color: "#F9C440";
+    border: 1px solid gray;
+    width: 30px;
+    height: 30px;
+}
+
+#engine_filter_fail::indicator,
+#cooling_hose_fail::indicator,
+#drive_belts_fail::indicator,
+#ac_system_fail::indicator,
+#rear_shocks_fail::indicator,
+#front_shocks_fail::indicator,
+#tie_rods_fail::indicator,
+#differentials_fail::indicator,
+#drive_shafts_fail::indicator,
+#cv_axles_fail::indicator,
+#exhaust_fail::indicator,
+#horn_fail::indicator,
+#head_lights_fail::indicator,
+#tail_lights_fail::indicator,
+#cabin_filter_fail::indicator,
+#hatch_trunk_fail::indicator,
+#battery_capacity_fail::indicator,
+#battery_leaks_fail::indicator,
+#rf_wiper_fail::indicator,
+#lf_wiper_fail::indicator,
+#rear_wiper_fail::indicator,
+#rf_tire_fail::indicator,
+#lf_tire_fail::indicator,
+#lr_tire_fail::indicator,
+#rr_tire_fail::indicator,
+#rf_brake_fail::indicator,
+#lf_brake_fail::indicator,
+#lr_brake_fail::indicator,
+#rr_brake_fail::indicator {
+    background-color: "#F0544C";
+    height: 30px;
+    width: 30px;
+    border: 1px solid gray;
+}
+
+
 
 QComboBox::down-arrow {
     background-color: #808080;
@@ -757,17 +894,30 @@ QHeaderView::section:horizontal {
 
 
 /* ---- Inputs ---- */
-QLineEdit, QPlainTextEdit, QTextEdit, QComboBox, QSpinBox, QDoubleSpinBox, QDateEdit, QTimeEdit, QDateTimeEdit {
+QPlainTextEdit, QTextEdit, QComboBox, QSpinBox, QDoubleSpinBox, QDateEdit, QTimeEdit, QDateTimeEdit {
   background: #2B2B2B;
   color: #E0E0E0;
   border: 1px solid #3C3C3C;
   border-radius: 2px;
   padding: 2px 4px;
 }
-QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus, QComboBox:focus,
+QPlainTextEdit:focus, QTextEdit:focus, QComboBox:focus,
 QSpinBox:focus, QDoubleSpinBox:focus, QDateEdit:focus, QTimeEdit:focus, QDateTimeEdit:focus {
   border: 1px solid #4A90E2;
 }
+
+QLineEdit {
+    border: none;
+    border-bottom: 1px solid white;
+    padding-bottom: 2px;
+    font-weight: bold;
+}
+
+QLineEdit::focus {
+    border-bottom: 2px solid white;
+    font-weight: bold;
+}
+
 
 /* ---- Scrollbars ---- */
 QScrollBar:vertical, QScrollBar:horizontal {
@@ -832,6 +982,16 @@ QCalendarWidget {
     font-size: 20px;
 }
 
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid gray;
+}
+
+QCheckBox::indicator:checked {
+    image: url(:/resources/icons3/24x24/cil-check-alt.png);
+}
 
 /* ---- Status colors (dynamic properties) ---- */
 [status="approved"] { border-color: #66BB6A; }

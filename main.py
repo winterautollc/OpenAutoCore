@@ -1,3 +1,4 @@
+import sys
 import logging
 from PyQt6.QtGui import QFont
 from PyQt6.QtGui import QFontDatabase
@@ -75,7 +76,7 @@ init_error_reporter(ErrorReporterConfig(
 from openauto.ui.home import MainWindow
 from openauto.managers.login_manager import LoginCreate
 
-# FORCE XWAYLAND / X11 FOR LINUX #
+#FORCE XWAYLAND / X11 FOR LINUX #
 if platform.system() == "Linux" and os.environ.get("XDG_SESSION_TYPE", "").lower() == "wayland":
     os.environ["QT_QPA_PLATFORM"] = "xcb"
 
@@ -110,10 +111,12 @@ def _load_user_theme(user_id: int):
 
 
 if __name__ == "__main__":
-    app = QApplication([])
+    from PyQt6.QtCore import QCoreApplication, Qt
+    QCoreApplication.setAttribute(Qt.ApplicationAttribute.AA_ShareOpenGLContexts)
+    from PyQt6 import QtWebEngineWidgets
+    app = QApplication(sys.argv)
     app.setStyle("Fusion")
     from openauto.theme.resources.fonts import fonts_rc
-
     load_ubuntu_sans()
     apply_app_font()
     print("App font is now:", QtGui.QFontInfo(QApplication.font()).family())
