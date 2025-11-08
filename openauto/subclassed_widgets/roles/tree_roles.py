@@ -10,7 +10,11 @@ COL_HOURS       = 6
 COL_RATE        = 7
 COL_TAX         = 8
 COL_TOTAL       = 9
-NUM_COLUMNS     = 10
+COL_SUPPLIER    = 11
+COL_ORDER_PLATFORM     = 12
+COL_STATUS          = 13
+NUM_COLUMNS     = max(10, COL_ORDER_PLATFORM + 1, COL_STATUS + 1)
+
 
 
 # Custom roles (start from Qt.UserRole + 1)
@@ -43,6 +47,14 @@ TYPE_COLOR = {
     "fee":    "#d08609",
     "sublet": "#7c53f8",
     "subtotal": "#9d9689",
+}
+
+PART_STATUS_COLOR = {
+    "quoted":   "#607D8B",
+    "ordered":  "#0b60eb",
+    "received": "#1ca44e",
+    "returned": "#7c53f8",
+    "cancelled":"#B71C1C",
 }
 
 _BOLD = QtGui.QFont()
