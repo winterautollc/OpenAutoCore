@@ -55,8 +55,9 @@ class EstimateOptionsManager:
         message_confirm.setText("Estimate Deleted!! This Cannot Be Undone")
 
         if response == QtWidgets.QMessageBox.StandardButton.Yes:
-            estimate_id = self.estimate_id
-            repair_orders_repository.RepairOrdersRepository.delete_repair_order(estimate_id)
+            ro_id = self.estimate_id
+            from openauto.repositories.repair_orders_repository import RepairOrdersRepository
+            RepairOrdersRepository.delete_repair_order_cascade(ro_id)
             message_confirm.exec()
             self.widget_manager.close_and_delete("estimate_options")
 

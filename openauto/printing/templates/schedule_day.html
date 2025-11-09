@@ -1,0 +1,19 @@
+{% set title = "Daily Schedule " ~ day %}
+{% set body %}
+  <h1>Schedule — {{ day }}</h1>
+  <table>
+    <thead><tr><th>Time</th><th>Customer / Vehicle</th><th>Service</th><th>Tech</th><th>Phone</th></tr></thead>
+    <tbody>
+      {% for appt in appointments %}
+      <tr>
+        <td class="nowrap">{{ appt.start_time }}–{{ appt.end_time }}</td>
+        <td>{{ appt.customer }}<br/><span class="muted">{{ appt.vehicle }}</span></td>
+        <td>{{ appt.reason }}</td>
+        <td>{{ appt.tech or "-" }}</td>
+        <td class="nowrap">{{ appt.phone }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endset %}
+{% include "_base.html" %}

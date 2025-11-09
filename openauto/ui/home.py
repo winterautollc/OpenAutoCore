@@ -43,6 +43,12 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         super().__init__()
         self.current_user = current_user
         self.setupUi(self)
+        self.cmenu_frame.setMinimumWidth(60)
+        self.cmenu_frame.setMaximumWidth(60)
+        sp = self.cmenu_frame.sizePolicy()
+        sp.setHorizontalPolicy(QtWidgets.QSizePolicy.Policy.Fixed)
+        sp.setVerticalPolicy(QtWidgets.QSizePolicy.Policy.Expanding)
+        self.cmenu_frame.setSizePolicy(sp)
         # self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.sql_monitor = event_handlers.SQLMonitor()
         self.sql_monitor.start()
@@ -57,7 +63,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self._set_all_buttons_flat(False)
         self._set_line_sizes()
         self.switch_theme("light", persist=False)
-        # self._fix_ro_input_row_for_dpi()
+        self._fix_ro_input_row_for_dpi()
 
 
 

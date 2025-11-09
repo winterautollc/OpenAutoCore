@@ -321,7 +321,6 @@ class ItemEntryController:
 
     def remove_selected_item(self):
         t = self.ui.ro_items_table
-        # QTreeWidget path (legacy)
         if isinstance(t, QtWidgets.QTreeWidget):
             deleter = getattr(t, "_deleteSelected", None)
             if callable(deleter):

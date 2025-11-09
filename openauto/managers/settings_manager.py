@@ -1,4 +1,4 @@
-from PyQt6 import QtCore, QtWidgets
+from PyQt6 import QtCore, QtWidgets, QtGui
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import QBuffer, QIODeviceBase
 from PyQt6.QtWidgets import QTableWidgetItem
@@ -9,6 +9,30 @@ import decimal
 class SettingsManager:
     def __init__(self, main_window):
         self.ui = main_window
+        self.phone_layout = QtWidgets.QHBoxLayout()
+        self.phone_layout.setObjectName("phone_layout")
+        self.settings_phone_label = QtWidgets.QLabel(parent=self.ui.shop_info_tab)
+        self.settings_phone_label.setMinimumSize(QtCore.QSize(100, 30))
+        label_font = QtGui.QFont()
+        label_font.setPointSize(13)
+        label_font.setBold(True)
+        label_font.setItalic(False)
+        self.settings_phone_label.setFont(label_font)
+        self.settings_phone_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.settings_phone_label.setText("Phone #")
+        self.phone_layout.addWidget(self.settings_phone_label)
+        self.settings_phone_line = QtWidgets.QLineEdit(parent=self.ui.shop_info_tab)
+        self.settings_phone_line.setMinimumSize(QtCore.QSize(0, 30))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setItalic(False)
+        self.settings_phone_line.setFont(font)
+        self.settings_phone_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.phone_layout.addWidget(self.settings_phone_line)
+        self.ui.gridLayout_46.addLayout(self.phone_layout, 5, 0, 1, 1)
+
+
 
 ### SAVES ALL SHOP SETTINGS TO DB. NO PRIMARY KEYS IN THIS TABLE SO THE ENTIRE TABLE IS TRUNCATED AND REWRITTEN ###
     def save_shop_settings(self):
@@ -32,6 +56,7 @@ class SettingsManager:
             self.ui.city_line.text(),
             self.ui.state_line.text(),
             self.ui.zipcode_line.text(),
+            self.settings_phone_line.text(),
             self.ui.disclamer_edit.toPlainText(),
             int(warranty_duration),
             int(warranty_time),
@@ -40,9 +65,9 @@ class SettingsManager:
             image_bytes
         ]
 
-        query = '''INSERT INTO shop_info (shop_name, facility_id, address, city, state, zip, disclaimer,
+        query = '''INSERT INTO shop_info (shop_name, facility_id, address, city, state, zip, phone_number, disclaimer,
                   warranty_duration, warranty_time, months, miles, shop_logo)
-                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
+                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
         cursor.execute(query, settings)
         db.commit()
         cursor.close()
@@ -114,12 +139,13 @@ class SettingsManager:
         self.ui.city_line.setText(info[3])
         self.ui.state_line.setText(info[4])
         self.ui.zipcode_line.setText(info[5])
-        self.ui.disclamer_edit.setText(info[6])
-        self.ui.warranty_time_line.setText(info[9])
-        self.ui.warranty_miles_line.setText(info[10])
+        self.settings_phone_line.setText(info[6])
+        self.ui.disclamer_edit.setText(info[7])
+        self.ui.warranty_time_line.setText(info[10])
+        self.ui.warranty_miles_line.setText(info[11])
 
         buffer = QBuffer()
-        buffer.setData(info[11])
+        buffer.setData(info[12])
         buffer.open(QIODeviceBase.OpenModeFlag.ReadOnly)
         pixmap = QPixmap()
         pixmap.loadFromData(buffer.data())

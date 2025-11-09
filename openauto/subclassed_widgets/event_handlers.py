@@ -182,7 +182,10 @@ class CMenuHandler(QObject):
         self._grid_pos = (r, c, rs, cs)
         self._ensure_placeholder(grid, r, c, rs, cs)
         self._placeholder.show()
-
+        self.target.setMaximumWidth(16777215)
+        sp = self.target.sizePolicy()
+        sp.setHorizontalPolicy(QtWidgets.QSizePolicy.Policy.Preferred)
+        self.target.setSizePolicy(sp)
         # Prevent hover churn while we move the widget
         self._squelch_hover = True
         QTimer.singleShot(140, lambda: setattr(self, "_squelch_hover", False))
@@ -220,6 +223,11 @@ class CMenuHandler(QObject):
         if self._placeholder:
             self._placeholder.hide()
         self._detached = False
+        self.target.setMinimumWidth(60)
+        self.target.setMaximumWidth(60)
+        sp = self.target.sizePolicy()
+        sp.setHorizontalPolicy(QtWidgets.QSizePolicy.Policy.Fixed)
+        self.target.setSizePolicy(sp)
 
     def _menu_buttons(self):
         win = self.target.window()

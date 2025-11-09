@@ -151,3 +151,17 @@ class VehicleRepository:
         finally:
             cur.close()
             conn.close()
+
+    @staticmethod
+    def get_vehicle_by_id(vehicle_id: int):
+        conn = db_handlers.connect_db()
+        cursor = conn.cursor(dictionary=True)
+        try:
+            cursor.execute("""
+                SELECT id, vin, year, make, model, engine_size, trim, customer_id 
+                    from vehicles WHERE id = %s""", (vehicle_id, ))
+
+            return cursor.fetchone()
+        finally:
+            cursor.close()
+            conn.close()

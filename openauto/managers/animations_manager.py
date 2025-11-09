@@ -1,5 +1,27 @@
-from PyQt6 import QtCore
+from PyQt6 import QtCore, QtWidgets
 from PyQt6.QtCore import QRect, QEasingCurve
+
+
+
+
+def fade_in(widget: QtWidgets.QWidget, duration=250):
+    # attach once and reuse
+    eff = widget.graphicsEffect()
+    if not isinstance(eff, QtWidgets.QGraphicsOpacityEffect):
+        eff = QtWidgets.QGraphicsOpacityEffect(widget)
+        widget.setGraphicsEffect(eff)
+
+    anim = QtCore.QPropertyAnimation(eff, b"opacity", widget)
+    anim.setDuration(duration)
+    anim.setStartValue(0.0)
+    anim.setEndValue(1.0)
+    anim.setEasingCurve(QtCore.QEasingCurve.Type.InOutQuad)
+
+    # keep it alive on the widget
+    widget._fade_anim = anim
+    widget.setVisible(True)
+    anim.start()
+
 
 
 class AnimationsManager:
@@ -116,19 +138,20 @@ class AnimationsManager:
         self.show_page(hub_index=4, table_widget=self.ui.vehicle_table, top_bar_index=1)
 
     def settings_page_show(self):
-        s_frame_w = self.ui.ro_tabs.width()
-        s_frame_h = self.ui.ro_tabs.height()
-        s_header_w = self.ui.ro_frame.width()
-        s_header_h = self.ui.ro_frame.height()
-        self.ui.animate_settings_header.setStartValue(QRect(0, 0, 0, 0))
-        self.ui.animate_settings_frame.setStartValue(QRect(9, 9, 0, 0))
-        self.ui.animate_settings_header.setEndValue(QRect(0, 0, s_header_w, s_header_h))
-        self.ui.animate_settings_frame.setEndValue(QRect(9, 9, s_frame_w, s_frame_h))
-        self.ui.animate_settings_frame.setEasingCurve(QEasingCurve.Type.InOutQuart)
-        self.ui.animate_settings_header.setEasingCurve(QEasingCurve.Type.InOutQuart)
-        self.ui.animate_settings_header.start()
-        self.ui.animate_settings_frame.start()
         self.show_page(hub_index=7, table_widget=self.ui.matrix_table, top_bar_index=6)
+
+        # s_frame_w = self.ui.ro_tabs.width()
+        # s_frame_h = self.ui.ro_tabs.height()
+        # s_header_w = self.ui.ro_frame.width()
+        # s_header_h = self.ui.ro_frame.height()
+        # self.ui.animate_settings_header.setStartValue(QRect(0, 0, 0, 0))
+        # self.ui.animate_settings_frame.setStartValue(QRect(9, 9, 0, 0))
+        # self.ui.animate_settings_header.setEndValue(QRect(0, 0, s_header_w, s_header_h))
+        # self.ui.animate_settings_frame.setEndValue(QRect(9, 9, s_frame_w, s_frame_h))
+        # self.ui.animate_settings_frame.setEasingCurve(QEasingCurve.Type.InOutQuart)
+        # self.ui.animate_settings_header.setEasingCurve(QEasingCurve.Type.InOutQuart)
+        # self.ui.animate_settings_header.start()
+        # self.ui.animate_settings_frame.start()
 
     def ro_page_show(self):
         self.show_page(hub_index=0, top_bar_index=0)  # RO page base view only

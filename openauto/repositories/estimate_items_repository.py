@@ -29,7 +29,7 @@ class EstimateItemsRepository:
             "job_id": item.get("job_id"),
             "job_order": item.get("job_order"),
             "line_order": item.get("line_order"),
-            "type": kind,  # <-- now guaranteed string
+            "type": kind,
             "job_name": item.get("job_name"),
             "sku_number": item.get("sku_number"),
             "item_description": item.get("description") or item.get("item_description"),

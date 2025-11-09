@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Repair Order {{ ro.number }}</title>
+  <style>
+    @page { size: A4; margin: 14mm 12mm 16mm 12mm; }
+    body { font: 12px/1.45 system-ui, -apple-system, "Segoe UI", Arial; color:#111; }
+    h1 { margin: 0 0 6px; }
+    h2 { margin: 16px 0 6px; font-size: 15px; }
+    .muted { color:#666; }
+    .kvs { margin-top: 2px; }
+    .kvs strong { display:inline-block; width:88px; }
+    table { width:100%; border-collapse: collapse; }
+    th,td { border-bottom: 1px solid #eee; padding: 6px 8px; vertical-align: top; }
+    th.right, td.right { text-align: right; }
+    .nowrap { white-space: nowrap; }
+    tr { page-break-inside: avoid; }
+    .three-cs { margin: 8px 0 6px; border:1px solid #eee; border-radius:6px; }
+    .three-cs th, .three-cs td { border-bottom: 0; }
+    .three-cs th { width: 20%; text-align: left; color:#444; background:#fafafa; }
+    .job-header { display:flex; justify-content:space-between; align-items:end; }
+    .job-tech { color:#666; font-size:11px; }
+    .totals { margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Repair Order #{{ ro.number }}</h1>
+  <div class="muted">
+    Opened: {{ ro.opened or "-" }} • Promised: {{ ro.promised or "-" }}
+  </div>
+
+  <div class="kvs">
+    <strong>{{ shop.name }}</strong> • {{ shop.phone }}<br/>
+    {{ shop.addr1 }}{% if shop.addr2 %}, {{ shop.addr2 }}{% endif %}, {{ shop.city }}, {{ shop.state }} {{ shop.zip }}
+  </div>
+
+  <div class="kvs" style="margin-top:8px;">
+    <strong>{{ customer.full_name }}</strong> — {{ customer.phone }} • {{ customer.email }}<br/>
+    {{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }} ({{ vehicle.vin }})
+  </div>
+{# === Jobs, with 3 C's and items per job === #}
+{% for job in jobs %}
+
+  <table class="three-cs">
+    <tbody>
+      <tr><th>Concern</th><td>{{ job.complaint or "-" }}</td></tr>
+      <tr><th>Cause</th><td>{{ job.cause or "-" }}</td></tr>
+      <tr><th>Correction</th><td>{{ job.correction or "-" }}</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="job-header">
+    <span>{{ loop.index }}. {{ job.title or "Job" }}{% if job.po %} — PO: {{ job.po }}{% endif %}</span>
+    {% if job.tech %}<span class="job-tech">Tech: {{ job.tech }}</span>{% endif %}
+  </h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th class="right nowrap">Qty/Hrs</th>
+        <th class="right nowrap">Rate</th>
+        <th class="right nowrap">Line Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in job["lines"] %}
+      <tr>
+        <td>{{ row.desc }}</td>
+        <td class="right nowrap">{{ row.qty }}</td>
+        <td class="right nowrap">{{ "%.2f"|format(row.rate) }}</td>
+        <td class="right nowrap">{{ "%.2f"|format(row.total) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endfor %}
+
+  {# === Grand totals (all items) === #}
+  <table class="totals">
+    <tbody>
+      <tr><td class="right" style="width:80%;">Subtotal</td><td class="right nowrap">{{ "%.2f"|format(totals.subtotal) }}</td></tr>
+      <tr><td class="right">Tax</td><td class="right nowrap">{{ "%.2f"|format(totals.tax) }}</td></tr>
+      {% if totals.fees %}<tr><td class="right">Fees</td><td class="right nowrap">{{ "%.2f"|format(totals.fees) }}</td></tr>{% endif %}
+      <tr><td class="right"><strong>Total</strong></td><td class="right nowrap"><strong>{{ "%.2f"|format(totals.grand) }}</strong></td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

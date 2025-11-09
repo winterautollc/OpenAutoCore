@@ -1,4 +1,4 @@
-from PyQt6 import QtCore,QtWidgets
+from PyQt6 import QtCore
 from openauto.repositories.repair_orders_repository import RepairOrdersRepository
 from openauto.repositories.customer_repository import CustomerRepository
 from openauto.repositories.vehicle_repository import VehicleRepository
@@ -15,6 +15,9 @@ from openauto.managers.ro_hub.save_estimate_service import SaveEstimateService
 from openauto.managers.ro_hub.totals_controller import TotalsController
 from openauto.managers.ro_hub.c3_controller import C3Controller
 from openauto.managers.repair_orders_manager import RepairOrdersManager
+from openauto.managers.ro_hub.autosave_controller import AutosaveController
+from openauto.managers.ro_hub.mpi_manager import MpiManager
+from openauto.managers.ro_hub.print_controller import PrintController
 import datetime
 from openauto.subclassed_widgets.roles.tree_roles import COL_DESC, COL_TYPE, JOB_ID_ROLE, APPROVED_ROLE, DECLINED_ROLE
 from openauto.subclassed_widgets.roles.tree_roles import (
@@ -57,8 +60,10 @@ def _format_miles_line_edit(le):
         le.clear()
 
 
-class ROHubManager:
+class ROHubManager(QtCore.QObject):
+    roContextReady = QtCore.pyqtSignal(int, int, str)
     def __init__(self, ui):
+        super().__init__(ui)
         self.ui = ui
         self.staff  = StaffAssignmentController(ui)
         self.items  = ItemEntryController(ui)
@@ -75,8 +80,21 @@ class ROHubManager:
         self.status.statusChanged.connect(self._on_status_changed)
         self.tax    = TaxConfigController(ui)
         self.saver  = SaveEstimateService(ui)
+        self.autosaver = AutosaveController(ui)
         self.totals = TotalsController(ui)
+        self.print_controller = PrintController(ui)
+        self.roContextReady.connect(self.print_controller.set_context)
+
+        if hasattr(self.ui, "print_ro_button"):
+            self.ui.print_ro_button.clicked.connect(
+                lambda: self.print_controller.on_print_ro_clicked_with_ids(
+                    getattr(self.ui, "current_ro_id", None) or 0,
+                    getattr(self.ui.ro_items_table, "current_estimate_id", None) or 0
+                )
+            )
+
         self.c3 = C3Controller(ui)
+        self.mpi_manager = MpiManager(ui)
         self.ui.roTable = self.ui.ro_items_table
         self._load_pricing_inputs()
         self._wire_item_entry_signals()
@@ -122,7 +140,9 @@ class ROHubManager:
         self.ui.add_job_item_button.clicked.connect(self.items.add_item)
         self.ui.remove_item_button.clicked.connect(self.items.remove_selected_item)
         self.ui.new_job_button.clicked.connect(self._new_job)
+        self.ui.save_ro_button.hide()
         self.ui.save_ro_button.clicked.connect(self.saver.save)
+        self.autosaver.saved.connect(self.on_estimate_saved)
         self.ui.concern_button.toggled.connect(lambda checked: self._toggle_3c_stack(0, checked))
         self.ui.cause_button.toggled.connect(lambda checked: self._toggle_3c_stack(1, checked))
         self.ui.correction_button.toggled.connect(lambda checked: self._toggle_3c_stack(2, checked))
@@ -130,7 +150,20 @@ class ROHubManager:
         self.ui.approved_placer_label.setText("Updated")
         self.status.attach(self.ui.ro_status_button)
         self.status.refresh_button()
+        self.ui.cancel_ro_button.setText("Exit")
         self.ui.cancel_ro_button.clicked.connect(self.status.cancel_ro_changes)
+
+        delegate = getattr(self.ui.ro_items_table, "itemDelegate", None)
+        if callable(delegate):
+            try:
+                d = self.ui.ro_items_table.itemDelegate()
+                d.closeEditor.connect(lambda *_: (
+                    self.autosaver.resume(),
+                    self.autosaver.mark_dirty(),
+                    QtCore.QTimer.singleShot(0, self.autosaver.flush_if_dirty)
+                ))
+            except Exception:
+                pass
 
         self.ui.ro_items_table.approvalChanged.connect(
             lambda: self._sync_approval_to_db_and_refresh(getattr(self.ui, "current_ro_id", None) or 0))
@@ -142,14 +175,56 @@ class ROHubManager:
 
 
 
-        # set read-only + zero labels (unchanged behavior)
         for e in (self.ui.name_edit, self.ui.number_edit, self.ui.vehcle_line,
                   self.ui.ro_created_edit, self.ui.ro_approved_edit):
             e.setReadOnly(True)
-        # for lab in (self.ui.parts_label, self.ui.labor_label, self.ui.tires_label,
-        #             self.ui.label_2, self.ui.subtotal_label, self.ui.shop_supplies_label,
-        #             self.ui.tax_label, self.ui.total_label, self.ui.fees_label):
-        #     lab.setText("0.00")
+
+
+        view = self.ui.ro_items_table
+        m = None
+        try:
+            m = view.model()
+        except Exception:
+            m = None
+        if m is not None:
+            self.connect_ro_model_signals(m)
+
+        if hasattr(view, "modelAttached"):
+            view.modelAttached.connect(self.connect_ro_model_signals)
+
+        if hasattr(view, "jobsChanged"):
+            view.jobsChanged.connect(self.autosaver.mark_dirty)
+
+        if hasattr(self.ui, "notes_text_edit"):
+            self.ui.notes_text_edit.textChanged.connect(self.autosaver.mark_dirty)
+
+        # miles edits
+        if hasattr(self.ui, "miles_in_edit"):
+            self.ui.miles_in_edit.editingFinished.connect(self.autosaver.mark_dirty)
+        if hasattr(self.ui, "miles_out_edit"):
+            self.ui.miles_out_edit.editingFinished.connect(self.autosaver.mark_dirty)
+
+        # tax / labor rate changes
+        if hasattr(self.ui, "tax_box"):
+            self.ui.tax_box.currentIndexChanged.connect(self.autosaver.mark_dirty)
+        if hasattr(self.ui, "labor_rate_box"):
+            self.ui.labor_rate_box.currentIndexChanged.connect(self.autosaver.mark_dirty)
+
+        if hasattr(self.ui, "place_order_button"):
+            try:
+                self.ui.place_order_button.clicked.connect(self.autosaver.flush_if_dirty)
+            except Exception:
+                pass
+
+        # add/remove item buttons
+        self.ui.add_job_item_button.clicked.connect(self.autosaver.mark_dirty)
+        self.ui.remove_item_button.clicked.connect(self.autosaver.mark_dirty)
+
+        # new job button
+        self.ui.new_job_button.clicked.connect(self.autosaver.mark_dirty)
+        self.ui.mpi_button.clicked.connect(self.mpi_manager.setup_ui)
+
+
 
 
 
@@ -166,6 +241,8 @@ class ROHubManager:
 
     # span multiple controllers
     def load_ro_into_hub(self, ro_id: int):
+        try: self.autosaver.pause()
+        except Exception: pass
         self.ui.current_ro_id = ro_id
         ro_data = RepairOrdersRepository.get_repair_order_by_id(ro_id)
         customer = CustomerRepository.get_customer_info_by_id(ro_data["customer_id"])
@@ -175,7 +252,7 @@ class ROHubManager:
         self.ui.ro_number_label.setText(ro_data["ro_number"])
         self.ui.number_edit.setText(customer["phone"])
         self.ui.vehcle_line.setText(f"{vehicle['vin']}   {vehicle['year']}   {vehicle['make']}   {vehicle['model']}")
-        
+        self.ui.ro_hub_tabs.setCurrentIndex(0)
 
         created_qdt = _to_qdatetime(dates_miles.get("created_at"))
         updated_qtd = _to_qdatetime(dates_miles.get("updated_at"))
@@ -208,8 +285,13 @@ class ROHubManager:
         # delegate staff select resolution to the staff controller
         self.staff.sync_selects_from_ro(ro_data)
         self._load_estimate_items(ro_id)
+        est_id = getattr(self.ui.ro_items_table, "current_estimate_id", None) or 0
+        vin = (self.ui.vehcle_line.text() or "").split()[0] if self.ui.vehcle_line.text() else ""
+        self.roContextReady.emit(ro_id, int(est_id), vin)
         self._update_ro_status_label(ro_id)
         self.status.refresh_button()
+        try: self.autosaver.resume()
+        except Exception: pass
 
     def _load_estimate_items(self, ro_id: int):
         tree  = self.ui.ro_items_table
@@ -271,10 +353,7 @@ class ROHubManager:
             if not jobs:
                 return  # nothing to render
 
-            # Build a job ordering key:
-            # prefer job_order from either items or job_rows
-            # fallback to discovery order of job_rows
-            # then alpha by name
+
             pos_hint = {(j.get("name") or "New Job"): idx for idx, j in enumerate(job_rows)}
 
             def job_sort_key(name: str):
@@ -430,6 +509,7 @@ class ROHubManager:
         return
 
     def _new_job(self):
+        self.autosaver.pause()
         job = self.ui.ro_items_table.addJob("New Job")
         if job is not None:
             QtCore.QTimer.singleShot(0, lambda: self.ui.ro_items_table.editItem(job, COL_TYPE))
@@ -507,3 +587,35 @@ class ROHubManager:
 
         style.unpolish(label)
         style.polish(label)
+
+    def connect_ro_model_signals(self, model):
+        if getattr(model, "_oa_mark_dirty_wired", False):
+            return
+        try:
+            model.dataChanged.connect(lambda *_: self.autosaver.mark_dirty(),
+                                      QtCore.Qt.ConnectionType.UniqueConnection)
+        except TypeError:
+            model.dataChanged.connect(lambda *_: self.autosaver.mark_dirty())
+        try:
+            model.rowsInserted.connect(lambda *_: self.autosaver.mark_dirty(),
+                                       QtCore.Qt.ConnectionType.UniqueConnection)
+        except TypeError:
+            model.rowsInserted.connect(lambda *_: self.autosaver.mark_dirty())
+        try:
+            model.rowsRemoved.connect(lambda *_: self.autosaver.mark_dirty(),
+                                      QtCore.Qt.ConnectionType.UniqueConnection)
+        except TypeError:
+            model.rowsRemoved.connect(lambda *_: self.autosaver.mark_dirty())
+        try:
+            model._oa_mark_dirty_wired = True
+        except Exception:
+            pass
+
+
+    def on_estimate_saved(self, est_id: int):
+        try:
+            self.ui.current_estimate_id = int(est_id)
+            self.ui.ro_items_table.current_estimate_id = int(est_id)
+        except Exception:
+            pass
+

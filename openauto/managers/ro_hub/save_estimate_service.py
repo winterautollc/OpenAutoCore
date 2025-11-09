@@ -148,7 +148,7 @@ class SaveEstimateService:
             for i in range(tree.topLevelItemCount()):
                 header = tree.topLevelItem(i)
                 base_name = self._strip_status_suffix(header.data(0, JOB_NAME_ROLE) or header.text(0))
-                base_name = base_name or "New Job"
+                base_name = (base_name or "General").strip()
 
                 if base_name not in job_names:
                     job_names.append(base_name)
@@ -176,14 +176,22 @@ class SaveEstimateService:
             if nm not in job_ids:
                 job_ids[nm] = EstimateJobsRepository.get_or_create(estimate_id, nm)
 
-        # >>> NEW: push the resolved/created ids back into headers so they’re usable immediately
+        #push the resolved/created ids back into headers so they’re usable immediately
         if tree:
             for i in range(tree.topLevelItemCount()):
                 header = tree.topLevelItem(i)
-                base_name = header.data(0, JOB_NAME_ROLE) or self._strip_status_suffix(header.text(0))
-                base_name = base_name or "General"
-                # This guarantees even brand-new jobs now have a real JOB_ID_ROLE
-                header.setData(0, JOB_ID_ROLE, int(job_ids[base_name]))
+
+                # normalize the name exactly the same way every time
+                raw_name = (header.data(0, JOB_NAME_ROLE) or header.text(0) or "").strip()
+                base_name = self._strip_status_suffix(raw_name) or "General"
+
+                # if the name wasn't in the earlier map for any reason, create/insert now
+                jid = job_ids.get(base_name)
+                if jid is None:
+                    jid = EstimateJobsRepository.get_or_create(estimate_id, base_name)
+                    job_ids[base_name] = int(jid)
+
+                header.setData(0, JOB_ID_ROLE, int(jid))
                 header.setData(0, JOB_NAME_ROLE, base_name)
 
         # Assign job_id + job_order + line_order to each item
@@ -214,15 +222,22 @@ class SaveEstimateService:
     def _strip_status_suffix(self, name: str | None) -> str:
         if not name:
             return "General"
-        # split on an EN DASH ' — ' if present; fallback to hyphen
-        base = name.split(" — ")[0].split(" - ")[0]
-        return base.strip() or "General"
+        s = str(name).strip()
+
+        s = re.sub(
+             r"\s*[-—]\s*(approved|declined|quoted|ordered|received|returned|cancelled)\s*$",
+             "",
+                    s,
+                flags = re.IGNORECASE,
+            )
+        return s.strip() or "General"
 
 
-    def save(self):
+    def save(self, *, silent: bool = False) -> int | None:
         ro_id = self._current_ro_id()
         if not ro_id:
-            QMessageBox.warning(self.ui, "Save RO", "No Repair Order selected.")
+            if not silent:
+                QMessageBox.warning(self.ui, "Save RO", "No Repair Order selected.")
             return
 
         ro = RepairOrdersRepository.get_repair_order_by_id(ro_id)
@@ -249,6 +264,9 @@ class SaveEstimateService:
         estimate_id = est["id"] if est else EstimatesRepository.create_for_ro(ro, writer_name, tech_name)
         memo = (self.ui.notes_text_edit.toPlainText() or "").strip()
         tree = getattr(self.ui, "ro_items_table", None)
+
+        est = EstimatesRepository.get_by_ro_id(ro_id)
+        estimate_id = est["id"] if est else EstimatesRepository.create_for_ro(ro, writer_name, tech_name)
 
         if tree and hasattr(tree, "to_legacy_items"):
             items = tree.to_legacy_items()
@@ -385,4 +403,7 @@ class SaveEstimateService:
             update_all_tiles(ro_id, total=float(total))
         except Exception:
             pass
-        QMessageBox.information(self.ui, "Save RO", f"Estimate #{estimate_id} saved with {len(items)} items.")
+        if not silent:
+            QMessageBox.information(self.ui, "Save RO", f"Estimate #{estimate_id} saved with {len(items)} items.")
+        return int(estimate_id)
+

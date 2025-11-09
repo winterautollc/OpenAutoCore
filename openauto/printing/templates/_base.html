@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>{{ title }}</title>
+  <style>
+    @page { size: A4; margin: 14mm 12mm 16mm 12mm; }
+    body { font: 12px/1.4 "Inter","Ubuntu",system-ui,-apple-system,Segoe UI,Arial; color:#111; }
+    h1,h2 { margin: 0 0 6px; }
+    .muted { color:#666; }
+    table { width:100%; border-collapse: collapse; }
+    th, td { padding: 6px 8px; border-bottom: 1px solid #eee; vertical-align: top; }
+    .right { text-align:right; }
+    .nowrap { white-space: nowrap; }
+    .page-break { page-break-before: always; }
+    /* Prevent row splits across pages */
+    tr { page-break-inside: avoid; }
+    header { position: running(pageHeader); }
+    footer { position: running(pageFooter); font-size: 10px; color:#666; }
+    @media print {
+      .no-print { display:none; }
+      .page-header { position: fixed; top: 0; left:0; right:0; }
+      .page-footer { position: fixed; bottom: 0; left:0; right:0; }
+      @page {
+        @top-center { content: element(pageHeader); }
+        @bottom-center { content: element(pageFooter); }
+      }
+    }
+  </style>
+</head>
+<body>
+  {% include "_partials/header.html" %}
+  {{ body|safe }}
+  {% include "_partials/footer.html" %}
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% set title = "Invoice " ~ invoice.number %}
+{% set body %}
+  <h1>Invoice #{{ invoice.number }}</h1>
+  <div class="muted">Date: {{ invoice.date }} • Terms: {{ invoice.terms or "Due on receipt" }}</div>
+  <br/>
+
+  <table>
+    <tr>
+      <td>
+        <strong>{{ shop.name }}</strong><br/>
+        {{ shop.addr1 }}{% if shop.addr2 %}, {{ shop.addr2 }}{% endif %}<br/>
+        {{ shop.city }}, {{ shop.state }} {{ shop.zip }}<br/>
+        {{ shop.phone }}
+      </td>
+      <td class="right">
+        <strong>{{ customer.full_name }}</strong><br/>
+        {{ customer.phone }} • {{ customer.email }}<br/>
+        {{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }} ({{ vehicle.vin }})
+      </td>
+    </tr>
+  </table>
+
+  <br/>
+  <table>
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th class="right nowrap">Qty/Hrs</th>
+        <th class="right nowrap">Rate</th>
+        <th class="right nowrap">Line Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in items %}
+      <tr>
+        <td>{{ row.desc }}</td>
+        <td class="right nowrap">{{ row.qty }}</td>
+        <td class="right nowrap">{{ "%.2f"|format(row.rate) }}</td>
+        <td class="right nowrap">{{ "%.2f"|format(row.total) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr><td colspan="3" class="right">Subtotal</td><td class="right">{{ "%.2f"|format(totals.subtotal) }}</td></tr>
+      <tr><td colspan="3" class="right">Tax</td><td class="right">{{ "%.2f"|format(totals.tax) }}</td></tr>
+      {% if totals.fees %}<tr><td colspan="3" class="right">Fees</td><td class="right">{{ "%.2f"|format(totals.fees) }}</td></tr>{% endif %}
+      <tr><td colspan="3" class="right"><strong>Due</strong></td><td class="right"><strong>{{ "%.2f"|format(totals.grand) }}</strong></td></tr>
+    </tfoot>
+  </table>
+{% endset %}
+{% include "_base.html" %}

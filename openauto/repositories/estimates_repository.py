@@ -82,3 +82,13 @@ class EstimatesRepository:
                 conn.commit()
         finally:
             conn.close()
+
+    @staticmethod
+    def get_by_id(estimate_id: int):
+        conn = connect_db()
+        try:
+            with conn.cursor(dictionary=True) as cur:
+                cur.execute("SELECT * FROM estimates WHERE id = %s", (estimate_id, ))
+                return cur.fetchone()
+        finally:
+            conn.close()

@@ -1,3 +1,5 @@
+from PyQt6.QtGui import QCursor
+
 from openauto.repositories.db_handlers import connect_db
 import datetime
 from openauto.repositories import db_handlers
@@ -473,3 +475,49 @@ class RepairOrdersRepository:
             """)
             row = c.fetchone() or (0, 0, 0, 0, 0, 0)
             return tuple(int(x or 0) for x in row)
+
+    @staticmethod
+    def delete_repair_order_cascade(ro_id: int):
+        from openauto.repositories.estimate_items_repository import EstimateItemsRepository
+        from openauto.repositories.estimate_jobs_repository import EstimateJobsRepository
+
+        # get estimate_id
+        est_id = RepairOrdersRepository.estimate_id_for_ro(ro_id)
+
+        # wipe items by RO
+        try:
+            EstimateItemsRepository.delete_for_ro(ro_id)
+        except Exception:
+            pass
+
+        # wipe jobs and estimate row, if present
+        if est_id:
+            try:
+                EstimateJobsRepository.delete_jobs(est_id, [j["id"] for j in (EstimateJobsRepository.list_for_estimate(est_id) or [])])
+            except Exception:
+                pass
+            try:
+                cn = connect_db()
+                with cn, cn.cursor() as c:
+                    c.execute("DELETE FROM pt_sessions WHERE estimate_id=%s AND ro_id=%s", (est_id, ro_id))
+                    c.execute("DELETE FROM estimates WHERE id=%s", (est_id,))
+                    cn.commit()
+            except Exception:
+                pass
+
+        # finally remove the RO
+        cn = connect_db()
+        with cn, cn.cursor() as c:
+            c.execute("DELETE FROM repair_orders WHERE id=%s", (ro_id,))
+            cn.commit()
+            cn.close()
+
+    @staticmethod
+    def get_ro_items(ro_id: int | None = None):
+        conn = db_handlers.connect_db()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM repair_orders WHERE id=%s", ro_id)
+        result = cursor.fetchall()
+        return result if result else None
+
+
