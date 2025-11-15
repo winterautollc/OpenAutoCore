@@ -79,7 +79,7 @@ CREATE TABLE `estimate_items` (
   KEY `ix_items_job_status` (`job_id`,`status`),
   CONSTRAINT `estimate_items_ibfk_1` FOREIGN KEY (`estimate_id`) REFERENCES `estimates` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_items_job` FOREIGN KEY (`job_id`) REFERENCES `estimate_jobs` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6450 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6464 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -334,7 +334,7 @@ CREATE TABLE `pt_orders` (
   UNIQUE KEY `pt_orders_uq_session_supplier` (`session_id`,`supplier_id`),
   KEY `session_id` (`session_id`),
   CONSTRAINT `fk_pt_orders_session` FOREIGN KEY (`session_id`) REFERENCES `pt_sessions` (`session_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=579 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=581 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -491,6 +491,8 @@ CREATE TABLE `users` (
 CREATE TABLE `vehicles` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `vin` varchar(17) DEFAULT NULL,
+  `plate` varchar(16) DEFAULT NULL,
+  `plate_state` char(2) DEFAULT NULL,
   `year` varchar(30) DEFAULT NULL,
   `make` varchar(30) DEFAULT NULL,
   `model` varchar(30) DEFAULT NULL,
@@ -501,6 +503,7 @@ CREATE TABLE `vehicles` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_vehicles_vin` (`vin`),
   KEY `idx_vehicles_customer` (`customer_id`),
+  KEY `idx_vehicles_plate_state` (`plate`,`plate_state`),
   CONSTRAINT `fk_vehicles_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
