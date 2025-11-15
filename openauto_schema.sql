@@ -24,7 +24,7 @@ CREATE TABLE `appointments` (
   KEY `fk_appointments_vehicle` (`vehicle_id`),
   CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE CASCADE,
   CONSTRAINT `fk_appointments_vehicle` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -41,7 +41,7 @@ CREATE TABLE `customers` (
   `customer_id` int NOT NULL AUTO_INCREMENT,
   `archived` tinyint(1) DEFAULT (0),
   PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -79,7 +79,7 @@ CREATE TABLE `estimate_items` (
   KEY `ix_items_job_status` (`job_id`,`status`),
   CONSTRAINT `estimate_items_ibfk_1` FOREIGN KEY (`estimate_id`) REFERENCES `estimates` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_items_job` FOREIGN KEY (`job_id`) REFERENCES `estimate_jobs` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=975 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6450 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -99,7 +99,7 @@ CREATE TABLE `estimate_jobs` (
   UNIQUE KEY `uq_estimate_jobs_name` (`estimate_id`,`name`),
   KEY `ix_jobs_estimate_status` (`estimate_id`,`status`),
   CONSTRAINT `fk_jobs_estimate` FOREIGN KEY (`estimate_id`) REFERENCES `estimates` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -127,7 +127,7 @@ CREATE TABLE `estimates` (
   CONSTRAINT `fk_est_tech` FOREIGN KEY (`assigned_tech_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_est_writer` FOREIGN KEY (`assigned_writer_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_estimates_ro` FOREIGN KEY (`ro_id`) REFERENCES `repair_orders` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -152,6 +152,121 @@ CREATE TABLE `labor_rates` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mpi_findings` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `inspection_id` bigint unsigned NOT NULL,
+  `section` varchar(40) NOT NULL,
+  `item_code` varchar(40) NOT NULL,
+  `position` enum('na','rf','lf','rr','lr','front','rear','left','right') NOT NULL DEFAULT 'na',
+  `result_label` varchar(32) NOT NULL,
+  `severity` tinyint DEFAULT NULL,
+  `measurement_value` decimal(6,2) DEFAULT NULL,
+  `measurement_unit` varchar(16) DEFAULT NULL,
+  `note` varchar(255) DEFAULT NULL,
+  `sort_order` smallint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_line` (`inspection_id`,`item_code`,`position`),
+  KEY `idx_mpi_findings_ins` (`inspection_id`),
+  CONSTRAINT `fk_mpi_findings_inspection` FOREIGN KEY (`inspection_id`) REFERENCES `mpi_inspections` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=756 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mpi_inspections` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `ro_id` bigint unsigned DEFAULT NULL,
+  `estimate_id` bigint unsigned DEFAULT NULL,
+  `vin` char(17) DEFAULT NULL,
+  `customer_id` bigint unsigned DEFAULT NULL,
+  `vehicle_id` bigint unsigned DEFAULT NULL,
+  `mileage_in` int DEFAULT NULL,
+  `inspection_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` bigint unsigned DEFAULT NULL,
+  `status` enum('draft','final') NOT NULL DEFAULT 'draft',
+  `notes` text,
+  PRIMARY KEY (`id`),
+  KEY `idx_mpi_ro` (`ro_id`),
+  KEY `idx_mpi_est` (`estimate_id`),
+  KEY `idx_mpi_vin` (`vin`),
+  CONSTRAINT `mpi_inspections_chk_1` CHECK (((`ro_id` is not null) or (`estimate_id` is not null) or (`vin` is not null)))
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mpi_photos` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `inspection_id` bigint unsigned NOT NULL,
+  `finding_id` bigint unsigned DEFAULT NULL,
+  `filename` varchar(255) DEFAULT NULL,
+  `mime_type` varchar(64) DEFAULT NULL,
+  `blob_data` longblob,
+  `caption` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `inspection_id` (`inspection_id`),
+  KEY `finding_id` (`finding_id`),
+  CONSTRAINT `mpi_photos_ibfk_1` FOREIGN KEY (`inspection_id`) REFERENCES `mpi_inspections` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `mpi_photos_ibfk_2` FOREIGN KEY (`finding_id`) REFERENCES `mpi_findings` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mpi_signoffs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `inspection_id` bigint unsigned NOT NULL,
+  `role` enum('tech','advisor','customer') NOT NULL,
+  `signed_by` bigint unsigned DEFAULT NULL,
+  `signed_name` varchar(100) DEFAULT NULL,
+  `signed_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `signature` longblob,
+  PRIMARY KEY (`id`),
+  KEY `inspection_id` (`inspection_id`),
+  CONSTRAINT `mpi_signoffs_ibfk_1` FOREIGN KEY (`inspection_id`) REFERENCES `mpi_inspections` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `parts_tree_items` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `estimate_id` int NOT NULL,
+  `session_id` varchar(64) DEFAULT NULL,
+  `quote_id` varchar(64) DEFAULT NULL,
+  `order_item_id` varchar(64) NOT NULL DEFAULT '',
+  `description` varchar(255) DEFAULT NULL,
+  `part_number` varchar(128) NOT NULL,
+  `supplier` varchar(128) NOT NULL,
+  `availability` tinyint(1) DEFAULT NULL,
+  `qty` decimal(10,2) DEFAULT NULL,
+  `cost` decimal(10,2) DEFAULT NULL,
+  `list` decimal(10,2) DEFAULT NULL,
+  `core` decimal(10,2) DEFAULT NULL,
+  `brand` varchar(128) DEFAULT NULL,
+  `part_type_id` int NOT NULL DEFAULT '0',
+  `part_type_name` varchar(128) DEFAULT NULL,
+  `assigned_job_id` int DEFAULT NULL,
+  `status` enum('new','selected','imported','ordered','dismissed') DEFAULT 'new',
+  `inserted_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_line` (`estimate_id`,`order_item_id`,`supplier`,`part_number`,`part_type_id`),
+  KEY `idx_pti_estimate_status` (`estimate_id`,`status`),
+  KEY `idx_pti_session_quote` (`session_id`,`quote_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `partstech_payloads` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `session_id` varchar(64) DEFAULT NULL,
+  `quote_id` varchar(64) DEFAULT NULL,
+  `vin` varchar(32) DEFAULT NULL,
+  `kind` enum('quote','cart','order','return') NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `raw_json` json NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pricing_matrix` (
   `id` int NOT NULL AUTO_INCREMENT,
   `min_cost` decimal(10,2) DEFAULT NULL,
@@ -160,6 +275,81 @@ CREATE TABLE `pricing_matrix` (
   `percent_return` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pt_order_items` (
+  `order_item_id` varchar(64) NOT NULL,
+  `session_id` varchar(64) NOT NULL,
+  `order_id` bigint DEFAULT NULL,
+  `supplier_id` bigint DEFAULT NULL,
+  `supplier_name` varchar(255) DEFAULT NULL,
+  `part_id` varchar(64) DEFAULT NULL,
+  `part_number` varchar(128) DEFAULT NULL,
+  `part_type_id` int DEFAULT NULL,
+  `part_type_name` varchar(255) DEFAULT NULL,
+  `quantity` int unsigned NOT NULL DEFAULT '1',
+  `unit_cost` decimal(12,2) DEFAULT NULL,
+  `list_price` decimal(12,2) DEFAULT NULL,
+  `core` decimal(12,2) DEFAULT NULL,
+  `availability` tinyint(1) DEFAULT NULL,
+  `status` enum('quoted','ordered','received','returned','cancelled') NOT NULL DEFAULT 'quoted',
+  `assigned_job_id` int DEFAULT NULL,
+  `assigned_job_name` varchar(255) DEFAULT NULL,
+  `raw_json` json DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`order_item_id`),
+  UNIQUE KEY `uniq_order_item_id` (`order_item_id`),
+  KEY `session_id` (`session_id`),
+  KEY `order_id` (`order_id`),
+  KEY `supplier_id` (`supplier_id`),
+  KEY `part_number` (`part_number`),
+  KEY `part_type_id` (`part_type_id`),
+  KEY `idx_pt_order_items_status` (`status`),
+  KEY `idx_pt_items_assigned_job` (`assigned_job_id`),
+  CONSTRAINT `fk_pt_items_job` FOREIGN KEY (`assigned_job_id`) REFERENCES `estimate_jobs` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_pt_items_order` FOREIGN KEY (`order_id`) REFERENCES `pt_orders` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_pt_items_session` FOREIGN KEY (`session_id`) REFERENCES `pt_sessions` (`session_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pt_orders` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `session_id` varchar(64) NOT NULL,
+  `supplier_id` bigint DEFAULT NULL,
+  `supplier_name` varchar(255) DEFAULT NULL,
+  `payment_type` varchar(64) DEFAULT NULL,
+  `tax` decimal(12,2) DEFAULT NULL,
+  `total_price` decimal(12,2) DEFAULT NULL,
+  `total_discount` decimal(12,2) DEFAULT NULL,
+  `core_charge` decimal(12,2) DEFAULT NULL,
+  `fet` decimal(12,2) DEFAULT NULL,
+  `shipping_price` decimal(12,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_pt_orders_session` (`session_id`),
+  UNIQUE KEY `pt_orders_uq_session_supplier` (`session_id`,`supplier_id`),
+  KEY `session_id` (`session_id`),
+  CONSTRAINT `fk_pt_orders_session` FOREIGN KEY (`session_id`) REFERENCES `pt_sessions` (`session_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=579 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pt_sessions` (
+  `session_id` varchar(64) NOT NULL,
+  `vin` varchar(17) DEFAULT NULL,
+  `estimate_id` int DEFAULT NULL,
+  `ro_id` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`session_id`),
+  KEY `estimate_id` (`estimate_id`),
+  KEY `ro_id` (`ro_id`),
+  KEY `vin` (`vin`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -202,7 +392,7 @@ CREATE TABLE `repair_orders` (
   CONSTRAINT `fk_ro_writer` FOREIGN KEY (`assigned_writer_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `repair_orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
   CONSTRAINT `repair_orders_ibfk_3` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -224,7 +414,7 @@ CREATE TABLE `ro_c3_lines` (
   CONSTRAINT `fk_c3_author` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_c3_item` FOREIGN KEY (`estimate_item_id`) REFERENCES `estimate_items` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_c3_ro` FOREIGN KEY (`ro_id`) REFERENCES `repair_orders` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -235,6 +425,7 @@ CREATE TABLE `shop_info` (
   `city` varchar(255) DEFAULT NULL,
   `state` varchar(255) DEFAULT NULL,
   `zip` varchar(255) DEFAULT NULL,
+  `phone_number` varchar(255) DEFAULT NULL,
   `disclaimer` mediumtext,
   `warranty_duration` tinyint DEFAULT NULL,
   `warranty_time` tinyint DEFAULT NULL,
@@ -311,7 +502,7 @@ CREATE TABLE `vehicles` (
   UNIQUE KEY `uq_vehicles_vin` (`vin`),
   KEY `idx_vehicles_customer` (`customer_id`),
   CONSTRAINT `fk_vehicles_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

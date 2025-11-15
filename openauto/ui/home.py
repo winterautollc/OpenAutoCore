@@ -45,6 +45,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.setupUi(self)
         self.cmenu_frame.setMinimumWidth(60)
         self.cmenu_frame.setMaximumWidth(60)
+        self.print_menu = QtWidgets.QMenu(self.print_ro_button)
         sp = self.cmenu_frame.sizePolicy()
         sp.setHorizontalPolicy(QtWidgets.QSizePolicy.Policy.Fixed)
         sp.setVerticalPolicy(QtWidgets.QSizePolicy.Policy.Expanding)

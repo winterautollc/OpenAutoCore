@@ -25,8 +25,20 @@ class PrintService(QtCore.QObject):
     def render(self, template_name: str, ctx: dict) -> str:
         tpl = self.env.get_template(template_name)
         full_ctx = dict(**ctx)
-        full_ctx.setdefault("shop", {})
-        full_ctx["shop"]["logo_b64"] = self._embed_logo_b64()
+        shop = full_ctx.setdefault("shop", {})
+        logo = shop.get("logo")
+        try:
+            if isinstance(logo, QtGui.QPixmap) and not logo.isNull():
+                ba = QtCore.QByteArray()
+                buf = QtCore.QBuffer(ba)
+                buf.open(QtCore.QIODevice.OpenModeFlag.WriteOnly)
+                logo.save(buf, "PNG")
+                shop["logo_b64"] = f"data:image/png;base64,{bytes(ba.toBase64()).decode()}"
+            else:
+                shop["logo_b64"] = self._embed_logo_b64()
+        except Exception:
+            shop["logo_b64"] = self._embed_logo_b64()
+
         return tpl.render(**full_ctx)
 
     def html_to_pdf(self, html: str, out_path: Path) -> Path:
@@ -44,7 +56,9 @@ class PrintService(QtCore.QObject):
 
         page.pdfPrintingFinished.connect(on_pdf_ready)
         page.loadFinished.connect(on_load_finished)
-        page.setHtml(html)
+
+        base_url = QtCore.QUrl.fromLocalFile(str(self.assets_dir))
+        page.setHtml(html, base_url)
         loop.exec()  # block until PDF is written
         return out_path
 
@@ -73,3 +87,10 @@ class PrintService(QtCore.QObject):
     def print_mpi_pdf(self, ctx: dict, out_path: Path) -> Path:
         html = self.render("mpi.html", ctx)
         return self.html_to_pdf(html, out_path)
+
+    def print_job_ticket_pdf(self, ctx: dict, out_path: Path) -> Path:
+        html = self.render("job_ticket.html", ctx)
+        return self.html_to_pdf(html, out_path)
+        
+        
+

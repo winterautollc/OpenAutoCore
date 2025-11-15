@@ -1,61 +1,44 @@
 <!doctype html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="utf-8"/>
   <title>Repair Order {{ ro.number }}</title>
-  <style>
-    @page { size: A4; margin: 14mm 12mm 16mm 12mm; }
-    body { font: 12px/1.45 system-ui, -apple-system, "Segoe UI", Arial; color:#111; }
-    h1 { margin: 0 0 6px; }
-    h2 { margin: 16px 0 6px; font-size: 15px; }
-    .muted { color:#666; }
-    .kvs { margin-top: 2px; }
-    .kvs strong { display:inline-block; width:88px; }
-    table { width:100%; border-collapse: collapse; }
-    th,td { border-bottom: 1px solid #eee; padding: 6px 8px; vertical-align: top; }
-    th.right, td.right { text-align: right; }
-    .nowrap { white-space: nowrap; }
-    tr { page-break-inside: avoid; }
-    .three-cs { margin: 8px 0 6px; border:1px solid #eee; border-radius:6px; }
-    .three-cs th, .three-cs td { border-bottom: 0; }
-    .three-cs th { width: 20%; text-align: left; color:#444; background:#fafafa; }
-    .job-header { display:flex; justify-content:space-between; align-items:end; }
-    .job-tech { color:#666; font-size:11px; }
-    .totals { margin-top: 10px; }
-  </style>
+  <link rel="stylesheet" href="{{ assets_path }}/css/repair_order.css">
 </head>
 <body>
-  <h1>Repair Order #{{ ro.number }}</h1>
-  <div class="muted">
-    Opened: {{ ro.opened or "-" }} • Promised: {{ ro.promised or "-" }}
-  </div>
-
-  <div class="kvs">
-    <strong>{{ shop.name }}</strong> • {{ shop.phone }}<br/>
-    {{ shop.addr1 }}{% if shop.addr2 %}, {{ shop.addr2 }}{% endif %}, {{ shop.city }}, {{ shop.state }} {{ shop.zip }}
-  </div>
-
+<div class="header">
+    <h1>Repair Order #{{ ro.number }}</h1>
+    <div class="muted">Opened: {{ ro.opened or "-" }}</div>
+    <div class="kvs">
+        <strong>{{ shop.name }}</strong> • {{ shop.phone }}<br/>
+        {{ shop.addr1 }}{% if shop.addr2 %}, {{ shop.addr2 }}{% endif %}, {{ shop.city }}, {{ shop.state }} {{ shop.zip }}
+    </div>
+    {% if shop.logo_b64 %}<img class="shop-logo" src="{{ shop.logo_b64 }}" alt="Shop logo"/>{% endif %}
+</div>
   <div class="kvs" style="margin-top:8px;">
     <strong>{{ customer.full_name }}</strong> — {{ customer.phone }} • {{ customer.email }}<br/>
-    {{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }} ({{ vehicle.vin }})
+    {{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}  {{ vehicle.vin }}
   </div>
-{# === Jobs, with 3 C's and items per job === #}
-{% for job in jobs %}
+  <div class="miles">
+      <pre >Miles In - {{ vehicle.miles_in }}  Miles Out - {{ vehicle.miles_out }}</pre>
+  </div>
 
-  <table class="three-cs">
+  <div></div>
+  {% if ro_c3.concern or ro_c3.cause or ro_c3.correction %}
+  <table class="three-cs" style="margin-top:10px;">
     <tbody>
-      <tr><th>Concern</th><td>{{ job.complaint or "-" }}</td></tr>
-      <tr><th>Cause</th><td>{{ job.cause or "-" }}</td></tr>
-      <tr><th>Correction</th><td>{{ job.correction or "-" }}</td></tr>
+      <tr><th>Concern</th><td>{{ ro_c3.concern or "-" }}</td></tr>
+      <tr><th>Cause</th><td>{{ ro_c3.cause or "-" }}</td></tr>
+      <tr><th>Correction</th><td>{{ ro_c3.correction or "-" }}</td></tr>
     </tbody>
   </table>
-
+{% endif %}
+{% for job in jobs %}
   <h2 class="job-header">
     <span>{{ loop.index }}. {{ job.title or "Job" }}{% if job.po %} — PO: {{ job.po }}{% endif %}</span>
     {% if job.tech %}<span class="job-tech">Tech: {{ job.tech }}</span>{% endif %}
   </h2>
-
-  <table>
+  <table class="job-lines">
     <thead>
       <tr>
         <th>Description</th>
@@ -75,10 +58,7 @@
       {% endfor %}
     </tbody>
   </table>
-
 {% endfor %}
-
-  {# === Grand totals (all items) === #}
   <table class="totals">
     <tbody>
       <tr><td class="right" style="width:80%;">Subtotal</td><td class="right nowrap">{{ "%.2f"|format(totals.subtotal) }}</td></tr>
@@ -87,5 +67,17 @@
       <tr><td class="right"><strong>Total</strong></td><td class="right nowrap"><strong>{{ "%.2f"|format(totals.grand) }}</strong></td></tr>
     </tbody>
   </table>
+<div id="spacer-to-bottom" class="spacer-to-bottom"></div>
+  {% if shop.disclaimer %}
+  <div class="footer">
+    <div class="disclaimer">
+      {{ shop.disclaimer|replace('\n','<br/>')|safe }}
+    </div>
+    <div class="signature">
+      <div class="line"></div>
+      <div class="label">Customer signature / Date</div>
+    </div>
+  </div>
+  {% endif %}
 </body>
 </html>

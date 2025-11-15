@@ -468,10 +468,23 @@ class MPIRepository:
         measures: Dict[str, Optional[int]],
     ) -> Iterable[MPIFinding]:
 
-        # ---- checks -> categorical results
+        measures = measures or {}
+        measure_map: Dict[str, Tuple[float, Optional[str]]] = {}
+        for name, val in measures.items():
+            if val is None:
+                continue
+            item_code = name.replace("_line", "")
+            unit = "32nds" if "tire" in item_code else ("mm" if "brake" in item_code else None)
+            measure_map[item_code] = (float(val), unit)
+
+        # ---- checks -> categorical results, attach measurement if present
         for code, state in (checks or {}).items():
             section = self._infer_section(code)
             position = self._infer_position(code)
+            measurement_value = None
+            measurement_unit = None
+            if code in measure_map:
+                measurement_value, measurement_unit = measure_map.pop(code)
             yield MPIFinding(
                 inspection_id=inspection_id,
                 section=section,
@@ -479,24 +492,22 @@ class MPIRepository:
                 position=position,
                 result_label=state,
                 severity={"ok": 0, "attention": 1, "fail": 2}.get(state, None),
+                measurement_value=measurement_value,
+                measurement_unit=measurement_unit,
                 sort_order=10,
             )
 
-        # ---- measures -> quantitative results
-        for name, val in (measures or {}).items():
-            if val is None:
-                continue
-            item_code = name.replace("_line", "")
+        # ---- remaining measures (without checkboxes selected)
+        for item_code, (value, unit) in measure_map.items():
             section = self._infer_section(item_code)
             position = self._infer_position(item_code)
-            unit = "32nds" if "tire" in item_code else ("mm" if "brake" in item_code else None)
             yield MPIFinding(
                 inspection_id=inspection_id,
                 section=section,
                 item_code=item_code,
                 position=position,
                 result_label="measured",
-                measurement_value=float(val),
+                measurement_value=value,
                 measurement_unit=unit,
                 sort_order=50,
             )

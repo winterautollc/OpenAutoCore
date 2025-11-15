@@ -9,28 +9,28 @@ import decimal
 class SettingsManager:
     def __init__(self, main_window):
         self.ui = main_window
-        self.phone_layout = QtWidgets.QHBoxLayout()
-        self.phone_layout.setObjectName("phone_layout")
-        self.settings_phone_label = QtWidgets.QLabel(parent=self.ui.shop_info_tab)
-        self.settings_phone_label.setMinimumSize(QtCore.QSize(100, 30))
+        self.ui.phone_layout = QtWidgets.QHBoxLayout()
+        self.ui.phone_layout.setObjectName("phone_layout")
+        self.ui.settings_phone_label = QtWidgets.QLabel(parent=self.ui.shop_info_tab)
+        self.ui.settings_phone_label.setMinimumSize(QtCore.QSize(100, 30))
         label_font = QtGui.QFont()
         label_font.setPointSize(13)
         label_font.setBold(True)
         label_font.setItalic(False)
-        self.settings_phone_label.setFont(label_font)
-        self.settings_phone_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.settings_phone_label.setText("Phone #")
-        self.phone_layout.addWidget(self.settings_phone_label)
-        self.settings_phone_line = QtWidgets.QLineEdit(parent=self.ui.shop_info_tab)
-        self.settings_phone_line.setMinimumSize(QtCore.QSize(0, 30))
+        self.ui.settings_phone_label.setFont(label_font)
+        self.ui.settings_phone_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.ui.settings_phone_label.setText("Phone #")
+        self.ui.phone_layout.addWidget(self.ui.settings_phone_label)
+        self.ui.settings_phone_line = QtWidgets.QLineEdit(parent=self.ui.shop_info_tab)
+        self.ui.settings_phone_line.setMinimumSize(QtCore.QSize(0, 30))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
         font.setItalic(False)
-        self.settings_phone_line.setFont(font)
-        self.settings_phone_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.phone_layout.addWidget(self.settings_phone_line)
-        self.ui.gridLayout_46.addLayout(self.phone_layout, 5, 0, 1, 1)
+        self.ui.settings_phone_line.setFont(font)
+        self.ui.settings_phone_line.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.ui.phone_layout.addWidget(self.ui.settings_phone_line)
+        self.ui.gridLayout_46.addLayout(self.ui.phone_layout, 5, 0, 1, 1)
 
 
 
@@ -56,7 +56,7 @@ class SettingsManager:
             self.ui.city_line.text(),
             self.ui.state_line.text(),
             self.ui.zipcode_line.text(),
-            self.settings_phone_line.text(),
+            self.ui.settings_phone_line.text(),
             self.ui.disclamer_edit.toPlainText(),
             int(warranty_duration),
             int(warranty_time),
@@ -139,7 +139,7 @@ class SettingsManager:
         self.ui.city_line.setText(info[3])
         self.ui.state_line.setText(info[4])
         self.ui.zipcode_line.setText(info[5])
-        self.settings_phone_line.setText(info[6])
+        self.ui.settings_phone_line.setText(info[6])
         self.ui.disclamer_edit.setText(info[7])
         self.ui.warranty_time_line.setText(info[10])
         self.ui.warranty_miles_line.setText(info[11])

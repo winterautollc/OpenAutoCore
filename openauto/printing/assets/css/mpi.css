@@ -1,0 +1,99 @@
+@page {
+    size: A4;
+    margin: 14mm 12mm 16mm 12mm;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    font-size: 12pt;
+    margin: 0;
+}
+
+h1 {
+    margin: 0 0 4px 0;
+    font-size: 18pt;
+}
+
+h2 {
+    margin: 18px 0 8px;
+    font-size: 13pt;
+}
+
+.section-title {
+    padding-left: 6mm;
+}
+
+.muted {
+    color: #666;
+    font-size: 10pt;
+    margin-bottom: 8px;
+    padding-left: 4mm;
+}
+
+.kvs {
+    margin-top: 4px;
+    font-size: 11pt;
+    padding-left: 4mm;
+}
+
+.shop-logo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-height: 36mm;
+    width: auto;
+    height: auto;
+    z-index: 1;
+}
+
+@media screen {
+    .shop-logo {
+        max-height: 160px;
+    }
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 16px;
+}
+
+th,
+td {
+    padding: 8px;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: top;
+}
+
+th.right,
+td.right {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.hdr {
+    position: relative;
+    min-height: 28mm;
+    padding-right: 38mm;
+    margin-bottom: 8px;
+}
+
+.status {
+    font-weight: 600;
+}
+
+.status-green {
+    color: #0b7a29;
+}
+
+.status-yellow {
+    color: #b56a00;
+}
+
+.status-red {
+    color: #c22727;
+}

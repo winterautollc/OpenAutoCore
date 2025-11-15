@@ -8,11 +8,13 @@ from openauto.repositories.vehicle_repository import VehicleRepository
 from openauto.repositories.estimates_repository import EstimatesRepository
 from openauto.repositories.estimate_items_repository import EstimateItemsRepository
 from openauto.repositories.estimate_jobs_repository import EstimateJobsRepository
+from openauto.repositories.ro_c3_repository import ROC3Repository
 from openauto.managers.ro_hub.save_estimate_service import SaveEstimateService
 
 _BASE = Path(__file__).resolve().parents[2]
 TEMPLATE_DIR = _BASE / "printing" / "templates"
 ASSETS_DIR   = _BASE / "printing" / "assets"
+assets_url = QtCore.QUrl.fromLocalFile(str(ASSETS_DIR)).toString()
 
 
 def _money(x) -> float:
@@ -28,6 +30,13 @@ class PrintController(QtCore.QObject):
         self.ui = ui
         app = QtWidgets.QApplication.instance()
         self.print_service = PrintService(template_dir=TEMPLATE_DIR, assets_dir=ASSETS_DIR, app=app)
+        existing_menu = getattr(self.ui, "print_menu", None)
+        if existing_menu is None:
+            existing_menu = QtWidgets.QMenu(self.ui.print_ro_button)
+            self.ui.print_menu = existing_menu
+        self.print_menu = existing_menu
+        self._menu_initialized = False
+        self._setup_print_menu()
         self.settings_manager = SettingsManager
         self.estimates_repo = EstimatesRepository()
         self.customers_repo = CustomerRepository()
@@ -35,12 +44,41 @@ class PrintController(QtCore.QObject):
         self.repair_orders_repo = RepairOrdersRepository()
         self.estimate_items_repo = EstimateItemsRepository()
         self.estimate_jobs_repo = EstimateJobsRepository()
+        self.ro_c_three_repo = ROC3Repository()
         self.save_estimator = SaveEstimateService(self.ui)
         self.load_estimate_items = self.save_estimator._collect_ui_items_for_estimate
-     #   self.ui.print_ro_button.clicked.connect(self.on_print_ro_clicked)
         self._ctx_ro_id = None
         self._ctx_est_id = None
         self._ctx_vin = None
+
+
+    def _setup_print_menu(self):
+        if self._menu_initialized:
+            return
+        self.print_menu.clear()
+        self.estimate_action = self.print_menu.addAction("Print Estimate For Customer")
+        self.job_ticket_action = self.print_menu.addAction("Print Job Ticket For Technician")
+        self.estimate_action.triggered.connect(
+            lambda: self.on_print_ro_clicked_with_ids(
+                getattr(self.ui, "current_ro_id", None) or 0,
+                getattr(self.ui.ro_items_table, "current_estimate_id", None) or 0,
+                "estimate",
+            )
+        )
+        self.job_ticket_action.triggered.connect(
+            lambda: self.on_print_ro_clicked_with_ids(
+                getattr(self.ui, "current_ro_id", None) or 0,
+                getattr(self.ui.ro_items_table, "current_estimate_id", None) or 0,
+                "job_ticket",
+            )
+        )
+        self._menu_initialized = True
+
+    def on_print_context_menu(self):
+        self._setup_print_menu()
+        global_pos = self.ui.print_ro_button.mapToGlobal(self.ui.print_ro_button.rect().bottomLeft())
+        self.print_menu.popup(global_pos)
+        
 
     @QtCore.pyqtSlot(int, int, str)
     def set_context(self, ro_id: int, est_id: int, vin: str = ""):
@@ -49,14 +87,13 @@ class PrintController(QtCore.QObject):
         self._ctx_vin = vin or None
 
 
-    @QtCore.pyqtSlot(int, int)
-    def on_print_ro_clicked_with_ids(self, ro_id: int, est_id: int):
+    @QtCore.pyqtSlot(int, int, str)
+    def on_print_ro_clicked_with_ids(self, ro_id: int, est_id: int, mode: str = "estimate"):
         self._ctx_ro_id = int(ro_id) if ro_id else None
         self._ctx_est_id = int(est_id) if est_id else None
-        self.on_print_ro_clicked()
+        self.on_print_ro_clicked(mode=mode)
 
-
-    def on_print_ro_clicked(self):
+    def on_print_ro_clicked(self, mode: str = "estimate"):
         sel = self.current_selection()
         self.ro_id = self._ctx_ro_id if self._ctx_ro_id is not None else getattr(sel, "ro_id", None)
         self.est_id = self._ctx_est_id if self._ctx_est_id is not None else getattr(sel, "estimate_id", None)
@@ -66,17 +103,24 @@ class PrintController(QtCore.QObject):
             self.est_id = self.repair_orders_repo.estimate_id_for_ro(self.ro_id)
 
         if self.ro_id:
-            ro, customer, vehicle, items, jobs = self._load_ro_with_items(self.ro_id)
+            ro, customer, vehicle, items, jobs, ro_c3 = self._load_ro_with_items(self.ro_id)
             doc_number = ro.get("ro_number") or f"RO-{self.ro_id}"
-            opened = ro.get("opened_at") or ""
+            opened = ro.get("created_at") or ""
         else:
-            est, customer, vehicle, items, jobs = self._load_estimate_with_items(self.est_id)
+            est, customer, vehicle, items, jobs, ro_c3 = self._load_estimate_with_items(self.est_id)
             doc_number = est.get("estimate_number") or f"EST-{self.est_id}"
             opened = est.get("created_at_str") or ""
 
+        current_tech = ""
+        if hasattr(self.ui, "technician_box"):
+            current_tech = (self.ui.technician_box.currentText() or "").strip()
+        if current_tech:
+            for job in jobs:
+                job["tech"] = current_tech
+
         subtotal = _sum(items, "total")
         tax_rate = (getattr(self.settings_manager, "sales_tax_rate", 0.0) or 0.0)
-        tax = round(subtotal * float(tax_rate), 2)
+        tax = float(self.ui.tax_label.text())
         fees = 0.0
         grand = round(subtotal + tax + fees, 2)
 
@@ -86,7 +130,9 @@ class PrintController(QtCore.QObject):
             "city": self.ui.city_line.text(),
             "state": self.ui.state_line.text(),
             "zip": self.ui.zipcode_line.text(),
-            "phone": getattr(self.settings_manager, "shop_phone", ""),
+            "phone": self.ui.settings_phone_line.text(),
+            "disclaimer": self.ui.disclamer_edit.toPlainText(),
+            "logo": self.ui.shop_logo.pixmap(),
         }
 
         ctx = {
@@ -101,21 +147,71 @@ class PrintController(QtCore.QObject):
                 "make": vehicle.get("make",""),
                 "model": vehicle.get("model",""),
                 "vin": vehicle.get("vin",""),
+                "miles_in": self.ui.miles_in_edit.text(),
+                "miles_out": self.ui.miles_out_edit.text(),
             },
             "ro": {"number": doc_number, "opened": opened},
             "items": items,
             "jobs": jobs,
+            "ro_c3" : ro_c3,
             "totals": {"subtotal": subtotal, "tax": tax, "fees": fees, "grand": grand},
+            "assets_path": assets_url,
         }
 
-        suggested = f"{doc_number}.pdf"
+        template_name, payload, suggested = self._prepare_print_payload(mode, ctx)
         path, _ = QtWidgets.QFileDialog.getSaveFileName(self.ui, "Save RO as PDF", suggested, "PDF Files (*.pdf)")
         if not path:
             return
 
-        html = self.print_service.render("repair_order.html", ctx)
+        html = self.print_service.render(template_name, payload)
         out_path = self.print_service.html_to_pdf(html, Path(path))
         QtGui.QDesktopServices.openUrl(QtCore.QUrl.fromLocalFile(str(out_path)))
+
+    def _prepare_print_payload(self, mode: str, ctx: dict):
+        doc_number = ctx["ro"]["number"]
+        if mode == "job_ticket":
+            payload = self._build_job_ticket_context(ctx)
+            template = "job_ticket.html"
+            suggested = f"{doc_number}-job-ticket.pdf"
+        else:
+            payload = ctx
+            template = "repair_order.html"
+            suggested = f"{doc_number}.pdf"
+        return template, payload, suggested
+
+    def _build_job_ticket_context(self, ctx: dict) -> dict:
+        def _labor_only(lines):
+            labor = [ln for ln in lines if (ln.get("kind") or "").lower() == "labor"]
+            return labor or lines
+
+        jobs = []
+        for job in ctx.get("jobs", []):
+            jobs.append({
+                "id": job.get("id"),
+                "title": job.get("title"),
+                "tech": job.get("tech"),
+                "po": job.get("po"),
+                "lines": [
+                    {
+                        "desc": ln.get("desc"),
+                        "qty": ln.get("qty"),
+                        "notes": ln.get("notes", ""),
+                    }
+                    for ln in _labor_only(job.get("lines", []))
+                ],
+            })
+
+        return {
+            "mode": "job_ticket",
+            "shop": ctx.get("shop", {}),
+            "customer": ctx.get("customer", {}),
+            "vehicle": ctx.get("vehicle", {}),
+            "ro": ctx.get("ro", {}),
+            "jobs": jobs,
+            "ro_c3": ctx.get("ro_c3"),
+            "items": ctx.get("items"),
+            "assets_path": ctx.get("assets_path"),
+        }
 
     #tailor info from repos
     def _load_ro_with_items(self, ro_id: int):
@@ -145,13 +241,21 @@ class PrintController(QtCore.QObject):
             jobs_meta = self.estimate_jobs_repo.get_jobs_for_ro(ro_id) or []
         except Exception:
             jobs_meta = []
+        c3_rows = self.ro_c_three_repo.list_for_ro(ro_id) or []
+        ro_c3 = {"concern": "", "cause": "", "correction": ""}
+        for r in c3_rows:
+            if not ro_c3["concern"] and r.get("concern"):
+                ro_c3["concern"] = r.get("concern", "")
+            if not ro_c3["cause"] and r.get("cause"):
+                ro_c3["cause"] = r.get("cause", "")
+            if not ro_c3["correction"] and r.get("correction"):
+                ro_c3["correction"] = r.get("correction", "")
 
         meta_by_id = { (j.get("id") or j.get("job_id")): j for j in jobs_meta if (j.get("id") or j.get("job_id")) is not None }
         grouped = {}
         for it in items:
             jid = it.get("job_id") or 0
             grouped.setdefault(jid, []).append(it)
-
         jobs = []
         for jid, rows in grouped.items():
             meta = meta_by_id.get(jid, {}) if jid else {}
@@ -160,14 +264,11 @@ class PrintController(QtCore.QObject):
                 "title": meta.get("title") or meta.get("job_title") or f"{jid or ''}".strip(),
                 "tech": meta.get("tech") or meta.get("technician") or "",
                 "po": meta.get("po") or "",
-                "complaint": meta.get("complaint") or meta.get("c1") or "",
-                "cause": meta.get("cause") or meta.get("c2") or "",
-                "correction": meta.get("correction") or meta.get("c3") or "",
                 "lines": rows,
             })
 
         jobs.sort(key=lambda j: (j["id"]==0, j["id"]))
-        return ro, customer, vehicle, items, jobs
+        return ro, customer, vehicle, items, jobs, ro_c3
 
     def _load_estimate_with_items(self, estimate_id: int):
         est = self.estimates_repo.get_by_id(estimate_id) if estimate_id else None
@@ -185,7 +286,8 @@ class PrintController(QtCore.QObject):
         if est is None:
             QtWidgets.QMessageBox.warning(self.ui, "Print",
                     "No estimate found. Save the RO to create/refresh its estimate, then try again.")
-            return {"estimate_number": f"EST-{estimate_id or 'UNKNOWN'}"}, {}, {}, [], []
+            return {"estimate_number": f"EST-{estimate_id or 'UNKNOWN'}"}, {}, {}, [], [], {"concern": "", "cause": "",
+                                                                                            "correction": ""}
 
         customer = self.customers_repo.get_customer_info_by_id(est["customer_id"])
         vehicle = (self.vehicles_repo.get_vehicle_by_id(est.get("vehicle_id"))
@@ -238,7 +340,19 @@ class PrintController(QtCore.QObject):
             })
 
         jobs.sort(key=lambda j: (j["id"] == 0, j["id"]))
-        return est, customer, vehicle, items, jobs
+        ro_c3 = {"concern": "", "cause": "", "correction": ""}
+        if est.get("ro_id"):
+            c3_rows = self.ro_c_three_repo.list_for_ro(est["ro_id"]) or []
+            for r in c3_rows:
+                if not ro_c3["concern"] and r.get("concern"):
+                    ro_c3["concern"] = r["concern"]
+                if not ro_c3["cause"] and r.get("cause"):
+                    ro_c3["cause"] = r["cause"]
+                if not ro_c3["correction"] and r.get("correction"):
+                    ro_c3["correction"] = r["correction"]
+
+        return est, customer, vehicle, items, jobs, ro_c3
+
 
 
     # Provide a selection helper if you don’t have one already

@@ -3,7 +3,7 @@ from PyQt6 import QtCore, QtGui
 from PyQt6.QtCore import QObject, pyqtSignal, QThread, QTimer
 
 from openauto.repositories import (customer_repository, vehicle_repository,
-                                   appointment_repository, repair_orders_repository, parts_tree_repository)
+                                   appointment_repository, repair_orders_repository)
 
 from PyQt6.QtCore import QPoint, QRect, QEasingCurve, QPropertyAnimation, QSequentialAnimationGroup, QParallelAnimationGroup, QPauseAnimation, QEvent
 from PyQt6 import QtWidgets
@@ -314,7 +314,6 @@ class SQLMonitor(QThread):
     small_vehicles_update = pyqtSignal(list)
     appointment_data = pyqtSignal(list)
     hourly_schedule_update = pyqtSignal()
-    parts_tree_updates = pyqtSignal(int)
 
 
     def __init__(self):
@@ -337,7 +336,6 @@ class SQLMonitor(QThread):
                     ro_data = repair_orders_repository.RepairOrdersRepository.heartbeat() or []
                     customer_data = customer_repository.CustomerRepository.get_all_customer_info() or []
                     vehicle_data = vehicle_repository.VehicleRepository.get_all_vehicle_info() or []
-                    # belongs_to_data = customer_repository.CustomerRepository.get_all_customer_names()
                     customer_small_data = customer_repository.CustomerRepository.get_all_customer_names() or []
                     vehicle_small_data = vehicle_repository.VehicleRepository.get_all_vehicles() or []
                     appointment_data = appointment_repository.AppointmentRepository.get_appointment_ids_and_timestamps() or []
@@ -354,10 +352,6 @@ class SQLMonitor(QThread):
                     if vehicle_data != self.last_vehicle_data:
                         self.last_vehicle_data = vehicle_data
                         self.vehicle_update.emit(vehicle_data)
-                    #
-                    # if belongs_to_data != self.last_belongs_to_data:
-                    #     self.last_belongs_to_data = belongs_to_data
-                    #     self.belongs_to_update.emit(belongs_to_data)
 
                     if customer_small_data != self.last_customer_small_data:
                         self.last_customer_small_data = customer_small_data

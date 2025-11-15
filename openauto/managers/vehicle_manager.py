@@ -1,3 +1,4 @@
+from pathlib import Path
 from PyQt6 import QtWidgets, QtCore
 from openauto.ui import vehicle_search_form
 from pyvin import VIN
@@ -5,6 +6,23 @@ from openauto.utils.validator import Validator
 from openauto.repositories.vehicle_repository import VehicleRepository
 from openauto.repositories.customer_repository import CustomerRepository
 from openauto.managers.belongs_to_manager import BelongsToManager
+from openauto.utils.fixed_popup_combo import FixedPopupCombo
+
+
+STATES = [
+    "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "ID",
+    "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO",
+    "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA",
+    "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+]
+
+
+def _ptcli_available() -> bool:
+    try:
+        ptcli_path = (Path(__file__).resolve().parent / "parts_tree" / "ptcli").resolve()
+        return ptcli_path.is_file()
+    except Exception:
+        return False
 
 
 class VehicleManager:
@@ -31,8 +49,29 @@ class VehicleManager:
             QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.Dialog
         )
 
+
+
         self.ui.vehicle_window.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
         self.ui.vehicle_window.setFocus()
+
+        # Only expose plate/state controls when ptcli is available (Plate2VIN)
+        if _ptcli_available():
+            old_box = self.ui.vehicle_window_ui.plate_state_box
+            parent = old_box.parent()
+            layout = parent.layout()
+
+            combo = FixedPopupCombo(max_popup_height=200, parent=parent)
+            combo.setObjectName("plate_state_box")
+            combo.addItems(STATES)
+
+            layout.replaceWidget(old_box, combo)
+            old_box.deleteLater()
+            self.ui.vehicle_window_ui.plate_state_box = combo
+        else:
+            # Hide the plate/state selector when Plate2VIN is not available
+            self.ui.vehicle_window_ui.plate_state_box.hide()
+        
+        
         self.ui.vehicle_window_ui.vehicle_cancel_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("vehicle_window"))
 

@@ -44,7 +44,8 @@ class RepairOrdersRepository:
                    CONCAT(w.first_name,' ',w.last_name) AS writer_name,
                    ro.assigned_tech_id,
                    ro.assigned_writer_id,
-                   ro.created_by
+                   ro.created_by,
+                   ro.created_at
             FROM repair_orders ro
             LEFT JOIN users t ON t.id = ro.assigned_tech_id
             -- writer fallback: assigned writer OR creator (writer can be writer or manager)

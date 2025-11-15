@@ -1,0 +1,80 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Repair Order {{ ro.number }}</title>
+    <link rel="stylesheet" href="{{ assets_path }}/css/repair_order.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Repair Order #{{ ro.number }}</h1>
+        <div class="muted">Opened: {{ ro.opened or "-" }}</div>
+        <div class="kvs">
+            <strong>{{ shop.name }}</strong> • {{ shop.phone }}<br />
+            {{ shop.addr1 }}{% if shop.addr2 %}, {{ shop.addr2 }}{% endif %}, {{ shop.city }}, {{ shop.state }} {{
+            shop.zip }}
+        </div>
+        {% if shop.logo_b64 %}<img class="shop-logo" src="{{ shop.logo_b64 }}" alt="Shop logo" />{% endif %}
+    </div>
+    <div class="kvs" style="margin-top:8px;">
+        <strong>{{ customer.full_name }}</strong> — {{ customer.phone }} • {{ customer.email }}<br />
+        {{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }} {{ vehicle.vin }}
+    </div>
+    <div class="miles">
+        <pre>Miles In - {{ vehicle.miles_in }}  Miles Out - {{ vehicle.miles_out }}</pre>
+    </div>
+
+    <div></div>
+    {% if ro_c3.concern or ro_c3.cause or ro_c3.correction %}
+    <table class="three-cs" style="margin-top:10px;">
+        <tbody>
+            <tr>
+                <th>Concern</th>
+                <td>{{ ro_c3.concern or "-" }}</td>
+            </tr>
+            <tr>
+                <th>Cause</th>
+                <td>{{ ro_c3.cause or "-" }}</td>
+            </tr>
+            <tr>
+                <th>Correction</th>
+                <td>{{ ro_c3.correction or "-" }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% endif %}
+    {% for job in jobs %}
+    <h2 class="job-header">
+        <span>{{ loop.index }}. {{ job.title or "Job" }}{% if job.po %} — PO: {{ job.po }}{% endif %}</span>
+        {% if job.tech %}<span class="job-tech">Tech: {{ job.tech }}</span>{% endif %}
+    </h2>
+    <table class="job-lines">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th class="right nowrap">Qty/Hrs</th>
+                <th class="right nowrap">Rate</th>
+                <th class="right nowrap">Line Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in job["lines"] %}
+            <tr>
+                <td>{{ row.desc }}</td>
+                <td class="right nowrap">{{ "%.2f"|format(row.qty) }}</td>
+
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endfor %}
+
+    <div id="spacer-to-bottom" class="spacer-to-bottom"></div>
+    <div class="footer">
+    </div>
+</body>
+
+</html>

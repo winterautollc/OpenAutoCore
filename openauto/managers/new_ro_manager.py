@@ -1,3 +1,4 @@
+from pathlib import Path
 from PyQt6 import QtCore, QtWidgets
 from PyQt6.QtCore import pyqtSignal
 from PyQt6.QtWidgets import QAbstractItemView
@@ -9,9 +10,24 @@ from openauto.repositories.repair_orders_repository import RepairOrdersRepositor
 from openauto.repositories.customer_repository import CustomerRepository
 from openauto.repositories.vehicle_repository import VehicleRepository
 from openauto.repositories.ro_c3_repository import ROC3Repository
+from openauto.utils.fixed_popup_combo import FixedPopupCombo
 from pyvin import VIN
 
 
+STATES = [
+    "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "ID",
+    "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO",
+    "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA",
+    "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+]
+
+
+def _ptcli_available() -> bool:
+    try:
+        ptcli_path = (Path(__file__).resolve().parent / "parts_tree" / "ptcli").resolve()
+        return ptcli_path.is_file()
+    except Exception:
+        return False
 class NewROManager:
     cust_id_small_signal = pyqtSignal(str)
 
@@ -205,6 +221,24 @@ class NewROManager:
         self.ui.vehicle_window_ui.vin_line.textChanged.connect(self._enforce_uppercase_vin)
         self.ui.vehicle_window_ui.vin_search_button.clicked.connect(self.search_vehicle)
         self.ui.vehicle_window_ui.vehicle_save_button.clicked.connect(self.save_vehicle)
+
+        if _ptcli_available():
+            old = self.ui.vehicle_window_ui.plate_state_box
+            parent = old.parent()
+            layout = old.parent().layout()
+
+            combo = FixedPopupCombo(max_popup_height=200, parent=parent)
+            combo.setObjectName("plate_state_box")
+            combo.addItems(STATES)
+
+            layout.replaceWidget(old, combo)
+            old.deleteLater()
+            self.ui.vehicle_window_ui.plate_state_box = combo
+            
+            self.ui.vehicle_window_ui.vin_line.setPlaceholderText("Search Plate Number Or VIN")
+            
+        else:
+            self.ui.vehicle_window_ui.plate_state_box.hide()
         self.ui.vehicle_window.show()
 
     def search_vehicle(self):
@@ -391,6 +425,5 @@ class NewROManager:
             pass
 
         self.ui.widget_manager.close_and_delete("new_repair_order")
-
 
 

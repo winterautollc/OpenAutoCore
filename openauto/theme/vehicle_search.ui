@@ -282,6 +282,16 @@
       </widget>
      </item>
      <item>
+      <widget class="QComboBox" name="plate_state_box">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLineEdit" name="vin_line">
        <property name="minimumSize">
         <size>

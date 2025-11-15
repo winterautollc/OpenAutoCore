@@ -1,0 +1,181 @@
+@page {
+    size: A4;
+    margin: 14mm 12mm 16mm 12mm;
+}
+
+body {
+    font: 12px/1.45 system-ui, -apple-system, "Segoe UI", Arial;
+    color:#111;
+}
+
+h1 {
+    margin: 0 0 6px;
+}
+
+h2 {
+    margin: 16px 0 6px;
+    font-size: 15px;
+}
+
+.header {
+    position: relative;
+    min-height: 28mm;
+    padding-right: 38mm;
+}
+
+.shop-logo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-height: 36mm;
+    width: auto;
+    height: auto;
+    z-index: 1;
+}
+
+@media screen {
+  .shop-logo {
+      max-height: 160px;
+  }
+}
+
+.muted {
+    color:#666;
+    font-weight: 500;
+}
+
+.kvs {
+    margin-top: 2px;
+    font-weight: 500;
+}
+
+.kvs strong {
+    display:inline-block;
+    width:88px;
+}
+
+
+.job-lines {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.job-lines th,
+.job-lines td {
+    padding: 6px 10px;
+    border: 1px solid #eee;
+    vertical-align: middle;
+    line-height: 1.3;
+    border-left: none;
+    border-right: none;
+}
+
+.job-lines td:first-child {
+    width: 60%;
+}
+
+.job-lines td:last-child {
+    text-align: right;
+}
+
+table {
+    width:100%;
+    border-collapse: collapse;
+}
+
+th,td {
+    border-bottom: 1px solid #eee;
+    padding: 6px 8px;
+    vertical-align: top;
+}
+
+th.right,
+td.right {
+    text-align: right;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+tr {
+    page-break-inside: avoid;
+}
+
+.three-cs {
+    margin: 8px 0 6px;
+    border:1px solid #eee;
+    border-radius:6px;
+    color: #314455;
+    font-size: 13px;
+}
+
+.three-cs th,
+.three-cs td {
+    border-bottom: 0;
+    color: #314455;
+}
+
+.three-cs th {
+    width: 20%;
+    text-align: left;
+    color:#444;
+    background:#fafafa;
+    color: #314455;
+}
+
+.job-header {
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    color: #314455;
+}
+
+.job-tech {
+    color:#666;
+    font-size:11px;
+}
+
+.totals {
+    margin-top: 10px;
+    border: none;
+    border-collapse: collapse;
+}
+.totals tr,
+.totals td {
+    border: none;
+}
+
+/* Footer / signature */
+.footer {
+    margin-top: 16px;
+    font-size: 11px;
+    color: #314455;
+}
+
+.footer .disclaimer {
+    margin-bottom: 14px;
+    line-height: 1.4;
+}
+
+.signature {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 20px;
+  align-items: end;
+}
+
+.signature .line {
+  border-bottom: 1px solid #111;
+  height: 26px;
+}
+
+.signature .label {
+    font-size: 13px;
+    color:#555;
+    text-align: left;
+    font-weight: bold;
+}
+

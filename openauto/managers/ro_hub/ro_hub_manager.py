@@ -43,7 +43,6 @@ def _to_qdatetime(dt) -> QtCore.QDateTime:
             dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second
         )
     if isinstance(dt, str) and dt:
-        # handle "YYYY-MM-DD HH:MM:SS[.ffffff]" from MySQL if returned as string
         ts = dt.split('.')[0]
         qdt = QtCore.QDateTime.fromString(ts, "yyyy-MM-dd HH:mm:ss")
         if qdt.isValid():
@@ -84,14 +83,7 @@ class ROHubManager(QtCore.QObject):
         self.totals = TotalsController(ui)
         self.print_controller = PrintController(ui)
         self.roContextReady.connect(self.print_controller.set_context)
-
-        if hasattr(self.ui, "print_ro_button"):
-            self.ui.print_ro_button.clicked.connect(
-                lambda: self.print_controller.on_print_ro_clicked_with_ids(
-                    getattr(self.ui, "current_ro_id", None) or 0,
-                    getattr(self.ui.ro_items_table, "current_estimate_id", None) or 0
-                )
-            )
+        self.ui.print_ro_button.setMenu(self.ui.print_menu)
 
         self.c3 = C3Controller(ui)
         self.mpi_manager = MpiManager(ui)
@@ -618,4 +610,3 @@ class ROHubManager(QtCore.QObject):
             self.ui.ro_items_table.current_estimate_id = int(est_id)
         except Exception:
             pass
-

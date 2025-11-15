@@ -1,28 +1,47 @@
-{% set title = "MPI for " ~ vehicle.plate or vehicle.vin %}
-{% set body %}
-  <h1>Multi-Point Inspection</h1>
-  <div>{{ customer.full_name }} • {{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }} ({{ vehicle.vin }})</div>
-  <br/>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>MPI for {{ header.vin }}</title>
+  <link rel="stylesheet" href="{{ assets_path }}/css/mpi.css">
+</head>
+<body>
+  <div class="hdr">
+    <h1>Multi-Point Inspection</h1>
+    <div class="kvs">
+      <strong>{{ shop.name }}</strong> • {{ shop.phone }}<br/>
+      {{ shop.addr1 }}{% if shop.addr2 %}, {{ shop.addr2 }}{% endif %}, {{ shop.city }}, {{ shop.state }} {{ shop.zip }}
+    </div>
+    {% if shop.logo_b64 %}<img class="shop-logo" src="{{ shop.logo_b64 }}" alt="Shop logo"/>{% endif %}
+  </div>
+
+  <div class="muted customer">
+    {{ header.customer }} • {{ header.vehicle }}<br/>
+    RO: {{ header.ro_number }} • Date: {{ header.date }} • Odometer: {{ header.mileage }}
+  </div>
+
   {% for section in mpi.sections %}
-    <h2>{{ section.title }}</h2>
+    <h2 class="section-title">{{ section.title }}</h2>
     <table>
-      <thead><tr><th>Item</th><th class="right">Status</th><th>Notes</th></tr></thead>
+      <thead>
+        <tr><th>Item</th><th class="right">Status</th><th>Notes</th></tr>
+      </thead>
       <tbody>
-        {% for line in section.items %}
-        <tr>
-          <td>{{ line.label }}</td>
-          <td class="right">
-            {% if line.status == "green" %}✅ OK
-            {% elif line.status == "yellow" %}⚠️ Watch
-            {% elif line.status == "red" %}❌ Service
-            {% else %}-{% endif %}
-          </td>
-          <td>{{ line.notes or "" }}</td>
-        </tr>
+        {% for line in section['lines'] %}
+          <tr>
+            <td>{{ line.label }}</td>
+            <td class="right status{% if line.status %} status-{{ line.status }}{% endif %}">
+              {% if line.status == "green" %}✅ OK
+              {% elif line.status == "yellow" %}⚠️ Watch
+              {% elif line.status == "red" %}✖ Service
+              {% else %}-{% endif %}
+            </td>
+            <td>{{ line.notes or "" }}</td>
+          </tr>
         {% endfor %}
       </tbody>
     </table>
     {% if not loop.last %}<div class="page-break"></div>{% endif %}
   {% endfor %}
-{% endset %}
-{% include "_base.html" %}
+</body>
+</html>

@@ -4,6 +4,7 @@ from openauto.utils.validator import Validator
 from openauto.repositories.customer_repository import CustomerRepository
 from openauto.repositories.vehicle_repository import VehicleRepository
 from openauto.repositories import vehicle_repository
+from openauto.utils.fixed_popup_combo import FixedPopupCombo
 
 class BelongsToManager:
     def __init__(self, main_window, vehicle_id=None):
@@ -40,9 +41,18 @@ class BelongsToManager:
 
         self.ui.belongs_to_window_ui.customer_search_edit.setPlaceholderText("Search ...")
         self.ui.belongs_to_window_ui.customer_search_edit.textChanged.connect(self.customer_combo_filter)
-
-
-
+        
+        old = self.ui.belongs_to_window_ui.customer_name_box
+        parent = old.parent()
+        layout = parent.layout()
+        
+        combo = FixedPopupCombo(max_popup_height=200, parent=parent)
+        combo.setObjectName("customer_name_box")
+        
+        layout.replaceWidget(old, combo)
+        old.deleteLater()
+        
+        self.ui.belongs_to_window_ui.customer_name_box = combo
         self.ui.vehicle_window.hide()
         self.name_box_items()
         self.ui.belongs_to_window.show()
@@ -187,6 +197,18 @@ class BelongsToManager:
 
         self.ui.belongs_to_window_ui.customer_search_edit.setPlaceholderText("Search ...")
         self.ui.belongs_to_window_ui.customer_search_edit.textChanged.connect(self.customer_combo_filter)
+
+        old = self.ui.belongs_to_window_ui.customer_name_box
+        parent = old.parent()
+        layout = parent.layout()
+        
+        combo = FixedPopupCombo(max_popup_height=200, parent=parent)
+        combo.setObjectName("customer_name_box")
+        
+        layout.replaceWidget(old, combo)
+        old.deleteLater()
+        
+        self.ui.belongs_to_window_ui.customer_name_box = combo
 
         self.name_box_items()
         self.ui.belongs_to_window_ui.confirm_customer_search_button.clicked.connect(self.change_vehicle_owner)
