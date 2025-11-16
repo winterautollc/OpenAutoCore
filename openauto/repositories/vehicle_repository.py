@@ -6,23 +6,37 @@ from openauto.repositories import db_handlers
 class VehicleRepository:
     @staticmethod
     def insert_vehicle(vehicle_data):
-        # vehicle_data = [vin, year, make, model, engine_size, trim, customer_id]
         vin = (vehicle_data[0] or "").strip().upper()
-        vehicle_data = [
+        year = vehicle_data[1]
+        make = vehicle_data[2]
+        model = vehicle_data[3]
+        engine_size = vehicle_data[4]
+        trim = vehicle_data[5]
+        customer_id = vehicle_data[6]
+
+        plate = vehicle_data[7] if len(vehicle_data) > 7 else None
+        plate_state = vehicle_data[8] if len(vehicle_data) > 8 else None
+
+        plate = (plate or "").strip().upper() or None
+        plate_state = (plate_state or "").strip().upper() or None
+
+        row = [
             (vin if vin else None),  # normalize '' -> None
-            vehicle_data[1],
-            vehicle_data[2],
-            vehicle_data[3],
-            vehicle_data[4],
-            vehicle_data[5],
-            vehicle_data[6],
+            plate,
+            plate_state,
+            year,
+            make,
+            model,
+            engine_size,
+            trim,
+            customer_id,
         ]
 
         conn = db_handlers.connect_db()
         cursor = conn.cursor()
-        query = """INSERT INTO vehicles (vin, year, make, model, engine_size, trim, customer_id)
-                   VALUES (%s, %s, %s, %s, %s, %s, %s)"""
-        cursor.execute(query, vehicle_data)
+        query = """INSERT INTO vehicles (vin, plate, plate_state, year, make, model, engine_size, trim, customer_id)
+                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+        cursor.execute(query, row)
         conn.commit()
         cursor.close()
         conn.close()
@@ -116,12 +130,12 @@ class VehicleRepository:
         return result
 
     @staticmethod
-    def get_vehicle_info_for_new_ro(customer_id):
+    def get_vehicle_info_for_new_ro(vehicle_id):
         conn = db_handlers.connect_db()
         cursor = conn.cursor(dictionary=True)
-        query = """SELECT vin, year, make, model, engine_size, trim, customer_id FROM vehicles WHERE customer_id = %s
+        query = """SELECT vin, year, make, model, engine_size, trim, customer_id FROM vehicles WHERE id = %s
                     LIMIT 1"""
-        cursor.execute(query, (customer_id, ))
+        cursor.execute(query, (vehicle_id, ))
         result = cursor.fetchone()
         cursor.close()
         conn.close()

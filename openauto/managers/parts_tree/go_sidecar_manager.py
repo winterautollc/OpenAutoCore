@@ -39,6 +39,7 @@ class GoSidecarManager(QObject):
     partRemoved = pyqtSignal(dict)
     cartUpdated = pyqtSignal(dict)
     cartSubmitted = pyqtSignal(dict)
+    plateDecoded = pyqtSignal(dict)
 
     def __init__(self, ptcli_path: str, parent=None, timeout_ms: int = 60, public_base: str | None = None,
                  local_return_base: str | None = None):
@@ -141,6 +142,12 @@ class GoSidecarManager(QObject):
     def _emit_for_op(self, op: str, payload: dict):
         # Normalize op and emit existing UI signals
         op = (op or "").lower()
+        
+        if op == "plate2vin":
+            self.debugText.emit(scrub("[ptcli] emitting plateDecoded"))
+            self.plateDecoded.emit(payload)
+            return
+        
         if op == "submit-cart":
             self.debugText.emit(scrub("[ptcli] emitting cartSubmitted"))
             self.cartSubmitted.emit(payload)
@@ -344,6 +351,19 @@ class GoSidecarManager(QObject):
         except Exception:
             est = None
         self._default_estimate_id = est if est and est > 0 else None
+        
+        
+    def plate_to_vin(self, token: str, plate: str, state: str | None = None,
+                     timeout_s: int = DEFAULT_PTCLI_TIMEOUT):
+        if "plate2vin" not in self.supported_ops:
+            self.errorText.emit("Your ptcli does not support -op plate2vin. Rebuild/upgrade the binary.")
+            return
+        args = ["-op", "plate2vin", "-token", token,
+                "-plate", plate,
+                "-timeout", f"{timeout_s}s", "-dump"]
+        if state:
+            args += ["-state", state]
+        self._run(args)
 
 class UvicornManager(QObject):
     debugText = pyqtSignal(str)

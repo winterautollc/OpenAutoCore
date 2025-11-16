@@ -381,7 +381,7 @@ class PartsHubManager(QObject):
                 partner_key=os.getenv("QU_QBSUOFS_LFZ"),
                 user_id=os.getenv("QU_VTFS_JE"),
                 user_key=os.getenv("QU_VTFS_LFZ"),
-                force_refresh=True,
+                force_refresh=False,
             )
         except Exception:
             return ""

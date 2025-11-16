@@ -118,7 +118,20 @@ class PrintController(QtCore.QObject):
             for job in jobs:
                 job["tech"] = current_tech
 
-        subtotal = _sum(items, "total")
+        # Exclude declined jobs from printed totals while still showing them in the job list
+        status_by_job = {
+            j.get("id"): (j.get("status") or "proposed").lower()
+            for j in jobs
+            if j.get("id") is not None
+        }
+        items_for_totals = []
+        for it in items:
+            jid = it.get("job_id") or 0
+            if jid and status_by_job.get(jid) == "declined":
+                continue
+            items_for_totals.append(it)
+
+        subtotal = _sum(items_for_totals, "total")
         tax_rate = (getattr(self.settings_manager, "sales_tax_rate", 0.0) or 0.0)
         tax = float(self.ui.tax_label.text())
         fees = 0.0
@@ -186,6 +199,9 @@ class PrintController(QtCore.QObject):
 
         jobs = []
         for job in ctx.get("jobs", []):
+            # Only include approved jobs on technician job tickets
+            if (job.get("status") or "").lower() != "approved":
+                continue
             jobs.append({
                 "id": job.get("id"),
                 "title": job.get("title"),
@@ -234,7 +250,7 @@ class PrintController(QtCore.QObject):
                 "rate": rate,
                 "total": total,
                 "kind": (ln.get("type") or "").lower(),
-                "job_id": ln.get("job_name") or ln.get("estimate_job_id") or 0,
+                "job_id": ln.get("job_id") or 0,
             })
         jobs_meta = []
         try:
@@ -251,7 +267,7 @@ class PrintController(QtCore.QObject):
             if not ro_c3["correction"] and r.get("correction"):
                 ro_c3["correction"] = r.get("correction", "")
 
-        meta_by_id = { (j.get("id") or j.get("job_id")): j for j in jobs_meta if (j.get("id") or j.get("job_id")) is not None }
+        meta_by_id = {(j.get("id") or j.get("job_id")): j for j in jobs_meta if (j.get("id") or j.get("job_id")) is not None}
         grouped = {}
         for it in items:
             jid = it.get("job_id") or 0
@@ -259,11 +275,21 @@ class PrintController(QtCore.QObject):
         jobs = []
         for jid, rows in grouped.items():
             meta = meta_by_id.get(jid, {}) if jid else {}
+            status = (meta.get("status") or "proposed").lower()
+            status_label = "Approved" if status == "approved" else ("Declined" if status == "declined" else "Proposed")
+            title = (
+                meta.get("name")
+                or meta.get("title")
+                or meta.get("job_title")
+                or f"Job {jid or ''}".strip()
+            )
             jobs.append({
                 "id": jid,
-                "title": meta.get("title") or meta.get("job_title") or f"{jid or ''}".strip(),
+                "title": title,
                 "tech": meta.get("tech") or meta.get("technician") or "",
                 "po": meta.get("po") or "",
+                "status": status,
+                "status_label": status_label,
                 "lines": rows,
             })
 
@@ -327,15 +353,25 @@ class PrintController(QtCore.QObject):
         jobs = []
         for jid, rows in grouped.items():
             meta = meta_by_id.get(jid, {}) if jid else {}
+            status = (meta.get("status") or "proposed").lower()
+            status_label = "Approved" if status == "approved" else ("Declined" if status == "declined" else "Proposed")
+            title = (
+                meta.get("name")
+                or meta.get("title")
+                or meta.get("job_title")
+                or f"Job {jid or ''}".strip()
+            )
 
             jobs.append({
                 "id": jid,
-                "title": meta.get("title") or meta.get("job_title") or f"Job {jid or ''}".strip(),
+                "title": title,
                 "tech": meta.get("tech") or meta.get("technician") or "",
                 "po": meta.get("po") or "",
                 "complaint": meta.get("complaint") or meta.get("c1") or "",
                 "cause": meta.get("cause") or meta.get("c2") or "",
                 "correction": meta.get("correction") or meta.get("c3") or "",
+                "status": status,
+                "status_label": status_label,
                 "lines": rows,
             })
 

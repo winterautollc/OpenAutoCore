@@ -117,6 +117,29 @@ class EstimateJobsRepository:
             conn.close()
 
     @staticmethod
+    def get_jobs_for_estimate(estimate_id: int):
+        return EstimateJobsRepository.list_for_estimate(estimate_id)
+
+    @staticmethod
+    def get_jobs_for_ro(ro_id: int):
+        conn = connect_db()
+        try:
+            with conn.cursor(dictionary=True) as c:
+                c.execute(
+                    """
+                    SELECT j.id, j.name, j.status, j.total
+                    FROM estimate_jobs j
+                    JOIN estimates e ON e.id = j.estimate_id
+                    WHERE e.ro_id = %s
+                    ORDER BY j.id
+                    """,
+                    (ro_id,),
+                )
+                return c.fetchall() or []
+        finally:
+            conn.close()
+
+    @staticmethod
     def set_status(job_id: int, status: str, by_user_id: Optional[int] = None):
         """Set a job's status and mirror to its items. Maps 'open' -> 'proposed' for ENUM."""
         db_status = "approved" if status == "approved" else ("declined" if status == "declined" else "proposed")

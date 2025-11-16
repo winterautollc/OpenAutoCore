@@ -238,7 +238,7 @@ class ROHubManager(QtCore.QObject):
         self.ui.current_ro_id = ro_id
         ro_data = RepairOrdersRepository.get_repair_order_by_id(ro_id)
         customer = CustomerRepository.get_customer_info_by_id(ro_data["customer_id"])
-        vehicle  = VehicleRepository.get_vehicle_info_for_new_ro(ro_data["customer_id"])
+        vehicle  = VehicleRepository.get_vehicle_info_for_new_ro(ro_data["vehicle_id"])
         dates_miles = RepairOrdersRepository.get_create_altered_date(ro_id)
         self.ui.name_edit.setText(f"{customer['first_name']} {customer['last_name']}")
         self.ui.ro_number_label.setText(ro_data["ro_number"])

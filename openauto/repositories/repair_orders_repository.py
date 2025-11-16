@@ -45,6 +45,7 @@ class RepairOrdersRepository:
                    ro.assigned_tech_id,
                    ro.assigned_writer_id,
                    ro.created_by,
+                   ro.vehicle_id,
                    ro.created_at
             FROM repair_orders ro
             LEFT JOIN users t ON t.id = ro.assigned_tech_id

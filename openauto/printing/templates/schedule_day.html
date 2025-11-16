@@ -1,19 +1,77 @@
-{% set title = "Daily Schedule " ~ day %}
-{% set body %}
-  <h1>Schedule — {{ day }}</h1>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Daily Schedule {{ day }}</title>
+  <style>
+    @page { size: A4; margin: 14mm 12mm 16mm 12mm; }
+    body {
+      font-family: "Inter","Ubuntu",system-ui,-apple-system,Segoe UI,Arial;
+      font-size: 11pt;
+      line-height: 1.4;
+      color: #111;
+    }
+    h1 {
+      font-size: 16pt;
+      margin: 0 0 10px;
+    }
+    .header, .footer {
+      margin-bottom: 10px;
+    }
+    .muted { color:#666; font-size: 10pt; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #ddd;
+      vertical-align: top;
+      font-size: 10.5pt;
+    }
+    th {
+      text-align: left;
+      background: #f5f5f5;
+      font-size: 8pt;
+    }
+    .nowrap { white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Schedule — {{ day }}</h1>
+  </div>
+
   <table>
-    <thead><tr><th>Time</th><th>Customer / Vehicle</th><th>Service</th><th>Tech</th><th>Phone</th></tr></thead>
-    <tbody>
-      {% for appt in appointments %}
+    <thead>
       <tr>
-        <td class="nowrap">{{ appt.start_time }}–{{ appt.end_time }}</td>
-        <td>{{ appt.customer }}<br/><span class="muted">{{ appt.vehicle }}</span></td>
+        <th>Time</th>
+        <th>Customer / Vehicle</th>
+        <th>Service / Notes</th>
+        <th>Tech</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for appt in appointments %}
+      <tr>
+        <td class="nowrap">{{ appt.start_time }}</td>
+        <td>
+          {{ appt.customer }}
+          {% if appt.vehicle %}
+            <br/><span class="muted">{{ appt.vehicle }}</span>
+          {% endif %}
+        </td>
         <td>{{ appt.reason }}</td>
         <td>{{ appt.tech or "-" }}</td>
         <td class="nowrap">{{ appt.phone }}</td>
       </tr>
-      {% endfor %}
+    {% endfor %}
     </tbody>
   </table>
-{% endset %}
-{% include "_base.html" %}
+
+  <div class="footer muted">
+    Printed on {{ day }}
+  </div>
+</body>
+</html>

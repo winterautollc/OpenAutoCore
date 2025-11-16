@@ -1,0 +1,9 @@
+<header class="page-header">
+  {% if shop and shop.name %}
+    <strong>{{ shop.name }}</strong>
+    {% if shop.phone %} — {{ shop.phone }}{% endif %}
+  {% else %}
+    <strong>{{ title or "Daily Schedule" }}</strong>
+  {% endif %}
+</header>
+

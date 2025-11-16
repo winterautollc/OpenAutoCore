@@ -79,6 +79,18 @@ h2 {
     text-align: right;
 }
 
+.job-header.job-approved .job-title {
+    color: #2E7D32;
+}
+
+.job-header.job-declined .job-title {
+    color: #B71C1C;
+}
+
+.job-header.job-proposed .job-title {
+    color: inherit;
+}
+
 table {
     width:100%;
     border-collapse: collapse;

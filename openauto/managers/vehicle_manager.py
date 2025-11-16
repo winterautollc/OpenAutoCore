@@ -7,6 +7,7 @@ from openauto.repositories.vehicle_repository import VehicleRepository
 from openauto.repositories.customer_repository import CustomerRepository
 from openauto.managers.belongs_to_manager import BelongsToManager
 from openauto.utils.fixed_popup_combo import FixedPopupCombo
+from openauto.managers.parts_tree.go_sidecar_manager import GoSidecarManager
 
 
 STATES = [
@@ -29,6 +30,7 @@ class VehicleManager:
     def __init__(self, main_window):
         self.ui = main_window
         self.belongs_to_manager = BelongsToManager(main_window)
+        self._plate_sidecar = None
 
     def add_vehicle(self):
         if not self.ui.customer_table.currentItem():
@@ -53,8 +55,22 @@ class VehicleManager:
 
         self.ui.vehicle_window.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
         self.ui.vehicle_window.setFocus()
+        
+        btn = self.ui.vehicle_window_ui.vin_search_button
+        btn.setMinimumWidth(120)
+        btn.setMaximumWidth(120)
+        btn.setSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Fixed,
+            btn.sizePolicy().verticalPolicy(),
+        )
+        
+        layout = self.ui.vehicle_window_ui.horizontalLayout
+        layout.addItem(QtWidgets.QSpacerItem(
+            40, 20,
+            QtWidgets.QSizePolicy.Policy.Expanding,
+            QtWidgets.QSizePolicy.Policy.Minimum,
+        ))
 
-        # Only expose plate/state controls when ptcli is available (Plate2VIN)
         if _ptcli_available():
             old_box = self.ui.vehicle_window_ui.plate_state_box
             parent = old_box.parent()
@@ -67,32 +83,75 @@ class VehicleManager:
             layout.replaceWidget(old_box, combo)
             old_box.deleteLater()
             self.ui.vehicle_window_ui.plate_state_box = combo
+            self.ui.vehicle_window_ui.plate_line.setVisible(True)
         else:
-            # Hide the plate/state selector when Plate2VIN is not available
             self.ui.vehicle_window_ui.plate_state_box.hide()
+            try:
+                self.ui.vehicle_window_ui.plate_line.hide()
+            except Exception:
+                pass
         
         
         self.ui.vehicle_window_ui.vehicle_cancel_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("vehicle_window"))
 
         self.ui.vehicle_window_ui.vin_line.textChanged.connect(self._enforce_uppercase_vin)
+        self.ui.vehicle_window_ui.plate_line.textChanged.connect(self._enforce_uppercase_plate)
 
         self.ui.vehicle_window.show()
 
     def search_vehicle(self):
-        vin_text = self.ui.vehicle_window_ui.vin_line.text()
-        try:
-            vin = VIN(vin_text)
-            form = self.ui.vehicle_window_ui
-            form.year_line.setText(vin.ModelYear)
-            form.make_line.setText(vin.Make)
-            form.model_line.setText(vin.Model)
-            form.engine_line.setText(vin.DisplacementL)
-            form.trim_line.setText(vin.Trim)
-        except:
-            self._show_message("Please Enter A Valid 17 Digit VIN")
-            # Validator.show_validation_error(self.ui.message, "Please Enter A Valid 17 Digit VIN")
-            self.ui.vehicle_window_ui.vin_line.clear()
+        form = self.ui.vehicle_window_ui
+        vin_text = (form.vin_line.text() or "").strip().upper()
+        plate = (form.plate_line.text() or "").strip().upper()
+
+        if _ptcli_available() and plate:
+            state = (form.plate_state_box.currentText() or "").strip().upper()
+            if not state:
+                self._show_message("Select a plate state for Plate2VIN lookup.")
+                return
+
+            if self._plate_sidecar is None:
+                ptcli_path = (Path(__file__).resolve().parent / "parts_tree" / "ptcli").resolve()
+                self._plate_sidecar = GoSidecarManager(str(ptcli_path), parent=self.ui)
+                self._plate_sidecar.plateDecoded.connect(
+                    self._on_plate_decoded, QtCore.Qt.ConnectionType.UniqueConnection
+                )
+                self._plate_sidecar.errorText.connect(
+                    lambda msg: self._show_message(msg)
+                )
+
+            token = ""
+            ph = getattr(self.ui, "parts_hub_manager", None)
+            if ph is not None:
+                try:
+                    token = ph._current_token() or ""
+                except Exception:
+                    token = ""
+
+            if not token:
+                self._show_message("Plate lookup requires a valid token. Configure in Settings first.")
+                return
+
+            self._plate_sidecar.plate_to_vin(token=token, plate=plate, state=state)
+            self._show_message("Looking up plate, please wait...")
+            return
+
+        ### Fallback to VIN decoding if propietary plate2vin is not available ###
+        if vin_text and len(vin_text) == 17:
+            try:
+                vin = VIN(vin_text)
+                form.year_line.setText(vin.ModelYear)
+                form.make_line.setText(vin.Make)
+                form.model_line.setText(vin.Model)
+                form.engine_line.setText(vin.DisplacementL)
+                form.trim_line.setText(vin.Trim)
+                return
+            except Exception:
+                pass
+
+        self._show_message("Please enter a valid 17 digit VIN or plate.")
+        form.vin_line.clear()
 
     def load_customer_id(self):
         row = self.ui.customer_table.currentRow()
@@ -117,8 +176,20 @@ class VehicleManager:
             form.model_line.text(),
             form.engine_line.text(),
             form.trim_line.text(),
-            customer_id
+            customer_id,
         ]
+
+        try:
+            plate = (form.plate_line.text() or "").strip().upper()
+        except Exception:
+            plate = ""
+        try:
+            state = (form.plate_state_box.currentText() or "").strip().upper() if _ptcli_available() else ""
+        except Exception:
+            state = ""
+
+        vehicle_data.append(plate)
+        vehicle_data.append(state)
 
         if not Validator.vehicle_fields_filled(vehicle_data[:6]):
             self._show_message("Please decode VIN or fill in year, make, and model.")
@@ -144,11 +215,84 @@ class VehicleManager:
         self.ui.vehicle_window_ui.vehicle_save_button.clicked.connect(self.belongs_to_manager.belongs_to)
 
     def _show_message(self, text):
-        self.ui.message.setParent(self.ui.vehicle_window)
-        self.ui.message.setText(text)
-        self.ui.message.show()
+        msg = getattr(self.ui, "message", None)
+        if msg is None:
+            return
+        parent = getattr(self.ui, "vehicle_window", None)
+        try:
+            if parent is not None and parent.isVisible():
+                msg.setParent(parent)
+            else:
+                msg.setParent(self.ui)
+        except RuntimeError:
+            return
+        msg.setText(text)
+        msg.show()
 
     def _enforce_uppercase_vin(self, text):
-        cursor_pos = self.ui.vehicle_window_ui.vin_line.cursorPosition()
-        self.ui.vehicle_window_ui.vin_line.setText(text.upper())
-        self.ui.vehicle_window_ui.vin_line.setCursorPosition(cursor_pos)
+        cleaned = (text or "").replace(" ", "").upper()
+        le = self.ui.vehicle_window_ui.vin_line
+        cursor_pos = le.cursorPosition()
+        le.setText(cleaned)
+        le.setCursorPosition(min(cursor_pos, len(cleaned)))
+        
+    def _enforce_uppercase_plate(self, text):
+        cleaned = (text or "").replace(" ", "").upper()
+        le = self.ui.vehicle_window_ui.plate_line
+        cursor_pos = le.cursorPosition()
+        le.setText(cleaned)
+        le.setCursorPosition(min(cursor_pos, len(cleaned)))
+
+    def _on_plate_decoded(self, payload: dict):
+        form = getattr(self.ui, "vehicle_window_ui", None)
+        vw = getattr(self.ui, "vehicle_window", None)
+        try:
+            if form is None or vw is None or not vw.isVisible():
+                return
+        except RuntimeError:
+            return
+
+        results = payload.get("results") or payload.get("Results") or []
+        if isinstance(results, list) and results:
+            result = results[0]
+        elif isinstance(results, dict):
+            result = results
+        else:
+            self._show_message("No vehicle found for that plate.")
+            return
+
+        vin_str = (result.get("vin") or result.get("VIN") or "").strip().upper()
+        decode = result.get("vinDecode") or result.get("vin_decode") or {}
+
+        if vin_str:
+            try:
+                form.vin_line.setText(vin_str)
+            except RuntimeError:
+                return
+
+        year = decode.get("MDL_YR") or decode.get("ACES_YEAR_ID") or ""
+        make = decode.get("ACES_MAKE_NAME") or decode.get("MAK_NM") or ""
+        model = decode.get("ACES_MODEL_NAME") or decode.get("MDL_DESC") or ""
+        liters = decode.get("ACES_LITERS") or decode.get("ENG_DISPLCMNT_CL")
+        trim = decode.get("TRIM_DESC") or decode.get("ACES_SUB_MODEL_NAME") or ""
+
+        engine = ""
+        if liters:
+            l_str = str(liters)
+            if l_str and "." not in l_str and len(l_str) == 1:
+                l_str = f"{l_str}.0"
+            engine = f"{l_str}L"
+
+        try:
+            if year:
+                form.year_line.setText(str(year))
+            if make:
+                form.make_line.setText(str(make))
+            if model:
+                form.model_line.setText(str(model))
+            if engine:
+                form.engine_line.setText(engine)
+            if trim:
+                form.trim_line.setText(str(trim))
+        except RuntimeError:
+            return

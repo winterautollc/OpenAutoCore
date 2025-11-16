@@ -79,8 +79,21 @@ class BelongsToManager:
             form.model_line.text(),
             form.engine_line.text(),
             form.trim_line.text(),
-            customer_id
+            customer_id,
         ]
+        # Optional plate and state
+        try:
+            plate = (form.plate_line.text() or "").strip().upper()
+        except Exception:
+            plate = ""
+        try:
+            state = (form.plate_state_box.currentText() or "").strip().upper()
+        except Exception:
+            state = ""
+
+        vehicle_data.append(plate)
+        vehicle_data.append(state)
+
         VehicleRepository.insert_vehicle(vehicle_data)
         self._show_message("Vehicle Added")
         self._close_windows(["vehicle_window", "belongs_to"])

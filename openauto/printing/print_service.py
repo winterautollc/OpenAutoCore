@@ -92,5 +92,13 @@ class PrintService(QtCore.QObject):
         html = self.render("job_ticket.html", ctx)
         return self.html_to_pdf(html, out_path)
         
-        
+    def print_appointments_schedule(self, printer: QPrinter, appointments: list, date: QtCore.QDate):
+        ctx = {
+            "day": date.toString("dddd, MMMM d, yyyy"),
+            "appointments": appointments,
+        }
+        html = self.render("schedule_day.html", ctx)
 
+        doc = QtGui.QTextDocument()
+        doc.setHtml(html)
+        doc.print(printer)

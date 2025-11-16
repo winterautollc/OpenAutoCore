@@ -1,5 +1,5 @@
 from pathlib import Path
-from PyQt6 import QtCore, QtWidgets
+from PyQt6 import QtCore, QtWidgets, QtGui
 from openauto.ui import new_appointment
 from openauto.subclassed_widgets.views import small_tables
 from openauto.utils.validator import Validator
@@ -9,9 +9,11 @@ from openauto.repositories.appointment_repository import AppointmentRepository
 from openauto.repositories.repair_orders_repository import RepairOrdersRepository
 from openauto.repositories.ro_c3_repository import ROC3Repository
 from openauto.utils.fixed_popup_combo import FixedPopupCombo
-from PyQt6.QtCore import QTime
+from openauto.managers.appointments.print_controller import PrintController
+from PyQt6.QtCore import QTime, QDate
 
 from pyvin import VIN
+from openauto.managers.parts_tree.go_sidecar_manager import GoSidecarManager
 
 STATES = [
     "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "ID",
@@ -32,10 +34,33 @@ class AppointmentsManager:
     def __init__(self, main_window, sql_monitor):
         self.ui = main_window
         self.sql_monitor = sql_monitor
+        self.print_controller = PrintController(self.ui)
         self.selected_vehicle_id = None  ### ID NUMBER DECLARED EARLY
         self.selected_customer_id = None
         self.waiter = None
         self.dropper = None
+
+        #create a print button for the daily schedule
+        self.ui.print_schedule_button = QtWidgets.QPushButton(parent=self.ui.calender_frame)
+        self.ui.print_schedule_button.setObjectName("print_schedule_button")
+        self.ui.print_schedule_button.setMaximumSize(QtCore.QSize(200, 16777215))
+        print_icon = QtGui.QIcon()
+        print_icon.addPixmap(QtGui.QPixmap(":/resources/icons3/24x24/cil-print.png"))
+        self.ui.print_schedule_button.setIcon(print_icon)
+        self.ui.print_schedule_button.setIconSize(QtCore.QSize(30, 30))
+        self.ui.print_schedule_button.setText("Print")
+        self.ui.print_schedule_button.setFlat(True)
+        self.ui.gridLayout_12.addWidget(self.ui.print_schedule_button, 0, 3, 1, 1)
+        self.ui.print_schedule_button.clicked.connect(self.print_daily_schedule)
+
+        try:
+            # Show only when hourly schedule page (hub index 5) is active
+            self._update_print_schedule_visibility(self.ui.hub_stacked_widget.currentIndex())
+            self.ui.hub_stacked_widget.currentChanged.connect(self._update_print_schedule_visibility)
+        except Exception:
+            pass
+
+        self._plate_sidecar = None
 
 ### OPENS new_appointment WIDGET ###
     def open_new_appointment(self):
@@ -239,9 +264,26 @@ class AppointmentsManager:
 
         self.ui.vehicle_window.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
         self.ui.vehicle_window.setFocus()
+        
+        btn = self.ui.vehicle_window_ui.vin_search_button
+        btn.setMinimumWidth(120)
+        btn.setMaximumWidth(120)
+        btn.setSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Fixed,
+            btn.sizePolicy().verticalPolicy(),
+        )
+        
+        layout = self.ui.vehicle_window_ui.horizontalLayout
+        layout.addItem(QtWidgets.QSpacerItem(
+            40, 20,
+            QtWidgets.QSizePolicy.Policy.Expanding,
+            QtWidgets.QSizePolicy.Policy.Minimum,
+        ))
+        
         self.ui.vehicle_window_ui.vehicle_cancel_button.clicked.connect(
             lambda: self.ui.widget_manager.close_and_delete("vehicle_window"))
         self.ui.vehicle_window_ui.vin_line.textChanged.connect(self._enforce_uppercase_vin)
+        self.ui.vehicle_window_ui.plate_line.textChanged.connect(self._enforce_uppercase_plate)
         self.ui.vehicle_window_ui.vin_search_button.clicked.connect(self.search_vehicle)
         self.ui.vehicle_window_ui.vehicle_save_button.clicked.connect(self.save_vehicle)
 
@@ -256,34 +298,144 @@ class AppointmentsManager:
 
             layout.replaceWidget(old, combo)
             old.deleteLater()
+            
             self.ui.vehicle_window_ui.plate_state_box = combo
+            self.ui.vehicle_window_ui.plate_line.setVisible(True)
         else:
             self.ui.vehicle_window_ui.plate_state_box.hide()
-
+            try:
+                self.ui.vehicle_window_ui.plate_line.hide()
+            except Exception:
+                pass
         self.ui.vehicle_window.show()
 
 
 ### LOADS VEHICLE INFO BY VIN OR MANUALLY ENTERED DATA AND PASSES IT TO MYSQL VIA save_vehicle ###
     def search_vehicle(self):
-        vin_text = self.ui.vehicle_window_ui.vin_line.text()
-        try:
-            vin = VIN(vin_text)
-            form = self.ui.vehicle_window_ui
-            form.year_line.setText(vin.ModelYear)
-            form.make_line.setText(vin.Make)
-            form.model_line.setText(vin.Model)
-            form.engine_line.setText(vin.DisplacementL)
-            form.trim_line.setText(vin.Trim)
-        except:
-            Validator.show_validation_error(self.ui.message, "Invalid VIN")
-            self.ui.vehicle_window_ui.vin_line.clear()
+        form = self.ui.vehicle_window_ui
+        vin_text = (form.vin_line.text() or "").strip().upper()
+        plate = (form.plate_line.text() or "").strip().upper()
+
+        # Prefer Plate2VIN via GoSidecarManager, using plate + state
+        if _ptcli_available() and plate:
+            state = (form.plate_state_box.currentText() or "").strip().upper()
+            if not state:
+                Validator.show_validation_error(self.ui.message, "Select a plate state for Plate2VIN lookup.")
+                return
+
+            if self._plate_sidecar is None:
+                ptcli_path = (Path(__file__).resolve().parent / "parts_tree" / "ptcli").resolve()
+                self._plate_sidecar = GoSidecarManager(str(ptcli_path), parent=self.ui)
+                self._plate_sidecar.plateDecoded.connect(
+                    self._on_plate_decoded, QtCore.Qt.ConnectionType.UniqueConnection
+                )
+                self._plate_sidecar.errorText.connect(
+                    lambda msg: Validator.show_validation_error(self.ui.message, msg)
+                )
+
+            token = ""
+            ph = getattr(self.ui, "parts_hub_manager", None)
+            if ph is not None:
+                try:
+                    token = ph._current_token() or ""
+                except Exception:
+                    token = ""
+
+            if not token:
+                Validator.show_validation_error(
+                    self.ui.message,
+                    "Plate lookup requires a valid token. Configure in Settings first.",
+                )
+                return
+
+            self._plate_sidecar.plate_to_vin(token=token, plate=plate, state=state)
+            return
+
+        # Fallback: plain VIN decode when it looks valid
+        if vin_text and len(vin_text) == 17:
+            try:
+                vin = VIN(vin_text)
+                form.year_line.setText(vin.ModelYear)
+                form.make_line.setText(vin.Make)
+                form.model_line.setText(vin.Model)
+                form.engine_line.setText(vin.DisplacementL)
+                form.trim_line.setText(vin.Trim)
+                return
+            except Exception:
+                pass
+
+        Validator.show_validation_error(self.ui.message, "Invalid VIN or plate.")
+        form.vin_line.clear()
 
 
 ### ENFORCES UPPERCASE INPUT TO VIN ###
     def _enforce_uppercase_vin(self, text):
-        cursor_pos = self.ui.vehicle_window_ui.vin_line.cursorPosition()
-        self.ui.vehicle_window_ui.vin_line.setText(text.upper())
-        self.ui.vehicle_window_ui.vin_line.setCursorPosition(cursor_pos)
+        cleaned = (text or "").replace(" ", "").upper()
+        le = self.ui.vehicle_window_ui.vin_line
+        cursor_pos = le.cursorPosition()
+        le.setText(cleaned)
+        le.setCursorPosition(min(cursor_pos, len(cleaned)))
+
+    def _enforce_uppercase_plate(self, text):
+        cleaned = (text or "").replace(" ", "").upper()
+        le = self.ui.vehicle_window_ui.plate_line
+        cursor_pos = le.cursorPosition()
+        le.setText(cleaned)
+        le.setCursorPosition(min(cursor_pos, len(cleaned)))
+
+    def _on_plate_decoded(self, payload: dict):
+        form = getattr(self.ui, "vehicle_window_ui", None)
+        vw = getattr(self.ui, "vehicle_window", None)
+        try:
+            if form is None or vw is None or not vw.isVisible():
+                return
+        except RuntimeError:
+            return
+
+        results = payload.get("results") or payload.get("Results") or []
+        if isinstance(results, list) and results:
+            result = results[0]
+        elif isinstance(results, dict):
+            result = results
+        else:
+            Validator.show_validation_error(self.ui.message, "No vehicle found for that plate.")
+            return
+
+        vin_str = (result.get("vin") or result.get("VIN") or "").strip().upper()
+        decode = result.get("vinDecode") or result.get("vin_decode") or {}
+
+        if vin_str:
+            try:
+                form.vin_line.setText(vin_str)
+            except RuntimeError:
+                return
+
+        year = decode.get("MDL_YR") or decode.get("ACES_YEAR_ID") or ""
+        make = decode.get("ACES_MAKE_NAME") or decode.get("MAK_NM") or ""
+        model = decode.get("ACES_MODEL_NAME") or decode.get("MDL_DESC") or ""
+        liters = decode.get("ACES_LITERS") or decode.get("ENG_DISPLCMNT_CL")
+        trim = decode.get("TRIM_DESC") or decode.get("ACES_SUB_MODEL_NAME") or ""
+
+        engine = ""
+        if liters:
+            l_str = str(liters)
+            if l_str and "." not in l_str and len(l_str) == 1:
+                l_str = f"{l_str}.0"
+            engine = f"{l_str}L"
+
+        try:
+            if year:
+                form.year_line.setText(str(year))
+            if make:
+                form.make_line.setText(str(make))
+            if model:
+                form.model_line.setText(str(model))
+            if engine:
+                form.engine_line.setText(engine)
+            if trim:
+                form.trim_line.setText(str(trim))
+        except RuntimeError:
+            return
 
 
 
@@ -302,8 +454,20 @@ class AppointmentsManager:
             form.model_line.text(),
             form.engine_line.text(),
             form.trim_line.text(),
-            customer_id
+            customer_id,
         ]
+        # Optional plate and state
+        try:
+            plate = (form.plate_line.text() or "").strip().upper()
+        except Exception:
+            plate = ""
+        try:
+            state = (form.plate_state_box.currentText() or "").strip().upper() if _ptcli_available() else ""
+        except Exception:
+            state = ""
+
+        vehicle_data.append(plate)
+        vehicle_data.append(state)
         if not Validator.vehicle_fields_filled(vehicle_data[:6]):
             return
 
@@ -333,7 +497,6 @@ class AppointmentsManager:
         minute = 30 if (row % 2) else 0
         time = QTime(hour, minute)
 
-        # --- Save rest as before ---
         notes = self.ui.new_appointment_ui.notes_appt_edit.toPlainText().strip()
         customer_id = self.selected_customer_id or getattr(self.ui, "customer_id_small", None)
 
@@ -409,4 +572,18 @@ class AppointmentsManager:
         msg.setWindowTitle("Saved")
         msg.setText("Appointment Saved Successfully" + (" + RO created." if vehicle_id else "."))
         msg.exec()
+        
+
+    def print_daily_schedule(self):
+        date = self.ui.schedule_calendar.selectedDate()
+        appointments = AppointmentRepository.get_appointments_for_week(date, date)
+        self.print_controller.print_daily_schedule(appointments, date)
+        
+               
+    def _update_print_schedule_visibility(self, index: int):
+        btn = getattr(self.ui, "print_schedule_button", None)
+        if not btn:
+            return
+        # Hourly schedule page lives at hub_stacked_widget index 5
+        btn.setVisible(index == 5)
 

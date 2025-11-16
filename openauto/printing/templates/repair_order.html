@@ -32,10 +32,14 @@
       <tr><th>Correction</th><td>{{ ro_c3.correction or "-" }}</td></tr>
     </tbody>
   </table>
-{% endif %}
-{% for job in jobs %}
-  <h2 class="job-header">
-    <span>{{ loop.index }}. {{ job.title or "Job" }}{% if job.po %} — PO: {{ job.po }}{% endif %}</span>
+    {% endif %}
+  {% for job in jobs %}
+  <h2 class="job-header job-{{ job.status|lower }}">
+    <span class="job-title">
+      {{ loop.index }}. {{ job.title or "Job" }}
+      {% if job.status_label %} - {{ job.status_label }}{% endif %}
+      {% if job.po %} — PO: {{ job.po }}{% endif %}
+    </span>
     {% if job.tech %}<span class="job-tech">Tech: {{ job.tech }}</span>{% endif %}
   </h2>
   <table class="job-lines">
