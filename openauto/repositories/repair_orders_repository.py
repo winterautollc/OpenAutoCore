@@ -447,19 +447,71 @@ class RepairOrdersRepository:
             return None
         conn = db_handlers.connect_db()
         with conn, conn.cursor() as cur:
-            cur.execute("""
-                SELECT COALESCE(SUM(total), 0) AS t
-                FROM estimate_jobs
-                WHERE estimate_id=%s
-                """, (est_id, ))
+            # Compute a tax-inclusive total directly from items, and
+            # ignore any declined jobs/items so tiles match what you
+            # actually expect to bill.
+            cur.execute(
+                """
+                SELECT COALESCE(SUM(
+                           CASE
+                               WHEN j.status = 'declined' OR i.status = 'declined'
+                                   THEN 0
+                               ELSE ROUND(
+                                   COALESCE(i.qty, 1) * COALESCE(i.unit_price, 0) *
+                                   (1 + (CASE WHEN i.taxable = 1
+                                              THEN COALESCE(i.tax_pct, 0) / 100
+                                              ELSE 0 END)),
+                                   2
+                               )
+                           END
+                       ), 0) AS t
+                  FROM estimate_items i
+                  LEFT JOIN estimate_jobs j
+                         ON j.id = i.job_id
+                 WHERE i.estimate_id = %s
+                """,
+                (est_id,),
+            )
             row = cur.fetchone()
             if not row:
                 return 0.0
+            # row may be a tuple or dict depending on cursor config
             val = row[0] if not isinstance(row, dict) else row.get("t")
             try:
                 return float(val or 0.0)
             except Exception:
                 return 0.0
+
+    @staticmethod
+    def car_counts_by_day(start_date, end_date):
+        """
+        Return list of tuples (date, count) representing how many repair orders
+        were created each day between start_date and end_date (inclusive).
+        """
+        conn = connect_db()
+        try:
+            with conn.cursor() as c:
+                c.execute(
+                    """
+                    SELECT DATE(created_at) AS d, COUNT(*) AS total
+                      FROM repair_orders
+                     WHERE created_at BETWEEN %s AND %s
+                       AND vehicle_id IS NOT NULL
+                     GROUP BY DATE(created_at)
+                     ORDER BY d
+                    """,
+                    (start_date, end_date),
+                )
+                rows = c.fetchall() or []
+                # rows is list of tuples; ensure consistent types
+                out = []
+                for row in rows:
+                    day = row[0]
+                    count = row[1] if len(row) > 1 else None
+                    out.append((day, int(count or 0)))
+                return out
+        finally:
+            conn.close()
 
     @staticmethod
     def heartbeat():
@@ -521,5 +573,3 @@ class RepairOrdersRepository:
         cursor.execute("SELECT * FROM repair_orders WHERE id=%s", ro_id)
         result = cursor.fetchall()
         return result if result else None
-
-

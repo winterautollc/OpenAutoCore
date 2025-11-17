@@ -9,8 +9,10 @@ from openauto.managers.ro_hub import ro_hub_manager
 from openauto.managers.parts_tree import parts_hub_manager
 from openauto.managers import (
     customer_manager, vehicle_manager, settings_manager,
-    animations_manager, new_ro_manager, belongs_to_manager, appointments_manager, appointment_options_manager,
+    animations_manager, new_ro_manager, belongs_to_manager, appointment_options_manager,
     theme_manager, permissions_manager)
+from openauto.managers.appointments import appointments_manager
+from openauto.managers.analytics import analytics_manager
 from openauto.managers.parts_tree.go_sidecar_manager import UvicornManager
 from pyvin import VIN
 import os
@@ -61,7 +63,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self._connect_signals()
         self._set_privileges()
         self._setup_animations()
-        self._set_all_buttons_flat(False)
+     #   self._set_all_buttons_flat(False)
         self._set_line_sizes()
         self.switch_theme("light", persist=False)
         self._fix_ro_input_row_for_dpi()
@@ -85,6 +87,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.uvicorn_manager = UvicornManager(self)
         self.log_console = LogConsole(self)
         self.parts_hub_manager = parts_hub_manager.PartsHubManager(self)
+        self.analytics_manager = analytics_manager.AnalyticsManager(self)
 
 
 
@@ -130,6 +133,8 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.gridLayout_31.addWidget(self.weekly_schedule_table, 0, 0, 1, 1)
         self.gridLayout_34.addWidget(self.hourly_schedule_table, 0, 0, 1, 1)
         self.gridLayout_47.addWidget(self.tax_table, 1, 0, 1, 2)
+        # self.gridLayout_50.setSpacing(0)
+        # self.gridLayout_50.setContentsMargins(0, 0, 0, 0)
 
 ### Add page to hub_stacked_widget for the internet browser and declare it early. URL's are changed on demand.
     def _init_quote_page(self):
@@ -252,6 +257,17 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.scheduling_button.clicked.connect(self.animations_manager.show_schedule)
         self.week_button.hide()
         self.month_button.clicked.connect(self.animations_manager.show_schedule)
+        self.analytics_button.clicked.connect(self.animations_manager.show_analytics)
+        self.analytics_yesterday_button.clicked.connect(
+            lambda: self.analytics_manager.set_range(analytics_manager.Range.YESTERDAY))
+        self.analytics_today_button.clicked.connect(
+            lambda: self.analytics_manager.set_range(analytics_manager.Range.TODAY))
+        self.analytics_last_seven.clicked.connect(
+            lambda: self.analytics_manager.set_range(analytics_manager.Range.LAST_7))
+        self.analytics_last_thirty.clicked.connect(
+            lambda: self.analytics_manager.set_range(analytics_manager.Range.LAST_30))
+        self.analytics_last_twelve.clicked.connect(
+            lambda: self.analytics_manager.set_range(analytics_manager.Range.LAST_12))
         self.day_button.setText("Today")
         self.day_button.clicked.connect(self.animations_manager.show_hourly)
         self.schedule_calendar.date_selected.connect(self.weekly_schedule_table.set_horizontal_headers_for_date)

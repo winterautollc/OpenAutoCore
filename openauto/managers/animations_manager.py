@@ -46,6 +46,7 @@ class AnimationsManager:
         self.animate_schedule_header = anim(self.ui.calender_header_buttons, 500)
 
 
+
     def show_page(self, hub_index: int, tab_index: int = None, table_widget=None, top_bar_index: int = None):
         self.ui.hub_stacked_widget.setCurrentIndex(hub_index)
 
@@ -208,3 +209,10 @@ class AnimationsManager:
         self.ui.animate_day.setEndValue(QRect(9, 9, w, h))
         self.ui.animate_day.start()
         self.show_page(hub_index=5, table_widget=self.ui.hourly_schedule_table, top_bar_index=4)
+
+    def show_analytics(self):
+        # w, h = self.ui.ro_tabs.width(), self.ui.ro_tabs.height()
+        # self.ui.animate_analytics.setStartValue(QRect(0, 0, 0, 0))
+        # self.ui.animate_analytics.setEndValue(QRect(9, 9, w, h))
+        # self.ui.animate_analytics.start()
+        self.show_page(hub_index=9, table_widget=self.ui.analytics_page, top_bar_index=7)   

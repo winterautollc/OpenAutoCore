@@ -398,12 +398,16 @@ class SaveEstimateService:
 
         EstimatesRepository.update_total(estimate_id, float(total))
         EstimateJobsRepository.recompute_totals_for_estimate(estimate_id)
-        QtCore.QTimer.singleShot(0, lambda: update_all_tiles(ro_id, total=float(total)))
+        # Refresh tiles using the tax-inclusive, declined-aware RO total
         try:
-            update_all_tiles(ro_id, total=float(total))
+            tile_total = RepairOrdersRepository.estimate_total_for_ro(ro_id) or 0.0
+        except Exception:
+            tile_total = float(total or 0.0)
+        QtCore.QTimer.singleShot(0, lambda: update_all_tiles(ro_id, total=float(tile_total)))
+        try:
+            update_all_tiles(ro_id, total=float(tile_total))
         except Exception:
             pass
         if not silent:
             QMessageBox.information(self.ui, "Save RO", f"Estimate #{estimate_id} saved with {len(items)} items.")
         return int(estimate_id)
-
