@@ -10,6 +10,7 @@ certifi==2023.7.22
 cffi==2.0.0
 charset-normalizer==3.3.2
 click==8.3.0
+colorama==0.4.6
 cryptography==45.0.7
 deprecation==2.1.0
 fastapi==0.118.3
@@ -29,6 +30,7 @@ msgpack==1.0.7
 mysql-connector==2.2.9
 mysql-connector-python==8.2.0
 ngrok==1.5.1
+numpy==2.3.4
 packaging==23.2
 patchelf==0.17.2.1
 protobuf==4.21.12
@@ -43,6 +45,7 @@ PyQt6-WebEngine==6.9.0
 PyQt6-WebEngine-Qt6==6.9.0
 PyQt6-WebEngineSubwheel-Qt6==6.7.3
 PyQt6_sip==13.10.2
+pyqtgraph==0.14.0
 python-dateutil==2.8.2
 python-dotenv==1.0.1
 pyvin==0.0.2
