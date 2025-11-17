@@ -37,7 +37,6 @@ protobuf==4.21.12
 pycparser==2.23
 pydantic==2.12.0
 pydantic_core==2.41.1
-pyinstaller @ https://github.com/pyinstaller/pyinstaller/archive/develop.tar.gz#sha256=85177911d45cb7bf1b0d3ad685b7c7e0f85664da56181f8dea63894847a6a8d0
 pyinstaller-hooks-contrib==2025.4
 PyQt6==6.9.0
 PyQt6-Qt6==6.9.0
