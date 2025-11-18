@@ -113,6 +113,7 @@ class MainWindow(QtWidgets.QMainWindow, main_form.Ui_MainWindow):
         self.hourly_schedule_table = apt_calendar.HourlySchedule(parent=self)
         self.weekly_schedule_table = apt_calendar.WeeklySchedule(parent=self)
         self.ro_items_table.setModel(ROTreeModel(self.ro_items_table))
+        self.tax_table = small_tables.TaxTable(parent=self)
 
 
 

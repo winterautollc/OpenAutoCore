@@ -556,6 +556,26 @@ QWidget {
 	border-radius: 5px;
 }
 
+#analytics_yesterday_button,
+#analytics_today_button,
+#analytics_last_seven,
+#analytics_last_thirty,
+#analytics_last_twelve {
+    color: #3d2fed;
+    min-height: 35px;
+}
+
+#analytics_yesterday_button:hover,
+#analytics_today_button:hover,
+#analytics_last_seven:hover,
+#analytics_last_thirty:hover,
+#analytics_last_twelve:hover {
+    background-color: #958df5;
+    color: #fff;
+	border-radius: 5px;
+}
+
+
 #create_ro_button,
 #edit_appointment_button,
 #delete_appointment_button,
@@ -806,6 +826,60 @@ QWidget {
     height: 30px;
     width: 30px;
     border: 1px solid gray;
+}
+
+#reports_tree {
+    background: #E6EBF1;
+    border: none;
+    show-decoration-selected: 1;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+#reports_tree::item {
+    padding: 4px;
+    height: 24px;
+    border-radius: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#reports_tree::item:hover {
+    background: #b0c7f2;
+}
+
+#reports_tree::item:selected {
+    background: #2f80ed;
+    color: #ffffff;
+}
+
+#nav_frame {
+    border-radius: 6px;
+    border: 1px solid #d1d7e5;
+}
+
+#pl_dashboard,
+#sales_dashboard_frame,
+#job_approved_dashboard_frame,
+#gross_profit_dashboard_frame,
+#car_count_dashboard_frame,
+#average_ro_dashboard_frame {
+    border-radius: 8px;
+}
+
+
+#pl_dashboard > QLabel,
+#sales_dashboard_frame  > QLabel,
+#job_approved_dashboard_frame > QLabel,
+#gross_profit_dashboard_frame > QLabel,
+#car_count_dashboard_frame > QLabel,
+#average_ro_dashboard_frame > QLabel {
+    font-weight: bold;
+    padding-left: 50px;
+}
+
+#analytics_top_buttons_frame {
+    background-color: #d8e3f2;
 }
 
 

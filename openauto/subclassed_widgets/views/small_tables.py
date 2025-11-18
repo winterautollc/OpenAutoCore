@@ -3,7 +3,6 @@ from PyQt6 import QtWidgets, QtCore
 from PyQt6 import QtGui
 from PyQt6.QtWidgets import QStyledItemDelegate
 from openauto.repositories import customer_repository, vehicle_repository, settings_repository, db_handlers
-from openauto.subclassed_widgets import event_handlers
 import decimal
 import os
 
