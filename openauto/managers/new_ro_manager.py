@@ -246,7 +246,7 @@ class NewROManager:
             layout.replaceWidget(old, combo)
             old.deleteLater()
             self.ui.vehicle_window_ui.plate_state_box = combo
-            self.uui.vehicle_window_ui.plate_state_box.setMinimumWidth(80)
+            self.ui.vehicle_window_ui.plate_state_box.setMinimumWidth(80)
             self.ui.vehicle_window_ui.plate_line.setVisible(True)
         else:
             self.ui.vehicle_window_ui.plate_state_box.hide()
